@@ -202,7 +202,7 @@ mat-kg-agent/
 
 ## Design Decisions & Alternatives Considered
 
-*This section is for readers who want the full rationale behind each choice — recruiters or reviewers checking the surface-level design can stop above.*
+*This section is for readers who want the full rationale behind each choice.*
 
 | Decision | Chosen | Alternatives considered | Why chosen |
 |---|---|---|---|
@@ -222,7 +222,7 @@ mat-kg-agent/
 
 ## Background & Motivation
 
-*Full reasoning trail for readers curious how this project's scope was chosen — not required reading to evaluate the code.*
+*Full reasoning trail for readers curious how this project's scope was chosen.*
 
 This project started from three separate observations that turned out to point at the same gap.
 

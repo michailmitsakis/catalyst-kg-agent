@@ -1,0 +1,1329 @@
+{
+  "summary": {
+    "n_nodes": 556,
+    "n_edges": 791,
+    "nodes_by_type": {
+      "Material": 130,
+      "Element": 12,
+      "Chemsys": 24,
+      "Structure": 130,
+      "Property": 260
+    },
+    "n_materials": 130,
+    "n_structures_parsed": 130,
+    "n_structures_failed": 0
+  },
+  "per_material": [
+    {
+      "mpid": "mp-2790",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I4/m",
+      "element_counts": {
+        "Ni": 12,
+        "P": 5
+      }
+    },
+    {
+      "mpid": "mp-2296",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I-4",
+      "element_counts": {
+        "Ni": 12,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-22619",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pa-3",
+      "element_counts": {
+        "Ni": 4,
+        "P": 8
+      }
+    },
+    {
+      "mpid": "mp-2301",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Im-3",
+      "element_counts": {
+        "Ni": 4,
+        "P": 12
+      }
+    },
+    {
+      "mpid": "mp-22204",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnma",
+      "element_counts": {
+        "Co": 8,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-22270",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnma",
+      "element_counts": {
+        "Co": 4,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-14285",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P2_1/c",
+      "element_counts": {
+        "Co": 4,
+        "P": 8
+      }
+    },
+    {
+      "mpid": "mp-1944",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Im-3",
+      "element_counts": {
+        "Co": 4,
+        "P": 12
+      }
+    },
+    {
+      "mpid": "mp-1189340",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Imm2",
+      "element_counts": {
+        "Fe": 12,
+        "P": 6
+      }
+    },
+    {
+      "mpid": "mp-18708",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I-4",
+      "element_counts": {
+        "Fe": 12,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-1005",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnma",
+      "element_counts": {
+        "Fe": 4,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-20027",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnnm",
+      "element_counts": {
+        "Fe": 2,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-570553",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/c",
+      "element_counts": {
+        "Fe": 4,
+        "P": 16
+      }
+    },
+    {
+      "mpid": "mp-10004",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I-42m",
+      "element_counts": {
+        "Mo": 12,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-219",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-6m2",
+      "element_counts": {
+        "Mo": 1,
+        "P": 1
+      }
+    },
+    {
+      "mpid": "mp-1887",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Cmc2_1",
+      "element_counts": {
+        "Mo": 2,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-11508",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/c",
+      "element_counts": {
+        "Mo": 2,
+        "P": 8
+      }
+    },
+    {
+      "mpid": "mp-11328",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Cmc2_1",
+      "element_counts": {
+        "P": 4,
+        "W": 2
+      }
+    },
+    {
+      "mpid": "mp-2420",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnma",
+      "element_counts": {
+        "P": 4,
+        "W": 4
+      }
+    },
+    {
+      "mpid": "mp-1849",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-62m",
+      "element_counts": {
+        "Mn": 6,
+        "P": 3
+      }
+    },
+    {
+      "mpid": "mp-2019629",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Amm2",
+      "element_counts": {
+        "Mn": 6,
+        "P": 3
+      }
+    },
+    {
+      "mpid": "mp-2662",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnma",
+      "element_counts": {
+        "Mn": 4,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-362",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R32",
+      "element_counts": {
+        "Ni": 3,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-1050",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Ni": 6,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-1180046",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P2_1",
+      "element_counts": {
+        "Ni": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-943",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Co": 6,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-1513",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fm-3m",
+      "element_counts": {
+        "Co": 9,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-2070",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pa-3",
+      "element_counts": {
+        "Co": 4,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-505531",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P4/nmm",
+      "element_counts": {
+        "Fe": 2,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-1522",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnnm",
+      "element_counts": {
+        "Fe": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-1434",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R3m",
+      "element_counts": {
+        "Mo": 1,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-224",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P6_3/mmc",
+      "element_counts": {
+        "W": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-2065",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Mn": 2,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-1422029",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Mn": 1,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-1552",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pbcn",
+      "element_counts": {
+        "Mo": 8,
+        "C": 4
+      }
+    },
+    {
+      "mpid": "mp-2305",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-6m2",
+      "element_counts": {
+        "Mo": 1,
+        "C": 1
+      }
+    },
+    {
+      "mpid": "mp-1894",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-6m2",
+      "element_counts": {
+        "W": 1,
+        "C": 1
+      }
+    },
+    {
+      "mpid": "mp-656887",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Cmmm",
+      "element_counts": {
+        "Ni": 6,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-19009",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fm-3m",
+      "element_counts": {
+        "Ni": 1,
+        "O": 1
+      }
+    },
+    {
+      "mpid": "mp-1271793",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Co": 6,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-22408",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R3m",
+      "element_counts": {
+        "Co": 2,
+        "O": 2
+      }
+    },
+    {
+      "mpid": "mp-1400906",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Co": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-19770",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3c",
+      "element_counts": {
+        "Fe": 4,
+        "O": 6
+      }
+    },
+    {
+      "mpid": "mp-1274279",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Fe": 4,
+        "O": 4
+      }
+    },
+    {
+      "mpid": "mp-18759",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Mn": 6,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-1232659",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pmmn",
+      "element_counts": {
+        "Mn": 4,
+        "O": 4
+      }
+    },
+    {
+      "mpid": "mp-644514",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Cm",
+      "element_counts": {
+        "Mn": 6,
+        "O": 12
+      }
+    },
+    {
+      "mpid": "mp-35596",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Imma",
+      "element_counts": {
+        "Fe": 4,
+        "Ni": 2,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-754168",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Co": 2,
+        "Ni": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-1178424",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3",
+      "element_counts": {
+        "Co": 2,
+        "Ni": 2,
+        "O": 6
+      }
+    },
+    {
+      "mpid": "mp-126",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fm-3m",
+      "element_counts": {
+        "Pt": 1
+      }
+    },
+    {
+      "mpid": "mp-2723",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P4_2/mnm",
+      "element_counts": {
+        "Ir": 2,
+        "O": 4
+      }
+    },
+    {
+      "mpid": "mp-1279343",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P1",
+      "element_counts": {
+        "Co": 2,
+        "Ni": 2,
+        "O": 6
+      }
+    },
+    {
+      "mpid": "mp-19128",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P6_3mc",
+      "element_counts": {
+        "Co": 2,
+        "O": 2
+      }
+    },
+    {
+      "mpid": "mp-778",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-62m",
+      "element_counts": {
+        "Fe": 6,
+        "P": 3
+      }
+    },
+    {
+      "mpid": "mp-487",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Mn": 2,
+        "P": 8
+      }
+    },
+    {
+      "mpid": "mp-9813",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R3m",
+      "element_counts": {
+        "W": 1,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-1189099",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I-4",
+      "element_counts": {
+        "Mo": 12,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-1105127",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Cc",
+      "element_counts": {
+        "Mn": 4,
+        "P": 16
+      }
+    },
+    {
+      "mpid": "mp-1386044",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Mn": 4,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-2815",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P6_3/mmc",
+      "element_counts": {
+        "Mo": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-850049",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pbca",
+      "element_counts": {
+        "Co": 4,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-21167",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-62m",
+      "element_counts": {
+        "Ni": 6,
+        "P": 3
+      }
+    },
+    {
+      "mpid": "mp-1018809",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P6_3/mmc",
+      "element_counts": {
+        "Mo": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-1027525",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-3m1",
+      "element_counts": {
+        "Mo": 4,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-1028441",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-3m1",
+      "element_counts": {
+        "W": 4,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-1025874",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-6m2",
+      "element_counts": {
+        "Mo": 3,
+        "S": 6
+      }
+    },
+    {
+      "mpid": "mp-1025571",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P3m1",
+      "element_counts": {
+        "W": 3,
+        "S": 6
+      }
+    },
+    {
+      "mpid": "mp-754748",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P1",
+      "element_counts": {
+        "Co": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-486",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/c",
+      "element_counts": {
+        "Ni": 2,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-550206",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Co": 1,
+        "O": 2
+      }
+    },
+    {
+      "mpid": "mp-1023939",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-3m1",
+      "element_counts": {
+        "Mo": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-1023925",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-3m1",
+      "element_counts": {
+        "W": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-715262",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I4/mmm",
+      "element_counts": {
+        "Fe": 2,
+        "O": 2
+      }
+    },
+    {
+      "mpid": "mp-226",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pa-3",
+      "element_counts": {
+        "Fe": 4,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-753222",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Fe": 4,
+        "Co": 2,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-640147",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Fe": 2,
+        "Ni": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-18748",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Co": 6,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-1783",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "F-43m",
+      "element_counts": {
+        "Mn": 1,
+        "S": 1
+      }
+    },
+    {
+      "mpid": "mp-1178232",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P1",
+      "element_counts": {
+        "Fe": 4,
+        "O": 4
+      }
+    },
+    {
+      "mpid": "mp-1278455",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P1",
+      "element_counts": {
+        "Co": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-19306",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Fe": 6,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-18922",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Mn": 5,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-1283030",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Fe": 4,
+        "O": 4
+      }
+    },
+    {
+      "mpid": "mp-1023937",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-6m2",
+      "element_counts": {
+        "W": 1,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-1272680",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P1",
+      "element_counts": {
+        "Co": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-1547",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R3m",
+      "element_counts": {
+        "Ni": 3,
+        "S": 3
+      }
+    },
+    {
+      "mpid": "mp-1023924",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-6m2",
+      "element_counts": {
+        "Mo": 1,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-2562",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P6_3mc",
+      "element_counts": {
+        "Mn": 2,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-31770",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Cc",
+      "element_counts": {
+        "Fe": 6,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-1183728",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3c",
+      "element_counts": {
+        "Co": 4,
+        "S": 6
+      }
+    },
+    {
+      "mpid": "mp-2282",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pbca",
+      "element_counts": {
+        "Ni": 4,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-19326",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnma",
+      "element_counts": {
+        "Mn": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-27844",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pbca",
+      "element_counts": {
+        "Ni": 8,
+        "P": 8
+      }
+    },
+    {
+      "mpid": "mp-1188188",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnma",
+      "element_counts": {
+        "Mn": 12,
+        "C": 4
+      }
+    },
+    {
+      "mpid": "mp-19395",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I4/m",
+      "element_counts": {
+        "Mn": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-753348",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Imma",
+      "element_counts": {
+        "Fe": 2,
+        "Co": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-22749",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/c",
+      "element_counts": {
+        "Mn": 10,
+        "C": 4
+      }
+    },
+    {
+      "mpid": "mp-13446",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-62m",
+      "element_counts": {
+        "Co": 6,
+        "P": 3
+      }
+    },
+    {
+      "mpid": "mp-849059",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnnm",
+      "element_counts": {
+        "Ni": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-850131",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P2_1/c",
+      "element_counts": {
+        "Ni": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-11329",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "P": 4,
+        "W": 2
+      }
+    },
+    {
+      "mpid": "mp-1272234",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P1",
+      "element_counts": {
+        "Co": 2,
+        "Ni": 2,
+        "O": 6
+      }
+    },
+    {
+      "mpid": "mp-761471",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I-4m2",
+      "element_counts": {
+        "Co": 5,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-1282693",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Fe": 2,
+        "Ni": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-19884",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I-4",
+      "element_counts": {
+        "Mn": 12,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-568328",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C222_1",
+      "element_counts": {
+        "Fe": 2,
+        "P": 8
+      }
+    },
+    {
+      "mpid": "mp-1271784",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Imma",
+      "element_counts": {
+        "Co": 6,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-1279232",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Imma",
+      "element_counts": {
+        "Fe": 2,
+        "Ni": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-27413",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pm",
+      "element_counts": {
+        "Mo": 8,
+        "P": 5
+      }
+    },
+    {
+      "mpid": "mp-974355",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3c",
+      "element_counts": {
+        "Mn": 4,
+        "S": 6
+      }
+    },
+    {
+      "mpid": "mp-1018804",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnnm",
+      "element_counts": {
+        "Mn": 2,
+        "S": 4
+      }
+    },
+    {
+      "mpid": "mp-773511",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Co": 5,
+        "Ni": 1,
+        "O": 12
+      }
+    },
+    {
+      "mpid": "mp-1411545",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Ni": 1,
+        "S": 2
+      }
+    },
+    {
+      "mpid": "mp-796340",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P4_2/m",
+      "element_counts": {
+        "Mn": 6,
+        "O": 12
+      }
+    },
+    {
+      "mpid": "mp-796336",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P2/m",
+      "element_counts": {
+        "Mn": 6,
+        "O": 12
+      }
+    },
+    {
+      "mpid": "mp-19079",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Co": 2,
+        "O": 2
+      }
+    },
+    {
+      "mpid": "mp-759037",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Fe": 9,
+        "O": 10
+      }
+    },
+    {
+      "mpid": "mp-756594",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Co": 1,
+        "Ni": 4,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-755453",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/c",
+      "element_counts": {
+        "Mn": 4,
+        "P": 16
+      }
+    },
+    {
+      "mpid": "mp-754806",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Ni": 5,
+        "O": 6
+      }
+    },
+    {
+      "mpid": "mp-754800",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Ni": 6,
+        "O": 8
+      }
+    },
+    {
+      "mpid": "mp-754064",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P2/m",
+      "element_counts": {
+        "Mn": 2,
+        "P": 4
+      }
+    },
+    {
+      "mpid": "mp-1444811",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Ni": 4,
+        "S": 8
+      }
+    },
+    {
+      "mpid": "mp-1022963",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Amm2",
+      "element_counts": {
+        "Ir": 2,
+        "O": 6
+      }
+    },
+    {
+      "mpid": "mp-1102036",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Cmc2_1",
+      "element_counts": {
+        "Ni": 6,
+        "P": 6
+      }
+    },
+    {
+      "mpid": "mp-510408",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P4_2/mnm",
+      "element_counts": {
+        "Mn": 2,
+        "O": 4
+      }
+    },
+    {
+      "mpid": "mp-33009",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "Pnnm",
+      "element_counts": {
+        "Mn": 2,
+        "O": 4
+      }
+    },
+    {
+      "mpid": "mp-656884",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Ni": 9,
+        "O": 10
+      }
+    },
+    {
+      "mpid": "mp-1213762",
+      "structure_parsed": true,
+      "crystal_system": null,
+      "space_group_symbol": "I-4",
+      "element_counts": {
+        "Co": 12,
+        "P": 4
+      }
+    }
+  ]
+}

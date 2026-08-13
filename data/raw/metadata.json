@@ -1,0 +1,1313 @@
+[
+  {
+    "material_id": "mp-2790",
+    "formula_pretty": "Ni12P5",
+    "elements": [
+      "Ni",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2296",
+    "formula_pretty": "Ni3P",
+    "elements": [
+      "Ni",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-22619",
+    "formula_pretty": "NiP2",
+    "elements": [
+      "Ni",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2301",
+    "formula_pretty": "NiP3",
+    "elements": [
+      "Ni",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-22204",
+    "formula_pretty": "Co2P",
+    "elements": [
+      "Co",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-22270",
+    "formula_pretty": "CoP",
+    "elements": [
+      "Co",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-14285",
+    "formula_pretty": "CoP2",
+    "elements": [
+      "Co",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.4377999999999993
+  },
+  {
+    "material_id": "mp-1944",
+    "formula_pretty": "CoP3",
+    "elements": [
+      "Co",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1189340",
+    "formula_pretty": "Fe2P",
+    "elements": [
+      "Fe",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-18708",
+    "formula_pretty": "Fe3P",
+    "elements": [
+      "Fe",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1005",
+    "formula_pretty": "FeP",
+    "elements": [
+      "Fe",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-20027",
+    "formula_pretty": "FeP2",
+    "elements": [
+      "Fe",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.43270000000000053
+  },
+  {
+    "material_id": "mp-570553",
+    "formula_pretty": "FeP4",
+    "elements": [
+      "Fe",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.7795999999999994
+  },
+  {
+    "material_id": "mp-10004",
+    "formula_pretty": "Mo3P",
+    "elements": [
+      "Mo",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-219",
+    "formula_pretty": "MoP",
+    "elements": [
+      "Mo",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1887",
+    "formula_pretty": "MoP2",
+    "elements": [
+      "Mo",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-11508",
+    "formula_pretty": "MoP4",
+    "elements": [
+      "Mo",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-11328",
+    "formula_pretty": "P2W",
+    "elements": [
+      "P",
+      "W"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2420",
+    "formula_pretty": "PW",
+    "elements": [
+      "P",
+      "W"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1849",
+    "formula_pretty": "Mn2P",
+    "elements": [
+      "Mn",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2019629",
+    "formula_pretty": "Mn2P",
+    "elements": [
+      "Mn",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2662",
+    "formula_pretty": "MnP",
+    "elements": [
+      "Mn",
+      "P"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-362",
+    "formula_pretty": "Ni3S2",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1050",
+    "formula_pretty": "Ni3S4",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1180046",
+    "formula_pretty": "NiS2",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.24040000000000017
+  },
+  {
+    "material_id": "mp-943",
+    "formula_pretty": "Co3S4",
+    "elements": [
+      "Co",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1513",
+    "formula_pretty": "Co9S8",
+    "elements": [
+      "Co",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2070",
+    "formula_pretty": "CoS2",
+    "elements": [
+      "Co",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-505531",
+    "formula_pretty": "FeS",
+    "elements": [
+      "Fe",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1522",
+    "formula_pretty": "FeS2",
+    "elements": [
+      "Fe",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.8806999999999992
+  },
+  {
+    "material_id": "mp-1434",
+    "formula_pretty": "MoS2",
+    "elements": [
+      "Mo",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 1.3839000000000006
+  },
+  {
+    "material_id": "mp-224",
+    "formula_pretty": "WS2",
+    "elements": [
+      "S",
+      "W"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 1.5656999999999996
+  },
+  {
+    "material_id": "mp-2065",
+    "formula_pretty": "MnS",
+    "elements": [
+      "Mn",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1422029",
+    "formula_pretty": "MnS2",
+    "elements": [
+      "Mn",
+      "S"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1552",
+    "formula_pretty": "Mo2C",
+    "elements": [
+      "C",
+      "Mo"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2305",
+    "formula_pretty": "MoC",
+    "elements": [
+      "C",
+      "Mo"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1894",
+    "formula_pretty": "WC",
+    "elements": [
+      "C",
+      "W"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-656887",
+    "formula_pretty": "Ni3O4",
+    "elements": [
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-19009",
+    "formula_pretty": "NiO",
+    "elements": [
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 2.387200000000001
+  },
+  {
+    "material_id": "mp-1271793",
+    "formula_pretty": "Co3O4",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 1.4652000000000003
+  },
+  {
+    "material_id": "mp-22408",
+    "formula_pretty": "CoO",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.5819000000000001
+  },
+  {
+    "material_id": "mp-1400906",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.5904000000000001
+  },
+  {
+    "material_id": "mp-19770",
+    "formula_pretty": "Fe2O3",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1274279",
+    "formula_pretty": "FeO",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 2.3029
+  },
+  {
+    "material_id": "mp-18759",
+    "formula_pretty": "Mn3O4",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.8134999999999994
+  },
+  {
+    "material_id": "mp-1232659",
+    "formula_pretty": "MnO",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 1.1560999999999995
+  },
+  {
+    "material_id": "mp-644514",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.5126
+  },
+  {
+    "material_id": "mp-35596",
+    "formula_pretty": "Fe2NiO4",
+    "elements": [
+      "Fe",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 1.3827000000000003
+  },
+  {
+    "material_id": "mp-754168",
+    "formula_pretty": "Co(NiO2)2",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1178424",
+    "formula_pretty": "CoNiO3",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-126",
+    "formula_pretty": "Pt",
+    "elements": [
+      "Pt"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2723",
+    "formula_pretty": "IrO2",
+    "elements": [
+      "Ir",
+      "O"
+    ],
+    "energy_above_hull": 0.0,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1279343",
+    "formula_pretty": "CoNiO3",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.00036671099999896484,
+    "band_gap": 1.0203000000000002
+  },
+  {
+    "material_id": "mp-19128",
+    "formula_pretty": "CoO",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.0004125800000007729,
+    "band_gap": 0.7067000000000001
+  },
+  {
+    "material_id": "mp-778",
+    "formula_pretty": "Fe2P",
+    "elements": [
+      "Fe",
+      "P"
+    ],
+    "energy_above_hull": 0.0005044483333342953,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-487",
+    "formula_pretty": "MnP4",
+    "elements": [
+      "Mn",
+      "P"
+    ],
+    "energy_above_hull": 0.0008484516666671382,
+    "band_gap": 0.43679999999999986
+  },
+  {
+    "material_id": "mp-9813",
+    "formula_pretty": "WS2",
+    "elements": [
+      "S",
+      "W"
+    ],
+    "energy_above_hull": 0.0008838066666640998,
+    "band_gap": 1.5593000000000004
+  },
+  {
+    "material_id": "mp-1189099",
+    "formula_pretty": "Mo3P",
+    "elements": [
+      "Mo",
+      "P"
+    ],
+    "energy_above_hull": 0.0009189668749982616,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1105127",
+    "formula_pretty": "MnP4",
+    "elements": [
+      "Mn",
+      "P"
+    ],
+    "energy_above_hull": 0.001444687666666944,
+    "band_gap": 0.5366000000000017
+  },
+  {
+    "material_id": "mp-1386044",
+    "formula_pretty": "MnS2",
+    "elements": [
+      "Mn",
+      "S"
+    ],
+    "energy_above_hull": 0.0015696991666658278,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2815",
+    "formula_pretty": "MoS2",
+    "elements": [
+      "Mo",
+      "S"
+    ],
+    "energy_above_hull": 0.0016927283333316723,
+    "band_gap": 1.4648999999999996
+  },
+  {
+    "material_id": "mp-850049",
+    "formula_pretty": "CoS2",
+    "elements": [
+      "Co",
+      "S"
+    ],
+    "energy_above_hull": 0.0018982358333339278,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-21167",
+    "formula_pretty": "Ni2P",
+    "elements": [
+      "Ni",
+      "P"
+    ],
+    "energy_above_hull": 0.0022342603140081962,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1018809",
+    "formula_pretty": "MoS2",
+    "elements": [
+      "Mo",
+      "S"
+    ],
+    "energy_above_hull": 0.002389239999999404,
+    "band_gap": 1.3361
+  },
+  {
+    "material_id": "mp-1027525",
+    "formula_pretty": "MoS2",
+    "elements": [
+      "Mo",
+      "S"
+    ],
+    "energy_above_hull": 0.003681534999998348,
+    "band_gap": 1.4639999999999997
+  },
+  {
+    "material_id": "mp-1028441",
+    "formula_pretty": "WS2",
+    "elements": [
+      "S",
+      "W"
+    ],
+    "energy_above_hull": 0.0037932516666643323,
+    "band_gap": 1.6559000000000001
+  },
+  {
+    "material_id": "mp-1025874",
+    "formula_pretty": "MoS2",
+    "elements": [
+      "Mo",
+      "S"
+    ],
+    "energy_above_hull": 0.004413344444444078,
+    "band_gap": 1.5093
+  },
+  {
+    "material_id": "mp-1025571",
+    "formula_pretty": "WS2",
+    "elements": [
+      "S",
+      "W"
+    ],
+    "energy_above_hull": 0.005167376666669554,
+    "band_gap": 1.6345
+  },
+  {
+    "material_id": "mp-754748",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.005798527500001427,
+    "band_gap": 1.1551
+  },
+  {
+    "material_id": "mp-486",
+    "formula_pretty": "NiP2",
+    "elements": [
+      "Ni",
+      "P"
+    ],
+    "energy_above_hull": 0.006562992499995701,
+    "band_gap": 0.47330000000000005
+  },
+  {
+    "material_id": "mp-550206",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.0067494116666679815,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1023939",
+    "formula_pretty": "MoS2",
+    "elements": [
+      "Mo",
+      "S"
+    ],
+    "energy_above_hull": 0.007235794999999712,
+    "band_gap": 1.5539
+  },
+  {
+    "material_id": "mp-1023925",
+    "formula_pretty": "WS2",
+    "elements": [
+      "S",
+      "W"
+    ],
+    "energy_above_hull": 0.007448381666669945,
+    "band_gap": 1.697
+  },
+  {
+    "material_id": "mp-715262",
+    "formula_pretty": "FeO",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.00928005499999962,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-226",
+    "formula_pretty": "FeS2",
+    "elements": [
+      "Fe",
+      "S"
+    ],
+    "energy_above_hull": 0.010058665833334146,
+    "band_gap": 0.4571999999999994
+  },
+  {
+    "material_id": "mp-753222",
+    "formula_pretty": "Fe2CoO4",
+    "elements": [
+      "Co",
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.010229785357144472,
+    "band_gap": 1.5511
+  },
+  {
+    "material_id": "mp-640147",
+    "formula_pretty": "Fe(NiO2)2",
+    "elements": [
+      "Fe",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.01024966000000127,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-18748",
+    "formula_pretty": "Co3O4",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.010479931428569955,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1783",
+    "formula_pretty": "MnS",
+    "elements": [
+      "Mn",
+      "S"
+    ],
+    "energy_above_hull": 0.011914474999999314,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1178232",
+    "formula_pretty": "FeO",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.012036055000001156,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1278455",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.012461142500001188,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-19306",
+    "formula_pretty": "Fe3O4",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.013059251428572338,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-18922",
+    "formula_pretty": "Mn5O8",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.013191634455127499,
+    "band_gap": 0.6045000000000003
+  },
+  {
+    "material_id": "mp-1283030",
+    "formula_pretty": "FeO",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.014061861250000973,
+    "band_gap": 1.7989000000000002
+  },
+  {
+    "material_id": "mp-1023937",
+    "formula_pretty": "WS2",
+    "elements": [
+      "S",
+      "W"
+    ],
+    "energy_above_hull": 0.014157896666667114,
+    "band_gap": 1.8091
+  },
+  {
+    "material_id": "mp-1272680",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.014164345833335368,
+    "band_gap": 1.2544
+  },
+  {
+    "material_id": "mp-1547",
+    "formula_pretty": "NiS",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.014181840833332515,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1023924",
+    "formula_pretty": "MoS2",
+    "elements": [
+      "Mo",
+      "S"
+    ],
+    "energy_above_hull": 0.01443991333333372,
+    "band_gap": 1.6605999999999999
+  },
+  {
+    "material_id": "mp-2562",
+    "formula_pretty": "MnS",
+    "elements": [
+      "Mn",
+      "S"
+    ],
+    "energy_above_hull": 0.014528515000000297,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-31770",
+    "formula_pretty": "Fe3O4",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.014706598571429197,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1183728",
+    "formula_pretty": "Co2S3",
+    "elements": [
+      "Co",
+      "S"
+    ],
+    "energy_above_hull": 0.01493341500000156,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2282",
+    "formula_pretty": "NiS2",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.015161365833333385,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-19326",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.015701586388887634,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-27844",
+    "formula_pretty": "NiP",
+    "elements": [
+      "Ni",
+      "P"
+    ],
+    "energy_above_hull": 0.01609372979166679,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1188188",
+    "formula_pretty": "Mn3C",
+    "elements": [
+      "C",
+      "Mn"
+    ],
+    "energy_above_hull": 0.016571311684781875,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-19395",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.016697983888889212,
+    "band_gap": 1.1467
+  },
+  {
+    "material_id": "mp-753348",
+    "formula_pretty": "Fe(CoO2)2",
+    "elements": [
+      "Co",
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.0169753248214235,
+    "band_gap": 0.27059999999999995
+  },
+  {
+    "material_id": "mp-22749",
+    "formula_pretty": "Mn5C2",
+    "elements": [
+      "C",
+      "Mn"
+    ],
+    "energy_above_hull": 0.017722750652174213,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-13446",
+    "formula_pretty": "Co2P",
+    "elements": [
+      "Co",
+      "P"
+    ],
+    "energy_above_hull": 0.021158108611109228,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-849059",
+    "formula_pretty": "NiS2",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.021258213333333664,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-850131",
+    "formula_pretty": "NiS2",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.021697538333333988,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-11329",
+    "formula_pretty": "P2W",
+    "elements": [
+      "P",
+      "W"
+    ],
+    "energy_above_hull": 0.023283316666667275,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1272234",
+    "formula_pretty": "CoNiO3",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.0236176609999994,
+    "band_gap": 0.7645
+  },
+  {
+    "material_id": "mp-761471",
+    "formula_pretty": "Co5O8",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.023987028791211173,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1282693",
+    "formula_pretty": "Fe(NiO2)2",
+    "elements": [
+      "Fe",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.024118271428571703,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-19884",
+    "formula_pretty": "Mn3P",
+    "elements": [
+      "Mn",
+      "P"
+    ],
+    "energy_above_hull": 0.02649692718390817,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-568328",
+    "formula_pretty": "FeP4",
+    "elements": [
+      "Fe",
+      "P"
+    ],
+    "energy_above_hull": 0.028198729499998798,
+    "band_gap": 0.8315999999999999
+  },
+  {
+    "material_id": "mp-1271784",
+    "formula_pretty": "Co3O4",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.03038171071428586,
+    "band_gap": 1.3498
+  },
+  {
+    "material_id": "mp-1279232",
+    "formula_pretty": "Fe(NiO2)2",
+    "elements": [
+      "Fe",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.03093895285714332,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-27413",
+    "formula_pretty": "Mo8P5",
+    "elements": [
+      "Mo",
+      "P"
+    ],
+    "energy_above_hull": 0.03141892884615416,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-974355",
+    "formula_pretty": "Mn2S3",
+    "elements": [
+      "Mn",
+      "S"
+    ],
+    "energy_above_hull": 0.03270704200000196,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1018804",
+    "formula_pretty": "MnS2",
+    "elements": [
+      "Mn",
+      "S"
+    ],
+    "energy_above_hull": 0.03314314833333398,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-773511",
+    "formula_pretty": "Co5NiO12",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.03425936999999912,
+    "band_gap": 1.1427999999999998
+  },
+  {
+    "material_id": "mp-1411545",
+    "formula_pretty": "NiS2",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.03497927666666634,
+    "band_gap": 0.5085999999999999
+  },
+  {
+    "material_id": "mp-796340",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.03608267388888997,
+    "band_gap": 1.4470999999999998
+  },
+  {
+    "material_id": "mp-796336",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.036088028333333355,
+    "band_gap": 0.9854
+  },
+  {
+    "material_id": "mp-19079",
+    "formula_pretty": "CoO",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.03691499625000105,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-759037",
+    "formula_pretty": "Fe9O10",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.038784599999999614,
+    "band_gap": 1.6011999999999995
+  },
+  {
+    "material_id": "mp-756594",
+    "formula_pretty": "Co(NiO2)4",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.03886477205127914,
+    "band_gap": 0.2149000000000001
+  },
+  {
+    "material_id": "mp-755453",
+    "formula_pretty": "MnP4",
+    "elements": [
+      "Mn",
+      "P"
+    ],
+    "energy_above_hull": 0.04029215266666686,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-754806",
+    "formula_pretty": "Ni5O6",
+    "elements": [
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.04071467954545582,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-754800",
+    "formula_pretty": "Ni3O4",
+    "elements": [
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.04120671857142888,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-754064",
+    "formula_pretty": "MnP2",
+    "elements": [
+      "Mn",
+      "P"
+    ],
+    "energy_above_hull": 0.04187207703703777,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1444811",
+    "formula_pretty": "NiS2",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.04376447166666697,
+    "band_gap": 2.1403339796499665e-05
+  },
+  {
+    "material_id": "mp-1022963",
+    "formula_pretty": "IrO3",
+    "elements": [
+      "Ir",
+      "O"
+    ],
+    "energy_above_hull": 0.04384385375000033,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1102036",
+    "formula_pretty": "NiP",
+    "elements": [
+      "Ni",
+      "P"
+    ],
+    "energy_above_hull": 0.04481476958333275,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-510408",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.04644304472222238,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-33009",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.046524089722224105,
+    "band_gap": 0.4556
+  },
+  {
+    "material_id": "mp-656884",
+    "formula_pretty": "Ni9O10",
+    "elements": [
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.04665237342105222,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1213762",
+    "formula_pretty": "Co3P",
+    "elements": [
+      "Co",
+      "P"
+    ],
+    "energy_above_hull": 0.04757809125000101,
+    "band_gap": 0.0
+  }
+]

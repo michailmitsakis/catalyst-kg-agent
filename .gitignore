@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# FILES
+# Track /docs (structured project memory).
+/docs
+/tests
