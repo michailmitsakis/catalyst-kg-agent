@@ -22,7 +22,7 @@ from kg.schema import MaterialNode
 # Config (hardcoded per Qs)
 # ---------------------------------------------------------------------------
 
-MACE_CHECKPOINT_PATH = Path("models/gnn_surrogate/mace-mp-0.pth")
+MACE_CHECKPOINT_PATH = Path("models/gnn_surrogate/mace-mpa-0-medium.model")
 N_DROPOUT_PASSES = 5  # MC Dropout passes for uncertainty estimate
 
 
