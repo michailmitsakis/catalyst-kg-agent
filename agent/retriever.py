@@ -27,13 +27,7 @@ from kg.queries import (
     QueryBuilder, build_query, find_materials_by_element,
     find_materials_in_chemsys, find_stable_materials, find_all_materials,
 )
-
-
-# ---------------------------------------------------------------------------
-# Cost constants (sync with agent/cost_model.py)
-# ---------------------------------------------------------------------------
-
-KG_LOOKUP_COST = 1.0  # Cheap, KG is local DB read
+from agent.cost_model import KG_LOOKUP_COST
 
 
 # ---------------------------------------------------------------------------
@@ -315,6 +309,5 @@ def create_retriever(graph_path: Path = DEFAULT_KG_JSON) -> KGRetrieverAgent:
 __all__ = [
     "KGRetrieverAgent",
     "KGLookupResult",
-    "KG_LOOKUP_COST",
     "create_retriever",
 ]

@@ -25,16 +25,12 @@ from pydantic_ai import Agent
 
 from kg.schema import MaterialNode, PropertyNode, NodeType
 from kg.graph_store import load_graph
-
-
-# ---------------------------------------------------------------------------
-# Cost constants (must sync with agent/cost_model.py)
-# ---------------------------------------------------------------------------
-
-INITIAL_BUDGET = 100.0  # Total campaign budget
-KG_LOOKUP_COST = 1.0    # Retriever cost
-SURROGATE_COST = 5.0    # Predictor cost
-EXPERIMENT_COST = 10.0  # Expensive DFT/UMA check
+from agent.cost_model import (
+    INITIAL_BUDGET,
+    KG_LOOKUP_COST,
+    SURROGATE_COST,
+    EXPERIMENT_COST,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -203,9 +199,5 @@ __all__ = [
     "PlannerAgent",
     "PlannerDecision",
     "PlannerState",
-    "INITIAL_BUDGET",
-    "KG_LOOKUP_COST",
-    "SURROGATE_COST",
-    "EXPERIMENT_COST",
     "create_planner",
 ]
