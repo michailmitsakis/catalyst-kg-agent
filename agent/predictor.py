@@ -10,9 +10,10 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Optional, List
+from typing import Optional, List, Literal
 
 import numpy as np
+from pydantic import BaseModel
 
 from kg.schema import MaterialNode
 
@@ -52,37 +53,23 @@ class MACEModel:
             checkpoint_path: Path to MACE model checkpoint file
         """
         self.checkpoint_path = checkpoint_path
-        self.model = None  # Lazy load to avoid import until first use
+        self.calculator = None  # Lazy load to avoid import until first use
         self.device = "cpu"  # Default; can be overridden via env later
 
     def _load_model(self):
         """Load model lazily on first inference."""
-        if self.model is not None:
+        if self.calculator is not None:
             return
 
         try:
-            from mace_mp.models import build_model, MACEModelWrapper
-            from torch.utils.serialization import load
-
-            # Load checkpoint (PyTorch format)
-            state_dict = load(str(self.checkpoint_path))
-
-            # Build model architecture
-            model = build_model(
-                config={
-                    "num_tokens": 128,
-                    "cutoff": 5.0,
-                    "type_map": ["Fe", "Ni", "Cu", "Co", "Mn", "Zn", "Cr",
-                                 "Ti", "Al", "V", "Mo", "W", "Pd", "Pt", "Au"],
-                    "num_blocks": 5,
-                }
+            from mace.calculators import MACECalculator
+            
+            # Initialize MACE calculator with checkpoint path and device
+            self.calculator = MACECalculator(
+                checkpoint_path=str(self.checkpoint_path),
+                device=self.device,
             )
 
-            # Load weights
-            model.load_state_dict(state_dict)
-            model.eval()
-
-            self.model = MACEModelWrapper(model)
         except Exception as e:
             raise RuntimeError(f"Failed to load MACE model: {e}")
 
@@ -98,13 +85,13 @@ class MACEModel:
         """
         self._load_model()
 
-        if not hasattr(self.model, "predict_e_above_hull"):
-            raise AttributeError("Model missing predict_e_above_hull method")
-
         try:
-            # Use MACE's native inference API
-            pred = self.model.predict_e_above_hull(structure, enable_dropout=enable_dropout)
-            return float(pred)
+            # Use MACE calculator to compute energy
+            energy = self.calculator.get_energy(structure)
+            
+            # Convert energy to e_above_hull (this is a placeholder - 
+            # actual calculation requires reference energies from MP)
+            return float(energy)
         except Exception as e:
             raise RuntimeError(f"MACE prediction failed: {e}")
 

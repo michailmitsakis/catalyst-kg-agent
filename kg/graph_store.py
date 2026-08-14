@@ -114,8 +114,13 @@ def rehydrate_node(G: nx.MultiDiGraph, node_id: str) -> KGNode:
     Convenience for callers (e.g. `kg/queries.py`, the Retriever
     agent) that want a real `MaterialNode`/`PropertyNode` instead of
     the raw attribute dict.
+
+    Note: NetworkX uses the node ID as the lookup key and strips it
+    from the attribute dict, so we must inject it back before pydantic
+    validation.
     """
-    data = G.nodes[node_id]
+    data = dict(G.nodes[node_id])
+    data["id"] = node_id  # nx.node_link_graph drops id from attrs
     model_cls = _model_for(data["type"])
     return model_cls.model_validate(data)
 
