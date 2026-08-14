@@ -13,7 +13,8 @@ from __future__ import annotations
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel, Field
 
-from kg.schema import MaterialNode, PropertyNode, NodeType
+from kg.schema import MaterialNode, NodeType
+from agent.predictor import PredictorResult
 
 
 # ---------------------------------------------------------------------------
@@ -36,13 +37,7 @@ class KGLookupResult(BaseModel):
     provenance: Dict[str, Any]
 
 
-class PredictorOutput(BaseModel):
-    """Property prediction with uncertainty."""
-    material_id: str
-    property_name: str
-    predicted_value: float
-    uncertainty: float  # std dev or confidence interval width
-    model_source: str  # "MACE-finetuned" or "CGCNN-baseline"
+# PredictorResult from predictor.py (MACE e_above_hull + MC Dropout uncertainty)
 
 
 # ---------------------------------------------------------------------------
@@ -68,7 +63,7 @@ class CriticAgent:
     def validate_materials(
         self,
         materials: List[MaterialNode],
-        predictions: Optional[List[PredictorOutput]] = None
+        predictions: Optional[List[PredictorResult]] = None
     ) -> List[CriticDecision]:
         """Validate each material and return decision list.
 
@@ -91,7 +86,7 @@ class CriticAgent:
     def _evaluate_material(
         self,
         material: MaterialNode,
-        predictions: Optional[List[PredictorOutput]] = None
+        predictions: Optional[List[PredictorResult]] = None
     ) -> CriticDecision:
         """Evaluate single material for safety gate.
 
@@ -174,11 +169,11 @@ class CriticAgent:
         passed = eah_value <= self.stability_threshold
         return {"passed": passed, "value": eah_value}
 
-    def _check_uncertainty(self, predictions: List[PredictorOutput]) -> Dict[str, Any]:
+    def _check_uncertainty(self, predictions: List[PredictorResult]) -> Dict[str, Any]:
         """Check predictor uncertainty against gate.
 
         Args:
-            predictions: List of PredictorOutput objects
+            predictions: List of PredictorResult objects
 
         Returns:
             Dict with {passed: bool, value: float}
@@ -255,6 +250,5 @@ __all__ = [
     "CriticDecision",
     "STABILITY_THRESHOLD",
     "UNCERTAINTY_GATE",
-    "EXPERIMENT_COST",
     "create_critic",
 ]

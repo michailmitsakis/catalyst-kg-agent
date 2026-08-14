@@ -83,7 +83,7 @@ This section will be updated with concrete numbers once the first full evaluatio
 Requires:
 - Python 3.10+
 - A Materials Project API key (the only external credential needed — no VASP/HPC scheduler credentials, since no remote DFT job submission is used)
-- [Ollama](https://ollama.com) running locally, with a small instruction-tuned model pulled (e.g. Llama 3.1 8B or Qwen2.5 7B class)
+- Unsloth Studio Desktop running locally, with a small instruction-tuned model pulled (e.g. Llama 3.1 8B or Qwen2.5 7B class) --> TBD
 - A local MLflow tracking instance (or its default file-based store)
 - Optional: a CUDA-capable GPU (12GB VRAM is sufficient for fine-tuning the small MACE checkpoint and training the CGCNN baseline)
 
@@ -125,7 +125,7 @@ Each action type (`kg_lookup`, `surrogate_query`, `experiment`) has an explicit 
 mat-kg-agent/
 ├── README.md
 ├── pyproject.toml / requirements.txt
-├── .env.example                    # MP_API_KEY, Ollama endpoint, MLflow URI
+├── .env.example                    # MP_API_KEY, Unsloth endpoint, MLflow URI
 │
 ├── data/
 │   ├── raw/                        # gitignored
