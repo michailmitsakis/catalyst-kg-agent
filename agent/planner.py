@@ -2,13 +2,13 @@
 
 Decides next action based on:
 1. Remaining budget
-2. Critic approval status
+2. Critic approval status (including uncertainty gate)
 3. Agent feedback (Retriever, Predictor, Critic)
 
 Loop flow:
 - Retriever (cheap KG lookup) → get candidate materials
-- (Optional) Predictor (medium cost surrogate) → property estimates
-- Critic (validation) → gate before escalation
+- (Optional) Predictor (medium cost surrogate) → property estimates with uncertainty
+- Critic (validation) → gate before escalation (stability + uncertainty check)
 - Planner decides: continue loop OR escalate to expensive DFT OR stop
 
 Tracks cost per action, logs to journal for campaign analysis.
@@ -17,6 +17,7 @@ Tracks cost per action, logs to journal for campaign analysis.
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import List, Optional, Dict, Any
 from dataclasses import dataclass, field
@@ -34,6 +35,18 @@ from agent.cost_model import (
 
 
 # ---------------------------------------------------------------------------
+# Configuration (load from .env)
+# ---------------------------------------------------------------------------
+
+def get_max_experiments() -> int:
+    """Get max experiments limit from environment or default."""
+    try:
+        return int(os.environ.get("MAX_EXPERIMENTS", "10"))
+    except ValueError:
+        return 10
+
+
+# ---------------------------------------------------------------------------
 # Planner output schemas
 # ---------------------------------------------------------------------------
 
@@ -44,6 +57,7 @@ class PlannerState:
     actions_taken: int = 0
     materials_evaluated: List[MaterialNode] = field(default_factory=list)
     critic_rejections: int = 0
+    experiments_count: int = 0
     escalation_needed: bool = False
     campaign_id: str = "default"
 
@@ -72,9 +86,13 @@ class PlannerAgent:
         # State tracking
         self.state = PlannerState(campaign_id=campaign_id)
 
+        # Load max experiments from environment
+        self.max_experiments = get_max_experiments()
+
         # Agent setup (Pydantic-ai for typed I/O)
+        unsloth_url = os.environ.get("UNSLOTH_BASE_URL", "http://localhost:11434/v1")
         self.agent = Agent(
-            model="ollama/llama3.1:8b",
+            model=f"{unsloth_url}/llama3.1:8b",
             system_prompt=self._build_system_prompt(),
         )
 
@@ -85,25 +103,26 @@ class PlannerAgent:
 BUDGET MANAGEMENT:
 - Total budget: {INITIAL_BUDGET} units
 - Action costs: KG_LOOKUP={KG_LOOKUP_COST}, SURROGATE={SURROGATE_COST}, EXPERIMENT={EXPERIMENT_COST}
-- Stop when budget depleted OR target found
+- Max experiments allowed: {self.max_experiments}
+- Stop when budget depleted OR max experiments reached OR target found
 
 LOOP FLOW:
 1. Call Retriever → get candidate materials from KG
 2. (Optional) Call Predictor → get property estimates with uncertainty
 3. Call Critic → validate stability and uncertainty thresholds
 4. Decide next action:
-   • "continue": Keep looping if budget remains
-   • "escalate": Call expensive DFT/UMA on best candidate
+   • "continue": Keep looping if budget remains AND experiments_count < max_experiments
+   • "escalate": Call expensive DFT/UMA on best candidate (if uncertainty gate triggered)
    • "stop": Campaign complete
 
 DECISION RULES:
 - Escalate if: Critic requires escalation OR best candidate meets target property
-- Stop if: Budget exhausted OR no viable candidates remain
-- Continue if: More materials to evaluate within budget
+- Stop if: Budget exhausted OR max experiments reached OR no viable candidates remain
+- Continue if: More materials to evaluate within budget AND experiments_count < max_experiments
 
 TRACKING:
 - Log each action to journal (JSON file)
-- Track cost per step, total actions, rejection count
+- Track cost per step, total actions, rejection count, experiments count
 
 OUTPUT: PlannerDecision with next_action + reason + cost_update."""
 
@@ -127,10 +146,7 @@ OUTPUT: PlannerDecision with next_action + reason + cost_update."""
         self.state.materials_evaluated.extend(retrieved_materials)
         self.state.actions_taken += 1
 
-        # Calculate step cost (assume KG lookup already done)
-        step_cost = KG_LOOKUP_COST
-
-        # Check if escalation needed
+        # Check if escalation needed from Critic (uncertainty gate triggered)
         escalation_needed = False
         if critic_decisions:
             for decision in critic_decisions:
@@ -138,33 +154,61 @@ OUTPUT: PlannerDecision with next_action + reason + cost_update."""
                     escalation_needed = True
                     break
 
-        # Check if budget allows continuation
-        can_continue = self.state.remaining_budget >= step_cost + SURROGATE_COST
+        # Check budget constraints
+        can_afford_surrogate = self.state.remaining_budget >= SURROGATE_COST
+        can_afford_experiment = self.state.remaining_budget >= EXPERIMENT_COST
+        
+        # Check experiment count limit
+        experiments_limit_reached = self.state.experiments_count >= self.max_experiments
 
         # Decision logic
-        if escalation_needed or not can_continue:
+        if escalation_needed:
+            # Critic requires escalation (high uncertainty)
             decision = PlannerDecision(
-                next_action="escalate" if escalation_needed else "stop",
-                reason="Escalation required OR budget exhausted",
-                cost_update=EXPERIMENT_COST if escalation_needed else step_cost,
+                next_action="escalate",
+                reason=f"Critic requires escalation: uncertainty gate triggered (experiments so far: {self.state.experiments_count}/{self.max_experiments})",
+                cost_update=EXPERIMENT_COST,
                 materials_approved=[m for m in retrieved_materials if hasattr(m, 'formula_pretty')],
             )
-        elif len(retrieved_materials) > 0:
-            decision = PlannerDecision(
-                next_action="continue",
-                reason=f"{len(retrieved_materials)} viable candidates found",
-                cost_update=step_cost,
-                materials_approved=retrieved_materials,
-            )
-        else:
+            self.state.experiments_count += 1
+
+        elif experiments_limit_reached:
+            # Max experiments reached
             decision = PlannerDecision(
                 next_action="stop",
-                reason="No candidates retrieved from KG",
+                reason=f"Maximum experiments ({self.max_experiments}) reached",
+                cost_update=0.0,
+                materials_approved=[m for m in retrieved_materials if hasattr(m, 'formula_pretty')],
+            )
+
+        elif not can_afford_experiment and not can_afford_surrogate:
+            # Budget exhausted
+            decision = PlannerDecision(
+                next_action="stop",
+                reason="Budget exhausted (insufficient funds for any further actions)",
+                cost_update=0.0,
+                materials_approved=[m for m in retrieved_materials if hasattr(m, 'formula_pretty')],
+            )
+
+        elif len(retrieved_materials) > 0 and can_afford_surrogate:
+            # Continue with surrogate prediction
+            decision = PlannerDecision(
+                next_action="continue",
+                reason=f"{len(retrieved_materials)} viable candidates found (experiments so far: {self.state.experiments_count}/{self.max_experiments})",
+                cost_update=SURROGATE_COST,
+                materials_approved=retrieved_materials,
+            )
+
+        else:
+            # No candidates or cannot afford surrogate
+            decision = PlannerDecision(
+                next_action="stop",
+                reason="No candidates retrieved from KG or insufficient budget for surrogate",
                 cost_update=0.0,
                 materials_approved=[],
             )
 
-        # Update remaining budget
+        # Update remaining budget and experiment count
         self.state.remaining_budget -= decision.cost_update
 
         return decision
@@ -175,7 +219,11 @@ OUTPUT: PlannerDecision with next_action + reason + cost_update."""
 
     def is_campaign_complete(self) -> bool:
         """Check if campaign should terminate."""
-        return self.state.remaining_budget <= 0 or self.state.actions_taken >= 50  # Max iterations
+        return (
+            self.state.remaining_budget <= 0 or 
+            self.state.actions_taken >= MAX_ACTIONS_PER_CAMPAIGN or
+            self.state.experiments_count >= self.max_experiments
+        )
 
 
 # ---------------------------------------------------------------------------

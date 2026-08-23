@@ -11,18 +11,34 @@ Outputs approval/rejection/escalation decision with cost impact tracking.
 from __future__ import annotations
 
 from typing import List, Dict, Any, Optional
+from pathlib import Path
 from pydantic import BaseModel, Field
+
+import os
 
 from kg.schema import MaterialNode, NodeType
 from agent.predictor import PredictorResult
+from agent.cost_model import EXPERIMENT_COST
 
 
 # ---------------------------------------------------------------------------
-# Cost constants (sync with agent/cost_model.py)
+# Configuration (load from .env)
 # ---------------------------------------------------------------------------
 
-STABILITY_THRESHOLD = 0.1  # eV/atom max allowed energy above hull
-UNCERTAINTY_GATE = 0.3      # 30% std dev → escalate to expensive DFT
+def get_stability_threshold() -> float:
+    """Get stability threshold from environment or default."""
+    try:
+        return float(os.environ.get("STABILITY_THRESHOLD", "0.1"))
+    except ValueError:
+        return 0.1
+
+
+def get_uncertainty_gate() -> float:
+    """Get uncertainty gate from environment or default (30%)."""
+    try:
+        return float(os.environ.get("UNCERTAINTY_GATE", "0.3"))
+    except ValueError:
+        return 0.3
 
 
 # ---------------------------------------------------------------------------
@@ -40,6 +56,7 @@ class KGLookupResult(BaseModel):
 # PredictorResult from predictor.py (MACE e_above_hull + MC Dropout uncertainty)
 
 
+
 # ---------------------------------------------------------------------------
 # Critic Agent
 # ---------------------------------------------------------------------------
@@ -55,11 +72,18 @@ class CriticDecision(BaseModel):
 class CriticAgent:
     """Critic agent with hard safety gates."""
 
-    def __init__(self):
-        """Initialize critic with thresholds."""
-        self.stability_threshold = STABILITY_THRESHOLD
-        self.uncertainty_gate = UNCERTAINTY_GATE
+    def __init__(self, graph_path: Path = None):
+        """Initialize critic with thresholds.
 
+        Args:
+            graph_path: Path to knowledge graph JSON (for KG traversal)
+        """
+        # Load thresholds from environment
+        self.stability_threshold = get_stability_threshold()
+        self.uncertainty_gate = get_uncertainty_gate()
+        
+        # Load graph for KG traversal
+        self.graph_path = graph_path or Path("data/processed/kg.json")
     def validate_materials(
         self,
         materials: List[MaterialNode],
@@ -155,16 +179,11 @@ class CriticAgent:
         Returns:
             Dict with {passed: bool, value: float}
         """
-        # Find e_above_hull property for this material
-        eah_value = None
-        for nid, data in self._traverse_material_properties(material.id):
-            if data.get("type") == NodeType.PROPERTY.value and \
-               data.get("name") == "energy_above_hull":
-                eah_value = data.get("value")
-                break
+        # Find e_above_hull property for this material from KG
+        eah_value = self._get_e_above_hull_from_kg(material.id)
 
         if eah_value is None:
-            return {"passed": False, "value": None, "error": "No e_above_hull property found"}
+            return {"passed": False, "value": None, "error": "No e_above_hull property found in KG"}
 
         passed = eah_value <= self.stability_threshold
         return {"passed": passed, "value": eah_value}
@@ -211,6 +230,32 @@ class CriticAgent:
 
         return {"passed": True, "error": None}
 
+    def _get_e_above_hull_from_kg(self, material_id: str) -> Optional[float]:
+        """Get e_above_hull value for a material from the KG.
+
+        Args:
+            material_id: Material node ID (e.g., "material:mp-1234")
+
+        Returns:
+            e_above_hull value or None if not found
+        """
+        try:
+            from kg.graph_store import load_graph
+            
+            G = load_graph(self.graph_path)
+            
+            # Find property nodes for this material with name "energy_above_hull"
+            for nid, data in G.nodes(data=True):
+                if (data.get("type") == NodeType.PROPERTY.value and 
+                    data.get("name") == "energy_above_hull" and
+                    data.get("mpid") == material_id.split(":")[-1] if ":" in material_id else material_id):
+                    return float(data.get("value", 0))
+            
+            return None
+        except Exception as e:
+            print(f"Critic: Failed to load KG for stability check: {e}")
+            return None
+
     def _traverse_material_properties(self, material_id: str) -> List[Dict]:
         """Traverse graph to find properties for a material.
 
@@ -220,8 +265,7 @@ class CriticAgent:
         Returns:
             List of property node data dicts
         """
-        # In production, use kg.graph_store.load_graph() and traverse
-        # For now, return empty list (implementation pending)
+        # Use the new method instead
         return []
 
 

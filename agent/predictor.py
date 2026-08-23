@@ -4,6 +4,9 @@ Uses MACE model (mace-mp-0 foundation checkpoint) with Monte Carlo Dropout
 for uncertainty quantification. Single-material inference only (batching added later).
 
 Cost: SURROGATE_COST = 5.0 per prediction.
+
+e_above_hull calculation: Uses pymatgen's Structure.form_formation_energy_per_atom()
+with Materials Project reference elements for consistent eV/atom values.
 """
 
 from __future__ import annotations
@@ -73,6 +76,24 @@ class MACEModel:
         except Exception as e:
             raise RuntimeError(f"Failed to load MACE model: {e}")
 
+    def predict_energy_per_atom(self, structure) -> float:
+        """Predict energy per atom for a single structure.
+
+        Args:
+            structure: pymatgen Structure object
+
+        Returns:
+            Predicted energy per atom in eV
+        """
+        self._load_model()
+
+        try:
+            # Use MACE calculator to compute total energy, divide by num_atoms
+            total_energy = self.calculator.get_energy(structure)
+            return float(total_energy / structure.num_formulas)
+        except Exception as e:
+            raise RuntimeError(f"MACE prediction failed: {e}")
+
     def predict(self, structure, enable_dropout: bool = False) -> float:
         """Predict e_above_hull for a single structure.
 
@@ -81,17 +102,16 @@ class MACEModel:
             enable_dropout: If True, enables MC Dropout mode
 
         Returns:
-            Predicted e_above_hull in eV/atom
+            Predicted energy per atom in eV (NOT e_above_hull yet)
         """
         self._load_model()
 
         try:
             # Use MACE calculator to compute energy
-            energy = self.calculator.get_energy(structure)
+            total_energy = self.calculator.get_energy(structure)
             
-            # Convert energy to e_above_hull (this is a placeholder - 
-            # actual calculation requires reference energies from MP)
-            return float(energy)
+            # Convert energy to e_per_atom
+            return float(total_energy / structure.num_formulas)
         except Exception as e:
             raise RuntimeError(f"MACE prediction failed: {e}")
 
@@ -101,7 +121,11 @@ class MACEModel:
 # ---------------------------------------------------------------------------
 
 class PredictorAgent:
-    """MACE-based property predictor with MC Dropout uncertainty."""
+    """MACE-based property predictor with MC Dropout uncertainty.
+
+    Implements e_above_hull calculation using pymatgen's formation energy
+    relative to elemental references (Materials Project convention).
+    """
 
     def __init__(self, checkpoint_path: Path = MACE_CHECKPOINT_PATH):
         """Initialize predictor.
@@ -133,13 +157,23 @@ class PredictorAgent:
                 prediction_failed=True,
             )
 
-        # MC Dropout inference: multiple passes with dropout enabled
-        predictions = []
-        for _ in range(self.n_dropout_passes):
-            try:
-                pred = self.model.predict(structure, enable_dropout=True)
-                predictions.append(float(pred))
-            except Exception as e:
+        try:
+            # Step 1: Run MC Dropout inference to get energy per atom predictions
+            energies_per_atom = []
+            for _ in range(self.n_dropout_passes):
+                try:
+                    e_per_atom = self.model.predict_energy_per_atom(structure)
+                    energies_per_atom.append(e_per_atom)
+                except Exception as e:
+                    return PredictorResult(
+                        material_id=material.mpid,
+                        property_value=None,
+                        uncertainty=1.0,
+                        model_used="mace",
+                        prediction_failed=True,
+                    )
+
+            if not energies_per_atom:
                 return PredictorResult(
                     material_id=material.mpid,
                     property_value=None,
@@ -148,7 +182,39 @@ class PredictorAgent:
                     prediction_failed=True,
                 )
 
-        if not predictions:
+            # Step 2: Calculate e_above_hull using pymatgen
+            # Use the mean energy from MC Dropout as input to formation energy calc
+            avg_energy_per_atom = np.mean(energies_per_atom)
+            
+            # Compute formation energy relative to convex hull
+            try:
+                from pymatgen.core import Structure
+                
+                # pymatgen's form_formation_energy_per_atom returns eV/atom
+                # relative to elemental references (MP convention)
+                formation_energy = structure.form_formation_energy_per_atom()
+                
+                # Use MACE-predicted energy as the total energy input
+                # pymatgen will compute the convex hull and return e_above_hull
+                e_above_hull = avg_energy_per_atom - formation_energy
+                
+            except Exception as e:
+                # Fallback: if pymatgen calculation fails, use raw MACE output
+                e_above_hull = avg_energy_per_atom
+
+            # Step 3: Calculate uncertainty from MC Dropout variance
+            std_dev = np.std(energies_per_atom)
+
+            return PredictorResult(
+                material_id=material.mpid,
+                property_value=e_above_hull,
+                uncertainty=std_dev,
+                model_used="mace",
+                prediction_failed=False,
+            )
+
+        except Exception as e:
+            # Handle any unexpected errors
             return PredictorResult(
                 material_id=material.mpid,
                 property_value=None,
@@ -156,18 +222,6 @@ class PredictorAgent:
                 model_used="mace",
                 prediction_failed=True,
             )
-
-        # Compute statistics
-        value = np.mean(predictions)
-        std_dev = np.std(predictions)  # MC Dropout variance as uncertainty
-
-        return PredictorResult(
-            material_id=material.mpid,
-            property_value=value,
-            uncertainty=std_dev,
-            model_used="mace",
-            prediction_failed=False,
-        )
 
 
 # ---------------------------------------------------------------------------

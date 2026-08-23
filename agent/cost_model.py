@@ -16,6 +16,7 @@ from typing import Literal
 # Budget caps
 INITIAL_BUDGET = 100.0
 MAX_ACTIONS_PER_CAMPAIGN = 50
+MAX_EXPERIMENTS = 10  # Default; can be overridden via .env
 
 # Action costs
 KG_LOOKUP_COST: float = 1.0          # Retriever: KG traversal
@@ -147,6 +148,7 @@ __all__ = [
     # Constants
     "INITIAL_BUDGET",
     "MAX_ACTIONS_PER_CAMPAIGN",
+    "MAX_EXPERIMENTS",
     "KG_LOOKUP_COST",
     "SURROGATE_COST",
     "EXPERIMENT_COST",
