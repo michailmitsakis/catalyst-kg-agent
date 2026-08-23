@@ -22,7 +22,7 @@ from kg.schema import MaterialNode
 
 
 # ---------------------------------------------------------------------------
-# Config (hardcoded per Qs)
+# Config 
 # ---------------------------------------------------------------------------
 
 MACE_CHECKPOINT_PATH = Path("models/gnn_surrogate/mace-mpa-0-medium.model")

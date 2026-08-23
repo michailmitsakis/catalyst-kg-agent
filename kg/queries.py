@@ -23,10 +23,10 @@ from pydantic import BaseModel
 
 from kg.schema import (
     ChemsysNode, CrystalSystem, ElementNode, KGNode, KGEdge, MaterialNode,
-    NodeType, PropertyName, PropertyNode, StructureNode, rehydrate_node,
+    NodeType, PropertyName, PropertyNode, StructureNode,
     chemsys_id, element_id, material_id, property_id, structure_id,
 )
-from kg.graph_store import load_graph, save_graph, DEFAULT_KG_JSON
+from kg.graph_store import load_graph, save_graph, DEFAULT_KG_JSON, rehydrate_node
 
 
 # ---------------------------------------------------------------------------
@@ -292,9 +292,12 @@ class QueryBuilder:
         # Get node data for filtering
         node_data = self.G.nodes[current_id]
         node_type = node_data.get("type")
-
-        # Node type filter
-        if self.node_types is not None and node_type not in self.node_types:
+        
+        # Node type filter - but allow start node to pass even if it doesn't match
+        # (we query FROM an element TO materials, so element won't be a Material)
+        is_start_node = len(self.visited) == 0
+        
+        if self.node_types is not None and node_type not in self.node_types and not is_start_node:
             return []
 
         # Custom filter
@@ -316,11 +319,27 @@ class QueryBuilder:
             neighbors = list(self.G.predecessors(current_id))
 
         for neighbor in neighbors:
-            # Edge type filter
-            edge_data = self.G.edges[current_id, neighbor]
-            edge_type = edge_data.get("type")
             
-            if self.edge_types and edge_type not in self.edge_types:
+            # Edge type filter - handle MultiDiGraph with custom string keys
+            edge_type = None
+            try:
+                # Try simple lookup first (for single-key edges)
+                edge_data = self.G.edges[current_id, neighbor]
+                if isinstance(edge_data, dict):
+                    edge_type = edge_data.get("type")
+                elif isinstance(edge_data, str):
+                    edge_type = edge_data
+            except (KeyError, TypeError, ValueError):
+                # For MultiDiGraph with custom keys, iterate over all edges manually
+                for u, v, key, data in self.G.edges(keys=True, data=True):
+                    if ((u == current_id and v == neighbor) or (v == current_id and u == neighbor)):
+                        if isinstance(data, dict):
+                            edge_type = data.get("type")
+                        elif isinstance(data, str):
+                            edge_type = data
+                        break
+            
+            if self.edge_types and edge_type is not None and edge_type not in self.edge_types:
                 continue
 
             # Property filter (only applies to PROPERTY nodes)
@@ -513,8 +532,8 @@ def find_materials_by_element(graph: nx.MultiDiGraph, element_symbol: str) -> Li
     if not element_nodes:
         return []
 
-    # Query materials connected to this element
-    qb = QueryBuilder(graph, element_nodes[0], direction="out")
+    # Query materials connected to this element (materials point TO elements, so use direction="in")
+    qb = QueryBuilder(graph, element_nodes[0], direction="in")
     qb.edge_type("HAS_ELEMENT")
     qb.node_type(NodeType.MATERIAL)
 
@@ -523,27 +542,27 @@ def find_materials_by_element(graph: nx.MultiDiGraph, element_symbol: str) -> Li
 
 def find_materials_in_chemsys(
     graph: nx.MultiDiGraph, 
-    symbols: List[str]
+    chemsys_name: str  # e.g., "Ni-P" or "Co-Fe-O"
 ) -> List[MaterialNode]:
     """Find all materials in a chemical system.
 
     Args:
         graph: The knowledge graph
-        symbols: List of element symbols defining the chemsys (e.g., ["Ni", "P"])
+        chemsys_name: Chemical system name (e.g., "Ni-P", "Co-Fe-O")
 
     Returns:
-        List of MaterialNode models for all materials in the chemsys
+        List of MaterialNode models for materials in the chemsys
     """
-    # Find the chemsys node
+    # Find the chemsys node by ID (format: "chemsys:<name>")
+    chemsys_id = f"chemsys:{chemsys_name}"
     chemsys_nodes = [nid for nid, data in graph.nodes(data=True) 
-                     if data.get("type") == NodeType.CHEMSYS.value and \
-                        sorted(data.get("symbols", [])) == sorted(symbols)]
+                     if nid == chemsys_id]
 
     if not chemsys_nodes:
         return []
 
-    # Query materials connected to this chemsys
-    qb = QueryBuilder(graph, chemsys_nodes[0], direction="out")
+    # Query materials connected to this chemsys (materials point TO chemsys, so use direction="in")
+    qb = QueryBuilder(graph, chemsys_nodes[0], direction="in")
     qb.edge_type("IN_CHEMSYS")
     qb.node_type(NodeType.MATERIAL)
 
@@ -565,35 +584,34 @@ def find_stable_materials(
     Returns:
         List of MaterialNode models for stable materials
     """
-    # Find all property nodes with e_above_hull
-    qb = QueryBuilder(graph, "material:mp-123")  # Dummy start for type search
-    qb.edge_type("HAS_PROPERTY")
-    qb.property_name(PropertyName.ENERGY_ABOVE_HULL)
-    qb.property_range(PropertyName.ENERGY_ABOVE_HULL, 0, max_e_above_hull)
+    # Find all material nodes
+    mat_nodes = [nid for nid, data in graph.nodes(data=True) 
+                 if data.get("type") == NodeType.MATERIAL.value]
 
-    # Alternative: manual iteration through property nodes
-    prop_nodes = [nid for nid, data in graph.nodes(data=True) 
-                  if data.get("type") == NodeType.PROPERTY.value and \
-                     data.get("name") == PropertyName.ENERGY_ABOVE_HULL.value]
+    stable_materials = []
+    for mat_nid in mat_nodes:
+        # Find e_above_hull property for this material
+        mat_id = mat_nid.split(":")[-1] if ":" in mat_nid else mat_nid
+        
+        prop_nodes = [nid for nid, data in graph.nodes(data=True) 
+                      if (data.get("type") == NodeType.PROPERTY.value and \
+                          data.get("name") == PropertyName.ENERGY_ABOVE_HULL.value and \
+                          data.get("mpid") == mat_id)]
+        
+        for prop_nid in prop_nodes:
+            prop_data = graph.nodes[prop_nid]
+            value = prop_data.get("value")
+            
+            # Check source filter if specified
+            if source_filter is not None and prop_data.get("source") != str(source_filter):
+                continue
+            
+            # Check stability threshold
+            if value is not None and value <= max_e_above_hull:
+                stable_materials.append(rehydrate_node(graph, mat_nid))
+                break  # Only add each material once
 
-    materials = set()
-    for prop_nid in prop_nodes:
-        prop_data = graph.nodes[prop_nid]
-        value = prop_data.get("value")
-        source = prop_data.get("source", "Unknown")
-
-        # Apply source filter if specified
-        if source_filter and str(source) != str(source_filter):
-            continue
-
-        if value is not None and value <= max_e_above_hull:
-            # Get the material ID from the property node
-            mpid = prop_data.get("mpid")
-            if mpid:
-                mat_id = material_id(mpid)
-                materials.add(mat_id)
-
-    return [rehydrate_node(graph, nid) for nid in materials]
+    return stable_materials
 
 
 def find_materials_by_property_range(
