@@ -23,6 +23,7 @@ from typing import List, Optional, Dict, Any
 from dataclasses import dataclass, field
 
 from pydantic_ai import Agent
+from pydantic import BaseModel
 
 from kg.schema import MaterialNode, PropertyNode, NodeType
 from kg.graph_store import load_graph
@@ -77,7 +78,7 @@ class PlannerDecision(BaseModel):
 class PlannerAgent:
     """Budget-bounded discovery loop orchestrator."""
 
-    def __init__(self, graph_path: Path = None, campaign_id: str = "default"):
+    def __init__(self, graph_path: Path = None, campaign_id: str = 'default', use_llm: bool = True):
         """Initialize planner with KG path and campaign ID."""
         self.graph_path = graph_path or Path("data/processed/kg.json")
         self.campaign_id = campaign_id
@@ -90,12 +91,14 @@ class PlannerAgent:
         self.max_experiments = get_max_experiments()
 
         # Agent setup (Pydantic-ai for typed I/O)
-        unsloth_url = os.environ.get("UNSLOTH_BASE_URL", "http://localhost:11434/v1")
-        self.agent = Agent(
-            model=f"{unsloth_url}/llama3.1:8b",
-            system_prompt=self._build_system_prompt(),
-        )
-
+        if use_llm:
+            unsloth_url = os.environ.get("UNSLOTH_BASE_URL", "http://localhost:11434/v1")
+            self.agent = Agent(
+                model=f"{unsloth_url}/llama3.1:8b",
+                system_prompt=self._build_system_prompt(),
+            )
+        else:
+            self.agent = None
     def _build_system_prompt(self) -> str:
         """Build system prompt describing budget loop logic."""
         return f"""You are the Planner agent for catalyst discovery campaigns.

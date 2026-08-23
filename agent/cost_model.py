@@ -6,7 +6,12 @@ to ensure budget tracking is consistent across the loop.
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Literal, Union, Dict, Any
+
+try:
+    from typing_extensions import Literal as TypedLiteral
+except ImportError:
+    TypedLiteral = Literal
 
 
 # ---------------------------------------------------------------------------
@@ -31,7 +36,7 @@ CAMPAIGN_OVERHEAD_COST: float = 0.5  # Journal logging, MLflow write
 # Cost categories (for aggregation/logging)
 # ---------------------------------------------------------------------------
 
-class ActionCategory(str, Literal):
+class ActionCategory(str):
     """Action type for cost categorization."""
     KG_LOOKUP = "kg_lookup"
     SURROGATE_QUERY = "surrogate_query"

@@ -1,4 +1,4 @@
-"""Knowledge Graph Retriever agent.
+                                                                                """Knowledge Graph Retriever agent.
 
 Queries the KG via `kg/queries.py` to find candidate materials based on:
 - Element presence (e.g., "Ni")
@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Optional, List, Dict, Any
 
 from pydantic_ai import Agent
+from pydantic import BaseModel
 
 from kg.schema import (
     KGNode, KGEdge, MaterialNode, ElementNode, ChemsysNode, PropertyNode,
@@ -50,13 +51,20 @@ class KGRetrieverAgent:
     to support Critic agent's plausibility verification.
     """
 
-    def __init__(self, graph_path: Path = DEFAULT_KG_JSON):
-        """Initialize retriever with KG path."""
+    def __init__(self, graph_path: Path = None, use_llm: bool = True):
+        """Initialize retriever with KG path.
+
+Args:
+    graph_path: Path to knowledge graph JSON
+    use_llm: If False, skip LLM initialization (for testing)
+"""
         self.graph_path = graph_path
         self.G = load_graph(graph_path)
         
         # Pydantic-ai agent setup
-        self.agent = Agent(
+        # Pydantic-ai agent setup (optional for testing)
+        if use_llm:
+            self.agent = Agent(
             model="ollama/llama3.1:8b",  # Default model; override via env
             system_prompt=self._build_system_prompt(),
         )
