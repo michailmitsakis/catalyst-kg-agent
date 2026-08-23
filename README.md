@@ -216,7 +216,7 @@ mat-kg-agent/
 | **Orchestration granularity** | Single `campaign.py` runner with separated internal stages | Fully independent scripts per stage (`ai-mandel`-style) | Loop is tighter and budget-bounded rather than open-ended — a deliberate simplification given narrower scope. |
 | **MD/batching infrastructure** | Not used | NVIDIA ALCHEMI Toolkit (`nvalchemi`) | Solves large-scale MD-throughput efficiency; this project does single-point inference, not large-scale MD sampling. |
 | **Stability screening rule** | `e_above_hull` threshold as the Critic's first concrete gate | Vague, unspecified "plausibility check" | Mirrors the stability-screening step used in production materials-discovery agent workflows; a well-defined, MP-derivable threshold. |
-| **Distributed/federated agent execution** | Not used — all agents run locally, in-process | [Academy](https://academy.proxystore.dev) (Globus Compute + Parsl agentic middleware for federated, actor-model agent deployment across HPC/experimental facilities) | This project targets single-machine, local execution; Academy-style federated middleware is the natural path if the same agent roles were later deployed across real HPC and instrument resources rather than simulated ones. |
+| **Distributed/federated agent execution** | Not used — all agents run locally, in-process | Academy (Globus Compute + Parsl agentic middleware for federated, actor-model agent deployment across HPC/experimental facilities) | This project targets single-machine, local execution; Academy-style federated middleware is the natural path if the same agent roles were later deployed across real HPC and instrument resources rather than simulated ones. |
 
 ---
 
