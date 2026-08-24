@@ -61,9 +61,9 @@ def test_single_material_prediction():
     print(f"Testing with: {mat_node.formula_pretty} ({mat_node.mpid})")
     print(f"Elements: {mat_node.elements}")
     
-    # Check if structure is available
-    if not hasattr(mat_node, 'structure') or mat_node.structure is None:
-        print("[WARN] Material has no structure - skipping prediction test")
+    # Check if structure_id is available (updated schema)
+    if not hasattr(mat_node, 'structure_id') or mat_node.structure_id is None:
+        print("[WARN] Material has no structure_id - skipping prediction test")
         return
     
     # Run prediction
@@ -111,8 +111,8 @@ def test_mc_dropout_uncertainty():
     first_mat_id = mat_nodes[0]
     mat_node = rehydrate_node(G, first_mat_id)
     
-    if not hasattr(mat_node, 'structure') or mat_node.structure is None:
-        print("[WARN] Material has no structure - skipping uncertainty test")
+    if not hasattr(mat_node, 'structure_id') or mat_node.structure_id is None:
+        print("[WARN] Material has no structure_id - skipping uncertainty test")
         return
     
     predictor = PredictorAgent(checkpoint_path=MACE_CHECKPOINT_PATH)

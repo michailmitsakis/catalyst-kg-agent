@@ -9,7 +9,7 @@ Metrics logged per campaign:
 - final_outcome, best_candidate_e_above_hull
 
 Tags (metadata):
-- unsloth_model, mace_checkpoint_version, campaign_duration_seconds
+- ollama_model, mace_checkpoint_version, campaign_duration_seconds
 """
 
 from __future__ import annotations
@@ -27,9 +27,9 @@ import mlflow
 # ---------------------------------------------------------------------------
 
 def get_tracking_uri() -> str:
-    """Get MLflow tracking URI from environment or default to file-based."""
+    """Get MLflow tracking URI from environment or default to SQLite database."""
     return (
-        os.environ.get("MLFLOW_TRACKING_URI", "file:./tracking/mlruns")
+        os.environ.get("MLFLOW_TRACKING_URI", "sqlite:///mlflow.db")
     )
 
 
@@ -100,7 +100,7 @@ def log_campaign_metrics(
 
 def log_campaign_params(
     campaign_id: str,
-    unsloth_model: Optional[str] = None,
+    ollama_model: Optional[str] = None,
     mace_checkpoint_version: Optional[str] = None,
     initial_budget: float = 100.0,
     max_experiments: int = 10,
@@ -109,12 +109,12 @@ def log_campaign_params(
 
     Args:
         campaign_id: Unique identifier for this campaign
-        unsloth_model: Model name/version used (e.g., "llama3.1:8b")
+        ollama_model: Model name/version used (e.g., "llama3.1:8b")
         mace_checkpoint_version: MACE checkpoint version (e.g., "mace-mpa-0-medium")
         initial_budget: Starting budget amount
         max_experiments: Maximum experiments allowed
     """
-    mlflow.log_param("unsloth_model", unsloth_model or "not_specified")
+    mlflow.log_param("ollama_model", ollama_model or "not_specified")
     mlflow.log_param("mace_checkpoint_version", mace_checkpoint_version or "not_specified")
     mlflow.log_param("initial_budget", initial_budget)
     mlflow.log_param("max_experiments", max_experiments)
@@ -183,14 +183,14 @@ def log_campaign_summary(
 
 def start_campaign_tracking(
     campaign_id: str,
-    unsloth_model: Optional[str] = None,
+    ollama_model: Optional[str] = None,
     mace_checkpoint_version: Optional[str] = None,
 ) -> str:
     """Start tracking a new campaign.
 
     Args:
         campaign_id: Unique identifier for this campaign (UUID recommended)
-        unsloth_model: Model name/version used
+        ollama_model: Model name/version used
         mace_checkpoint_version: MACE checkpoint version
 
     Returns:
@@ -202,7 +202,7 @@ def start_campaign_tracking(
         # Log parameters
         log_campaign_params(
             campaign_id=campaign_id,
-            unsloth_model=unsloth_model,
+            ollama_model=ollama_model,
             mace_checkpoint_version=mace_checkpoint_version,
         )
         
@@ -272,14 +272,14 @@ def end_campaign_tracking(
 
 def create_mlflow_logger(
     campaign_id: str,
-    unsloth_model: Optional[str] = None,
+    ollama_model: Optional[str] = None,
     mace_checkpoint_version: Optional[str] = None,
 ) -> "MLflowLogger":
     """Create an MLflow logger for a campaign.
 
     Args:
         campaign_id: Unique identifier for this campaign
-        unsloth_model: Model name/version used
+        ollama_model: Model name/version used
         mace_checkpoint_version: MACE checkpoint version
 
     Returns:
@@ -287,7 +287,7 @@ def create_mlflow_logger(
     """
     return MLflowLogger(
         campaign_id=campaign_id,
-        unsloth_model=unsloth_model,
+        ollama_model=ollama_model,
         mace_checkpoint_version=mace_checkpoint_version,
     )
 
@@ -304,11 +304,11 @@ class MLflowLogger:
     def __init__(
         self,
         campaign_id: str,
-        unsloth_model: Optional[str] = None,
+        ollama_model: Optional[str] = None,
         mace_checkpoint_version: Optional[str] = None,
     ):
         self.campaign_id = campaign_id
-        self.unsloth_model = unsloth_model
+        self.ollama_model = ollama_model
         self.mace_checkpoint_version = mace_checkpoint_version
         self.run_id: Optional[str] = None
         self.metrics: Dict[str, float] = {}
@@ -319,7 +319,7 @@ class MLflowLogger:
     def __enter__(self) -> "MLflowLogger":
         with mlflow.start_run() as run:
             self.run_id = run.info.run_id
-            self.params["unsloth_model"] = self.unsloth_model or "not_specified"
+            self.params["ollama_model"] = self.ollama_model or "not_specified"
             self.params["mace_checkpoint_version"] = (
                 self.mace_checkpoint_version or "not_specified"
             )

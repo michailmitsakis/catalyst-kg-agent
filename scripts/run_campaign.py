@@ -100,12 +100,12 @@ def run_campaign(
     # Initialize MLflow tracking
     mlflow_logger = create_mlflow_logger(
         campaign_id=campaign_id,
-        unsloth_model=unsloth_model,
+        ollama_model=unsloth_model,  # Renamed from unsloth_model to ollama_model
         mace_checkpoint_version=mace_checkpoint,
     )
     
     try:
-        # Run the orchestrator
+        # Run the orchestrator (now synchronous)
         result = orchestrator.run()
         
         # Update MLflow with results

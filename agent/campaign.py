@@ -102,6 +102,8 @@ class CampaignOrchestrator:
 
         # Agent instances (lazy-loaded to avoid model load until needed)
         self._retriever: Optional[Any] = None
+        self._predictor: Optional[Any] = None
+        self._critic: Optional[Any] = None
 
     # -----------------------------------------------------------------------
     # Agent factories
@@ -132,7 +134,7 @@ class CampaignOrchestrator:
     # Campaign loop
     # -----------------------------------------------------------------------
 
-    async def run(
+    def run(
         self,
         query: Optional[str] = None,
     ) -> dict[str, Any]:

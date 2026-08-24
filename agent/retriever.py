@@ -95,8 +95,8 @@ Args:
         
         # Pydantic-ai agent setup (optional for testing)
         if use_llm:
-            ollama_base = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
-            ollama_model = os.getenv("OLLAMA_MODEL", "qwen2.5-coder:1.5b")  # Use smaller, more compatible model
+            ollama_base = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+            ollama_model = os.getenv("OLLAMA_MODEL", "gemma4:latest")  # Use configured model from .env
             
             # Create Ollama model with proper base URL (includes /v1 for OpenAI-compatible API)
             ollama_model_obj = OllamaModel(
