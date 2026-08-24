@@ -21,6 +21,8 @@ from agent.cost_model import (
     ActionCategory,
     INITIAL_BUDGET,
     MAX_ACTIONS_PER_CAMPAIGN,
+    KG_LOOKUP_COST,
+    SURROGATE_COST,
 )
 
 
@@ -100,8 +102,6 @@ class CampaignOrchestrator:
 
         # Agent instances (lazy-loaded to avoid model load until needed)
         self._retriever: Optional[Any] = None
-        self._predictor: Optional[Any] = None
-        self._critic: Optional[Any] = None
 
     # -----------------------------------------------------------------------
     # Agent factories
@@ -117,13 +117,15 @@ class CampaignOrchestrator:
     def get_predictor(self):
         """Get or create Predictor agent."""
         if self._predictor is None:
-            raise NotImplementedError("Predictor not yet implemented")
+            from agent.predictor import PredictorAgent, create_predictor
+            self._predictor = create_predictor()
         return self._predictor
 
     def get_critic(self):
         """Get or create Critic agent."""
         if self._critic is None:
-            raise NotImplementedError("Critic not yet implemented")
+            from agent.critic import CriticAgent, create_critic
+            self._critic = create_critic()
         return self._critic
 
     # -----------------------------------------------------------------------
@@ -148,7 +150,7 @@ class CampaignOrchestrator:
 
         self.state.log("campaign_start", {"query": query or "default"})
 
-        # Main loop
+        # Main loop - use MAX_ACTIONS_PER_CAMPAIGN and budget check
         step = 0
         while step < MAX_ACTIONS_PER_CAMPAIGN and self.tracker.remaining_budget > 0:
             step += 1
@@ -161,8 +163,8 @@ class CampaignOrchestrator:
             else:
                 result = retriever.run_query("find all stable materials")
 
-            cost_deducted = self.tracker.deduct(ActionCategory.KG_LOOKUP, result.query_cost)
-            if not cost_deducted:
+            # Deduct KG lookup cost
+            if not self.tracker.deduct(ActionCategory.KG_LOOKUP, result.query_cost):
                 self.state.status = "failed"
                 self.state.log("budget_exhausted", {})
                 break
@@ -170,30 +172,45 @@ class CampaignOrchestrator:
             materials = result.materials
             self.state.final_materials.extend(materials)
 
-            # 2. (Optional) Predict properties
-            # Skip for now until Predictor impl is done
-            predictions = None
+            # 2. Predict properties (optional - use predictor if available)
+            try:
+                predictor = self.get_predictor()
+                predictions = []
+                
+                for mat in materials:
+                    pred_result = predictor.predict(mat)
+                    predictions.append(pred_result)
+                    
+                    # Deduct surrogate cost
+                    self.tracker.deduct(ActionCategory.SURROGATE_QUERY, SURROGATE_COST)
 
+            except NotImplementedError:
+                # Skip prediction if not implemented yet
+                predictions = None
+            
             # 3. Critic validation
-            critic_decisions = None
+            critic_decisions = []
             if materials:
-                # First material triggers escalation check
-                first_mat = materials[0]
-                requires_escalation = self._check_stability(first_mat)
-                critic_decisions = [{"material_id": first_mat.mpid, "requires_escalation": requires_escalation}]
+                critic = self.get_critic()
+                critic_decisions = critic.validate_materials(materials, predictions)
 
-                # Escalate if needed
-                if requires_escalation:
-                    self.state.log("critic_escalation", {"material_id": first_mat.mpid})
-                    # Would call expensive DFT/UMA here
-                    break
+                # Track escalations (expensive DFT/UMA checks)
+                for dec in critic_decisions:
+                    if dec.requires_escalation:
+                        self.state.log("critic_escalation", {"material_id": dec.reason})
+                        # Deduct experiment cost
+                        self.tracker.deduct(ActionCategory.EXPERIMENT_ESCALATION, EXPERIMENT_COST)
 
-        # Sort by stability for final output
-        self.state.final_materials.sort(
-            key=lambda m: (
-                next((p.value for p in self.G.nodes.get(m.id, {}).get("properties", [])), float("inf"))
-            )
-        )
+        # Sort by stability for final output (lowest e_above_hull first)
+        if self.state.final_materials:
+            def get_eah(mat):
+                props = self.G.nodes.get(mat.id, {}).get("properties", [])
+                for p in props:
+                    if isinstance(p, dict) and p.get("name") == "energy_above_hull":
+                        return float(p.get("value", float("inf")))
+                return float("inf")
+            
+            self.state.final_materials.sort(key=get_eah)
 
         if self.state.final_materials:
             self.state.best_candidate = self.state.final_materials[0]
@@ -212,17 +229,6 @@ class CampaignOrchestrator:
 
         return result
 
-    def _check_stability(self, material: MaterialNode) -> bool:
-        """Check if material meets stability threshold.
-
-        Args:
-            material: Material to check
-
-        Returns:
-            True if material should be escalated for expensive verification
-        """
-        # Default: escalate first candidate as demo
-        return True
 
     def _write_journal(self):
         """Write campaign journal to JSON file."""
