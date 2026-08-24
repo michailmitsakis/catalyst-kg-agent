@@ -11,6 +11,9 @@ Writes (via main()):
 Caching:
     Structures are cached in a pickle file after the first build to avoid
     re-parsing CIF files on every run. Cache location: data/processed/cif_cache.pkl
+    
+    Cache metadata (timestamps, size) is tracked in data/processed/cif_cache_meta.json
+    for monitoring cache health and invalidation decisions.
 
 Design notes
 ------------
@@ -32,7 +35,9 @@ Design notes
 from __future__ import annotations
 
 import json
+import os
 import pickle
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Optional
 
@@ -67,6 +72,7 @@ from kg.schema import (
 # ---------------------------------------------------------------------------
 
 CACHE_FILE = Path("data/processed/cif_cache.pkl")
+CACHE_META_FILE = Path("data/processed/cif_cache_meta.json")
 
 
 def _load_cached_structures() -> dict[str, Structure]:
@@ -103,6 +109,32 @@ def _save_cached_structures(struct_cache: dict[str, Structure]) -> None:
         pickle.dump(struct_cache, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 
+def _save_cache_metadata(cache_stats: dict[str, Any]) -> None:
+    """Save cache metadata (timestamps, stats) for tracking.
+    
+    Args:
+        cache_stats: Dict with timestamps and statistics
+    """
+    CACHE_META_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(CACHE_META_FILE, "w") as f:
+        json.dump(cache_stats, f, indent=2)
+
+
+def _load_cache_metadata() -> dict[str, Any]:
+    """Load cache metadata if available.
+    
+    Returns:
+        Dict with cache statistics and timestamps, or empty dict
+    """
+    if not CACHE_META_FILE.exists():
+        return {}
+    try:
+        with open(CACHE_META_FILE, "r") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
 def _get_cached_structure(mpid: str) -> Optional[Structure]:
     """Get a cached structure by mpid if available.
     
@@ -129,6 +161,13 @@ def _update_cache(structure: Structure, mpid: str) -> None:
     cached[mpid] = structure
     # Save updated cache
     _save_cached_structures(cached)
+    
+    # Update metadata with timestamp and stats
+    meta = _load_cache_metadata()
+    meta["last_updated"] = datetime.now().isoformat()
+    meta["total_structures"] = len(cached)
+    meta["cache_size_mb"] = round(os.path.getsize(CACHE_FILE) / 1024 / 1024, 2)
+    _save_cache_metadata(meta)
 
 
 # ---------------------------------------------------------------------------
