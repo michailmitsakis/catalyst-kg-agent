@@ -24,6 +24,7 @@ from kg.schema import (
       PropertySource, PropertyUnit, material_id, KGNode
 )
 from kg.graph_store import load_graph, save_graph
+from agent.predictor import PredictorResult  # Import actual predictor result type
 
 
 # ---------------------------------------------------------------------------
@@ -35,18 +36,32 @@ class CampaignResult(BaseModel):
     campaign_id: str
     timestamp: str  # ISO format datetime
     materials_evaluated: List[MaterialNode]
-    predictions_made: List[PredictorOutput] = []
+    predictions_made: List[PredictorResult] = []  # Changed from PredictorOutput
     escalations_triggered: int = 0
     total_cost: float = 0.0
 
 
 class PredictorOutput(BaseModel):
-    """Prediction result from Predictor agent."""
+    """Prediction result from Predictor agent (legacy format, kept for compatibility).
+    
+    Note: Now using PredictorResult directly from predictor.py instead.
+    """
     material_id: str
     property_name: str
     predicted_value: float
     uncertainty: float
     model_source: str
+    
+    @classmethod
+    def from_result(cls, result: PredictorResult) -> "PredictorOutput":
+        """Convert PredictorResult to PredictorOutput for backward compatibility."""
+        return cls(
+            material_id=result.material_id,
+            property_name="energy_above_hull",
+            predicted_value=result.property_value if result.property_value is not None else 0.0,
+            uncertainty=result.uncertainty,
+            model_source=result.model_used,
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -65,7 +80,7 @@ class ScribeAgent:
         self,
         campaign_id: str,
         materials_evaluated: List[MaterialNode],
-        predictions_made: Optional[List[PredictorOutput]] = None,
+        predictions_made: Optional[List[PredictorResult]] = None,  # Changed from PredictorOutput
         escalations_triggered: int = 0,
         total_cost: float = 0.0
     ) -> Dict[str, Any]:
@@ -74,7 +89,7 @@ class ScribeAgent:
         Args:
             campaign_id: Unique identifier for this campaign run
             materials_evaluated: Materials that were evaluated in this campaign
-            predictions_made: Property predictions made during campaign
+            predictions_made: Property predictions made during campaign (PredictorResult objects)
             escalations_triggered: Number of times escalation was triggered
             total_cost: Total cost of campaign run
 
@@ -85,7 +100,7 @@ class ScribeAgent:
 
         # Update KG with new property predictions
         for pred in predictions_made or []:
-            self._add_prediction_to_kg(pred)
+            self._add_prediction_to_kg(pred)  # Now takes PredictorResult directly
 
         # Add campaign metadata node (optional, for tracking)
         # self.G.add_node(f"campaign:{campaign_id}", type="Campaign", ...)
@@ -102,41 +117,66 @@ class ScribeAgent:
             "graph_updated": True,
         }
 
-    def _add_prediction_to_kg(self, prediction: PredictorOutput):
+    def _add_prediction_to_kg(self, prediction: PredictorResult):
         """Add a property prediction to the KG as a new PropertyNode.
 
         Args:
-            prediction: PredictorOutput object with predicted value + uncertainty
+            prediction: PredictorResult object from MACE predictor with e_above_hull + uncertainty
         """
         material_id = prediction.material_id
         
+        # Extract values from PredictorResult
+        prop_name = "energy_above_hull"  # Only e_above_hull for now
+        pred_value = prediction.property_value
+        uncertainty = prediction.uncertainty
+        
+        if pred_value is None or prediction.prediction_failed:
+            print(f"Scribe: Skipping failed prediction for {material_id}")
+            return
+
         # Check if property already exists for this material
+        mpid = material_id.split(":")[-1] if ":" in material_id else material_id
         existing_props = [nid for nid, data in self.G.nodes(data=True) 
-                         if data.get("type") == NodeType.PROPERTY.value and \
-                            data.get("mpid") == material_id]
+                          if data.get("type") == NodeType.PROPERTY.value and \
+                             data.get("mpid") == mpid and
+                             data.get("name") == prop_name]
 
         if existing_props:
-            # Update existing property node with new prediction (confidence-weighted?)
-            # For now, add as new node with source="MACE-finetuned"
-            pass
+            # Update existing property node with new prediction (average the values)
+            for prop_nid in existing_props:
+                prop_data = self.G.nodes[prop_nid]
+                current_value = float(prop_data.get("value", 0))
+                new_value = pred_value
+                
+                # Simple average for now (could be weighted by uncertainty later)
+                avg_value = (current_value + new_value) / 2
+                self.G.nodes[prop_nid]["value"] = avg_value
+                self.G.nodes[prop_nid]["source"] = PropertySource.MACE_FINETUNED.value
+                # Add prediction count if it exists, otherwise initialize
+                if "prediction_count" not in self.G.nodes[prop_nid]:
+                    self.G.nodes[prop_nid]["prediction_count"] = 1
+                else:
+                    self.G.nodes[prop_nid]["prediction_count"] += 1
+                
+            print(f"Scribe: Updated existing property {prop_name} for {material_id}")
+            return
 
         # Create new PropertyNode for this prediction
         prop_node = PropertyNode(
-            id=property_id(material_id, prediction.property_name),
-            mpid=material_id.split(":")[-1] if ":" in material_id else material_id,
-            name=prediction.property_name,
-            value=prediction.predicted_value,
-            unit=PropertyUnit.BAND_GAP if "gap" in str(prediction.property_name).lower() \
-                   else PropertyUnit.ENERGY_ABOVE_HULL,  # Default to eV/atom
+            id=property_id(material_id, prop_name),
+            mpid=mpid,
+            name=prop_name,
+            value=pred_value,
+            unit=PropertyUnit.ENERGY_ABOVE_HULL,
             source=PropertySource.MACE_FINETUNED,
         )
 
         self.G.add_node(prop_node.id, **prop_node.model_dump(mode="json"))
 
         # Add edge from material to property
-        mat_id = material_id.split(":")[-1] if ":" in material_id else material_id
-        prop_nid = prop_node.id
-        self.G.add_edge(mat_id, prop_nid, key=f"HAS_PROPERTY:{prop_node.name.value}", type="HAS_PROPERTY")
+        self.G.add_edge(material_id, prop_node.id, key=f"HAS_PROPERTY:{prop_name.value}", type="HAS_PROPERTY")
+        
+        print(f"Scribe: Added new property {prop_name}={pred_value:.4f} eV/atom for {material_id} (uncertainty={uncertainty:.1%})")
 
     def get_materials_with_properties(
         self,
