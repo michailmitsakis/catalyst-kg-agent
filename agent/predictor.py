@@ -19,6 +19,7 @@ import numpy as np
 from pydantic import BaseModel
 
 from kg.schema import MaterialNode
+from kg.graph_store import load_graph, rehydrate_node, DEFAULT_KG_JSON
 
 
 # ---------------------------------------------------------------------------
@@ -68,8 +69,9 @@ class MACEModel:
             from mace.calculators import MACECalculator
             
             # Initialize MACE calculator with checkpoint path and device
+            # NOTE: MACE API uses 'model_paths' (list) instead of 'checkpoint_path'
             self.calculator = MACECalculator(
-                checkpoint_path=str(self.checkpoint_path),
+                model_paths=[str(self.checkpoint_path)],  # List of checkpoint paths
                 device=self.device,
             )
 
@@ -80,7 +82,7 @@ class MACEModel:
         """Predict energy per atom for a single structure.
 
         Args:
-            structure: pymatgen Structure object
+            structure: pymatgen Structure or ASE Atoms object
 
         Returns:
             Predicted energy per atom in eV
@@ -89,8 +91,22 @@ class MACEModel:
 
         try:
             # Use MACE calculator to compute total energy, divide by num_atoms
-            total_energy = self.calculator.get_energy(structure)
-            return float(total_energy / structure.num_formulas)
+            # NOTE: ASE Atoms uses 'num_atoms', pymatgen Structure uses 'num_formulas'
+            # MSONAtoms (pymatgen wrapper) uses 'get_number_of_atoms()'
+            if hasattr(structure, 'num_atoms'):
+                # ASE Atoms object
+                n_atoms = structure.num_atoms
+            elif hasattr(structure, 'get_number_of_atoms'):
+                # pymatgen MSONAtoms or similar wrapper
+                n_atoms = structure.get_number_of_atoms()
+            elif hasattr(structure, 'num_formulas'):
+                # pymatgen Structure object
+                n_atoms = structure.num_formulas
+            else:
+                raise AttributeError(f"Structure has neither num_atoms nor get_number_of_atoms")
+            
+            total_energy = self.calculator.get_potential_energy(structure)
+            return float(total_energy / n_atoms)
         except Exception as e:
             raise RuntimeError(f"MACE prediction failed: {e}")
 
@@ -140,15 +156,14 @@ class PredictorAgent:
         """Predict e_above_hull for a single material.
 
         Args:
-            material: MaterialNode from KG (must have structure attribute)
+            material: MaterialNode from KG (may have structure_id reference to StructureNode)
 
         Returns:
             PredictorResult with value + uncertainty
         """
-        # Extract structure from material
-        structure = getattr(material, "structure", None)
-
-        if structure is None:
+        # Fetch structure from graph using structure_id field
+        # If structure_id is None or empty, prediction will fail gracefully
+        if not material.structure_id:
             return PredictorResult(
                 material_id=material.mpid,
                 property_value=None,
@@ -158,20 +173,61 @@ class PredictorAgent:
             )
 
         try:
+            # Step 1: Load the graph and fetch the structure node
+            # The structure_id is like "structure:mp-126", not a file path
+            # We need to load from the canonical KG location
+            G = load_graph(DEFAULT_KG_JSON)
+            structure_node = rehydrate_node(G, material.structure_id)
+            
+            # Convert StructureNode (pydantic) to pymatgen Structure object
+            # The StructureNode has cif_path which points to the actual CIF file
+            from pymatgen.core import Structure as PMGSstructure
+            
+            pmg_structure = PMGSstructure.from_file(structure_node.cif_path)
+            
+            # Convert pymatgen Structure to ASE Atoms (what MACE expects)
+            from ase.atoms import Atoms as AseAtoms
+            
+            # Handle both pure ASE Atoms and pymatgen's MSONAtoms wrapper
+            if hasattr(pmg_structure, 'to_ase_atoms'):
+                ase_atoms = pmg_structure.to_ase_atoms()
+                # If it's an MSONAtoms (pymatgen wrapper), convert to pure ASE Atoms
+                if type(ase_atoms).__name__ == 'MSONAtoms':
+                    # MSONAtoms inherits from Atoms, but we need the underlying ASE object
+                    ase_atoms = AseAtoms(symbols=ase_atoms.get_chemical_symbols(),
+                                       positions=ase_atoms.get_positions(),
+                                       cell=ase_atoms.get_cell())
+            else:
+                # Fallback: try direct conversion
+                ase_atoms = pmg_structure.to_ase_atoms()
+
+            if not ase_atoms or len(ase_atoms) == 0:
+                return PredictorResult(
+                    material_id=material.mpid,
+                    property_value=None,
+                    uncertainty=1.0,
+                    model_used="mace",
+                    prediction_failed=True,
+                )
+
+        except Exception as e:
+            import traceback
+            print(f"Predictor error loading structure: {e}")
+            traceback.print_exc()
+            return PredictorResult(
+                material_id=material.mpid,
+                property_value=None,
+                uncertainty=1.0,
+                model_used="mace",
+                prediction_failed=True,
+            )
+
+        try:
             # Step 1: Run MC Dropout inference to get energy per atom predictions
             energies_per_atom = []
             for _ in range(self.n_dropout_passes):
-                try:
-                    e_per_atom = self.model.predict_energy_per_atom(structure)
-                    energies_per_atom.append(e_per_atom)
-                except Exception as e:
-                    return PredictorResult(
-                        material_id=material.mpid,
-                        property_value=None,
-                        uncertainty=1.0,
-                        model_used="mace",
-                        prediction_failed=True,
-                    )
+                e_per_atom = self.model.predict_energy_per_atom(ase_atoms)
+                energies_per_atom.append(e_per_atom)
 
             if not energies_per_atom:
                 return PredictorResult(

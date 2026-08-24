@@ -118,11 +118,32 @@ def rehydrate_node(G: nx.MultiDiGraph, node_id: str) -> KGNode:
     Note: NetworkX uses the node ID as the lookup key and strips it
     from the attribute dict, so we must inject it back before pydantic
     validation.
+
+    For MaterialNode specifically: traverses HAS_STRUCTURE edge to populate
+    structure_id field if present in the graph.
     """
     data = dict(G.nodes[node_id])
     data["id"] = node_id  # nx.node_link_graph drops id from attrs
     model_cls = _model_for(data["type"])
-    return model_cls.model_validate(data)
+    
+    result = model_cls.model_validate(data)
+    
+    # Special handling for MaterialNode: find and link its StructureNode
+    if isinstance(result, MaterialNode):
+        # Look for HAS_STRUCTURE edge from this material
+        for edge_tuple in G.edges(node_id, data=True):
+            # Handle multi-edges (tuples of 3) vs regular edges (tuples of 2)
+            if len(edge_tuple) >= 3:
+                src, tgt, edge_dict = edge_tuple
+            else:
+                src, tgt = edge_tuple
+                edge_dict = edge_data
+            
+            if edge_dict.get("type") == "HAS_STRUCTURE":
+                result.structure_id = tgt
+                break
+    
+    return result
 
 
 def rehydrate_many(G: nx.MultiDiGraph, node_ids: list[str]) -> list[KGNode]:

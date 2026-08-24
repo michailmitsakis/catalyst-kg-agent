@@ -270,12 +270,20 @@ class PropertyNode(_Base):
 
 
 class MaterialNode(_Base):
-    """Top-level discovery target. One per material_id."""
+    """Top-level discovery target. One per material_id.
+
+    Contains an optional reference to its StructureNode via ID (not the full
+    Structure object). This keeps the schema simple and allows multiple
+    structures (slabs, adsorbates) to be linked to one Material."""
     id: str = Field(..., description="material:<mpid>")
     type: NodeType = NodeType.MATERIAL
     mpid: str
     formula_pretty: str
     elements: list[str] = Field(..., min_length=1)
+    structure_id: Optional[str] = Field(
+        default=None,
+        description="Optional reference to StructureNode ID (e.g. 'structure:mp-126')"
+    )
 
     @field_validator("elements")
     @classmethod
