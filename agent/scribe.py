@@ -17,6 +17,8 @@ from datetime import datetime
 
 import networkx as nx
 
+from pydantic import BaseModel
+
 from kg.schema import (
     MaterialNode, PropertyNode, NodeType, property_id, PropertyName,
       PropertySource, PropertyUnit, material_id, KGNode
@@ -162,9 +164,9 @@ class ScribeAgent:
         material_ids = set()
         for prop_nid in prop_nodes:
             edges = list(self.G.predecessors(prop_nid))
-            for edge_key, data in self.G.edges[prop_nid, edges[0], key=edge_key].items():
-                if data.get("type") == "HAS_PROPERTY":
-                    material_ids.add(edges[0])
+            for edge in self.G.edges(prop_nid, edges[0]):
+                if self.G[edge[0]][edge[1]].get("type") == "HAS_PROPERTY":
+                    material_ids.add(edge[0] if edge[0] != prop_nid else edge[1])
 
         # Rehydrate and return materials
         materials = []

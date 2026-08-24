@@ -93,9 +93,10 @@ class PlannerAgent:
 
         # Agent setup (Pydantic-ai for typed I/O)
         if use_llm:
-            unsloth_url = os.environ.get("UNSLOTH_BASE_URL", "http://localhost:11434/v1")
+            base_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+            model_name = os.environ.get("OLLAMA_MODEL", "llama3.1:8b")
             self.agent = Agent(
-                model=f"{unsloth_url}/llama3.1:8b",
+                model=f"{base_url}/{model_name}",
                 system_prompt=self._build_system_prompt(),
             )
         else:

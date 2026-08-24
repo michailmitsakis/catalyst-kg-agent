@@ -202,18 +202,6 @@ def run_campaign(
                 
                 # Update evaluated materials
                 evaluated_materials.extend(new_materials)
-                    
-                    # Log critic decisions
-                    for dec in decisions:
-                        logger.log(
-                            level="WARNING" if not dec.approved else "INFO",
-                            message=f"Critic decision for {dec.reason}",
-                        )
-                    
-                    # Update state with critic rejections
-                    planner.state.critic_rejections += sum(1 for d in decisions if not d.approved)
-                
-                # 5. Planner: Update budget and check completion
                 print(f"Cost update: ${decision.cost_update:.1f}")
                 total_cost += decision.cost_update
                 
