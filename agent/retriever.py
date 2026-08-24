@@ -1,4 +1,4 @@
-                                                                                """Knowledge Graph Retriever agent.
+"""Knowledge Graph Retriever agent.
 
 Queries the KG via `kg/queries.py` to find candidate materials based on:
 - Element presence (e.g., "Ni")
@@ -48,7 +48,6 @@ class KGRetrieverAgent:
     """KG Retriever agent with dependency-injected graph access.
 
     Uses Pydantic-ai for typed I/O. Query results include provenance tracking
-    to support Critic agent's plausibility verification.
     """
 
     def __init__(self, graph_path: Path = None, use_llm: bool = True):
@@ -61,11 +60,10 @@ Args:
         self.graph_path = graph_path
         self.G = load_graph(graph_path)
         
-        # Pydantic-ai agent setup
         # Pydantic-ai agent setup (optional for testing)
         if use_llm:
             self.agent = Agent(
-            model="ollama/llama3.1:8b",  # Default model; override via env
+            model="unsloth/Qwen3.5-2B-MTP-GGUF",  # Default model; override via env
             system_prompt=self._build_system_prompt(),
         )
 
@@ -110,7 +108,7 @@ ALWAYS include provenance showing KG traversal path for Critic verification."""
 
         return KGLookupResult(
             materials=materials,
-            chemsys_groups=list(set(chemsys_groups)) if chemsys_groups else None,
+            chemsys_groups=["-".join(sorted(cs)) for cs in chemsys_groups] if chemsys_groups else None,
             elements_found=list(set(elements_found)) if elements_found else None,
             provenance=provenance,
             query_cost=KG_LOOKUP_COST,
@@ -160,7 +158,7 @@ ALWAYS include provenance showing KG traversal path for Critic verification."""
         chemsys_matches = re.findall(chemsys_pattern, query)
 
         if chemsys_matches:
-            filters["chemsys_candidates"] = [self._normalize_chemsys(m) for m in chemsys_matches]
+            filters["chemsys_candidates"] = [self._normalize_chemsys_match(m) for m in chemsys_matches]
 
         # Extract property thresholds (e.g., "e_above_hull < 0.1", "band_gap > 2")
         prop_patterns = {
@@ -185,6 +183,20 @@ ALWAYS include provenance showing KG traversal path for Critic verification."""
     def _normalize_chemsys(self, chemsys_str: str) -> List[str]:
         """Normalize chemsys string to sorted list of element symbols."""
         # Handle "Ni-P", "Fe-Co-O", etc.
+        parts = re.split(r'[-_]', chemsys_str.upper())
+        elements = []
+        for part in parts:
+            if len(part) == 1:
+                elements.append(part)
+            elif len(part) == 2 and part[0].isupper() and part[1].islower():
+                elements.append(part)
+        
+        return sorted(elements)
+
+    def _normalize_chemsys_match(self, match_tuple) -> List[str]:
+        """Normalize a regex match tuple to sorted list of element symbols."""
+        # Handle "Ni-P", "Fe-Co-O" from regex match tuples
+        chemsys_str = match_tuple[0]  # The matched string
         parts = re.split(r'[-_]', chemsys_str.upper())
         elements = []
         for part in parts:
