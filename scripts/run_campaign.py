@@ -155,17 +155,7 @@ def run_campaign(
                 
                 print(f"Retrieved {len(new_materials)} new candidates")
                 
-                # 2. Planner: Decide next action
-                decision = planner.plan_next_step(
-                    retrieved_materials=new_materials,
-                )
-                
-                print(f"Planner decision: {decision.next_action}")
-                
-                # Update evaluated materials
-                evaluated_materials.extend(new_materials)
-                
-                # 3. Predictor: Get property estimates (if continue action)
+                # 1. Predictor: Get property estimates (if continue action)
                 if decision.next_action == "continue":
                     print("Running MACE predictions...")
                     predictions = []
@@ -184,12 +174,34 @@ def run_campaign(
                     scribe_results = scribe.log_predictions(predictions)
                     print(f"Scribed {len(scribe_results)} predictions")
                 
-                # 4. Critic: Validate before escalation
-                if decision.next_action in ("escalate", "continue"):
-                    decisions = critic.validate_materials(
-                        materials=new_materials,
-                        predictions=predictions if 'predictions' in locals() else None,
+                # 4. Critic: Validate stability and uncertainty (BEFORE Planner decides)
+                decisions = critic.validate_materials(
+                    materials=new_materials,
+                    predictions=predictions if 'predictions' in locals() else None,
+                )
+                
+                # Log critic decisions
+                for dec in decisions:
+                    logger.log(
+                        level="WARNING" if not dec.approved else "INFO",
+                        message=f"Critic decision for {dec.reason}",
                     )
+                    
+                    # Track escalations
+                    if dec.requires_escalation:
+                        print(f"  ⚠️ ESCALATION TRIGGERED for {dec.reason}")
+                
+                # 3. Planner: Decide next action (now with Critic feedback)
+                decision = planner.plan_next_step(
+                    retrieved_materials=new_materials,
+                    predictions=predictions if 'predictions' in locals() else None,
+                    critic_decisions=decisions,
+                )
+                
+                print(f"Planner decision: {decision.next_action}")
+                
+                # Update evaluated materials
+                evaluated_materials.extend(new_materials)
                     
                     # Log critic decisions
                     for dec in decisions:
@@ -231,7 +243,7 @@ def run_campaign(
                 total_cost=total_cost,
                 materials_evaluated=len(evaluated_materials),
                 predictions_made=step,  # Approximate
-                escalations_triggered=0,  # Would track from critic decisions
+                escalations_triggered=sum(1 for d in decisions if getattr(d, 'requires_escalation', False)) if 'decisions' in locals() else 0,
                 best_candidate_e_above_hull=None,  # Would compute from results
                 final_outcome="completed",
             )

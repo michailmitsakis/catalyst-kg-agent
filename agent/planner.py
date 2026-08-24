@@ -33,6 +33,7 @@ from agent.cost_model import (
     SURROGATE_COST,
     EXPERIMENT_COST,
 )
+from agent.critic import CriticDecision
 
 
 # ---------------------------------------------------------------------------
@@ -114,9 +115,9 @@ LOOP FLOW:
 2. (Optional) Call Predictor → get property estimates with uncertainty
 3. Call Critic → validate stability and uncertainty thresholds
 4. Decide next action:
-   • "continue": Keep looping if budget remains AND experiments_count < max_experiments
-   • "escalate": Call expensive DFT/UMA on best candidate (if uncertainty gate triggered)
-   • "stop": Campaign complete
+    • "continue": Keep looping if budget remains AND experiments_count < max_experiments
+    • "escalate": Call expensive DFT/UMA on best candidate (if uncertainty gate triggered)
+    • "stop": Campaign complete
 
 DECISION RULES:
 - Escalate if: Critic requires escalation OR best candidate meets target property
@@ -133,14 +134,14 @@ OUTPUT: PlannerDecision with next_action + reason + cost_update."""
         self,
         retrieved_materials: List[MaterialNode],
         predictions: Optional[List[Any]] = None,
-        critic_decisions: Optional[List[Any]] = None
+        critic_decisions: Optional[List[CriticDecision]] = None
     ) -> PlannerDecision:
         """Plan the next action in the discovery loop.
 
         Args:
             retrieved_materials: Materials from Retriever
             predictions: Optional Predictor outputs
-            critic_decisions: Optional Critic validation results
+            critic_decisions: Optional Critic validation results (with requires_escalation flag)
 
         Returns:
             PlannerDecision with next_action and cost update
@@ -153,7 +154,7 @@ OUTPUT: PlannerDecision with next_action + reason + cost_update."""
         escalation_needed = False
         if critic_decisions:
             for decision in critic_decisions:
-                if hasattr(decision, 'requires_escalation') and decision.requires_escalation:
+                if getattr(decision, 'requires_escalation', False):
                     escalation_needed = True
                     break
 
