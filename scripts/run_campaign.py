@@ -109,9 +109,12 @@ def run_campaign(
         result = orchestrator.run()
         
         # Update MLflow with results
+        total_spent = result.get("budget_summary", {}).get("total_spent", 0)
+        n_materials = result.get("campaign_state", {}).get("n_materials_evaluated", 0)
+        
         mlflow_logger.log_campaign_end(
-            total_cost=result.get("budget_summary", {}).get("total_spent", 0),
-            materials_evaluated=len(result.get("final_materials", [])),
+            total_cost=total_spent,
+            materials_evaluated=n_materials,
             predictions_made=0,  # Not tracked yet
             escalations_triggered=0,  # Not tracked yet
             best_candidate_e_above_hull=None,  # Would compute from results
