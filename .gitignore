@@ -220,3 +220,6 @@ __marimo__/
 # FILES
 # Track /docs (structured project memory)
 /docs
+
+mlflow.db-shm
+mlflow.db-wal

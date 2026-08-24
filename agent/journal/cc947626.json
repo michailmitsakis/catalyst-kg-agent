@@ -1,0 +1,32 @@
+{
+  "campaign_state": {
+    "campaign_id": "cc947626",
+    "start_time": "2026-08-24T13:35:00.547026",
+    "end_time": "2026-08-24T13:35:35.441050",
+    "status": "completed",
+    "n_materials_evaluated": 520,
+    "best_candidate_mpid": "mp-2790",
+    "budget_remaining": 0.0
+  },
+  "budget_tracker": {
+    "initial_budget": 100.0,
+    "remaining_budget": 0.5,
+    "total_spent": 99.5,
+    "costs_by_category": {
+      "kg_lookup": 4.0,
+      "surrogate_query": 95.0,
+      "experiment_escalation": 0.0
+    },
+    "actions_by_category": {
+      "kg_lookup": 4,
+      "surrogate_query": 19,
+      "experiment_escalation": 0
+    },
+    "efficiency": {
+      "kg_lookup": 1.0,
+      "surrogate_query": 5.0,
+      "experiment_escalation": null
+    }
+  },
+  "end_time": "2026-08-24T13:35:35.456083"
+}
