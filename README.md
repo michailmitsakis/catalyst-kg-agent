@@ -83,7 +83,7 @@ This section will be updated with concrete numbers once the first full evaluatio
 Requires:
 - Python 3.10+
 - A Materials Project API key (the only external credential needed — no VASP/HPC scheduler credentials, since no remote DFT job submission is used)
-- Unsloth Studio Desktop running locally, with a small instruction-tuned model pulled (e.g. Llama 3.1 8B or Qwen2.5 7B class) --> TBD
+- Ollama running locally with a small instruction-tuned model pulled (e.g. `gemma4:latest` or similar)
 - A local MLflow tracking instance (or its default file-based store)
 - Optional: a CUDA-capable GPU (12GB VRAM is sufficient for fine-tuning the small MACE checkpoint and training the CGCNN baseline)
 
@@ -91,7 +91,8 @@ Requires:
 git clone <this-repo>
 cd mat-kg-agent
 pip install -r requirements.txt
-cp .env.example .env   # fill in MP_API_KEY
+cp .env.example .env   # fill in MP_API_KEY, set OLLAMA_BASE_URL=http://localhost:11434
+ollama pull gemma4:latest  # or your preferred model
 ```
 
 Running the test suite:
@@ -107,7 +108,7 @@ Detailed dataset pull and filter criteria are documented in `data/download.py` a
 
 ### Agent roles
 
-- **Retriever** — owns knowledge-graph traversal only. Given a target property and constraints, returns candidate materials with provenance (which KG edges/sources support the answer).
+- **Retriever** — owns knowledge-graph traversal only. Given a target property and constraints, returns candidate materials with provenance (which KG edges/sources support the answer). Uses Ollama for natural language query parsing when enabled. 
 - **Predictor** — owns surrogate model calls (MACE or the CGCNN baseline). Returns a property estimate *with* uncertainty, not a bare point value.
 - **Critic** — validates before anything gets "spent." Checks physical plausibility (including an `e_above_hull` stability threshold) and flags when the Predictor's uncertainty is too high to trust without escalation.
 - **Planner** — the only agent that sees the remaining budget. Decides, at each step, whether to call the Retriever, the Predictor, or escalate.
@@ -125,7 +126,7 @@ Each action type (`kg_lookup`, `surrogate_query`, `experiment`) has an explicit 
 mat-kg-agent/
 ├── README.md
 ├── pyproject.toml / requirements.txt
-├── .env.example                    # MP_API_KEY, Unsloth endpoint, MLflow URI
+├── .env.example                    # MP_API_KEY, OLLAMA_BASE_URL, MLflow URI
 │
 ├── data/
 │   ├── raw/                        # gitignored

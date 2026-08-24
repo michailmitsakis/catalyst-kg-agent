@@ -12,11 +12,14 @@ Returns typed MaterialNode results with provenance tracking for agent chain veri
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 
 from pydantic_ai import Agent
+from pydantic_ai.models.ollama import OllamaModel
+from pydantic_ai.providers.ollama import OllamaProvider
 from pydantic import BaseModel
 
 from kg.schema import (
@@ -30,6 +33,8 @@ from kg.queries import (
 )
 from agent.cost_model import KG_LOOKUP_COST
 
+from dotenv import load_dotenv
+load_dotenv()
 
 # ---------------------------------------------------------------------------
 # Pydantic-ai Agent: KG Retriever
@@ -41,6 +46,15 @@ class KGLookupResult(BaseModel):
     chemsys_groups: Optional[List[str]] = None
     elements_found: Optional[List[str]] = None
     provenance: Dict[str, Any]  # Which KG edges/nodes supported this answer
+    query_cost: float = KG_LOOKUP_COST
+
+
+class AgentResponse(BaseModel):
+    """Response from the LLM agent after parsing and querying."""
+    materials: List[MaterialNode]  # MaterialNode objects returned by tools
+    chemsys_groups: Optional[List[str]] = None
+    elements_found: Optional[List[str]] = None
+    provenance: Dict[str, Any] = {}
     query_cost: float = KG_LOOKUP_COST
 
 
@@ -60,12 +74,61 @@ Args:
         self.graph_path = graph_path
         self.G = load_graph(graph_path)
         
+        # Determine if we should use LLM for parsing
+        self.use_llm_parsing = use_llm
+        
         # Pydantic-ai agent setup (optional for testing)
         if use_llm:
+            ollama_base = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+            ollama_model = os.getenv("OLLAMA_MODEL", "gemma4:latest")
+            
+            # Normalize base URL to include /v1 suffix for OpenAI-compatible API
+            base_url = ollama_base.rstrip("/") + "/v1" if not ollama_base.endswith("/v1") else ollama_base
+            
+            # Create Ollama model with custom provider
+            ollama_model_obj = OllamaModel(
+                model_name=ollama_model,
+                provider=OllamaProvider(base_url=base_url)
+            )
+            
+            # Define tools the agent can use for KG queries after LLM parsing
+            def execute_element_query(elements: List[str]) -> List[MaterialNode]:
+                """Execute element-based query."""
+                all_mats = []
+                for elem in elements:
+                    mats = find_materials_by_element(self.G, elem)
+                    all_mats.extend(mats)
+                return all_mats
+
+            def execute_chemsys_query(chemsys_list: List[str]) -> List[MaterialNode]:
+                """Execute chemsys-based query."""
+                all_mats = []
+                for cs in chemsys_list:
+                    mats = find_materials_in_chemsys(self.G, cs)
+                    all_mats.extend(mats)
+                return all_mats
+
+            def execute_stability_query(threshold: float) -> List[MaterialNode]:
+                """Execute stability-based query."""
+                mats = find_stable_materials(self.G, threshold)
+                return mats
+
+            def execute_broad_query() -> List[MaterialNode]:
+                """Return all materials."""
+                mats = find_all_materials(self.G)
+                return mats
+
             self.agent = Agent(
-            model="unsloth/Qwen3.5-2B-MTP-GGUF",  # Default model; override via env
-            system_prompt=self._build_system_prompt(),
-        )
+                model=ollama_model_obj,
+                system_prompt=self._build_system_prompt(),
+                tools=[
+                    execute_element_query,
+                    execute_chemsys_query,
+                    execute_stability_query,
+                    execute_broad_query,
+                ],
+                result_type=AgentResponse  # Agent should return structured response
+            )
 
     def _build_system_prompt(self) -> str:
         """Build system prompt describing KG structure and query patterns."""
@@ -76,20 +139,34 @@ KG STRUCTURE:
 - Edges: HAS_ELEMENT, IN_CHEMSYS, HAS_STRUCTURE, HAS_PROPERTY
 - Query via kg.queries module using typed filters
 
-TASK: Find materials matching user query. Return KGLookupResult with:
-- materials: List of MaterialNode objects
-- chemsys_groups: Unique chemsys symbols found
-- elements_found: All element symbols queried/returned
-- provenance: Dict showing which KG nodes/edges matched the query
-- query_cost: {KG_LOOKUP_COST} (KG lookup is cheap)
+AVAILABLE TOOLS (call the appropriate one based on query intent):
+1. execute_element_query(elements=["Ni", "Fe"]) - Find materials containing specific elements
+   Returns: List of MaterialNode objects for each element
+2. execute_chemsys_query(chemsys=["Ni-P", "Fe-Co-O"]) - Find materials in chemical systems
+   Returns: List of MaterialNode objects for each chemsys
+3. execute_stability_query(threshold=0.1) - Find stable materials with e_above_hull < threshold
+   Returns: List of MaterialNode objects that are stable
+4. execute_broad_query() - Return all materials in the KG
+   Returns: List of all MaterialNode objects
+
+TASK: 
+1. Analyze the user's natural language query to determine intent
+2. Identify which tool(s) to call based on query patterns
+3. Extract filter parameters (elements, chemsys names, thresholds) from the query
+4. Call the appropriate tool with extracted parameters
+5. Aggregate results and return AgentResponse with:
+   - materials: List of MaterialNode dicts (mpid, elements, chemsys fields)
+   - chemsys_groups: Unique chemsys symbols found (e.g., "Ni-P", "Fe-Co-O")  
+   - elements_found: All element symbols queried/returned
+   - provenance: Dict showing which KG nodes/edges were traversed
 
 QUERY PATTERNS:
-1. Element-based: "Find all Ni-containing materials" -> use find_materials_by_element("Ni")
-2. Chemsys-based: "Find Ni-P materials" -> use find_materials_in_chemsys(["Ni", "P"])
-3. Property range: "Stable materials (e_above_hull < 0.1)" -> use find_stable_materials(0.1)
-4. Natural language: Parse intent, extract filters, combine queries
+1. Element-based: "Find all Ni-containing materials" -> execute_element_query(["Ni"])
+2. Chemsys-based: "Find Ni-P materials" -> execute_chemsys_query(["Ni-P"])
+3. Property range: "Stable materials (e_above_hull < 0.1)" -> execute_stability_query(0.1)
+4. Broad queries: "Show me all materials" -> execute_broad_query()
 
-ALWAYS include provenance showing KG traversal path for Critic verification."""
+Return results with provenance showing KG traversal path for Critic verification."""
 
     def run_query(self, query_string: str) -> KGLookupResult:
         """Run a KG query and return structured results.
@@ -100,11 +177,48 @@ ALWAYS include provenance showing KG traversal path for Critic verification."""
         Returns:
             KGLookupResult with materials and provenance
         """
-        # Parse query intent
-        filters = self._parse_filters(query_string)
-
-        # Execute appropriate query strategy
-        materials, chemsys_groups, elements_found, provenance = self._execute_query(filters)
+        # Parse query intent - use LLM if enabled, otherwise manual parsing
+        if self.use_llm_parsing:
+            # Use the Pydantic-ai agent which will:
+            # 1. Parse the natural language query using LLM
+            # 2. Call appropriate tools based on parsed intent
+            # 3. Return AgentResponse with MaterialNode objects
+            
+            try:
+                agent_result = self.agent.run_query(
+                    query_string,
+                    return_type=AgentResponse
+                )
+                
+                # agent_result.materials is already a list of MaterialNode objects
+                # We just need to aggregate chemsys_groups and elements_found from the results
+                all_materials = list(agent_result.materials)
+                
+                # Extract unique chemsys groups and elements from materials
+                chemsys_sets = set()
+                element_sets = set()
+                for mat in all_materials:
+                    if hasattr(mat, 'chemsys'):
+                        chemsys_sets.add(str(mat.chemsys))
+                    if hasattr(mat, 'elements'):
+                        element_sets.update(str(mat.elements))
+                
+                return KGLookupResult(
+                    materials=all_materials,
+                    chemsys_groups=list(chemsys_sets) if chemsys_sets else None,
+                    elements_found=list(element_sets) if element_sets else None,
+                    provenance=agent_result.provenance,
+                    query_cost=KG_LOOKUP_COST,
+                )
+            except Exception as e:
+                print(f"[WARN] Agent query failed: {e}, falling back to manual parsing")
+                # Fall back to manual parsing on error
+                filters = self._parse_filters_manual(query_string)
+                materials, chemsys_groups, elements_found, provenance = self._execute_query(filters)
+        else:
+            # Manual parsing fallback
+            filters = self._parse_filters_manual(query_string)
+            materials, chemsys_groups, elements_found, provenance = self._execute_query(filters)
 
         return KGLookupResult(
             materials=materials,
@@ -114,14 +228,44 @@ ALWAYS include provenance showing KG traversal path for Critic verification."""
             query_cost=KG_LOOKUP_COST,
         )
 
-    def _parse_filters(self, query: str) -> Dict[str, Any]:
-        """Parse natural language query into filter parameters.
+    def _parse_filters_with_llm(self, query: str) -> Dict[str, Any]:
+        """Parse natural language query using Pydantic-ai Agent.
 
         Args:
             query: User query string
 
         Returns:
-            Dict of extracted filters {element: "Ni", chemsys: ["Ni","P"], ...}
+            Dict of extracted filters
+        """
+        # Use the Pydantic-ai agent to parse the query
+        try:
+            result = self.agent.run_query(
+                query,
+                return_type=Dict[str, Any],
+                default_tool_response=self._default_llm_response
+            )
+            
+            print(f"[LLM] Parsed filters: {result}")
+            return result
+            
+        except Exception as e:
+            print(f"[WARN] LLM parsing failed: {e}, falling back to manual parsing")
+            return self._parse_filters_manual(query)
+
+    def _default_llm_response(self, tool_call: Any, default: Dict[str, Any]) -> Any:
+        """Default response for KG lookup tools when no matching query found."""
+        # This is called by Pydantic-ai when a tool needs to be invoked
+        # Return the default result (manual parsing fallback)
+        return default
+
+    def _parse_filters_manual(self, query: str) -> Dict[str, Any]:
+        """Parse natural language query manually (fallback).
+
+        Args:
+            query: User query string
+
+        Returns:
+            Dict of extracted filters
         """
         filters = {}
 
