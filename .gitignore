@@ -220,6 +220,6 @@ __marimo__/
 # FILES
 # Track /docs (structured project memory)
 /docs
-
+# MLFlow Temp files
 mlflow.db-shm
 mlflow.db-wal

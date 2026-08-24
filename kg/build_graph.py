@@ -2,11 +2,15 @@
 
 Reads:
     data/raw/metadata.json   -- one record per material_id (lightweight fields)
-    data/raw/structures/<mpid>.cif  -- crystal structure per material
+    data/raw/structures/<mpid>.cif  -- crystal structure per structure
 
 Writes (via main()):
     data/processed/kg.graphml  -- NetworkX-serialized graph
     data/processed/kg_build_report.json  -- per-material parse status
+
+Caching:
+    Structures are cached in a pickle file after the first build to avoid
+    re-parsing CIF files on every run. Cache location: data/processed/cif_cache.pkl
 
 Design notes
 ------------
@@ -14,8 +18,8 @@ Design notes
   No file writes inside the builder so it is testable in isolation and
   safe to call from notebooks / `kg/queries.py` ad-hoc.
 - Symmetry fields (`crystal_system`, `space_group_*`) are best-effort.
-                                                                        pymatgen's public surface has shifted across releases, so we only
-                                                                        trust `get_symmetry_dataset()`'s dict keys and tolerate absence.
+  pymatgen's public surface has shifted across releases, so we only
+  trust `get_symmetry_dataset()`'s dict keys and tolerate absence.
 - One ChemsysNode per unique sorted element set; one ElementNode per
   unique element symbol across the corpus. Multi-edge `HAS_ELEMENT`
   carries per-element count on the edge attribute.
@@ -28,6 +32,7 @@ Design notes
 from __future__ import annotations
 
 import json
+import pickle
 from pathlib import Path
 from typing import Any, Optional
 
@@ -55,6 +60,75 @@ from kg.schema import (
     property_id,
     structure_id,
 )
+
+
+# ---------------------------------------------------------------------------
+# Caching helpers
+# ---------------------------------------------------------------------------
+
+CACHE_FILE = Path("data/processed/cif_cache.pkl")
+
+
+def _load_cached_structures() -> dict[str, Structure]:
+    """Load cached structures from pickle file if available.
+    
+    Returns:
+        Dict mapping mpid to Structure object, or empty dict if cache missing/corrupt
+    """
+    if not CACHE_FILE.exists():
+        return {}
+    
+    try:
+        with open(CACHE_FILE, "rb") as f:
+            cached = pickle.load(f)
+            # Verify cache integrity by checking a few structures
+            for mpid, struct in list(cached.items())[:3]:
+                if not isinstance(struct, Structure):
+                    print(f"Cache warning: Invalid structure type for {mpid}, regenerating")
+                    return {}
+            return cached
+    except Exception as e:
+        print(f"Cache load error: {e}, regenerating structures")
+        return {}
+
+
+def _save_cached_structures(struct_cache: dict[str, Structure]) -> None:
+    """Save structures to pickle file for future builds.
+    
+    Args:
+        struct_cache: Dict mapping mpid to Structure object
+    """
+    CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(CACHE_FILE, "wb") as f:
+        pickle.dump(struct_cache, f, protocol=pickle.HIGHEST_PROTOCOL)
+
+
+def _get_cached_structure(mpid: str) -> Optional[Structure]:
+    """Get a cached structure by mpid if available.
+    
+    Args:
+        mpid: Material ID (e.g., "mp-2790")
+        
+    Returns:
+        Structure object or None if not in cache
+    """
+    cached = _load_cached_structures()
+    return cached.get(mpid)
+
+
+def _update_cache(structure: Structure, mpid: str) -> None:
+    """Update the cache with a new structure.
+    
+    Args:
+        structure: Parsed Structure object
+        mpid: Material ID to use as cache key
+    """
+    # Load existing cache
+    cached = _load_cached_structures()
+    # Update/insert the new structure
+    cached[mpid] = structure
+    # Save updated cache
+    _save_cached_structures(cached)
 
 
 # ---------------------------------------------------------------------------
@@ -240,44 +314,99 @@ def _add_material(
 def build_graph(
     metadata_path: Path = DEFAULT_METADATA_PATH,
     struct_dir: Path = DEFAULT_STRUCT_DIR,
-) -> tuple[nx.MultiDiGraph, list[dict[str, Any]]]:
-    """Read metadata + CIFs, return (graph, per-material report list).
+    clear_cache: bool = False,  # Force regeneration of all structures
+) -> tuple[nx.MultiDiGraph, list[dict[str, Any]], dict[str, str]]:
+    """Read metadata + CIFs, return (graph, per-material report list, cache stats).
 
-    Pure function: no files are written. Caller decides where to persist.
+    Pure function: no files are written unless clear_cache=True.
     CIF parse failures are recorded in the report and skipped (the
     Material still gets added, just without structure-derived fields).
+    
+    Caching:
+        - Structures are loaded from cache if available and up-to-date
+        - Failed parses are always re-attempted (cache is stale for failed files)
+        - Cache stats are returned to track efficiency
+        
+    Args:
+        metadata_path: Path to metadata.json
+        struct_dir: Directory containing CIF files
+        clear_cache: If True, ignore cache and parse all CIFs fresh
+        
+    Returns:
+        Tuple of (NetworkX graph, per-material report list, cache statistics)
     """
     metadata = json.loads(Path(metadata_path).read_text(encoding="utf-8"))
     G = nx.MultiDiGraph()
     report: list[dict[str, Any]] = []
-
+    
+    # Load cached structures if not clearing cache
+    struct_cache = {}
+    if not clear_cache:
+        struct_cache = _load_cached_structures()
+    
+    # Track cache stats
+    cache_hits = 0
+    cache_misses = 0
+    cache_failures = 0
+    
     for record in metadata:
         mpid = record["material_id"]
         cif_path = Path(struct_dir) / f"{mpid}.cif"
         struct: Optional[Structure] = None
         cif_relpath: Optional[str] = None
-        if cif_path.exists():
+        
+        # Check cache first
+        if not clear_cache and mpid in struct_cache:
+            struct = struct_cache[mpid]
+            cache_hits += 1
+        elif cif_path.exists():
             try:
                 struct = Structure.from_file(str(cif_path))
                 cif_relpath = str(cif_path.relative_to(REPO_ROOT))
+                
+                # Update cache if we successfully parsed it
+                if not clear_cache:
+                    _update_cache(struct, mpid)
+                    
             except Exception as exc:
                 # Don't fail the build for one bad CIF; the report flags it.
                 report.append({
                     "mpid": mpid, "structure_parsed": False,
                     "error": f"cif parse: {type(exc).__name__}: {exc}",
+                    "cache_used": False,
                 })
                 struct = None
+                cache_failures += 1
+        
+        # If not in cache and CIF exists but failed to load, count as miss
+        if struct is None and cif_path.exists():
+            cache_misses += 1
+            
         try:
             row = _add_material(G, record, struct, cif_relpath)
         except Exception as exc:
             report.append({
                 "mpid": mpid, "structure_parsed": False,
                 "error": f"add_material: {type(exc).__name__}: {exc}",
+                "cache_used": mpid in struct_cache and not clear_cache,
             })
             continue
-        report.append(row)
-
-    return G, report
+        
+        report.append({
+            **row,
+            "cache_used": (mpid in struct_cache) if not clear_cache else False,
+        })
+    
+    # Return cache statistics
+    cache_stats = {
+        "total_materials": len(metadata),
+        "cache_hits": cache_hits,
+        "cache_misses": cache_misses,
+        "cache_failures": cache_failures,
+        "cached_structures": len(struct_cache),
+    }
+    
+    return G, report, cache_stats
 
 
 # ---------------------------------------------------------------------------
@@ -317,13 +446,25 @@ def _to_graphml_safe(G: nx.MultiDiGraph) -> nx.MultiDiGraph:
 # CLI
 # ---------------------------------------------------------------------------
 
-def _summary(G: nx.MultiDiGraph, report: list[dict[str, Any]]) -> dict[str, Any]:
+def _summary(G: nx.MultiDiGraph, report: list[dict[str, Any]], cache_stats: Optional[dict[str, str]] = None) -> dict[str, Any]:
+    """Generate summary statistics for the built graph.
+    
+    Args:
+        G: NetworkX graph
+        report: Per-material build report
+        cache_stats: Cache statistics (optional, from build_graph return)
+        
+    Returns:
+        Dict with node/edge counts, material counts, and cache stats if available
+    """
     by_type: dict[str, int] = {}
     for _, d in G.nodes(data=True):
         t = d.get("type", "Unknown")
         by_type[t] = by_type.get(t, 0) + 1
+    
     parsed = sum(1 for r in report if r.get("structure_parsed"))
-    return {
+    
+    summary = {
         "n_nodes": G.number_of_nodes(),
         "n_edges": G.number_of_edges(),
         "nodes_by_type": by_type,
@@ -331,15 +472,33 @@ def _summary(G: nx.MultiDiGraph, report: list[dict[str, Any]]) -> dict[str, Any]
         "n_structures_parsed": parsed,
         "n_structures_failed": len([r for r in report if not r.get("structure_parsed")]),
     }
+    
+    # Add cache stats if available
+    if cache_stats:
+        summary["cache"] = {
+            "hits": cache_stats.get("cache_hits", 0),
+            "misses": cache_stats.get("cache_misses", 0),
+            "failures": cache_stats.get("cache_failures", 0),
+            "cached_count": cache_stats.get("cached_structures", 0),
+        }
+    
+    return summary
 
 
-def main() -> None:
-    G, report = build_graph()
-    summary = _summary(G, report)
-
+def main(clear_cache: bool = False) -> None:
+    """Main entry point for building the knowledge graph.
+    
+    Args:
+        clear_cache: If True, ignore cache and parse all CIFs fresh
+        
+    Prints summary statistics including cache efficiency metrics.
+    """
+    G, report, cache_stats = build_graph(clear_cache=clear_cache)
+    summary = _summary(G, report, cache_stats)
+    
     out_dir = DEFAULT_OUT_DIR
     out_dir.mkdir(parents=True, exist_ok=True)
-
+    
     # Canonical persistence: JSON. Preserves list-valued attrs (Material.elements,
     # Chemsys.symbols) that GraphML cannot serialize. GraphML export is a
     # best-effort convenience for gephi/cytoscape; lists get JSON-encoded.
@@ -351,7 +510,7 @@ def main() -> None:
         json.dumps({"summary": summary, "per_material": report}, indent=2),
         encoding="utf-8",
     )
-
+    
     # Best-effort GraphML: stringify list-valued attrs to JSON, drop None.
     try:
         G_gml = _to_graphml_safe(G)
@@ -359,7 +518,25 @@ def main() -> None:
         gml_msg = f"Wrote: data/processed/kg.graphml (list attrs JSON-encoded)"
     except Exception as exc:
         gml_msg = f"GraphML skipped: {type(exc).__name__}: {exc}"
-
+    
+    # Print summary with cache stats
+    print(f"Nodes: {summary['n_nodes']} ({summary['nodes_by_type']})")
+    print(f"Edges: {summary['n_edges']}")
+    print(f"Materials: {summary['n_materials']}  "
+          f"structures parsed: {summary['n_structures_parsed']}  "
+          f"failed: {summary['n_structures_failed']}")
+    
+    # Display cache statistics if available
+    if "cache" in summary and summary["cache"]:
+        cache = summary["cache"]
+        print(f"\nCache efficiency:")
+        print(f"  Loaded from cache: {cache['hits']} / {cache['cached_count']} structures ({100*cache['hits']/max(cache['cached_count'],1):.1f}%)")
+        print(f"  Re-parsed: {cache['misses']} structures")
+        print(f"  Parse failures: {cache['failures']} structures")
+    
+    print(f"Wrote: data/processed/kg.json")
+    print(gml_msg)
+    print(f"Wrote: data/processed/kg_build_report.json")
     print(f"Nodes: {summary['n_nodes']} ({summary['nodes_by_type']})")
     print(f"Edges: {summary['n_edges']}")
     print(f"Materials: {summary['n_materials']}  "
@@ -371,4 +548,11 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser(description="Build catalyst-kg knowledge graph from CIF files")
+    parser.add_argument("--clear-cache", action="store_true", 
+                       help="Force regeneration of all structures (ignore cache)")
+    args = parser.parse_args()
+    
+    # Use clear_cache flag to force regeneration
+    main(clear_cache=args.clear_cache)

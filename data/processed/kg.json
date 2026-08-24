@@ -11,7 +11,8 @@
       "elements": [
         "Ni",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:Ni",
@@ -67,7 +68,8 @@
       "elements": [
         "Ni",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2296",
@@ -105,7 +107,8 @@
       "elements": [
         "Ni",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-22619",
@@ -143,7 +146,8 @@
       "elements": [
         "Ni",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2301",
@@ -181,7 +185,8 @@
       "elements": [
         "Co",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:Co",
@@ -232,7 +237,8 @@
       "elements": [
         "Co",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-22270",
@@ -270,7 +276,8 @@
       "elements": [
         "Co",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-14285",
@@ -308,7 +315,8 @@
       "elements": [
         "Co",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1944",
@@ -346,7 +354,8 @@
       "elements": [
         "Fe",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:Fe",
@@ -397,7 +406,8 @@
       "elements": [
         "Fe",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-18708",
@@ -435,7 +445,8 @@
       "elements": [
         "Fe",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1005",
@@ -473,7 +484,8 @@
       "elements": [
         "Fe",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-20027",
@@ -511,7 +523,8 @@
       "elements": [
         "Fe",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-570553",
@@ -549,7 +562,8 @@
       "elements": [
         "Mo",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:Mo",
@@ -600,7 +614,8 @@
       "elements": [
         "Mo",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-219",
@@ -638,7 +653,8 @@
       "elements": [
         "Mo",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1887",
@@ -676,7 +692,8 @@
       "elements": [
         "Mo",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-11508",
@@ -714,7 +731,8 @@
       "elements": [
         "P",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:W",
@@ -765,7 +783,8 @@
       "elements": [
         "P",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2420",
@@ -803,7 +822,8 @@
       "elements": [
         "Mn",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:Mn",
@@ -854,7 +874,8 @@
       "elements": [
         "Mn",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2019629",
@@ -892,7 +913,8 @@
       "elements": [
         "Mn",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2662",
@@ -930,7 +952,8 @@
       "elements": [
         "Ni",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:S",
@@ -981,7 +1004,8 @@
       "elements": [
         "Ni",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1050",
@@ -1019,7 +1043,8 @@
       "elements": [
         "Ni",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1180046",
@@ -1057,7 +1082,8 @@
       "elements": [
         "Co",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Co-S",
@@ -1103,7 +1129,8 @@
       "elements": [
         "Co",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1513",
@@ -1141,7 +1168,8 @@
       "elements": [
         "Co",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2070",
@@ -1179,7 +1207,8 @@
       "elements": [
         "Fe",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Fe-S",
@@ -1225,7 +1254,8 @@
       "elements": [
         "Fe",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1522",
@@ -1263,7 +1293,8 @@
       "elements": [
         "Mo",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Mo-S",
@@ -1309,7 +1340,8 @@
       "elements": [
         "S",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:S-W",
@@ -1355,7 +1387,8 @@
       "elements": [
         "Mn",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Mn-S",
@@ -1401,7 +1434,8 @@
       "elements": [
         "Mn",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1422029",
@@ -1439,7 +1473,8 @@
       "elements": [
         "C",
         "Mo"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:C",
@@ -1490,7 +1525,8 @@
       "elements": [
         "C",
         "Mo"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2305",
@@ -1528,7 +1564,8 @@
       "elements": [
         "C",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:C-W",
@@ -1574,7 +1611,8 @@
       "elements": [
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:O",
@@ -1625,7 +1663,8 @@
       "elements": [
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-19009",
@@ -1663,7 +1702,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Co-O",
@@ -1709,7 +1749,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-22408",
@@ -1747,7 +1788,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1400906",
@@ -1785,7 +1827,8 @@
       "elements": [
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Fe-O",
@@ -1831,7 +1874,8 @@
       "elements": [
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1274279",
@@ -1869,7 +1913,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Mn-O",
@@ -1915,7 +1960,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1232659",
@@ -1953,7 +1999,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-644514",
@@ -1992,7 +2039,8 @@
         "Fe",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Fe-Ni-O",
@@ -2040,7 +2088,8 @@
         "Co",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Co-Ni-O",
@@ -2088,7 +2137,8 @@
         "Co",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1178424",
@@ -2125,7 +2175,8 @@
       "formula_pretty": "Pt",
       "elements": [
         "Pt"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:Pt",
@@ -2175,7 +2226,8 @@
       "elements": [
         "Ir",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "element:Ir",
@@ -2227,7 +2279,8 @@
         "Co",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1279343",
@@ -2265,7 +2318,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-19128",
@@ -2303,7 +2357,8 @@
       "elements": [
         "Fe",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-778",
@@ -2341,7 +2396,8 @@
       "elements": [
         "Mn",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-487",
@@ -2379,7 +2435,8 @@
       "elements": [
         "S",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-9813",
@@ -2417,7 +2474,8 @@
       "elements": [
         "Mo",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1189099",
@@ -2455,7 +2513,8 @@
       "elements": [
         "Mn",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1105127",
@@ -2493,7 +2552,8 @@
       "elements": [
         "Mn",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1386044",
@@ -2531,7 +2591,8 @@
       "elements": [
         "Mo",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2815",
@@ -2569,7 +2630,8 @@
       "elements": [
         "Co",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-850049",
@@ -2607,7 +2669,8 @@
       "elements": [
         "Ni",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-21167",
@@ -2645,7 +2708,8 @@
       "elements": [
         "Mo",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1018809",
@@ -2683,7 +2747,8 @@
       "elements": [
         "Mo",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1027525",
@@ -2721,7 +2786,8 @@
       "elements": [
         "S",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1028441",
@@ -2759,7 +2825,8 @@
       "elements": [
         "Mo",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1025874",
@@ -2797,7 +2864,8 @@
       "elements": [
         "S",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1025571",
@@ -2835,7 +2903,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-754748",
@@ -2873,7 +2942,8 @@
       "elements": [
         "Ni",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-486",
@@ -2911,7 +2981,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-550206",
@@ -2949,7 +3020,8 @@
       "elements": [
         "Mo",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1023939",
@@ -2987,7 +3059,8 @@
       "elements": [
         "S",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1023925",
@@ -3025,7 +3098,8 @@
       "elements": [
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-715262",
@@ -3063,7 +3137,8 @@
       "elements": [
         "Fe",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-226",
@@ -3102,7 +3177,8 @@
         "Co",
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:Co-Fe-O",
@@ -3150,7 +3226,8 @@
         "Fe",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-640147",
@@ -3188,7 +3265,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-18748",
@@ -3226,7 +3304,8 @@
       "elements": [
         "Mn",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1783",
@@ -3264,7 +3343,8 @@
       "elements": [
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1178232",
@@ -3302,7 +3382,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1278455",
@@ -3340,7 +3421,8 @@
       "elements": [
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-19306",
@@ -3378,7 +3460,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-18922",
@@ -3416,7 +3499,8 @@
       "elements": [
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1283030",
@@ -3454,7 +3538,8 @@
       "elements": [
         "S",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1023937",
@@ -3492,7 +3577,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1272680",
@@ -3530,7 +3616,8 @@
       "elements": [
         "Ni",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1547",
@@ -3568,7 +3655,8 @@
       "elements": [
         "Mo",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1023924",
@@ -3606,7 +3694,8 @@
       "elements": [
         "Mn",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2562",
@@ -3644,7 +3733,8 @@
       "elements": [
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-31770",
@@ -3682,7 +3772,8 @@
       "elements": [
         "Co",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1183728",
@@ -3720,7 +3811,8 @@
       "elements": [
         "Ni",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-2282",
@@ -3758,7 +3850,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-19326",
@@ -3796,7 +3889,8 @@
       "elements": [
         "Ni",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-27844",
@@ -3834,7 +3928,8 @@
       "elements": [
         "C",
         "Mn"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "chemsys:C-Mn",
@@ -3880,7 +3975,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-19395",
@@ -3919,7 +4015,8 @@
         "Co",
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-753348",
@@ -3957,7 +4054,8 @@
       "elements": [
         "C",
         "Mn"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-22749",
@@ -3995,7 +4093,8 @@
       "elements": [
         "Co",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-13446",
@@ -4033,7 +4132,8 @@
       "elements": [
         "Ni",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-849059",
@@ -4071,7 +4171,8 @@
       "elements": [
         "Ni",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-850131",
@@ -4109,7 +4210,8 @@
       "elements": [
         "P",
         "W"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-11329",
@@ -4148,7 +4250,8 @@
         "Co",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1272234",
@@ -4186,7 +4289,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-761471",
@@ -4225,7 +4329,8 @@
         "Fe",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1282693",
@@ -4263,7 +4368,8 @@
       "elements": [
         "Mn",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-19884",
@@ -4301,7 +4407,8 @@
       "elements": [
         "Fe",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-568328",
@@ -4339,7 +4446,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1271784",
@@ -4378,7 +4486,8 @@
         "Fe",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1279232",
@@ -4416,7 +4525,8 @@
       "elements": [
         "Mo",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-27413",
@@ -4454,7 +4564,8 @@
       "elements": [
         "Mn",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-974355",
@@ -4492,7 +4603,8 @@
       "elements": [
         "Mn",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1018804",
@@ -4531,7 +4643,8 @@
         "Co",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-773511",
@@ -4569,7 +4682,8 @@
       "elements": [
         "Ni",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1411545",
@@ -4607,7 +4721,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-796340",
@@ -4645,7 +4760,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-796336",
@@ -4683,7 +4799,8 @@
       "elements": [
         "Co",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-19079",
@@ -4721,7 +4838,8 @@
       "elements": [
         "Fe",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-759037",
@@ -4760,7 +4878,8 @@
         "Co",
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-756594",
@@ -4798,7 +4917,8 @@
       "elements": [
         "Mn",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-755453",
@@ -4836,7 +4956,8 @@
       "elements": [
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-754806",
@@ -4874,7 +4995,8 @@
       "elements": [
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-754800",
@@ -4912,7 +5034,8 @@
       "elements": [
         "Mn",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-754064",
@@ -4950,7 +5073,8 @@
       "elements": [
         "Ni",
         "S"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1444811",
@@ -4988,7 +5112,8 @@
       "elements": [
         "Ir",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1022963",
@@ -5026,7 +5151,8 @@
       "elements": [
         "Ni",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1102036",
@@ -5064,7 +5190,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-510408",
@@ -5102,7 +5229,8 @@
       "elements": [
         "Mn",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-33009",
@@ -5140,7 +5268,8 @@
       "elements": [
         "Ni",
         "O"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-656884",
@@ -5178,7 +5307,8 @@
       "elements": [
         "Co",
         "P"
-      ]
+      ],
+      "structure_id": null
     },
     {
       "id": "structure:mp-1213762",

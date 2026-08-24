@@ -11,7 +11,13 @@
     },
     "n_materials": 130,
     "n_structures_parsed": 130,
-    "n_structures_failed": 0
+    "n_structures_failed": 0,
+    "cache": {
+      "hits": 0,
+      "misses": 0,
+      "failures": 0,
+      "cached_count": 0
+    }
   },
   "per_material": [
     {
@@ -22,7 +28,8 @@
       "element_counts": {
         "Ni": 12,
         "P": 5
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2296",
@@ -32,7 +39,8 @@
       "element_counts": {
         "Ni": 12,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-22619",
@@ -42,7 +50,8 @@
       "element_counts": {
         "Ni": 4,
         "P": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2301",
@@ -52,7 +61,8 @@
       "element_counts": {
         "Ni": 4,
         "P": 12
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-22204",
@@ -62,7 +72,8 @@
       "element_counts": {
         "Co": 8,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-22270",
@@ -72,7 +83,8 @@
       "element_counts": {
         "Co": 4,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-14285",
@@ -82,7 +94,8 @@
       "element_counts": {
         "Co": 4,
         "P": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1944",
@@ -92,7 +105,8 @@
       "element_counts": {
         "Co": 4,
         "P": 12
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1189340",
@@ -102,7 +116,8 @@
       "element_counts": {
         "Fe": 12,
         "P": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-18708",
@@ -112,7 +127,8 @@
       "element_counts": {
         "Fe": 12,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1005",
@@ -122,7 +138,8 @@
       "element_counts": {
         "Fe": 4,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-20027",
@@ -132,7 +149,8 @@
       "element_counts": {
         "Fe": 2,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-570553",
@@ -142,7 +160,8 @@
       "element_counts": {
         "Fe": 4,
         "P": 16
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-10004",
@@ -152,7 +171,8 @@
       "element_counts": {
         "Mo": 12,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-219",
@@ -162,7 +182,8 @@
       "element_counts": {
         "Mo": 1,
         "P": 1
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1887",
@@ -172,7 +193,8 @@
       "element_counts": {
         "Mo": 2,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-11508",
@@ -182,7 +204,8 @@
       "element_counts": {
         "Mo": 2,
         "P": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-11328",
@@ -192,7 +215,8 @@
       "element_counts": {
         "P": 4,
         "W": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2420",
@@ -202,7 +226,8 @@
       "element_counts": {
         "P": 4,
         "W": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1849",
@@ -212,7 +237,8 @@
       "element_counts": {
         "Mn": 6,
         "P": 3
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2019629",
@@ -222,7 +248,8 @@
       "element_counts": {
         "Mn": 6,
         "P": 3
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2662",
@@ -232,7 +259,8 @@
       "element_counts": {
         "Mn": 4,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-362",
@@ -242,7 +270,8 @@
       "element_counts": {
         "Ni": 3,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1050",
@@ -252,7 +281,8 @@
       "element_counts": {
         "Ni": 6,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1180046",
@@ -262,7 +292,8 @@
       "element_counts": {
         "Ni": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-943",
@@ -272,7 +303,8 @@
       "element_counts": {
         "Co": 6,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1513",
@@ -282,7 +314,8 @@
       "element_counts": {
         "Co": 9,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2070",
@@ -292,7 +325,8 @@
       "element_counts": {
         "Co": 4,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-505531",
@@ -302,7 +336,8 @@
       "element_counts": {
         "Fe": 2,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1522",
@@ -312,7 +347,8 @@
       "element_counts": {
         "Fe": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1434",
@@ -322,7 +358,8 @@
       "element_counts": {
         "Mo": 1,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-224",
@@ -332,7 +369,8 @@
       "element_counts": {
         "W": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2065",
@@ -342,7 +380,8 @@
       "element_counts": {
         "Mn": 2,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1422029",
@@ -352,7 +391,8 @@
       "element_counts": {
         "Mn": 1,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1552",
@@ -362,7 +402,8 @@
       "element_counts": {
         "Mo": 8,
         "C": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2305",
@@ -372,7 +413,8 @@
       "element_counts": {
         "Mo": 1,
         "C": 1
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1894",
@@ -382,7 +424,8 @@
       "element_counts": {
         "W": 1,
         "C": 1
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-656887",
@@ -392,7 +435,8 @@
       "element_counts": {
         "Ni": 6,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-19009",
@@ -402,7 +446,8 @@
       "element_counts": {
         "Ni": 1,
         "O": 1
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1271793",
@@ -412,7 +457,8 @@
       "element_counts": {
         "Co": 6,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-22408",
@@ -422,7 +468,8 @@
       "element_counts": {
         "Co": 2,
         "O": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1400906",
@@ -432,7 +479,8 @@
       "element_counts": {
         "Co": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-19770",
@@ -442,7 +490,8 @@
       "element_counts": {
         "Fe": 4,
         "O": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1274279",
@@ -452,7 +501,8 @@
       "element_counts": {
         "Fe": 4,
         "O": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-18759",
@@ -462,7 +512,8 @@
       "element_counts": {
         "Mn": 6,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1232659",
@@ -472,7 +523,8 @@
       "element_counts": {
         "Mn": 4,
         "O": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-644514",
@@ -482,7 +534,8 @@
       "element_counts": {
         "Mn": 6,
         "O": 12
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-35596",
@@ -493,7 +546,8 @@
         "Fe": 4,
         "Ni": 2,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-754168",
@@ -504,7 +558,8 @@
         "Co": 2,
         "Ni": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1178424",
@@ -515,7 +570,8 @@
         "Co": 2,
         "Ni": 2,
         "O": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-126",
@@ -524,7 +580,8 @@
       "space_group_symbol": "Fm-3m",
       "element_counts": {
         "Pt": 1
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2723",
@@ -534,7 +591,8 @@
       "element_counts": {
         "Ir": 2,
         "O": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1279343",
@@ -545,7 +603,8 @@
         "Co": 2,
         "Ni": 2,
         "O": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-19128",
@@ -555,7 +614,8 @@
       "element_counts": {
         "Co": 2,
         "O": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-778",
@@ -565,7 +625,8 @@
       "element_counts": {
         "Fe": 6,
         "P": 3
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-487",
@@ -575,7 +636,8 @@
       "element_counts": {
         "Mn": 2,
         "P": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-9813",
@@ -585,7 +647,8 @@
       "element_counts": {
         "W": 1,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1189099",
@@ -595,7 +658,8 @@
       "element_counts": {
         "Mo": 12,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1105127",
@@ -605,7 +669,8 @@
       "element_counts": {
         "Mn": 4,
         "P": 16
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1386044",
@@ -615,7 +680,8 @@
       "element_counts": {
         "Mn": 4,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2815",
@@ -625,7 +691,8 @@
       "element_counts": {
         "Mo": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-850049",
@@ -635,7 +702,8 @@
       "element_counts": {
         "Co": 4,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-21167",
@@ -645,7 +713,8 @@
       "element_counts": {
         "Ni": 6,
         "P": 3
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1018809",
@@ -655,7 +724,8 @@
       "element_counts": {
         "Mo": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1027525",
@@ -665,7 +735,8 @@
       "element_counts": {
         "Mo": 4,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1028441",
@@ -675,7 +746,8 @@
       "element_counts": {
         "W": 4,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1025874",
@@ -685,7 +757,8 @@
       "element_counts": {
         "Mo": 3,
         "S": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1025571",
@@ -695,7 +768,8 @@
       "element_counts": {
         "W": 3,
         "S": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-754748",
@@ -705,7 +779,8 @@
       "element_counts": {
         "Co": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-486",
@@ -715,7 +790,8 @@
       "element_counts": {
         "Ni": 2,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-550206",
@@ -725,7 +801,8 @@
       "element_counts": {
         "Co": 1,
         "O": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1023939",
@@ -735,7 +812,8 @@
       "element_counts": {
         "Mo": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1023925",
@@ -745,7 +823,8 @@
       "element_counts": {
         "W": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-715262",
@@ -755,7 +834,8 @@
       "element_counts": {
         "Fe": 2,
         "O": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-226",
@@ -765,7 +845,8 @@
       "element_counts": {
         "Fe": 4,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-753222",
@@ -776,7 +857,8 @@
         "Fe": 4,
         "Co": 2,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-640147",
@@ -787,7 +869,8 @@
         "Fe": 2,
         "Ni": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-18748",
@@ -797,7 +880,8 @@
       "element_counts": {
         "Co": 6,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1783",
@@ -807,7 +891,8 @@
       "element_counts": {
         "Mn": 1,
         "S": 1
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1178232",
@@ -817,7 +902,8 @@
       "element_counts": {
         "Fe": 4,
         "O": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1278455",
@@ -827,7 +913,8 @@
       "element_counts": {
         "Co": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-19306",
@@ -837,7 +924,8 @@
       "element_counts": {
         "Fe": 6,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-18922",
@@ -847,7 +935,8 @@
       "element_counts": {
         "Mn": 5,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1283030",
@@ -857,7 +946,8 @@
       "element_counts": {
         "Fe": 4,
         "O": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1023937",
@@ -867,7 +957,8 @@
       "element_counts": {
         "W": 1,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1272680",
@@ -877,7 +968,8 @@
       "element_counts": {
         "Co": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1547",
@@ -887,7 +979,8 @@
       "element_counts": {
         "Ni": 3,
         "S": 3
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1023924",
@@ -897,7 +990,8 @@
       "element_counts": {
         "Mo": 1,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2562",
@@ -907,7 +1001,8 @@
       "element_counts": {
         "Mn": 2,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-31770",
@@ -917,7 +1012,8 @@
       "element_counts": {
         "Fe": 6,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1183728",
@@ -927,7 +1023,8 @@
       "element_counts": {
         "Co": 4,
         "S": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-2282",
@@ -937,7 +1034,8 @@
       "element_counts": {
         "Ni": 4,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-19326",
@@ -947,7 +1045,8 @@
       "element_counts": {
         "Mn": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-27844",
@@ -957,7 +1056,8 @@
       "element_counts": {
         "Ni": 8,
         "P": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1188188",
@@ -967,7 +1067,8 @@
       "element_counts": {
         "Mn": 12,
         "C": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-19395",
@@ -977,7 +1078,8 @@
       "element_counts": {
         "Mn": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-753348",
@@ -988,7 +1090,8 @@
         "Fe": 2,
         "Co": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-22749",
@@ -998,7 +1101,8 @@
       "element_counts": {
         "Mn": 10,
         "C": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-13446",
@@ -1008,7 +1112,8 @@
       "element_counts": {
         "Co": 6,
         "P": 3
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-849059",
@@ -1018,7 +1123,8 @@
       "element_counts": {
         "Ni": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-850131",
@@ -1028,7 +1134,8 @@
       "element_counts": {
         "Ni": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-11329",
@@ -1038,7 +1145,8 @@
       "element_counts": {
         "P": 4,
         "W": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1272234",
@@ -1049,7 +1157,8 @@
         "Co": 2,
         "Ni": 2,
         "O": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-761471",
@@ -1059,7 +1168,8 @@
       "element_counts": {
         "Co": 5,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1282693",
@@ -1070,7 +1180,8 @@
         "Fe": 2,
         "Ni": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-19884",
@@ -1080,7 +1191,8 @@
       "element_counts": {
         "Mn": 12,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-568328",
@@ -1090,7 +1202,8 @@
       "element_counts": {
         "Fe": 2,
         "P": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1271784",
@@ -1100,7 +1213,8 @@
       "element_counts": {
         "Co": 6,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1279232",
@@ -1111,7 +1225,8 @@
         "Fe": 2,
         "Ni": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-27413",
@@ -1121,7 +1236,8 @@
       "element_counts": {
         "Mo": 8,
         "P": 5
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-974355",
@@ -1131,7 +1247,8 @@
       "element_counts": {
         "Mn": 4,
         "S": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1018804",
@@ -1141,7 +1258,8 @@
       "element_counts": {
         "Mn": 2,
         "S": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-773511",
@@ -1152,7 +1270,8 @@
         "Co": 5,
         "Ni": 1,
         "O": 12
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1411545",
@@ -1162,7 +1281,8 @@
       "element_counts": {
         "Ni": 1,
         "S": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-796340",
@@ -1172,7 +1292,8 @@
       "element_counts": {
         "Mn": 6,
         "O": 12
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-796336",
@@ -1182,7 +1303,8 @@
       "element_counts": {
         "Mn": 6,
         "O": 12
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-19079",
@@ -1192,7 +1314,8 @@
       "element_counts": {
         "Co": 2,
         "O": 2
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-759037",
@@ -1202,7 +1325,8 @@
       "element_counts": {
         "Fe": 9,
         "O": 10
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-756594",
@@ -1213,7 +1337,8 @@
         "Co": 1,
         "Ni": 4,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-755453",
@@ -1223,7 +1348,8 @@
       "element_counts": {
         "Mn": 4,
         "P": 16
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-754806",
@@ -1233,7 +1359,8 @@
       "element_counts": {
         "Ni": 5,
         "O": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-754800",
@@ -1243,7 +1370,8 @@
       "element_counts": {
         "Ni": 6,
         "O": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-754064",
@@ -1253,7 +1381,8 @@
       "element_counts": {
         "Mn": 2,
         "P": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1444811",
@@ -1263,7 +1392,8 @@
       "element_counts": {
         "Ni": 4,
         "S": 8
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1022963",
@@ -1273,7 +1403,8 @@
       "element_counts": {
         "Ir": 2,
         "O": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1102036",
@@ -1283,7 +1414,8 @@
       "element_counts": {
         "Ni": 6,
         "P": 6
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-510408",
@@ -1293,7 +1425,8 @@
       "element_counts": {
         "Mn": 2,
         "O": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-33009",
@@ -1303,7 +1436,8 @@
       "element_counts": {
         "Mn": 2,
         "O": 4
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-656884",
@@ -1313,7 +1447,8 @@
       "element_counts": {
         "Ni": 9,
         "O": 10
-      }
+      },
+      "cache_used": false
     },
     {
       "mpid": "mp-1213762",
@@ -1323,7 +1458,8 @@
       "element_counts": {
         "Co": 12,
         "P": 4
-      }
+      },
+      "cache_used": false
     }
   ]
 }
