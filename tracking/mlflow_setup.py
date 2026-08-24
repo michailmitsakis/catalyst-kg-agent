@@ -295,10 +295,21 @@ def create_mlflow_logger(
 class MLflowLogger:
     """Context manager for MLflow campaign tracking.
 
-    Usage:
+    Usage (context manager):
         with create_mlflow_logger("campaign-uuid") as logger:
             logger.log_cost("kg_lookup", 1.0)
             logger.log_campaign_end(total_cost=45, materials_evaluated=12)
+
+    Usage (direct - starts run immediately):
+        logger = create_mlflow_logger("campaign-uuid")
+        logger.log_cost("kg_lookup", 1.0)
+        result = logger.log_campaign_end(total_cost=45, materials_evaluated=12)
+        print(f"Run ID: {result['run_id']}")
+
+    Attributes:
+        run_id: MLflow run ID string
+        metrics: Dict of logged metrics
+        params: Dict of logged parameters
     """
 
     def __init__(
@@ -315,18 +326,20 @@ class MLflowLogger:
         self.params: Dict[str, Any] = {}
 
         setup_mlflow(campaign_id)
+        
+        # Start the run immediately (not in __enter__)
+        self.run = mlflow.start_run()
+        self.run_id = self.run.info.run_id
+        self.params["ollama_model"] = ollama_model or "not_specified"
+        self.params["mace_checkpoint_version"] = mace_checkpoint_version or "not_specified"
 
     def __enter__(self) -> "MLflowLogger":
-        with mlflow.start_run() as run:
-            self.run_id = run.info.run_id
-            self.params["ollama_model"] = self.ollama_model or "not_specified"
-            self.params["mace_checkpoint_version"] = (
-                self.mace_checkpoint_version or "not_specified"
-            )
+        # If used as context manager, keep run active
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb) -> None:
-        pass  # Run already started in __enter__
+        # End the run when context exits
+        mlflow.end_run()
 
     def log_cost(self, metric_name: str, value: float) -> None:
         """Log a cost metric."""
@@ -343,20 +356,30 @@ class MLflowLogger:
         best_candidate_e_above_hull: Optional[float] = None,
         final_outcome: Optional[str] = None,
     ) -> Dict[str, Any]:
-        """Log campaign completion metrics."""
-        log_campaign_metrics(
-            campaign_id=self.campaign_id,
-            total_cost=total_cost,
-            materials_evaluated=materials_evaluated,
-            predictions_made=predictions_made,
-            escalations_triggered=escalations_triggered,
-            best_candidate_e_above_hull=best_candidate_e_above_hull,
-            final_outcome=final_outcome,
-        )
+        """Log campaign completion metrics and end the run.
+
+        Returns:
+            Dict with run_id and artifact_uri
+        """
+        # Log core metrics to the active run
+        mlflow.log_metric("total_cost", round(total_cost, 2))
+        mlflow.log_metric("materials_evaluated", materials_evaluated)
+        mlflow.log_metric("predictions_made", predictions_made)
+        mlflow.log_metric("escalations_triggered", escalations_triggered)
+
+        if best_candidate_e_above_hull is not None:
+            mlflow.log_metric("best_candidate_e_above_hull", round(best_candidate_e_above_hull, 4))
+        
+        if final_outcome is not None:
+            mlflow.log_param("final_outcome", final_outcome)
+
+        # End the run and return info (MLflow 3.x API)
+        artifact_uri = mlflow.active_run().info.artifact_uri if mlflow.active_run() else None
+        mlflow.end_run()
 
         return {
             "run_id": self.run_id,
-            "artifact_uri": mlflow.active_run().info.artifact_uri if mlflow.active_run() else None,
+            "artifact_uri": artifact_uri,
         }
 
     def log_artifact(self, artifact_name: str, file_path: Path) -> None:
