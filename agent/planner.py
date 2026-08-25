@@ -93,10 +93,20 @@ class PlannerAgent:
 
         # Agent setup (Pydantic-ai for typed I/O)
         if use_llm:
-            base_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
-            model_name = os.environ.get("OLLAMA_MODEL", "llama3.1:8b")
+            ollama_base = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
+            ollama_model = os.environ.get("OLLAMA_MODEL", "gemma4:latest")  # Use configured model from .env
+            
+            # Create Ollama model with proper base URL (includes /v1 for OpenAI-compatible API)
+            from pydantic_ai.models.ollama import OllamaModel
+            from pydantic_ai.providers.ollama import OllamaProvider
+            
+            ollama_model_obj = OllamaModel(
+                model_name=ollama_model,
+                provider=OllamaProvider(base_url=ollama_base)
+            )
+            
             self.agent = Agent(
-                model=f"{base_url}/{model_name}",
+                model=ollama_model_obj,
                 system_prompt=self._build_system_prompt(),
             )
         else:

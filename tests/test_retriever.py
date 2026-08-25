@@ -9,7 +9,7 @@ Tests that:
 
 Run with: python tests/test_retriever.py
 
-Note: LLM-based tests require a local model server running on UNSLOTH_BASE_URL.
+Note: LLM-based tests require a local model server running on OLLAMA_BASE_URL.
 """
 
 from dotenv import load_dotenv
