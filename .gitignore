@@ -226,3 +226,4 @@ mlflow.db-wal
 # Cache
 data/processed/cif_cache.pkl
 data/processed/cif_cache_meta.json
+gnn-materials-digest.txt
