@@ -576,14 +576,6 @@ def main(clear_cache: bool = False) -> None:
     print(f"Wrote: data/processed/kg.json")
     print(gml_msg)
     print(f"Wrote: data/processed/kg_build_report.json")
-    print(f"Nodes: {summary['n_nodes']} ({summary['nodes_by_type']})")
-    print(f"Edges: {summary['n_edges']}")
-    print(f"Materials: {summary['n_materials']}  "
-          f"structures parsed: {summary['n_structures_parsed']}  "
-          f"failed: {summary['n_structures_failed']}")
-    print(f"Wrote: data/processed/kg.json")
-    print(gml_msg)
-    print(f"Wrote: data/processed/kg_build_report.json")
 
 
 if __name__ == "__main__":

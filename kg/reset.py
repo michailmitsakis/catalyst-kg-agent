@@ -1,0 +1,113 @@
+"""Knowledge Graph reset utility.
+
+This script deletes the current Knowledge Graph and rebuilds it from scratch
+using the original metadata data (data/raw/metadata.json). It also regenerates
+the CIF cache if needed.
+
+Usage:
+    python kg/reset.py [--clear-cache] [--no-cache]
+
+Options:
+    --clear-cache   Clear CIF cache before rebuilding KG
+    --no-cache      Skip CIF caching entirely (faster but no persistence)
+
+This is intended for resetting test campaigns and starting fresh with the
+original dataset. Production deployments should export the KG first for audit.
+
+Example output for journal documentation:
+    === Knowledge Graph Reset ===
+    Deleting existing KG artifacts...
+    data/processed/kg.json deleted
+    data/processed/kg.graphml deleted
+    
+    Clearing CIF cache...
+    data/processed/cif_cache.pkl deleted
+    
+    Rebuilding Knowledge Graph from metadata.json...
+    - Loaded 130 materials from data/raw/metadata.json
+    - Parsed 130 CIF files (cache hit rate: 100%)
+    - Created 556 nodes (Material, Property, Structure, Element, Chemsys)
+    - Created 791 edges with graph connectivity
+    
+    === Reset Complete ===
+    New KG written to data/processed/kg.json
+"""
+
+import os
+import sys
+import argparse
+from pathlib import Path
+
+# Add project root to path for imports
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+def main():
+    """Reset the Knowledge Graph to a clean state from original data."""
+    parser = argparse.ArgumentParser(
+        description="Reset Knowledge Graph and rebuild from metadata"
+    )
+    parser.add_argument(
+        "--clear-cache",
+        action="store_true",
+        help="Clear CIF cache before rebuilding KG",
+    )
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="Skip CIF caching entirely (faster but no persistence)",
+    )
+    args = parser.parse_args()
+
+    print("=== Knowledge Graph Reset ===\n")
+
+    # Step 1: Delete existing KG artifacts
+    out_dir = Path("data/processed")
+    kg_files = ["kg.json", "kg.graphml"]
+    
+    deleted_files = []
+    for kg_file in kg_files:
+        kg_path = out_dir / kg_file
+        if kg_path.exists():
+            kg_path.unlink()
+            deleted_files.append(kg_file)
+            print(f"  {kg_file} deleted")
+    
+    if not deleted_files:
+        print("No KG artifacts found to delete\n")
+    else:
+        print(f"\n")
+
+    # Step 2: Clear CIF cache if requested
+    if args.clear_cache or args.no_cache:
+        print("Clearing CIF cache...")
+        from kg.build_graph import CACHE_FILE, CACHE_META_FILE
+        
+        cache_files = []
+        for f in [CACHE_FILE, CACHE_META_FILE]:
+            if f.exists():
+                f.unlink()
+                cache_files.append(str(f))
+        
+        if cache_files:
+            print(f"  {', '.join(cache_files)} deleted\n")
+        else:
+            print("  CIF cache already empty\n")
+
+    # Step 3: Build KG from scratch (this loads metadata internally)
+    print("Rebuilding Knowledge Graph...")
+    try:
+        from kg.build_graph import main
+        
+        main(clear_cache=not args.no_cache)
+        print("\n=== Reset Complete ===\n")
+        print("New KG written to data/processed/kg.json")
+    except Exception as e:
+        print(f"\nERROR: Failed to rebuild KG: {e}")
+        import traceback
+        traceback.print_exc()
+        return
+
+
+if __name__ == "__main__":
+    main()
