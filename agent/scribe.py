@@ -152,13 +152,20 @@ class ScribeAgent:
                 avg_value = (current_value + new_value) / 2
                 self.G.nodes[prop_nid]["value"] = avg_value
                 self.G.nodes[prop_nid]["source"] = PropertySource.MACE_FINETUNED.value
+                
+                # Store uncertainty as metadata (average with existing if present)
+                current_uncertainty = float(prop_data.get("uncertainty", 0))
+                new_uncertainty = uncertainty
+                avg_uncertainty = (current_uncertainty + new_uncertainty) / 2
+                self.G.nodes[prop_nid]["uncertainty"] = round(avg_uncertainty, 4)
+                
                 # Add prediction count if it exists, otherwise initialize
                 if "prediction_count" not in self.G.nodes[prop_nid]:
                     self.G.nodes[prop_nid]["prediction_count"] = 1
                 else:
                     self.G.nodes[prop_nid]["prediction_count"] += 1
                 
-            print(f"Scribe: Updated existing property {prop_name} for {material_id}")
+            print(f"Scribe: Updated existing property {prop_name} for {material_id} (avg uncertainty={avg_uncertainty:.3f})")
             return
 
         # Create new PropertyNode for this prediction
@@ -172,6 +179,9 @@ class ScribeAgent:
         )
 
         self.G.add_node(prop_node.id, **prop_node.model_dump(mode="json"))
+        
+        # Add uncertainty as metadata
+        self.G.nodes[prop_node.id]["uncertainty"] = round(uncertainty, 4)
 
         # Add edge from material to property
         self.G.add_edge(material_id, prop_node.id, key=f"HAS_PROPERTY:{prop_name.value}", type="HAS_PROPERTY")
