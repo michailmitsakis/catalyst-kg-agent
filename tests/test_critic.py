@@ -139,8 +139,9 @@ def test_critic_decision_output():
         
         # Create a mock prediction result
         class MockPrediction:
+            material_id = "mp-2790"  # Match the test material's mpid
             uncertainty = 0.1  # Low uncertainty
-        
+
         predictions = [MockPrediction()]
         
         # Validate material

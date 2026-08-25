@@ -3,12 +3,13 @@
 
 This standalone script tests the Critic's uncertainty gate functionality without
 requiring pytest fixtures. It verifies that predictions with high uncertainty
-(above UNCERTAINTY_GATE threshold) are correctly flagged for escalation.
+(above UNCERTAINTY_GATE threshold) are correctly flagged for **individual**
+escalation (not batch - each material is evaluated independently).
 
 Key Features:
 - Tests low-uncertainty predictions (should be approved)
-- Tests high-uncertainty predictions (should escalate)
-- Demonstrates batch validation behavior (safety-first escalation)
+- Tests high-uncertainty predictions (should escalate individually)
+- Demonstrates single-material evaluation (production workflow)
 - Shows both synthetic prediction uncertainties and KG-stored metadata
 
 Usage:
@@ -17,9 +18,8 @@ Usage:
 Note:
     This script displays BOTH the synthetic uncertainty values passed to the
     Critic AND the uncertainty values stored in the Knowledge Graph. The Critic
-    may use KG metadata for validation, which can differ from synthetic test
-    values. Batch validation uses a safety-first approach where if ANY prediction
-    in a batch exceeds the uncertainty gate, ALL materials are escalated.
+    evaluates each material independently - if ONE material has high uncertainty,
+    ONLY that material is escalated (others continue normally).
 
 For pytest-based testing with fixtures, see tests/test_critic_escalation.py (pytest version).
 """
@@ -164,15 +164,17 @@ def main():
         print(f"    KG uncertainty: {kg_uncertainty*100:.1f}%")
         print(f"    Status: {status} {esc}")
     
-    # Note: Due to batch validation, if ANY prediction has high uncertainty,
-    # ALL materials in the batch get escalated (safety-first approach)
+    # Note: In production, materials are evaluated independently. If ONE material
+    # has high uncertainty, ONLY that material is escalated - others continue normally.
     escalations = sum(1 for d in decisions if d.requires_escalation)
     print(f"\nTotal Escalations: {escalations}/{len(decisions)}")
     
-    if escalations >= 1:
-        print("[PASS] Escalation flow working correctly (batch escalation triggered)")
+    # Verify independent escalation (not batch behavior)
+    expected_escalations = 1  # Only the first material has high uncertainty (70%)
+    if escalations == expected_escalations:
+        print("[PASS] Independent escalation working correctly - only high-uncertainty material escalated")
     else:
-        print("[INFO] No escalations triggered (may be due to KG metadata)")
+        print(f"[FAIL] Expected {expected_escalations} escalation(s), got {escalations}")
     
     # Summary
     print("\n" + "="*70)

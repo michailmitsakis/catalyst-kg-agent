@@ -100,9 +100,16 @@ class CriticAgent:
         """
         decisions = []
 
+        # Match predictions to materials by material_id
+        if predictions:
+            # Create a dict for fast lookup
+            pred_by_id = {p.material_id: p for p in predictions}
+        
         for mat in materials:
             if isinstance(mat, MaterialNode):
-                decision = self._evaluate_material(mat, predictions)
+                # Pass only the prediction for this specific material (or None if not found)
+                mat_predictions = [pred_by_id[mat.mpid]] if mat.mpid in pred_by_id else None
+                decision = self._evaluate_material(mat, mat_predictions)
                 decisions.append(decision)
 
         return decisions
