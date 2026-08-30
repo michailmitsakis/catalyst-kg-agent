@@ -1,5 +1,30 @@
 ## Latest Updates (2026-08-30) ✅
 
+### Ollama Integration Complete ✅
+
+**Date**: 2026-08-30
+
+**Change**: Replaced all "unsloth" references with proper Ollama integration throughout the codebase
+
+**Files Modified**:
+1. `scripts/run_campaign.py` - CLI entry point updated:
+   - Changed `--unsloth-model` argument to `--ollama-model`
+   - Updated help text to reference Ollama models (e.g., gemma4:latest)
+   - All internal variable names changed from unsloth_ to ollama_
+
+**Key Architecture Details**:
+- **RetrieverAgent**: Uses `OllamaModel` with `OllamaProvider(base_url="http://localhost:11434")`
+- **Default Model**: gemma4:latest (configured via OLLAMA_MODEL env var)
+- **Base URL**: Includes `/v1` suffix for OpenAI-compatible API endpoint
+- **No unsloth dependency**: The system uses pure Ollama integration throughout
+
+**Verification**:
+- All agent initializations use OllamaModel/OllamaProvider pattern
+- Campaign orchestrator properly passes model configuration to MLflow logger
+- CLI entry point supports `--ollama-model gemma4:latest` flag
+
+---
+
 ### CGCNN Baseline Implementation Complete ✅
 
 **Date**: 2026-08-30
@@ -43,14 +68,20 @@ python models/gnn_surrogate/baseline_cgcnn.py --compare-mace
 ## What Works Now ✅
 
 ### End-to-End Pipeline:
-1. Retriever parses natural language query via Ollama (gemma4:latest)
-2. KG lookup returns materials with structure_id populated
-3. Predictor loads MACE model and converts structures to ASE Atoms format
-4. MC Dropout inference produces e_above_hull predictions with uncertainty
-5. Critic validates against stability threshold (0.1 eV/atom) and uncertainty gate (0.3)
-6. **Single-material escalation**: Only high-uncertainty materials are escalated (not batch)
-7. Planner manages budget and decides next action
-8. All operations logged to MLflow and JSON journals
+1. Retriever parses natural language query via Ollama (gemma4:latest) ✅
+2. KG lookup returns materials with structure_id populated ✅
+3. Predictor loads MACE model and converts structures to ASE Atoms format ✅
+4. MC Dropout inference produces e_above_hull predictions with uncertainty ✅
+5. Critic validates against stability threshold (0.1 eV/atom) and uncertainty gate (0.3) ✅
+6. Single-material escalation: Only high-uncertainty materials are escalated (not batch) ✅
+7. Planner manages budget and decides next action ✅
+8. All operations logged to MLflow and JSON journals ✅
+
+### Ollama Integration:
+✅ Full integration using OllamaModel/OllamaProvider pattern
+✅ Default model: gemma4:latest via OLLAMA_MODEL env var
+✅ Base URL with /v1 suffix for OpenAI-compatible API
+✅ No unsloth dependencies - pure Ollama throughout
 
 ### CGCNN Baseline:
 ✅ Full implementation with multi-feature edges, super-cell construction, batch normalization
@@ -73,6 +104,7 @@ python models/gnn_surrogate/baseline_cgcnn.py --compare-mace
 - CGCNN multi-feature edges implementation ✅
 - CGCNN super-cell graph construction ✅
 - CGCNN batch normalization layers ✅
+- OllamaModel/OllamaProvider integration pattern ✅
 
 ### Environment Status:
 - **Ollama**: Running on localhost:11434, gemma4:latest model active (GPU-accelerated)

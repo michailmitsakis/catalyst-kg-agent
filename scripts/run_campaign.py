@@ -2,7 +2,7 @@
 """CLI entry point for catalyst discovery campaigns.
 
 Usage:
-    python scripts/run_campaign.py --budget 100 [--unsloth-model llama3.1:8b] [--mace-checkpoint mace-mpa-0-medium]
+    python scripts/run_campaign.py --budget 100 [--ollama-model gemma4:latest] [--mace-checkpoint mace-mpa-0-medium]
 
 This script orchestrates the full agent loop:
 1. Retriever → Predictor → Critic → Planner (repeat until budget exhausted)
@@ -57,10 +57,10 @@ def parse_args() -> argparse.Namespace:
     )
     
     parser.add_argument(
-        "--unsloth-model",
+        "--ollama-model",
         type=str,
         default=None,
-        help="Unsloth model name (e.g., llama3.1:8b)"
+        help="Ollama model name (e.g., gemma4:latest)"
     )
     
     parser.add_argument(
@@ -79,14 +79,14 @@ def parse_args() -> argparse.Namespace:
 
 def run_campaign(
     campaign_id: str,
-    unsloth_model: str | None = None,
+    ollama_model: str | None = None,
     mace_checkpoint: str | None = None,
 ) -> dict:
     """Run a complete catalyst discovery campaign using CampaignOrchestrator.
 
     Args:
         campaign_id: Unique identifier for this campaign (UUID recommended)
-        unsloth_model: Model name/version used
+        ollama_model: Ollama model name/version used
         mace_checkpoint: MACE checkpoint version
 
     Returns:
@@ -100,7 +100,7 @@ def run_campaign(
     # Initialize MLflow tracking
     mlflow_logger = create_mlflow_logger(
         campaign_id=campaign_id,
-        ollama_model=unsloth_model,  # Renamed from unsloth_model to ollama_model
+        ollama_model=ollama_model,
         mace_checkpoint_version=mace_checkpoint,
     )
     
@@ -180,7 +180,7 @@ def main():
         # Run campaign
         result = run_campaign(
             campaign_id=campaign_id,
-            unsloth_model=args.unsloth_model,
+            ollama_model=args.ollama_model,
             mace_checkpoint=args.mace_checkpoint,
         )
         
