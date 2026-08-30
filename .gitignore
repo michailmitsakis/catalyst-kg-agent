@@ -218,11 +218,15 @@ __marimo__/
 .streamlit/secrets.toml
 
 # FILES
+
 # Track /docs (structured project memory)
-/docs
+/docs/alpha_Claude_chat-history.md
+/docs/PORTFOLIO.md
+
 # MLFlow Temp files
 mlflow.db-shm
 mlflow.db-wal
+
 # Cache
 data/processed/cif_cache.pkl
 data/processed/cif_cache_meta.json
