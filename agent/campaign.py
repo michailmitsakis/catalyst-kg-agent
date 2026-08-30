@@ -23,7 +23,9 @@ from agent.cost_model import (
     MAX_ACTIONS_PER_CAMPAIGN,
     KG_LOOKUP_COST,
     SURROGATE_COST,
+    EXPERIMENT_COST,
 )
+from agent.scribe import ScribeAgent
 
 
 # ---------------------------------------------------------------------------
@@ -84,6 +86,7 @@ class CampaignOrchestrator:
         graph_path: Path = DEFAULT_KG_JSON,
         campaign_id: Optional[str] = None,
         initial_budget: float = INITIAL_BUDGET,
+        mode: str = "batch",  # "sequential" or "batch" - default to batch for performance
     ):
         """Initialize orchestrator.
 
@@ -91,10 +94,13 @@ class CampaignOrchestrator:
             graph_path: Path to knowledge graph JSON
             campaign_id: Unique ID for this run (auto-generated if not provided)
             initial_budget: Starting budget amount
+            mode: Campaign execution mode - "sequential" (write KG after each iteration) 
+                  or "batch" (write KG at end of campaign, default)
         """
         self.graph_path = graph_path
         self.G = load_graph(graph_path)
         self.campaign_id = campaign_id or str(uuid.uuid4())[:8]
+        self.mode = mode  # Track execution mode for logging
 
         # State
         self.state = CampaignState(campaign_id=self.campaign_id)
@@ -137,20 +143,24 @@ class CampaignOrchestrator:
     def run(
         self,
         query: Optional[str] = None,
+        mode: Optional[str] = None,  # Override mode for this run
     ) -> dict[str, Any]:
         """Run the full campaign loop.
 
         Args:
             query: Natural language query (optional, defaults to "find all stable materials")
+            mode: Execution mode override ("sequential" or "batch"). If None, uses instance default.
 
         Returns:
             Campaign result dict with state + summary stats
         """
+        # Use provided mode or instance default
+        effective_mode = mode if mode else self.mode
+        
         # Start timing
         self.state.start_time = datetime.now()
         self.state.status = "running"
-
-        self.state.log("campaign_start", {"query": query or "default"})
+        self.state.log("campaign_start", {"query": query or "default", "mode": effective_mode})
 
         # Main loop - use MAX_ACTIONS_PER_CAMPAIGN and budget check
         step = 0
@@ -192,7 +202,7 @@ class CampaignOrchestrator:
             
             # 3. Critic validation
             critic_decisions = []
-            if materials:
+            if materials and predictions:
                 critic = self.get_critic()
                 critic_decisions = critic.validate_materials(materials, predictions)
 
@@ -202,6 +212,36 @@ class CampaignOrchestrator:
                         self.state.log("critic_escalation", {"material_id": dec.reason})
                         # Deduct experiment cost
                         self.tracker.deduct(ActionCategory.EXPERIMENT_ESCALATION, EXPERIMENT_COST)
+
+            # 4. Scribe - persist predictions to KG (mode-dependent)
+            if predictions:
+                scribe = ScribeAgent(graph_path=self.graph_path)
+                n_escalations = sum(1 for d in critic_decisions if d.requires_escalation)
+                
+                if effective_mode == "sequential":
+                    # Sequential mode: write each prediction immediately
+                    self.state.log(f"step_{step}_scribe", {"mode": "sequential"})
+                    for pred in predictions:
+                        scribe._add_prediction_to_kg(pred)
+                        self.tracker.deduct(ActionCategory.SURROGATE_QUERY, SURROGATE_COST)
+                else:
+                    # Batch mode: write all predictions at end of campaign (deferred)
+                    self.state.log(f"step_{step}_scribe", {"mode": "batch", "n_predictions": len(predictions)})
+
+        # Write deferred batch predictions if in batch mode and not already written
+        if effective_mode == "batch" and predictions and step > 1:
+            self.state.log("scribe_batch_deferred", {"mode": "batch", "n_predictions": len(predictions)})
+            scribe = ScribeAgent(graph_path=self.graph_path)
+            n_escalations = sum(1 for d in critic_decisions if d.requires_escalation)
+            # Calculate total spent from budget tracker
+            total_spent = round(self.tracker.initial_budget - self.tracker.remaining_budget, 2)
+            scribe.log_campaign_results(
+                campaign_id=self.campaign_id,
+                materials_evaluated=materials,
+                predictions_made=predictions,
+                escalations_triggered=n_escalations,
+                total_cost=total_spent
+            )
 
         # Sort by stability for final output (lowest e_above_hull first)
         if self.state.final_materials:

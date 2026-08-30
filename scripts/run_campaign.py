@@ -2,11 +2,15 @@
 """CLI entry point for catalyst discovery campaigns.
 
 Usage:
-    python scripts/run_campaign.py --budget 100 [--ollama-model gemma4:latest] [--mace-checkpoint mace-mpa-0-medium]
+    python scripts/run_campaign.py --budget 100 [--ollama-model gemma4:latest] [--mode batch|sequential] [--mace-checkpoint mace-mpa-0-medium]
 
 This script orchestrates the full agent loop:
-1. Retriever → Predictor → Critic → Planner (repeat until budget exhausted)
+1. Retriever → Predictor → Critic → Scribe (repeat until budget exhausted)
 2. Logs to MLflow and JSON journals
+
+Execution modes:
+- batch (default): Write KG predictions at end of campaign (faster, better for large batches)
+- sequential: Write KG after each iteration (slower, enables adaptive discovery within campaign)
 """
 
 from __future__ import annotations
@@ -57,6 +61,14 @@ def parse_args() -> argparse.Namespace:
     )
     
     parser.add_argument(
+        "--mode",
+        type=str,
+        default=None,
+        choices=["sequential", "batch"],
+        help="Campaign execution mode: 'sequential' (write KG after each iteration) or 'batch' (default, write at end)"
+    )
+    
+    parser.add_argument(
         "--ollama-model",
         type=str,
         default=None,
@@ -81,6 +93,7 @@ def run_campaign(
     campaign_id: str,
     ollama_model: str | None = None,
     mace_checkpoint: str | None = None,
+    mode: str | None = None,
 ) -> dict:
     """Run a complete catalyst discovery campaign using CampaignOrchestrator.
 
@@ -88,6 +101,7 @@ def run_campaign(
         campaign_id: Unique identifier for this campaign (UUID recommended)
         ollama_model: Ollama model name/version used
         mace_checkpoint: MACE checkpoint version
+        mode: Execution mode override ("sequential" or "batch")
 
     Returns:
         Dict with campaign results and MLflow run info
@@ -182,6 +196,7 @@ def main():
             campaign_id=campaign_id,
             ollama_model=args.ollama_model,
             mace_checkpoint=args.mace_checkpoint,
+            mode=args.mode,
         )
         
         print("\n" + "="*60)
