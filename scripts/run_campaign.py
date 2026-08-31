@@ -119,7 +119,7 @@ def run_campaign(
     print(f"Starting campaign {campaign_id}...")
     
     # Initialize orchestrator (handles retriever, predictor, critic)
-    orchestrator = CampaignOrchestrator()
+    orchestrator = CampaignOrchestrator(campaign_id=campaign_id)
     
     # Initialize MLflow tracking
     mlflow_logger = create_mlflow_logger(
@@ -184,8 +184,8 @@ def main():
     """
     args = parse_args()
     
-    # Generate campaign ID if not provided
-    campaign_id = args.campaign_id if hasattr(args, 'campaign_id') else str(uuid.uuid4())
+    # Generate campaign ID if not provided (use UUID4 default)
+    campaign_id = args.campaign_id if args.campaign_id else str(uuid.uuid4())
     
     print("="*60)
     print("Catalyst Discovery Campaign")

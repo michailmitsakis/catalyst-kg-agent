@@ -9,7 +9,7 @@ Usage:
 
 Options:
     --clear-cache   Clear CIF cache before rebuilding KG
-    --no-cache      Skip CIF caching entirely (faster but no persistence)
+    --no-cache      Skip clearing the CIF cache entirely
 
 This is intended for resetting test campaigns and starting fresh with the
 original dataset. Production deployments should export the KG first for audit.
@@ -32,9 +32,7 @@ Example output for journal documentation:
     === Reset Complete ===
     New KG written to data/processed/kg.json
 
-Note: This script rebuilds the CIF cache automatically if --clear-cache is used
-or if the cache is missing. The cache files (cif_cache.pkl and cif_cache_meta.json)
-are regenerated during the KG build process.
+Note: This script does not rebuild the CIF cache automatically. The cache files (cif_cache.pkl and cif_cache_meta.json) are regenerated during the original KG build process.
 """
 
 import os
@@ -62,7 +60,7 @@ def main():
     parser.add_argument(
         "--no-cache",
         action="store_true",
-        help="Skip CIF caching entirely (faster but no persistence)",
+        help="Do not clear CIF cache before rebuilding KG",
     )
     args = parser.parse_args()
 
@@ -85,8 +83,8 @@ def main():
     else:
         print(f"\n")
 
-    # Step 2: Clear CIF cache if requested
-    if args.clear_cache or args.no_cache:
+    # Step 2: Clear CIF cache if requested (--clear-cache only)
+    if args.clear_cache:
         print("Clearing CIF cache...")
         from kg.build_graph import CACHE_FILE, CACHE_META_FILE
         
@@ -106,7 +104,9 @@ def main():
     try:
         from kg.build_graph import main
         
-        main(clear_cache=not args.no_cache)
+        # --no-cache means don't clear cache (use existing if available)
+        # --clear-cache means force regeneration (ignore cache)
+        main(clear_cache=args.clear_cache)
         print("\n=== Reset Complete ===\n")
         print("New KG written to data/processed/kg.json")
     except Exception as e:

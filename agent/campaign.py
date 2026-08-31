@@ -12,6 +12,8 @@ from pathlib import Path
 from typing import Optional, Any
 from datetime import datetime
 
+import mlflow
+
 from pydantic_ai import Agent
 
 from kg.graph_store import load_graph, DEFAULT_KG_JSON
@@ -26,6 +28,11 @@ from agent.cost_model import (
     EXPERIMENT_COST,
 )
 from agent.scribe import ScribeAgent
+from tracking.mlflow_setup import (
+    setup_mlflow,
+    log_campaign_metrics,
+    end_campaign_tracking,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -242,6 +249,9 @@ class CampaignOrchestrator:
                 escalations_triggered=n_escalations,
                 total_cost=total_spent
             )
+            
+            # Reload graph after Scribe write to get latest data
+            self.G = load_graph(self.graph_path)
 
         # Sort by stability for final output (lowest e_above_hull first)
         if self.state.final_materials:
@@ -261,8 +271,27 @@ class CampaignOrchestrator:
         self.state.end_time = datetime.now()
         self.state.status = "completed"
 
+        # Compute best_candidate_e_above_hull from final materials
+        best_e_above_hull = None
+        if self.state.best_candidate:
+            props = self.G.nodes.get(self.state.best_candidate.id, {}).get("properties", [])
+            for p in props:
+                if isinstance(p, dict) and p.get("name") == "energy_above_hull":
+                    best_e_above_hull = float(p.get("value", float("inf")))
+                    break
+
         # Export journal
-        self._write_journal()
+        self._write_journal(best_e_above_hull)
+
+        # Log to MLflow
+        self._log_to_mlflow(
+            total_cost=round(self.tracker.initial_budget - self.tracker.remaining_budget, 2),
+            materials_evaluated=len(self.state.final_materials),
+            predictions_made=0,  # Not tracked yet
+            escalations_triggered=sum(1 for log in self.state.logs if log.get("event") == "critic_escalation"),
+            best_candidate_e_above_hull=best_e_above_hull,
+            final_outcome="completed",
+        )
 
         # Get summary stats
         result = self.state.to_dict()
@@ -272,8 +301,12 @@ class CampaignOrchestrator:
         return result
 
 
-    def _write_journal(self):
-        """Write campaign journal to JSON file."""
+    def _write_journal(self, best_candidate_e_above_hull: Optional[float] = None):
+        """Write campaign journal to JSON file.
+
+        Args:
+            best_candidate_e_above_hull: e_above_hull of best candidate (computed in run method)
+        """
         journal_dir = Path("agent/journal")
         journal_dir.mkdir(parents=True, exist_ok=True)
 
@@ -282,9 +315,54 @@ class CampaignOrchestrator:
             "campaign_state": self.state.to_dict(),
             "budget_tracker": self.tracker.to_dict(),
             "end_time": datetime.now().isoformat(),
+            "best_candidate_e_above_hull": best_candidate_e_above_hull,
         }
 
         journal_file.write_text(json.dumps(journal_data, indent=2))
+
+    def _log_to_mlflow(
+        self,
+        total_cost: float,
+        materials_evaluated: int,
+        predictions_made: int,
+        escalations_triggered: int,
+        best_candidate_e_above_hull: Optional[float],
+        final_outcome: str,
+    ) -> dict[str, Any]:
+        """Log campaign metrics to MLflow.
+
+        Args:
+            total_cost: Total budget spent
+            materials_evaluated: Count of unique materials queried
+            predictions_made: Count of surrogate predictions
+            escalations_triggered: Count of times escalation occurred
+            best_candidate_e_above_hull: e_above_hull of best candidate (if found)
+            final_outcome: Campaign result string
+
+        Returns:
+            Dict with run_id and artifact_uri
+        """
+        setup_mlflow(self.campaign_id)
+
+        # Log campaign metrics
+        log_campaign_metrics(
+            campaign_id=self.campaign_id,
+            total_cost=total_cost,
+            materials_evaluated=materials_evaluated,
+            predictions_made=predictions_made,
+            escalations_triggered=escalations_triggered,
+            best_candidate_e_above_hull=best_candidate_e_above_hull,
+            final_outcome=final_outcome,
+        )
+
+        # End the run and return info (MLflow 3.x API)
+        artifact_uri = mlflow.active_run().info.artifact_uri if mlflow.active_run() else None
+        mlflow.end_run()
+
+        return {
+            "run_id": self.state.campaign_id,
+            "artifact_uri": artifact_uri,
+        }
 
 
 # ---------------------------------------------------------------------------

@@ -1,4 +1,74 @@
-## Latest Updates (2026-08-30) ✅
+## Latest Updates (2026-08-31) ✅
+
+### Double-Deduction Bug Fixed ✅
+
+**Date**: 2026-08-31
+
+**Issue**: Sequential mode charged surrogate cost twice per prediction (lines 197 and 226 in `agent/campaign.py`)
+
+**Fix**: Removed duplicate deduction at line 226, added comment explaining cost already deducted at line 197
+
+**Verification**: Tested both sequential and batch modes — identical budget accounting (95 credits for 19 predictions)
+
+---
+
+### CGCNN vs MACE Comparison Complete ✅
+
+**Date**: 2026-08-31
+
+**Files Created**:
+1. `models/comparison/MACE_CGCNN_surrogate_comparison.ipynb` — Jupyter notebook
+2. `models/gnn_surrogate/MACE_CGCNN_surrogate_comparison.py` — Standalone script
+
+**Features**:
+- Trains CGCNN from-scratch on ~130 catalyst materials (honest small dataset)
+- Compares MACE vs CGCNN on:
+  - e_above_hull predictions (raw values per material)
+  - MC-Dropout uncertainty estimates
+  - Inference speed per candidate
+  - Stability-classification agreement (both vs 0.1 eV/atom threshold)
+- Generates comprehensive plots and statistics
+
+**To Run**:
+```bash
+python models/gnn_surrogate/MACE_CGCNN_surrogate_comparison.py --train-cgcnn
+```
+
+---
+
+### UMA Final Fidelity Check Showcase ✅
+
+**Date**: 2026-08-31
+
+**Files Created**:
+1. `models/verification/UMA_final_fidelity_check.ipynb` — Jupyter notebook
+2. `models/verification/UMA_final_fidelity_check.py` — Standalone script
+
+**Features**:
+- Demonstrates UMA relaxation on mp-2790 (best candidate from campaigns)
+- **IMPORTANT**: Keeps UMA/OMat24 energies in SEPARATE TIER from MP energies
+- Shows volume comparison and energy stability check
+- Generates plots demonstrating the fidelity gate concept
+
+**To Run** (requires FAIRChem):
+```bash
+python models/verification/UMA_final_fidelity_check.py --campaign-id <your-campaign-id>
+```
+
+---
+
+### CLI Documentation Updated ✅
+
+**Date**: 2026-08-31
+
+**File**: `scripts/run_campaign.py`
+
+**Changes**:
+- Added `--campaign-id` argument documentation explaining journal file naming convention
+- Updated docstrings to clarify that `campaign_id` becomes the prefix in `agent/journal/<campaign_id>.json`
+- Example: `python scripts/run_campaign.py --budget 100 --campaign-id my-campaign-2026-08-31` creates `agent/journal/my-campaign-2026-08-31.json`
+
+---
 
 ### Ollama Integration Complete ✅
 
@@ -537,11 +607,10 @@ um_sites ∈ [0, 20]
 
 | Slot | Choice | Notes |
 |---|---|---|
-| Production | MACE (mace-mpa-0-medium.model) | Fine-tuned checkpoint in models/, MC Dropout (N=5) for uncertainty |
-| Baseline | Custom CGCNN-style GNN (PyG), from-scratch | models/baseline_cgcnn.py — **IMPLEMENTED** with multi-feature edges, super-cell construction, BN layers |
+| Production | MACE (`mace-mpa-0-medium.model`) | Fine-tuned checkpoint in `models/gnn_surrogate/`, MC Dropout (N=5) for uncertainty |
+| Baseline | Custom CGCNN-style GNN (PyG), from-scratch | `models/comparison/MACE_CGCNN_surrogate_comparison.py` — **IMPLEMENTED** with multi-feature edges, super-cell construction, BN layers |
 
-Eval notebook (
-otebooks/03_gnn_surrogate_eval.ipynb) compares both: accuracy, training cost, data-efficiency. Ready to run.
+Eval notebook (`notebooks/MACE_CGCNN_surrogate_comparison.ipynb`) compares both: accuracy, training cost, data-efficiency. Ready to run.
 
 ### Agent layer: pydantic-ai, schema-first, Ollama for LLM
 
@@ -602,7 +671,7 @@ Inspired by ai-mandel (independent stages, journaled JSON logs) but tighter and 
 
 # Optional late stage: UMA relaxation check
 
-Final-candidate only. **Hard rule:** UMA/OMat24 energies stay in separate tier, never numerically mixed with MP-derived stats (different DFT settings per fairchem disclaimer). Source: models/verification/uma_relax.py (stub).
+Final-candidate only. **Hard rule:** UMA/OMat24 energies stay in separate tier, never numerically mixed with MP-derived stats (different DFT settings per FAIRChem disclaimer). Source: `models/verification/UMA_final_fidelity_check.py` (showcase).
 
 ## Next steps (prioritized)
 
@@ -618,7 +687,7 @@ notebooks/04_campaign_analysis.ipynb:
    - Plot cost per step, budget depletion curves
    - Compare different threshold configurations
 
-3. **UMA relaxation integration** — Implement ASE workflow for final-candidate verification (must stay separate from MP-derived stats)
+3. **UMA relaxation integration** — `models/verification/UMA_final_fidelity_check.py` is showcase; needs ASE workflow for final-candidate verification (must stay separate from MP-derived stats)
 
 ---
 
