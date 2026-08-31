@@ -31,6 +31,10 @@ Example output for journal documentation:
     
     === Reset Complete ===
     New KG written to data/processed/kg.json
+
+Note: This script rebuilds the CIF cache automatically if --clear-cache is used
+or if the cache is missing. The cache files (cif_cache.pkl and cif_cache_meta.json)
+are regenerated during the KG build process.
 """
 
 import os
@@ -38,8 +42,11 @@ import sys
 import argparse
 from pathlib import Path
 
-# Add project root to path for imports
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Ensure project root is in Python path for relative imports
+_project_root = Path(__file__).resolve().parent.parent
+if str(_project_root) not in sys.path:
+    sys.path.insert(0, str(_project_root))
 
 
 def main():

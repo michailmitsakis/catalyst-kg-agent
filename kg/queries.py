@@ -15,11 +15,18 @@ Design notes:
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Optional, List, Callable, Union
 
 import networkx as nx
 from pydantic import BaseModel
+
+
+# Ensure project root is in Python path for relative imports
+_project_root = Path(__file__).resolve().parent.parent
+if str(_project_root) not in sys.path:
+    sys.path.insert(0, str(_project_root))
 
 from kg.schema import (
     ChemsysNode, CrystalSystem, ElementNode, KGNode, KGEdge, MaterialNode,

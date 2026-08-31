@@ -37,12 +37,19 @@ from __future__ import annotations
 import json
 import os
 import pickle
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Optional
 
 import networkx as nx
 from pymatgen.core import Structure
+
+
+# Ensure project root is in Python path for relative imports
+_project_root = Path(__file__).resolve().parent.parent
+if str(_project_root) not in sys.path:
+    sys.path.insert(0, str(_project_root))
 
 from kg.schema import (
     ChemsysNode,
