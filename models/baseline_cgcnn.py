@@ -24,13 +24,13 @@ Key improvements over baseline:
 
 Usage:
     # Train and evaluate
-    python models/gnn_surrogate/baseline_cgcnn_improved.py --train --epochs 500
+    python models/baseline_cgcnn.py --train --epochs 500
     
     # Predict on single material
-    python models/gnn_surrogate/baseline_cgcnn_improved.py --predict mpid=mp-2790
+    python models/baseline_cgcnn.py --predict mpid=mp-2790
     
     # Compare with MACE
-    python models/gnn_surrogate/baseline_cgcnn_improved.py --compare-mace
+    python models/baseline_cgcnn.py --compare-mace
 
 References:
     - Xie & Grossman, "Crystal Graph Convolutional Neural Networks", PRL 2018
@@ -623,7 +623,7 @@ def train_model():
     print("\n[TODO] Implement data loading from Materials Project subset")
     print("[TODO] Create train/val/test splits")
     print(f"[INFO] Model config: hidden={config.hidden_channels}, conv_layers={config.num_conv_layers}")
-    print("[TODO] Train model and save to models/gnn_surrogate/cgcnn_improved.pt")
+    print("[TODO] Train model and save to models/baseline_cgcnn.pt")
 
 
 def predict_on_material(mpid: str):

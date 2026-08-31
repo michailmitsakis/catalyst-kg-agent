@@ -1,8 +1,8 @@
 {
   "campaign_state": {
-    "campaign_id": "000584b8",
-    "start_time": "2026-08-24T13:42:29.670363",
-    "end_time": "2026-08-24T13:43:05.253187",
+    "campaign_id": "1dcc9a02",
+    "start_time": "2026-08-31T09:13:55.596518",
+    "end_time": "2026-08-31T09:15:32.147746",
     "status": "completed",
     "n_materials_evaluated": 520,
     "best_candidate_mpid": "mp-2790",
@@ -28,5 +28,5 @@
       "experiment_escalation": null
     }
   },
-  "end_time": "2026-08-24T13:43:05.253684"
+  "end_time": "2026-08-31T09:15:32.148246"
 }

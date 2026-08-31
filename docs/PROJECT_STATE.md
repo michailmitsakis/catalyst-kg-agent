@@ -83,7 +83,7 @@
 1. `agent/campaign.py` - Added ScribeAgent import and integration
 2. `scripts/run_campaign.py` - Added --mode CLI argument
 
-#### 6. Testing Results
+#### Testing Results
 **Test Commands**:
 1. **Batch mode**: `python scripts/run_campaign.py --budget 50 --max-experiments 5 --mode batch`
    - ✅ Campaign completed successfully
@@ -112,7 +112,7 @@
 
 **Date**: 2026-08-30
 
-**File**: models/gnn_surrogate/baseline_cgcnn.py (replaced placeholder with full implementation)
+**File**: models/baseline_cgcnn.py (replaced placeholder with full implementation)
 
 **Key Improvements over Original Code**:
 1. **Multi-feature edges** - Uses 4 edge features (total distance + x, y, z components) instead of single feature
@@ -131,17 +131,17 @@
 
 **Usage**:
 `ash
-# Train with default settings
-python models/gnn_surrogate/baseline_cgcnn.py --train --epochs 500
-
-# Train with different architecture
-python models/gnn_surrogate/baseline_cgcnn.py --train --epochs 500 --hidden-channels 128 --num-conv-layers 3
-
-# Predict on single material
-python models/gnn_surrogate/baseline_cgcnn.py --predict mpid=mp-2790
-
-# Compare with MACE (when both models are trained)
-python models/gnn_surrogate/baseline_cgcnn.py --compare-mace
+    # Train with default settings
+    python models/baseline_cgcnn.py --train --epochs 500
+    
+    # Train with different architecture
+    python models/baseline_cgcnn.py --train --epochs 500 --hidden-channels 128 --num-conv-layers 3
+    
+    # Predict on single material
+    python models/baseline_cgcnn.py --predict mpid=mp-2790
+    
+    # Compare with MACE (when both models are trained)
+    python models/baseline_cgcnn.py --compare-mace
 `
 
 **Next Steps**: Run evaluation notebook (notebooks/03_gnn_surrogate_eval.ipynb) to compare CGCNN vs MACE on accuracy, training cost, and data efficiency.
@@ -288,11 +288,11 @@ _materials_evaluated in journal
 
 ### Low priority / stretch
 
-4. **UMA relaxation integration** — models/verification/uma_relax.py is stub; needs ASE workflow for final-candidate verification (must stay separate from MP-derived stats)
+1. **UMA relaxation integration** — models/verification/uma_relax.py is stub; needs ASE workflow for final-candidate verification (must stay separate from MP-derived stats)
 
-5. **RDF ontology layer** — stretch/rdf_ontology.py not started; CMSO/ASMO alignment for stretch goal
+2. **RDF ontology layer** — stretch/rdf_ontology.py not started; CMSO/ASMO alignment for stretch goal
 
-6. **Notebook explorations** — notebooks scaffolded but not created; need actual analysis outputs
+3. **Notebook explorations** — notebooks scaffolded but not created; need actual analysis outputs
 
 ---
 
@@ -439,38 +439,6 @@ ext_action="escalate" in Planner
 
 ---
 
-## Next steps (prioritized)
-
-### Immediate
-
-1. **Run CGCNN evaluation** — Execute 
-notebooks/03_gnn_surrogate_eval.ipynb:
-   - Train CGCNN baseline on MP subset
-   - Compare MACE vs. CGCNN on held-out test set
-   - Report accuracy, training time, data efficiency metrics
-
-### Short term
-
-2. **Complete test coverage** — Run existing tests and fix edge cases:
-  `ash
-  pytest tests/ -v
-  `
-  Add missing assertions, handle edge cases
-
-3. **Campaign analysis notebook** — 
-notebooks/04_campaign_analysis.ipynb:
-   - Read journal files + MLflow runs
-   - Plot cost per step, budget depletion curves
-   - Compare different threshold configurations
-
-### Medium term
-
-4. **UMA relaxation integration** — Implement ASE workflow for final-candidate verification (must stay separate from MP-derived stats)
-
-5. **Notebook explorations** — notebooks scaffolded but not created; need actual analysis outputs
-
----
-
 ## Full Campaign Integration Test ✅
 
 **Date**: 2026-08-30
@@ -569,8 +537,8 @@ um_sites ∈ [0, 20]
 
 | Slot | Choice | Notes |
 |---|---|---|
-| Production | MACE (mace-mpa-0-medium.model) | Fine-tuned checkpoint in models/gnn_surrogate/, MC Dropout (N=5) for uncertainty |
-| Baseline | Custom CGCNN-style GNN (PyG), from-scratch | models/gnn_surrogate/baseline_cgcnn.py — **IMPLEMENTED** with multi-feature edges, super-cell construction, BN layers |
+| Production | MACE (mace-mpa-0-medium.model) | Fine-tuned checkpoint in models/, MC Dropout (N=5) for uncertainty |
+| Baseline | Custom CGCNN-style GNN (PyG), from-scratch | models/baseline_cgcnn.py — **IMPLEMENTED** with multi-feature edges, super-cell construction, BN layers |
 
 Eval notebook (
 otebooks/03_gnn_surrogate_eval.ipynb) compares both: accuracy, training cost, data-efficiency. Ready to run.
@@ -613,11 +581,6 @@ Inspired by ai-mandel (independent stages, journaled JSON logs) but tighter and 
 - **JSON journal:** gent/journal/<campaign_id>.json — step-by-step logs with timestamps
 - Console logging via gent/logging.py — dual-mode (console + file)
 
-### Optional late stage: UMA relaxation check
-
-Final-candidate only. **Hard rule:** UMA/OMat24 energies stay in separate tier, never numerically mixed with MP-derived stats (different DFT settings per fairchem disclaimer). Source: models/verification/uma_relax.py (stub).
-
-
 ---
 
 ## Considered-rejected (also in README "Design Decisions" table)
@@ -634,6 +597,28 @@ Final-candidate only. **Hard rule:** UMA/OMat24 energies stay in separate tier, 
 | Foundry-ML | redundant w/ MP, less deep |
 | atomic-agents framework | borrowed schema discipline, kept pydantic-ai as execution framework |
 | ai-mandel | inspiration only, replaced open-ended loop w/ budget-bounded |
+
+---
+
+# Optional late stage: UMA relaxation check
+
+Final-candidate only. **Hard rule:** UMA/OMat24 energies stay in separate tier, never numerically mixed with MP-derived stats (different DFT settings per fairchem disclaimer). Source: models/verification/uma_relax.py (stub).
+
+## Next steps (prioritized)
+
+1. **Run CGCNN evaluation** — Execute 
+notebooks/03_gnn_surrogate_eval.ipynb:
+   - Train CGCNN baseline on MP subset
+   - Compare MACE vs. CGCNN on held-out test set
+   - Report accuracy, training time, data efficiency metrics
+
+2. **Notebooks** — 
+notebooks/04_campaign_analysis.ipynb:
+   - Read journal files + MLflow runs
+   - Plot cost per step, budget depletion curves
+   - Compare different threshold configurations
+
+3. **UMA relaxation integration** — Implement ASE workflow for final-candidate verification (must stay separate from MP-derived stats)
 
 ---
 

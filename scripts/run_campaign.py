@@ -2,11 +2,14 @@
 """CLI entry point for catalyst discovery campaigns.
 
 Usage:
-    python scripts/run_campaign.py --budget 100 [--ollama-model gemma4:latest] [--mode batch|sequential] [--mace-checkpoint mace-mpa-0-medium]
+    python scripts/run_campaign.py [--budget 100] [--max-experiments 5] [--campaign-id 2026-31-09_test] [--ollama-model gemma4:latest] [--mode batch|sequential] [--mace-checkpoint mace-mpa-0-medium]
 
 This script orchestrates the full agent loop:
 1. Retriever → Predictor → Critic → Scribe (repeat until budget exhausted)
 2. Logs to MLflow and JSON journals
+
+Journal files are saved as `agent/journal/<campaign_id>.json` where campaign_id
+is the UUID generated from --campaign_id or auto-generated if not provided.
 
 Execution modes:
 - batch (default): Write KG predictions at end of campaign (faster, better for large batches)
@@ -61,6 +64,13 @@ def parse_args() -> argparse.Namespace:
     )
     
     parser.add_argument(
+        "--campaign-id",
+        type=str,
+        default=None,
+        help="Unique identifier for this campaign (UUID recommended). Used as journal filename prefix in `agent/journal/<campaign_id>.json`"
+    )
+    
+    parser.add_argument(
         "--mode",
         type=str,
         default=None,
@@ -98,9 +108,9 @@ def run_campaign(
     """Run a complete catalyst discovery campaign using CampaignOrchestrator.
 
     Args:
-        campaign_id: Unique identifier for this campaign (UUID recommended)
-        ollama_model: Ollama model name/version used
-        mace_checkpoint: MACE checkpoint version
+        campaign_id: Unique identifier for this campaign (UUID recommended). Used as the journal filename prefix in `agent/journal/<campaign_id>.json`.
+        ollama_model: Ollama model name/version used (e.g., gemma4:latest)
+        mace_checkpoint: MACE checkpoint path or name (e.g., mace-mpa-0-medium.model)
         mode: Execution mode override ("sequential" or "batch")
 
     Returns:
@@ -167,7 +177,11 @@ def run_campaign(
 # ---------------------------------------------------------------------------
 
 def main():
-    """Main CLI entry point."""
+    """Main CLI entry point.
+    
+    Journal files are saved as `agent/journal/<campaign_id>.json` where campaign_id
+    is the UUID generated from --campaign_id or auto-generated if not provided.
+    """
     args = parse_args()
     
     # Generate campaign ID if not provided

@@ -26,7 +26,7 @@ from kg.graph_store import load_graph, rehydrate_node, DEFAULT_KG_JSON
 # Config 
 # ---------------------------------------------------------------------------
 
-MACE_CHECKPOINT_PATH = Path("models/gnn_surrogate/mace-mpa-0-medium.model")
+MACE_CHECKPOINT_PATH = Path("models/mace-mpa-0-medium.model")
 N_DROPOUT_PASSES = 5  # MC Dropout passes for uncertainty estimate
 
 

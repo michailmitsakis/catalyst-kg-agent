@@ -134,7 +134,7 @@ def main():
     # Check if checkpoint exists first
     if not MACE_CHECKPOINT_PATH.exists():
         print(f"\n[FAIL] MACE checkpoint not found at: {MACE_CHECKPOINT_PATH}")
-        print("Place mace-mp-0.pth in models/gnn_surrogate/")
+        print("Place mace-mpa-0-medium.model in models/")
         return
     
     print(f"[PASS] Checkpoint found: {MACE_CHECKPOINT_PATH}\n")

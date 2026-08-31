@@ -223,7 +223,7 @@ class CampaignOrchestrator:
                     self.state.log(f"step_{step}_scribe", {"mode": "sequential"})
                     for pred in predictions:
                         scribe._add_prediction_to_kg(pred)
-                        self.tracker.deduct(ActionCategory.SURROGATE_QUERY, SURROGATE_COST)
+                        # Note: surrogate cost already deducted at line 197 in prediction loop
                 else:
                     # Batch mode: write all predictions at end of campaign (deferred)
                     self.state.log(f"step_{step}_scribe", {"mode": "batch", "n_predictions": len(predictions)})
