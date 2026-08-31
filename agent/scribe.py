@@ -1,11 +1,20 @@
 """Scribe agent: Writes campaign results back to KG.
 
-Parses results from Retriever/Predictor/Critic/Planner and updates KG with:
-1. New material evaluations (predicted properties)
-2. Campaign metadata (run ID, timestamps, outcomes)
-3. Scribe tracks: which materials were evaluated, predictions made, escalations triggered
+Parses results from Retriever/Predictor/Critic/Planner and updates KG with
+new material property predictions (materials + properties only -- campaign
+metadata such as escalation decisions, final candidate choice, and cost
+live in the journal JSON / MLflow, not in the KG).
 
-Keeps KG as "compounding memory" for future campaigns to start from accumulated knowledge.
+Keeps KG as "compounding memory" for future campaigns to start from accumulated
+knowledge.
+
+IMPORTANT -- property naming: MACE predictions are written under the
+"mace_energy_per_atom" property name, NOT "energy_above_hull". The Predictor
+does not compute e_above_hull (see agent/predictor.py docstring); writing
+its output under the same property name MP's own e_above_hull uses would
+silently average MACE energies into MP's ground-truth stability values --
+exactly the tier-mixing this project's own rule (never mix UMA/MP energies)
+is meant to prevent, just for MACE-vs-MP instead.
 """
 
 from __future__ import annotations
@@ -23,8 +32,16 @@ from kg.schema import (
     MaterialNode, PropertyNode, NodeType, property_id, PropertyName,
       PropertySource, PropertyUnit, material_id, KGNode
 )
-from kg.graph_store import load_graph, save_graph
+from kg.graph_store import load_graph, save_graph, rehydrate_node
 from agent.predictor import PredictorResult  # Import actual predictor result type
+
+
+# Property name used for MACE surrogate output. Not a PropertyName enum
+# member (that enum's only members are energy_above_hull and band_gap);
+# PropertyName.coerce()/schema's open-vocabulary handling accepts this raw
+# string without a schema edit. Kept as a module constant so build_graph.py
+# / queries.py can reference the same literal if they need to filter on it.
+MACE_ENERGY_PROPERTY_NAME = "mace_energy_per_atom"
 
 
 # ---------------------------------------------------------------------------
@@ -57,7 +74,7 @@ class PredictorOutput(BaseModel):
         """Convert PredictorResult to PredictorOutput for backward compatibility."""
         return cls(
             material_id=result.material_id,
-            property_name="energy_above_hull",
+            property_name=MACE_ENERGY_PROPERTY_NAME,
             predicted_value=result.property_value if result.property_value is not None else 0.0,
             uncertainty=result.uncertainty,
             model_source=result.model_used,
@@ -102,8 +119,10 @@ class ScribeAgent:
         for pred in predictions_made or []:
             self._add_prediction_to_kg(pred)  # Now takes PredictorResult directly
 
-        # Add campaign metadata node (optional, for tracking)
-        # self.G.add_node(f"campaign:{campaign_id}", type="Campaign", ...)
+        # Note: campaign metadata (escalations_triggered, total_cost, final
+        # outcome) is intentionally NOT written to the KG. The KG holds
+        # materials and properties only; campaign-level bookkeeping lives
+        # in the journal JSON / MLflow (see agent/campaign.py).
 
         # Save updated graph to disk
         save_graph(self.G, self.graph_path)
@@ -118,15 +137,19 @@ class ScribeAgent:
         }
 
     def _add_prediction_to_kg(self, prediction: PredictorResult):
-        """Add a property prediction to the KG as a new PropertyNode.
+        """Add a MACE energy-per-atom prediction to the KG as a new PropertyNode.
+
+        Written under MACE_ENERGY_PROPERTY_NAME ("mace_energy_per_atom"),
+        never under "energy_above_hull" -- see module docstring for why.
 
         Args:
-            prediction: PredictorResult object from MACE predictor with e_above_hull + uncertainty
+            prediction: PredictorResult object from MACE predictor with
+                energy-per-atom value + MC-Dropout uncertainty
         """
         material_id = prediction.material_id
-        
+
         # Extract values from PredictorResult
-        prop_name = "energy_above_hull"  # Only e_above_hull for now
+        prop_name = MACE_ENERGY_PROPERTY_NAME
         pred_value = prediction.property_value
         uncertainty = prediction.uncertainty
         
@@ -168,13 +191,16 @@ class ScribeAgent:
             print(f"Scribe: Updated existing property {prop_name} for {material_id} (avg uncertainty={avg_uncertainty:.3f})")
             return
 
-        # Create new PropertyNode for this prediction
+        # Create new PropertyNode for this prediction. prop_name is a raw
+        # string ("mace_energy_per_atom"), not a canonical PropertyName
+        # enum member -- PropertyNode's open-vocabulary validator
+        # (PropertyName.coerce) accepts it without a schema edit.
         prop_node = PropertyNode(
             id=property_id(material_id, prop_name),
             mpid=mpid,
             name=prop_name,
             value=pred_value,
-            unit=PropertyUnit.ENERGY_ABOVE_HULL,
+            unit=PropertyUnit.ENERGY_ABOVE_HULL,  # "eV/atom" -- same unit string, different property name
             source=PropertySource.MACE_FINETUNED,
         )
 
@@ -184,7 +210,7 @@ class ScribeAgent:
         self.G.nodes[prop_node.id]["uncertainty"] = round(uncertainty, 4)
 
         # Add edge from material to property
-        self.G.add_edge(material_id, prop_node.id, key=f"HAS_PROPERTY:{prop_name.value}", type="HAS_PROPERTY")
+        self.G.add_edge(material_id, prop_node.id, key=f"HAS_PROPERTY:{prop_name}", type="HAS_PROPERTY")
         
         print(f"Scribe: Added new property {prop_name}={pred_value:.4f} eV/atom for {material_id} (uncertainty={uncertainty:.1%})")
 
@@ -250,5 +276,6 @@ __all__ = [
     "ScribeAgent",
     "CampaignResult",
     "PredictorOutput",
+    "MACE_ENERGY_PROPERTY_NAME",
     "create_scribe",
 ]

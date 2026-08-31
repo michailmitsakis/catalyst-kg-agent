@@ -1,12 +1,23 @@
-"""MACE surrogate predictor for e_above_hull estimation.
+"""MACE surrogate predictor for catalyst candidate ranking.
 
 Uses MACE model (mace-mp-0 foundation checkpoint) with Monte Carlo Dropout
 for uncertainty quantification. Single-material inference only (batching added later).
 
 Cost: SURROGATE_COST = 5.0 per prediction.
 
-e_above_hull calculation: Uses pymatgen's Structure.form_formation_energy_per_atom()
-with Materials Project reference elements for consistent eV/atom values.
+IMPORTANT — what `property_value` actually is:
+    This is the MC-Dropout-mean MACE total energy per atom (eV/atom), NOT
+    e_above_hull. A true e_above_hull requires a convex-hull calculation
+    against competing phases in the chemical system (MP phase-diagram data),
+    which this predictor does not fetch. The stability gate in agent/critic.py
+    correctly sources e_above_hull from the KG's MP-derived value instead of
+    from this predictor.
+
+    This value's role in the pipeline is a cheap relative-ranking signal
+    among candidates that already passed the (free, MP-sourced) stability
+    gate, plus an uncertainty carrier: high MC-Dropout variance on this
+    energy is what triggers Critic escalation (agent/critic.py), not a
+    judgment about the material's stability.
 """
 
 from __future__ import annotations
@@ -23,7 +34,7 @@ from kg.graph_store import load_graph, rehydrate_node, DEFAULT_KG_JSON
 
 
 # ---------------------------------------------------------------------------
-# Config 
+# Config
 # ---------------------------------------------------------------------------
 
 MACE_CHECKPOINT_PATH = Path("models/mace-mpa-0-medium.model")
@@ -35,10 +46,14 @@ N_DROPOUT_PASSES = 5  # MC Dropout passes for uncertainty estimate
 # ---------------------------------------------------------------------------
 
 class PredictorResult(BaseModel):
-    """Structured prediction result."""
+    """Structured prediction result.
+
+    property_value: MC-Dropout-mean MACE total energy per atom (eV/atom).
+        NOT e_above_hull -- see module docstring.
+    """
     material_id: str
-    property_value: Optional[float]  # e_above_hull in eV/atom or None if failed
-    uncertainty: float               # MC Dropout std dev (0.0-1.0 confidence)
+    property_value: Optional[float]  # MACE energy per atom (eV/atom), or None if failed
+    uncertainty: float               # MC Dropout std dev (eV/atom)
     model_used: Literal["mace"]
     prediction_failed: bool
 
@@ -67,7 +82,7 @@ class MACEModel:
 
         try:
             from mace.calculators import MACECalculator
-            
+
             # Initialize MACE calculator with checkpoint path and device
             # NOTE: MACE API uses 'model_paths' (list) instead of 'checkpoint_path'
             self.calculator = MACECalculator(
@@ -79,13 +94,13 @@ class MACEModel:
             raise RuntimeError(f"Failed to load MACE model: {e}")
 
     def predict_energy_per_atom(self, structure) -> float:
-        """Predict energy per atom for a single structure.
+        """Predict total energy per atom for a single structure.
 
         Args:
-            structure: pymatgen Structure or ASE Atoms object
+            structure: ASE Atoms object
 
         Returns:
-            Predicted energy per atom in eV
+            Predicted total energy per atom in eV/atom
         """
         self._load_model()
 
@@ -104,30 +119,9 @@ class MACEModel:
                 n_atoms = structure.num_formulas
             else:
                 raise AttributeError(f"Structure has neither num_atoms nor get_number_of_atoms")
-            
+
             total_energy = self.calculator.get_potential_energy(structure)
             return float(total_energy / n_atoms)
-        except Exception as e:
-            raise RuntimeError(f"MACE prediction failed: {e}")
-
-    def predict(self, structure, enable_dropout: bool = False) -> float:
-        """Predict e_above_hull for a single structure.
-
-        Args:
-            structure: pymatgen Structure object
-            enable_dropout: If True, enables MC Dropout mode
-
-        Returns:
-            Predicted energy per atom in eV (NOT e_above_hull yet)
-        """
-        self._load_model()
-
-        try:
-            # Use MACE calculator to compute energy
-            total_energy = self.calculator.get_energy(structure)
-            
-            # Convert energy to e_per_atom
-            return float(total_energy / structure.num_formulas)
         except Exception as e:
             raise RuntimeError(f"MACE prediction failed: {e}")
 
@@ -137,10 +131,11 @@ class MACEModel:
 # ---------------------------------------------------------------------------
 
 class PredictorAgent:
-    """MACE-based property predictor with MC Dropout uncertainty.
+    """MACE-based energy-per-atom predictor with MC Dropout uncertainty.
 
-    Implements e_above_hull calculation using pymatgen's formation energy
-    relative to elemental references (Materials Project convention).
+    Returns a cheap relative-ranking signal (MACE energy per atom) with an
+    uncertainty estimate used to trigger Critic escalation. Does NOT compute
+    e_above_hull -- see module docstring.
     """
 
     def __init__(self, checkpoint_path: Path = MACE_CHECKPOINT_PATH):
@@ -153,13 +148,13 @@ class PredictorAgent:
         self.n_dropout_passes = N_DROPOUT_PASSES
 
     def predict(self, material: MaterialNode) -> PredictorResult:
-        """Predict e_above_hull for a single material.
+        """Predict MACE energy per atom for a single material.
 
         Args:
             material: MaterialNode from KG (may have structure_id reference to StructureNode)
 
         Returns:
-            PredictorResult with value + uncertainty
+            PredictorResult with value (energy per atom, eV/atom) + uncertainty
         """
         # Fetch structure from graph using structure_id field
         # If structure_id is None or empty, prediction will fail gracefully
@@ -178,16 +173,16 @@ class PredictorAgent:
             # We need to load from the canonical KG location
             G = load_graph(DEFAULT_KG_JSON)
             structure_node = rehydrate_node(G, material.structure_id)
-            
+
             # Convert StructureNode (pydantic) to pymatgen Structure object
             # The StructureNode has cif_path which points to the actual CIF file
             from pymatgen.core import Structure as PMGSstructure
-            
+
             pmg_structure = PMGSstructure.from_file(structure_node.cif_path)
-            
+
             # Convert pymatgen Structure to ASE Atoms (what MACE expects)
             from ase.atoms import Atoms as AseAtoms
-            
+
             # Handle both pure ASE Atoms and pymatgen's MSONAtoms wrapper
             if hasattr(pmg_structure, 'to_ase_atoms'):
                 ase_atoms = pmg_structure.to_ase_atoms()
@@ -223,7 +218,12 @@ class PredictorAgent:
             )
 
         try:
-            # Step 1: Run MC Dropout inference to get energy per atom predictions
+            # Run MC Dropout inference to get energy-per-atom predictions.
+            # property_value is the mean of these passes -- MACE total energy
+            # per atom (eV/atom). This is NOT e_above_hull (see module
+            # docstring): no convex-hull / competing-phase calculation is
+            # performed here. Stability is sourced from the KG's MP-derived
+            # e_above_hull in agent/critic.py, not from this value.
             energies_per_atom = []
             for _ in range(self.n_dropout_passes):
                 e_per_atom = self.model.predict_energy_per_atom(ase_atoms)
@@ -238,32 +238,12 @@ class PredictorAgent:
                     prediction_failed=True,
                 )
 
-            # Step 2: Calculate e_above_hull using pymatgen
-            # Use the mean energy from MC Dropout as input to formation energy calc
-            avg_energy_per_atom = np.mean(energies_per_atom)
-            
-            # Compute formation energy relative to convex hull
-            try:
-                from pymatgen.core import Structure
-                
-                # pymatgen's form_formation_energy_per_atom returns eV/atom
-                # relative to elemental references (MP convention)
-                formation_energy = structure.form_formation_energy_per_atom()
-                
-                # Use MACE-predicted energy as the total energy input
-                # pymatgen will compute the convex hull and return e_above_hull
-                e_above_hull = avg_energy_per_atom - formation_energy
-                
-            except Exception as e:
-                # Fallback: if pymatgen calculation fails, use raw MACE output
-                e_above_hull = avg_energy_per_atom
-
-            # Step 3: Calculate uncertainty from MC Dropout variance
-            std_dev = np.std(energies_per_atom)
+            avg_energy_per_atom = float(np.mean(energies_per_atom))
+            std_dev = float(np.std(energies_per_atom))
 
             return PredictorResult(
                 material_id=material.mpid,
-                property_value=e_above_hull,
+                property_value=avg_energy_per_atom,
                 uncertainty=std_dev,
                 model_used="mace",
                 prediction_failed=False,

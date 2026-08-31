@@ -137,15 +137,14 @@ def rehydrate_node(G: nx.MultiDiGraph, node_id: str) -> KGNode:
     
     # Special handling for MaterialNode: find and link its StructureNode
     if isinstance(result, MaterialNode):
-        # Look for HAS_STRUCTURE edge from this material
-        for edge_tuple in G.edges(node_id, data=True):
-            # Handle multi-edges (tuples of 3) vs regular edges (tuples of 2)
-            if len(edge_tuple) >= 3:
-                src, tgt, edge_dict = edge_tuple
-            else:
-                src, tgt = edge_tuple
-                edge_dict = edge_data
-            
+        # Look for HAS_STRUCTURE edge from this material.
+        # G.edges(node_id, data=True) on a MultiDiGraph always yields
+        # (src, tgt, edge_dict) 3-tuples with this call signature -- it
+        # does not yield 2-tuples, so there is no "plain edge" case to
+        # handle here (the previous version had an else-branch for that
+        # case referencing an undefined `edge_data` name; removed as
+        # dead/unreachable rather than patched).
+        for src, tgt, edge_dict in G.edges(node_id, data=True):
             if edge_dict.get("type") == "HAS_STRUCTURE":
                 result.structure_id = tgt
                 break

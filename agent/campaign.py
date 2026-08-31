@@ -1,7 +1,14 @@
 """Campaign orchestrator: Runs the full budget-bounded discovery loop.
 
-Coordinates all agents (Retriever, Predictor, Critic, Scribe) and manages
-budget tracking via cost_model.BudgetTracker. Logs each step to journal + MLflow.
+Coordinates all agents (Retriever, Predictor, Critic, Planner, Scribe) and
+manages budget tracking via cost_model.BudgetTracker. Logs each step to
+journal + MLflow.
+
+Planner's role here: CampaignOrchestrator owns the BudgetTracker and does
+the actual cost deduction (KG_LOOKUP is deducted here, since Planner never
+handled that cost -- see PlannerAgent.plan_next_step docstring). Planner is
+consulted per step for the continue/escalate/stop decision; campaign.py
+still performs the deduction its decision implies.
 """
 
 from __future__ import annotations
@@ -117,6 +124,7 @@ class CampaignOrchestrator:
         self._retriever: Optional[Any] = None
         self._predictor: Optional[Any] = None
         self._critic: Optional[Any] = None
+        self._planner: Optional[Any] = None
 
     # -----------------------------------------------------------------------
     # Agent factories
@@ -143,6 +151,23 @@ class CampaignOrchestrator:
             self._critic = create_critic()
         return self._critic
 
+    def get_planner(self, use_llm: bool = False):
+        """Get or create Planner agent.
+
+        use_llm defaults to False here: campaign.py already owns the
+        continue/escalate/stop wiring against the BudgetTracker it holds,
+        so Planner is consulted for its decision logic (budget/experiment-
+        count rules), not for LLM-driven planning.
+        """
+        if self._planner is None:
+            from agent.planner import PlannerAgent, create_planner
+            self._planner = PlannerAgent(
+                graph_path=self.graph_path,
+                campaign_id=self.campaign_id,
+                use_llm=use_llm,
+            )
+        return self._planner
+
     # -----------------------------------------------------------------------
     # Campaign loop
     # -----------------------------------------------------------------------
@@ -163,11 +188,19 @@ class CampaignOrchestrator:
         """
         # Use provided mode or instance default
         effective_mode = mode if mode else self.mode
-        
+
         # Start timing
         self.state.start_time = datetime.now()
         self.state.status = "running"
         self.state.log("campaign_start", {"query": query or "default", "mode": effective_mode})
+
+        planner = self.get_planner()
+
+        # Accumulates predictions across every step, regardless of mode.
+        # Batch mode writes this whole list once at the end; sequential
+        # mode writes incrementally but this still tracks the full-run
+        # total for the final journal/MLflow summary.
+        all_predictions: list[Any] = []
 
         # Main loop - use MAX_ACTIONS_PER_CAMPAIGN and budget check
         step = 0
@@ -195,18 +228,24 @@ class CampaignOrchestrator:
             try:
                 predictor = self.get_predictor()
                 predictions = []
-                
+
                 for mat in materials:
                     pred_result = predictor.predict(mat)
                     predictions.append(pred_result)
-                    
-                    # Deduct surrogate cost
-                    self.tracker.deduct(ActionCategory.SURROGATE_QUERY, SURROGATE_COST)
+
+                    # Deduct surrogate cost; stop this step's predictions if
+                    # budget runs out mid-loop rather than silently
+                    # overspending past zero.
+                    if not self.tracker.deduct(ActionCategory.SURROGATE_QUERY, SURROGATE_COST):
+                        self.state.log("budget_exhausted_mid_predictions", {
+                            "material_id": getattr(mat, "mpid", None),
+                        })
+                        break
 
             except NotImplementedError:
                 # Skip prediction if not implemented yet
                 predictions = None
-            
+
             # 3. Critic validation
             critic_decisions = []
             if materials and predictions:
@@ -220,36 +259,57 @@ class CampaignOrchestrator:
                         # Deduct experiment cost
                         self.tracker.deduct(ActionCategory.EXPERIMENT_ESCALATION, EXPERIMENT_COST)
 
+            # 3b. Consult Planner for the continue/escalate/stop decision.
+            # campaign.py still owns BudgetTracker and performs all actual
+            # cost deduction above; Planner's decision informs loop control
+            # (e.g. stopping early once max experiments is reached) without
+            # re-deducting cost itself.
+            planner_decision = planner.plan_next_step(
+                retrieved_materials=materials,
+                predictions=predictions,
+                critic_decisions=critic_decisions,
+            )
+            self.state.log("planner_decision", {
+                "next_action": planner_decision.next_action,
+                "reason": planner_decision.reason,
+            })
+
             # 4. Scribe - persist predictions to KG (mode-dependent)
             if predictions:
+                all_predictions.extend(predictions)
                 scribe = ScribeAgent(graph_path=self.graph_path)
-                n_escalations = sum(1 for d in critic_decisions if d.requires_escalation)
-                
+
                 if effective_mode == "sequential":
                     # Sequential mode: write each prediction immediately
                     self.state.log(f"step_{step}_scribe", {"mode": "sequential"})
                     for pred in predictions:
                         scribe._add_prediction_to_kg(pred)
-                        # Note: surrogate cost already deducted at line 197 in prediction loop
+                        # Note: surrogate cost already deducted in the
+                        # prediction loop above.
                 else:
-                    # Batch mode: write all predictions at end of campaign (deferred)
+                    # Batch mode: defer writing until the full run completes
                     self.state.log(f"step_{step}_scribe", {"mode": "batch", "n_predictions": len(predictions)})
 
-        # Write deferred batch predictions if in batch mode and not already written
-        if effective_mode == "batch" and predictions and step > 1:
-            self.state.log("scribe_batch_deferred", {"mode": "batch", "n_predictions": len(predictions)})
+            if planner_decision.next_action == "stop":
+                self.state.log("planner_stop", {"reason": planner_decision.reason})
+                break
+
+        # Write deferred batch predictions if in batch mode. Uses the
+        # full-run accumulated list, not just the last step's predictions.
+        if effective_mode == "batch" and all_predictions:
+            self.state.log("scribe_batch_deferred", {"mode": "batch", "n_predictions": len(all_predictions)})
             scribe = ScribeAgent(graph_path=self.graph_path)
             n_escalations = sum(1 for d in critic_decisions if d.requires_escalation)
             # Calculate total spent from budget tracker
             total_spent = round(self.tracker.initial_budget - self.tracker.remaining_budget, 2)
             scribe.log_campaign_results(
                 campaign_id=self.campaign_id,
-                materials_evaluated=materials,
-                predictions_made=predictions,
+                materials_evaluated=self.state.final_materials,
+                predictions_made=all_predictions,
                 escalations_triggered=n_escalations,
                 total_cost=total_spent
             )
-            
+
             # Reload graph after Scribe write to get latest data
             self.G = load_graph(self.graph_path)
 
@@ -287,7 +347,7 @@ class CampaignOrchestrator:
         self._log_to_mlflow(
             total_cost=round(self.tracker.initial_budget - self.tracker.remaining_budget, 2),
             materials_evaluated=len(self.state.final_materials),
-            predictions_made=0,  # Not tracked yet
+            predictions_made=len(all_predictions),
             escalations_triggered=sum(1 for log in self.state.logs if log.get("event") == "critic_escalation"),
             best_candidate_e_above_hull=best_e_above_hull,
             final_outcome="completed",

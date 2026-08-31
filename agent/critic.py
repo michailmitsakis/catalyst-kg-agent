@@ -53,7 +53,7 @@ class KGLookupResult(BaseModel):
     provenance: Dict[str, Any]
 
 
-# PredictorResult from predictor.py (MACE e_above_hull + MC Dropout uncertainty)
+# PredictorResult from predictor.py (MACE energy-per-atom + MC Dropout uncertainty)
 
 
 
@@ -166,7 +166,7 @@ class CriticAgent:
                 approved=False,
                 requires_escalation=True,
                 reason=" ".join(reasons),
-                cost_impact=EXPERIMENT_COST,  # Will be set from cost model
+                cost_impact=EXPERIMENT_COST,
             )
         else:
             reasons.append("All checks passed")
@@ -250,12 +250,19 @@ class CriticAgent:
             from kg.graph_store import load_graph
             
             G = load_graph(self.graph_path)
-            
+
+            # Normalize material_id to a bare mpid up front so the
+            # comparison below is a plain equality check, not a
+            # conditional expression tangled into an `and` chain
+            # (the previous version had `X == Y if cond else Z` inline,
+            # which does not parenthesize the way it reads).
+            target_mpid = material_id.split(":")[-1] if ":" in material_id else material_id
+
             # Find property nodes for this material with name "energy_above_hull"
             for nid, data in G.nodes(data=True):
-                if (data.get("type") == NodeType.PROPERTY.value and 
+                if (data.get("type") == NodeType.PROPERTY.value and
                     data.get("name") == "energy_above_hull" and
-                    data.get("mpid") == material_id.split(":")[-1] if ":" in material_id else material_id):
+                    data.get("mpid") == target_mpid):
                     return float(data.get("value", 0))
             
             return None
@@ -277,13 +284,6 @@ class CriticAgent:
 
 
 # ---------------------------------------------------------------------------
-# Cost constants for escalation tracking
-# ---------------------------------------------------------------------------
-
-EXPERIMENT_COST = 10.0  # High cost for expensive DFT/UMA checks
-
-
-# ---------------------------------------------------------------------------
 # Factory function
 # ---------------------------------------------------------------------------
 
@@ -299,7 +299,5 @@ def create_critic() -> CriticAgent:
 __all__ = [
     "CriticAgent",
     "CriticDecision",
-    "STABILITY_THRESHOLD",
-    "UNCERTAINTY_GATE",
     "create_critic",
 ]

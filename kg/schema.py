@@ -227,16 +227,7 @@ class PropertyNode(_Base):
     `name` is *open*: canonical PropertyName enum members are accepted
     directly, and any new string from a future MP endpoint is coerced
     via `PropertyName.coerce` so the graph does not require a schema
-    edit per new propesource", mode="before")
-    @classmethod
-    def _accept_open_source(cls, v: object) -> PropertySource:
-        if isinstance(v, PropertySource):
-            return v
-        if isinstance(v, str):
-            return PropertySource.coerce(v)
-        raise ValueError(f"PropertyNode.source must be str or PropertySource, got {type(v).__name__}")
-
-    @field_validator("rty. Use `PropertyName.is_canonical(name)` to
+    edit per new property. Use `PropertyName.is_canonical(name)` to
     audit whether a given property is on the canonical list.
     """
     id: str = Field(..., description="property:<mpid>:<name>")
@@ -267,6 +258,15 @@ class PropertyNode(_Base):
         if isinstance(v, str):
             return PropertyUnit.coerce(v)
         raise ValueError(f"PropertyNode.unit must be str or PropertyUnit, got {type(v).__name__}")
+
+    @field_validator("source", mode="before")
+    @classmethod
+    def _accept_open_source(cls, v: object) -> PropertySource:
+        if isinstance(v, PropertySource):
+            return v
+        if isinstance(v, str):
+            return PropertySource.coerce(v)
+        raise ValueError(f"PropertyNode.source must be str or PropertySource, got {type(v).__name__}")
 
 
 class MaterialNode(_Base):
