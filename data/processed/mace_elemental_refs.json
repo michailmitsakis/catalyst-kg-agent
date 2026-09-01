@@ -1,0 +1,83 @@
+{
+  "C": {
+    "energy_per_atom_eV": -9.208753358345598,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-3347313)",
+    "mpid": "mp-3347313"
+  },
+  "Co": {
+    "energy_per_atom_eV": -7.099596194686448,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-102)",
+    "mpid": "mp-102"
+  },
+  "Fe": {
+    "energy_per_atom_eV": -8.468067804250472,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-13)",
+    "mpid": "mp-13"
+  },
+  "Ir": {
+    "energy_per_atom_eV": -8.85978318339888,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-101)",
+    "mpid": "mp-101"
+  },
+  "Mn": {
+    "energy_per_atom_eV": -9.044290316619715,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-35)",
+    "mpid": "mp-35"
+  },
+  "Mo": {
+    "energy_per_atom_eV": -10.838360884452882,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-129)",
+    "mpid": "mp-129"
+  },
+  "Ni": {
+    "energy_per_atom_eV": -5.7745569763403175,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-23)",
+    "mpid": "mp-23"
+  },
+  "O": {
+    "energy_per_atom_eV": -4.679122836271622,
+    "reference_state": "molecule",
+    "reference_detail": "O2 in 15.0 A cubic vacuum box, bond 1.21 A",
+    "mpid": null
+  },
+  "P": {
+    "energy_per_atom_eV": -5.393809980289106,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-568348)",
+    "mpid": "mp-568348"
+  },
+  "Pt": {
+    "energy_per_atom_eV": -6.043144850357429,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-126)",
+    "mpid": "mp-126"
+  },
+  "S": {
+    "energy_per_atom_eV": -4.11819750918563,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-77)",
+    "mpid": "mp-77"
+  },
+  "W": {
+    "energy_per_atom_eV": -12.948521420794693,
+    "reference_state": "crystal",
+    "reference_detail": "lowest-e_above_hull elemental crystal from MP (mp-91)",
+    "mpid": "mp-91"
+  },
+  "_meta": {
+    "generated": "2026-09-01T23:52:55.089780",
+    "mace_checkpoint": "mace-mpa-0-medium.model",
+    "device": "cpu",
+    "vacuum_box_size_A": 15.0,
+    "n_elements": 12,
+    "failed_elements": [],
+    "note": "Energies are MACE-evaluated and self-consistent with each other. Oxide formation energies derived from these references carry a systematic offset vs Materials Project's formation_energy_per_atom, which applies empirical anion corrections. Report oxide and non-oxide comparisons separately."
+  }
+}

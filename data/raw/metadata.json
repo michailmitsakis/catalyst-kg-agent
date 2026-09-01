@@ -7,6 +7,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.4713997999929969,
     "band_gap": 0.0
   },
   {
@@ -17,6 +18,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.4241416638690474,
     "band_gap": 0.0
   },
   {
@@ -27,6 +29,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.40791869115079277,
     "band_gap": 0.0
   },
   {
@@ -37,6 +40,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.31343600348214196,
     "band_gap": 0.0
   },
   {
@@ -47,6 +51,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.4063388534920615,
     "band_gap": 0.0
   },
   {
@@ -57,6 +62,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.5003802552380954,
     "band_gap": 0.0
   },
   {
@@ -67,6 +73,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.5062888728174618,
     "band_gap": 0.4377999999999993
   },
   {
@@ -77,6 +84,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.49524429785714297,
     "band_gap": 0.0
   },
   {
@@ -87,6 +95,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.4575927709920633,
     "band_gap": 0.0
   },
   {
@@ -97,6 +106,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.354155793035714,
     "band_gap": 0.0
   },
   {
@@ -107,6 +117,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.5973374473214275,
     "band_gap": 0.0
   },
   {
@@ -117,6 +128,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.5353095164285703,
     "band_gap": 0.43270000000000053
   },
   {
@@ -127,6 +139,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.37004192121428403,
     "band_gap": 0.7795999999999994
   },
   {
@@ -137,6 +150,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.3485922019940517,
     "band_gap": 0.0
   },
   {
@@ -147,6 +161,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.6960018689880947,
     "band_gap": 0.0
   },
   {
@@ -157,6 +172,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.5421201086507944,
     "band_gap": 0.0
   },
   {
@@ -167,6 +183,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.37985946338095145,
     "band_gap": 0.0
   },
   {
@@ -177,6 +194,7 @@
       "W"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.38150328531745953,
     "band_gap": 0.0
   },
   {
@@ -187,6 +205,7 @@
       "W"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.3642590639880936,
     "band_gap": 0.0
   },
   {
@@ -197,6 +216,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.513148089057198,
     "band_gap": 0.0
   },
   {
@@ -207,6 +227,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.6206113400916801,
     "band_gap": 0.0
   },
   {
@@ -217,6 +238,7 @@
       "P"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.6152445087869465,
     "band_gap": 0.0
   },
   {
@@ -227,6 +249,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.5714508529999996,
     "band_gap": 0.0
   },
   {
@@ -237,6 +260,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.6585213785714268,
     "band_gap": 0.0
   },
   {
@@ -247,6 +271,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.5915265383333329,
     "band_gap": 0.24040000000000017
   },
   {
@@ -257,6 +282,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.5121890544642866,
     "band_gap": 0.0
   },
   {
@@ -267,6 +293,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.4391167660294119,
     "band_gap": 0.0
   },
   {
@@ -277,6 +304,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.454813428541667,
     "band_gap": 0.0
   },
   {
@@ -287,6 +315,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.7574410312499991,
     "band_gap": 0.0
   },
   {
@@ -297,6 +326,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.8474769699999989,
     "band_gap": 0.8806999999999992
   },
   {
@@ -307,6 +337,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.9661425452083326,
     "band_gap": 1.3839000000000006
   },
   {
@@ -317,6 +348,7 @@
       "W"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.883580008541666,
     "band_gap": 1.5656999999999996
   },
   {
@@ -327,6 +359,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.1403587336476289,
     "band_gap": 0.0
   },
   {
@@ -337,6 +370,7 @@
       "S"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.7995039067025852,
     "band_gap": 0.0
   },
   {
@@ -347,6 +381,7 @@
       "Mo"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.13904961666666557,
     "band_gap": 0.0
   },
   {
@@ -357,6 +392,7 @@
       "Mo"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.16041841499999876,
     "band_gap": 0.0
   },
   {
@@ -367,6 +403,7 @@
       "W"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -0.1535407450000008,
     "band_gap": 0.0
   },
   {
@@ -377,6 +414,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.0467500692857143,
     "band_gap": 0.0
   },
   {
@@ -387,6 +425,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.2180853000000003,
     "band_gap": 2.387200000000001
   },
   {
@@ -397,6 +436,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.290338224285714,
     "band_gap": 1.4652000000000003
   },
   {
@@ -407,6 +447,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.2718311462500012,
     "band_gap": 0.5819000000000001
   },
   {
@@ -417,6 +458,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.0724326600000016,
     "band_gap": 0.5904000000000001
   },
   {
@@ -427,6 +469,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.7070913529999998,
     "band_gap": 0.0
   },
   {
@@ -437,6 +480,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.4815193874999997,
     "band_gap": 2.3029
   },
   {
@@ -447,6 +491,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -2.0504092405418723,
     "band_gap": 0.8134999999999994
   },
   {
@@ -457,6 +502,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -2.032569766465519,
     "band_gap": 1.1560999999999995
   },
   {
@@ -467,6 +513,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.822527924032569,
     "band_gap": 0.5126
   },
   {
@@ -478,6 +525,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.5910412692857139,
     "band_gap": 1.3827000000000003
   },
   {
@@ -489,6 +537,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.160993608571429,
     "band_gap": 0.0
   },
   {
@@ -500,6 +549,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.1366519479999995,
     "band_gap": 0.0
   },
   {
@@ -509,6 +559,7 @@
       "Pt"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": 0.0,
     "band_gap": 0.0
   },
   {
@@ -519,6 +570,7 @@
       "O"
     ],
     "energy_above_hull": 0.0,
+    "formation_energy_per_atom": -1.2608928416666647,
     "band_gap": 0.0
   },
   {
@@ -530,6 +582,7 @@
       "O"
     ],
     "energy_above_hull": 0.00036671099999896484,
+    "formation_energy_per_atom": -1.1362852369999998,
     "band_gap": 1.0203000000000002
   },
   {
@@ -540,6 +593,7 @@
       "O"
     ],
     "energy_above_hull": 0.0004125800000007729,
+    "formation_energy_per_atom": -1.2714185662500004,
     "band_gap": 0.7067000000000001
   },
   {
@@ -550,6 +604,7 @@
       "P"
     ],
     "energy_above_hull": 0.0005044483333342953,
+    "formation_energy_per_atom": -0.4570883226587294,
     "band_gap": 0.0
   },
   {
@@ -560,6 +615,7 @@
       "P"
     ],
     "energy_above_hull": 0.0008484516666671382,
+    "formation_energy_per_atom": -0.3586301763004919,
     "band_gap": 0.43679999999999986
   },
   {
@@ -570,6 +626,7 @@
       "W"
     ],
     "energy_above_hull": 0.0008838066666640998,
+    "formation_energy_per_atom": -0.8826962018750019,
     "band_gap": 1.5593000000000004
   },
   {
@@ -580,6 +637,7 @@
       "P"
     ],
     "energy_above_hull": 0.0009189668749982616,
+    "formation_energy_per_atom": -0.34767323511905346,
     "band_gap": 0.0
   },
   {
@@ -590,6 +648,7 @@
       "P"
     ],
     "energy_above_hull": 0.001444687666666944,
+    "formation_energy_per_atom": -0.35803394030049207,
     "band_gap": 0.5366000000000017
   },
   {
@@ -600,6 +659,7 @@
       "S"
     ],
     "energy_above_hull": 0.0015696991666658278,
+    "formation_energy_per_atom": -0.7979342075359194,
     "band_gap": 0.0
   },
   {
@@ -610,6 +670,7 @@
       "S"
     ],
     "energy_above_hull": 0.0016927283333316723,
+    "formation_energy_per_atom": -0.964449816875001,
     "band_gap": 1.4648999999999996
   },
   {
@@ -620,6 +681,7 @@
       "S"
     ],
     "energy_above_hull": 0.0018982358333339278,
+    "formation_energy_per_atom": -0.4529151927083331,
     "band_gap": 0.0
   },
   {
@@ -630,6 +692,7 @@
       "P"
     ],
     "energy_above_hull": 0.0022342603140081962,
+    "formation_energy_per_atom": -0.47382519154761993,
     "band_gap": 0.0
   },
   {
@@ -640,6 +703,7 @@
       "S"
     ],
     "energy_above_hull": 0.002389239999999404,
+    "formation_energy_per_atom": -0.9637533052083332,
     "band_gap": 1.3361
   },
   {
@@ -650,6 +714,7 @@
       "S"
     ],
     "energy_above_hull": 0.003681534999998348,
+    "formation_energy_per_atom": -0.9624610102083343,
     "band_gap": 1.4639999999999997
   },
   {
@@ -660,6 +725,7 @@
       "W"
     ],
     "energy_above_hull": 0.0037932516666643323,
+    "formation_energy_per_atom": -0.8797867568750016,
     "band_gap": 1.6559000000000001
   },
   {
@@ -670,6 +736,7 @@
       "S"
     ],
     "energy_above_hull": 0.004413344444444078,
+    "formation_energy_per_atom": -0.9617292007638886,
     "band_gap": 1.5093
   },
   {
@@ -680,6 +747,7 @@
       "W"
     ],
     "energy_above_hull": 0.005167376666669554,
+    "formation_energy_per_atom": -0.8784126318749972,
     "band_gap": 1.6345
   },
   {
@@ -690,6 +758,7 @@
       "O"
     ],
     "energy_above_hull": 0.005798527500001427,
+    "formation_energy_per_atom": -1.0666341325000002,
     "band_gap": 1.1551
   },
   {
@@ -700,6 +769,7 @@
       "P"
     ],
     "energy_above_hull": 0.006562992499995701,
+    "formation_energy_per_atom": -0.4013556986507929,
     "band_gap": 0.47330000000000005
   },
   {
@@ -710,6 +780,7 @@
       "O"
     ],
     "energy_above_hull": 0.0067494116666679815,
+    "formation_energy_per_atom": -1.0656832483333336,
     "band_gap": 0.0
   },
   {
@@ -720,6 +791,7 @@
       "S"
     ],
     "energy_above_hull": 0.007235794999999712,
+    "formation_energy_per_atom": -0.9589067502083329,
     "band_gap": 1.5539
   },
   {
@@ -730,6 +802,7 @@
       "W"
     ],
     "energy_above_hull": 0.007448381666669945,
+    "formation_energy_per_atom": -0.8761316268749985,
     "band_gap": 1.697
   },
   {
@@ -740,6 +813,7 @@
       "O"
     ],
     "energy_above_hull": 0.00928005499999962,
+    "formation_energy_per_atom": -1.4722393325,
     "band_gap": 0.0
   },
   {
@@ -750,6 +824,7 @@
       "S"
     ],
     "energy_above_hull": 0.010058665833334146,
+    "formation_energy_per_atom": -0.8374183041666647,
     "band_gap": 0.4571999999999994
   },
   {
@@ -761,6 +836,7 @@
       "O"
     ],
     "energy_above_hull": 0.010229785357144472,
+    "formation_energy_per_atom": -1.5725015085714276,
     "band_gap": 1.5511
   },
   {
@@ -772,6 +848,7 @@
       "O"
     ],
     "energy_above_hull": 0.01024966000000127,
+    "formation_energy_per_atom": -1.3086460092857126,
     "band_gap": 0.0
   },
   {
@@ -782,6 +859,7 @@
       "O"
     ],
     "energy_above_hull": 0.010479931428569955,
+    "formation_energy_per_atom": -1.279858292857144,
     "band_gap": 0.0
   },
   {
@@ -792,6 +870,7 @@
       "S"
     ],
     "energy_above_hull": 0.011914474999999314,
+    "formation_energy_per_atom": -1.1284442586476295,
     "band_gap": 0.0
   },
   {
@@ -802,6 +881,7 @@
       "O"
     ],
     "energy_above_hull": 0.012036055000001156,
+    "formation_energy_per_atom": -1.4694833324999985,
     "band_gap": 0.0
   },
   {
@@ -812,6 +892,7 @@
       "O"
     ],
     "energy_above_hull": 0.012461142500001188,
+    "formation_energy_per_atom": -1.0599715175000004,
     "band_gap": 0.0
   },
   {
@@ -822,6 +903,7 @@
       "O"
     ],
     "energy_above_hull": 0.013059251428572338,
+    "formation_energy_per_atom": -1.6295829685714278,
     "band_gap": 0.0
   },
   {
@@ -832,6 +914,7 @@
       "O"
     ],
     "energy_above_hull": 0.013191634455127499,
+    "formation_energy_per_atom": -1.9565608430503982,
     "band_gap": 0.6045000000000003
   },
   {
@@ -842,6 +925,7 @@
       "O"
     ],
     "energy_above_hull": 0.014061861250000973,
+    "formation_energy_per_atom": -1.4674575262499987,
     "band_gap": 1.7989000000000002
   },
   {
@@ -852,6 +936,7 @@
       "W"
     ],
     "energy_above_hull": 0.014157896666667114,
+    "formation_energy_per_atom": -0.8694221118750013,
     "band_gap": 1.8091
   },
   {
@@ -862,6 +947,7 @@
       "O"
     ],
     "energy_above_hull": 0.014164345833335368,
+    "formation_energy_per_atom": -1.0582683141666667,
     "band_gap": 1.2544
   },
   {
@@ -872,6 +958,7 @@
       "S"
     ],
     "energy_above_hull": 0.014181840833332515,
+    "formation_energy_per_atom": -0.6106647137499989,
     "band_gap": 0.0
   },
   {
@@ -882,6 +969,7 @@
       "S"
     ],
     "energy_above_hull": 0.01443991333333372,
+    "formation_energy_per_atom": -0.9517026318749989,
     "band_gap": 1.6605999999999999
   },
   {
@@ -892,6 +980,7 @@
       "S"
     ],
     "energy_above_hull": 0.014528515000000297,
+    "formation_energy_per_atom": -1.1258302186476286,
     "band_gap": 0.0
   },
   {
@@ -902,6 +991,7 @@
       "O"
     ],
     "energy_above_hull": 0.014706598571429197,
+    "formation_energy_per_atom": -1.627935621428571,
     "band_gap": 0.0
   },
   {
@@ -912,6 +1002,7 @@
       "S"
     ],
     "energy_above_hull": 0.01493341500000156,
+    "formation_energy_per_atom": -0.4800429516874999,
     "band_gap": 0.0
   },
   {
@@ -922,6 +1013,7 @@
       "S"
     ],
     "energy_above_hull": 0.015161365833333385,
+    "formation_energy_per_atom": -0.5763651724999997,
     "band_gap": 0.0
   },
   {
@@ -932,6 +1024,7 @@
       "O"
     ],
     "energy_above_hull": 0.015701586388887634,
+    "formation_energy_per_atom": -1.806826337643681,
     "band_gap": 0.0
   },
   {
@@ -942,6 +1035,7 @@
       "P"
     ],
     "energy_above_hull": 0.01609372979166679,
+    "formation_energy_per_atom": -0.4528322921130936,
     "band_gap": 0.0
   },
   {
@@ -952,6 +1046,7 @@
       "Mn"
     ],
     "energy_above_hull": 0.016571311684781875,
+    "formation_energy_per_atom": -0.00502976189467752,
     "band_gap": 0.0
   },
   {
@@ -962,6 +1057,7 @@
       "O"
     ],
     "energy_above_hull": 0.016697983888889212,
+    "formation_energy_per_atom": -1.8058299401436801,
     "band_gap": 1.1467
   },
   {
@@ -973,6 +1069,7 @@
       "O"
     ],
     "energy_above_hull": 0.0169753248214235,
+    "formation_energy_per_atom": -1.4195594342857163,
     "band_gap": 0.27059999999999995
   },
   {
@@ -983,6 +1080,7 @@
       "Mn"
     ],
     "energy_above_hull": 0.017722750652174213,
+    "formation_energy_per_atom": -0.0028497003758839617,
     "band_gap": 0.0
   },
   {
@@ -993,6 +1091,7 @@
       "P"
     ],
     "energy_above_hull": 0.021158108611109228,
+    "formation_energy_per_atom": -0.38518074488095366,
     "band_gap": 0.0
   },
   {
@@ -1003,6 +1102,7 @@
       "S"
     ],
     "energy_above_hull": 0.021258213333333664,
+    "formation_energy_per_atom": -0.5702683249999995,
     "band_gap": 0.0
   },
   {
@@ -1013,6 +1113,7 @@
       "S"
     ],
     "energy_above_hull": 0.021697538333333988,
+    "formation_energy_per_atom": -0.5698289999999991,
     "band_gap": 0.0
   },
   {
@@ -1023,6 +1124,7 @@
       "W"
     ],
     "energy_above_hull": 0.023283316666667275,
+    "formation_energy_per_atom": -0.35821996865079103,
     "band_gap": 0.0
   },
   {
@@ -1034,6 +1136,7 @@
       "O"
     ],
     "energy_above_hull": 0.0236176609999994,
+    "formation_energy_per_atom": -1.1130342869999992,
     "band_gap": 0.7645
   },
   {
@@ -1044,6 +1147,7 @@
       "O"
     ],
     "energy_above_hull": 0.023987028791211173,
+    "formation_energy_per_atom": -1.1696145799999988,
     "band_gap": 0.0
   },
   {
@@ -1055,6 +1159,7 @@
       "O"
     ],
     "energy_above_hull": 0.024118271428571703,
+    "formation_energy_per_atom": -1.2947773978571422,
     "band_gap": 0.0
   },
   {
@@ -1065,6 +1170,7 @@
       "P"
     ],
     "energy_above_hull": 0.02649692718390817,
+    "formation_energy_per_atom": -0.35836413960899094,
     "band_gap": 0.0
   },
   {
@@ -1075,6 +1181,7 @@
       "P"
     ],
     "energy_above_hull": 0.028198729499998798,
+    "formation_energy_per_atom": -0.3418431917142847,
     "band_gap": 0.8315999999999999
   },
   {
@@ -1085,6 +1192,7 @@
       "O"
     ],
     "energy_above_hull": 0.03038171071428586,
+    "formation_energy_per_atom": -1.2599565135714283,
     "band_gap": 1.3498
   },
   {
@@ -1096,6 +1204,7 @@
       "O"
     ],
     "energy_above_hull": 0.03093895285714332,
+    "formation_energy_per_atom": -1.2879567164285706,
     "band_gap": 0.0
   },
   {
@@ -1106,6 +1215,7 @@
       "P"
     ],
     "energy_above_hull": 0.03141892884615416,
+    "formation_energy_per_atom": -0.504240016913918,
     "band_gap": 0.0
   },
   {
@@ -1116,6 +1226,7 @@
       "S"
     ],
     "energy_above_hull": 0.03270704200000196,
+    "formation_energy_per_atom": -0.9031387954806022,
     "band_gap": 0.0
   },
   {
@@ -1126,6 +1237,7 @@
       "S"
     ],
     "energy_above_hull": 0.03314314833333398,
+    "formation_energy_per_atom": -0.7663607583692524,
     "band_gap": 0.0
   },
   {
@@ -1137,6 +1249,7 @@
       "O"
     ],
     "energy_above_hull": 0.03425936999999912,
+    "formation_energy_per_atom": -0.996432388888889,
     "band_gap": 1.1427999999999998
   },
   {
@@ -1147,6 +1260,7 @@
       "S"
     ],
     "energy_above_hull": 0.03497927666666634,
+    "formation_energy_per_atom": -0.5565472616666666,
     "band_gap": 0.5085999999999999
   },
   {
@@ -1157,6 +1271,7 @@
       "O"
     ],
     "energy_above_hull": 0.03608267388888997,
+    "formation_energy_per_atom": -1.7864452501436796,
     "band_gap": 1.4470999999999998
   },
   {
@@ -1167,6 +1282,7 @@
       "O"
     ],
     "energy_above_hull": 0.036088028333333355,
+    "formation_energy_per_atom": -1.786439895699235,
     "band_gap": 0.9854
   },
   {
@@ -1177,6 +1293,7 @@
       "O"
     ],
     "energy_above_hull": 0.03691499625000105,
+    "formation_energy_per_atom": -1.23491615,
     "band_gap": 0.0
   },
   {
@@ -1187,6 +1304,7 @@
       "O"
     ],
     "energy_above_hull": 0.038784599999999614,
+    "formation_energy_per_atom": -1.5020958310526311,
     "band_gap": 1.6011999999999995
   },
   {
@@ -1198,6 +1316,7 @@
       "O"
     ],
     "energy_above_hull": 0.03886477205127914,
+    "formation_energy_per_atom": -0.9620420676923078,
     "band_gap": 0.2149000000000001
   },
   {
@@ -1208,6 +1327,7 @@
       "P"
     ],
     "energy_above_hull": 0.04029215266666686,
+    "formation_energy_per_atom": -0.31918647530049143,
     "band_gap": 0.0
   },
   {
@@ -1218,6 +1338,7 @@
       "O"
     ],
     "energy_above_hull": 0.04071467954545582,
+    "formation_energy_per_atom": -1.0683391100000004,
     "band_gap": 0.0
   },
   {
@@ -1228,6 +1349,7 @@
       "O"
     ],
     "energy_above_hull": 0.04120671857142888,
+    "formation_energy_per_atom": -1.0055433507142857,
     "band_gap": 0.0
   },
   {
@@ -1238,6 +1360,7 @@
       "P"
     ],
     "energy_above_hull": 0.04187207703703777,
+    "formation_energy_per_atom": -0.431280275738916,
     "band_gap": 0.0
   },
   {
@@ -1248,6 +1371,7 @@
       "S"
     ],
     "energy_above_hull": 0.04376447166666697,
+    "formation_energy_per_atom": -0.5477620666666662,
     "band_gap": 2.1403339796499665e-05
   },
   {
@@ -1258,6 +1382,7 @@
       "O"
     ],
     "energy_above_hull": 0.04384385375000033,
+    "formation_energy_per_atom": -0.9383537137499998,
     "band_gap": 0.0
   },
   {
@@ -1268,6 +1393,7 @@
       "P"
     ],
     "energy_above_hull": 0.04481476958333275,
+    "formation_energy_per_atom": -0.4241112523214288,
     "band_gap": 0.0
   },
   {
@@ -1278,6 +1404,7 @@
       "O"
     ],
     "energy_above_hull": 0.04644304472222238,
+    "formation_energy_per_atom": -1.7760848793103463,
     "band_gap": 0.0
   },
   {
@@ -1288,6 +1415,7 @@
       "O"
     ],
     "energy_above_hull": 0.046524089722224105,
+    "formation_energy_per_atom": -1.7760038343103446,
     "band_gap": 0.4556
   },
   {
@@ -1298,6 +1426,7 @@
       "O"
     ],
     "energy_above_hull": 0.04665237342105222,
+    "formation_energy_per_atom": -1.1083094205263162,
     "band_gap": 0.0
   },
   {
@@ -1308,6 +1437,7 @@
       "P"
     ],
     "energy_above_hull": 0.04757809125000101,
+    "formation_energy_per_atom": -0.2571760488690451,
     "band_gap": 0.0
   }
 ]

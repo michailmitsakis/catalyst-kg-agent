@@ -1,11 +1,18 @@
 """Critic agent: Safety gate before expensive escalation.
 
 Validates:
-1. Physical plausibility (e_above_hull < threshold)
-2. Predictor uncertainty (reject if too high → escalate)
+1. Physical plausibility -- e_above_hull below threshold, read from the KG's
+   MP-derived value (NOT from the surrogate)
+2. Surrogate trustworthiness -- max residual force below the gate; above it,
+   the material is escalated for a higher-fidelity check
 3. Schema compliance (no NaN/Inf outputs)
 
 Outputs approval/rejection/escalation decision with cost impact tracking.
+
+Note on check 2: this replaced an "uncertainty" check that read a
+MC-Dropout standard deviation which was structurally always exactly 0.0
+(MACE inference is deterministic, no dropout is active), so the gate could
+never fire. See agent/predictor.py for the full explanation.
 """
 
 from __future__ import annotations
@@ -33,12 +40,19 @@ def get_stability_threshold() -> float:
         return 0.1
 
 
-def get_uncertainty_gate() -> float:
-    """Get uncertainty gate from environment or default (30%)."""
+def get_force_gate() -> float:
+    """Get the residual-force escalation gate from environment, in eV/Angstrom.
+
+    Renamed from the previous UNCERTAINTY_GATE (a dimensionless fraction).
+    The gate now compares against a max residual force in eV/Angstrom, so
+    keeping the old name with new units would have been a silent semantics
+    change -- exactly the class of bug that made a raw energy masquerade as
+    e_above_hull earlier in this project. Set FORCE_GATE_EV_PER_ANG in .env.
+    """
     try:
-        return float(os.environ.get("UNCERTAINTY_GATE", "0.3"))
+        return float(os.environ.get("FORCE_GATE_EV_PER_ANG", "0.1"))
     except ValueError:
-        return 0.3
+        return 0.1
 
 
 # ---------------------------------------------------------------------------
@@ -53,7 +67,8 @@ class KGLookupResult(BaseModel):
     provenance: Dict[str, Any]
 
 
-# PredictorResult from predictor.py (MACE energy-per-atom + MC Dropout uncertainty)
+# PredictorResult from predictor.py (MACE energy per atom, formation energy,
+# and max residual force -- the escalation signal; see predictor.py docstring)
 
 
 
@@ -80,7 +95,7 @@ class CriticAgent:
         """
         # Load thresholds from environment
         self.stability_threshold = get_stability_threshold()
-        self.uncertainty_gate = get_uncertainty_gate()
+        self.force_gate = get_force_gate()
         
         # Load graph for KG traversal
         self.graph_path = graph_path or Path("data/processed/kg.json")
@@ -93,7 +108,7 @@ class CriticAgent:
 
         Args:
             materials: Materials from Retriever
-            predictions: Optional Predictor outputs with uncertainty estimates
+            predictions: Optional Predictor outputs carrying the residual-force signal
 
         Returns:
             List of CriticDecision objects (one per material)
@@ -142,12 +157,15 @@ class CriticAgent:
                 cost_impact=0.0,
             )
 
-        # Check 2: Predictor uncertainty (if available)
+        # Check 2: Surrogate trust signal (if a prediction is available)
         if predictions:
-            unc_check = self._check_uncertainty(predictions)
-            if not unc_check["passed"]:
+            force_check = self._check_residual_force(predictions)
+            if not force_check["passed"]:
                 requires_escalation = True
-                reasons.append(f"High uncertainty: {unc_check['value']:.1%} > {self.uncertainty_gate:.1%}")
+                reasons.append(
+                    f"High residual force: {force_check['value']:.3f} > "
+                    f"{self.force_gate:.3f} eV/A"
+                )
 
         # Check 3: Schema compliance (no NaN/Inf)
         schema_check = self._check_schema(material)
@@ -195,23 +213,29 @@ class CriticAgent:
         passed = eah_value <= self.stability_threshold
         return {"passed": passed, "value": eah_value}
 
-    def _check_uncertainty(self, predictions: List[PredictorResult]) -> Dict[str, Any]:
-        """Check predictor uncertainty against gate.
+    def _check_residual_force(self, predictions: List[PredictorResult]) -> Dict[str, Any]:
+        """Check the surrogate's max residual force against the gate.
+
+        Every structure in the corpus is a DFT-relaxed MP geometry, so DFT's
+        own forces on it are approximately zero. A large MACE residual force
+        therefore means MACE disagrees with DFT about the geometry, i.e. the
+        surrogate is outside the region where it can be trusted for this
+        material -- which is what warrants an expensive check.
 
         Args:
             predictions: List of PredictorResult objects
 
         Returns:
-            Dict with {passed: bool, value: float}
+            Dict with {passed: bool, value: float} -- value in eV/Angstrom
         """
-        max_uncertainty = 0.0
+        max_force = 0.0
 
         for pred in predictions:
-            if pred.uncertainty > max_uncertainty:
-                max_uncertainty = pred.uncertainty
+            if pred.max_residual_force > max_force:
+                max_force = pred.max_residual_force
 
-        passed = max_uncertainty <= self.uncertainty_gate
-        return {"passed": passed, "value": max_uncertainty}
+        passed = max_force <= self.force_gate
+        return {"passed": passed, "value": max_force}
 
     def _check_schema(self, material: MaterialNode) -> Dict[str, Any]:
         """Validate schema compliance (no NaN/Inf).

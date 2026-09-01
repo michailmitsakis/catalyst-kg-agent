@@ -1,8 +1,8 @@
 """MACE vs CGCNN surrogate comparison on formation energy per atom.
 
 Evaluates both surrogates against the same Materials Project ground truth
-on the same catalyst subset, reporting accuracy, uncertainty behaviour and
-inference cost.
+on the same catalyst subset, reporting accuracy, trust-signal behaviour
+and inference cost.
 
 WHAT IS COMPARED
 ----------------
@@ -146,7 +146,7 @@ def run_mace(entries: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     """Run the MACE predictor over the evaluation set.
 
     Returns:
-        mpid -> {value, uncertainty, seconds} (value may be None on failure)
+        mpid -> {value, max_residual_force, seconds} (value may be None on failure)
     """
     from agent.predictor import create_predictor
 
@@ -164,13 +164,16 @@ def run_mace(entries: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
                 # what makes the comparison like-for-like.
                 "value": prediction.formation_energy_per_atom,
                 "raw_energy_per_atom": prediction.property_value,
-                "uncertainty": prediction.uncertainty,
+                # MACE's trust signal is a residual force (eV/Angstrom), a
+                # different quantity from CGCNN's dropout spread (eV/atom).
+                # They are reported separately and never averaged together.
+                "max_residual_force": prediction.max_residual_force,
                 "seconds": elapsed,
                 "failed": prediction.prediction_failed,
             }
         except Exception as exc:
             results[entry["mpid"]] = {
-                "value": None, "raw_energy_per_atom": None, "uncertainty": None,
+                "value": None, "raw_energy_per_atom": None, "max_residual_force": None,
                 "seconds": time.perf_counter() - start, "failed": True,
                 "error": f"{type(exc).__name__}: {exc}",
             }
@@ -189,7 +192,7 @@ def run_cgcnn(entries: list[dict[str, Any]], kg_path: Path) -> dict[str, dict[st
     """Run the trained CGCNN over the evaluation set.
 
     Returns:
-        mpid -> {value, uncertainty, seconds}
+        mpid -> {value, mc_dropout_uncertainty, seconds}
     """
     import torch
     from pymatgen.core import Structure
@@ -237,14 +240,17 @@ def run_cgcnn(entries: list[dict[str, Any]], kg_path: Path) -> dict[str, dict[st
             )
             results[mpid] = {
                 "value": float(normalizer.denorm(mean_norm)),
+                # CGCNN genuinely has nn.Dropout layers, so this MC-Dropout
+                # spread is a real stochastic estimate (unlike the MACE
+                # "dropout" it replaced, which was always exactly 0.0).
                 # Spread scales with the normaliser but does not shift.
-                "uncertainty": float(std_norm * normalizer.std),
+                "mc_dropout_uncertainty": float(std_norm * normalizer.std),
                 "seconds": time.perf_counter() - start,
                 "failed": False,
             }
         except Exception as exc:
             results[mpid] = {
-                "value": None, "uncertainty": None,
+                "value": None, "mc_dropout_uncertainty": None,
                 "seconds": time.perf_counter() - start, "failed": True,
                 "error": f"{type(exc).__name__}: {exc}",
             }
@@ -329,17 +335,26 @@ def timing_stats(predictions: dict[str, dict[str, Any]]) -> dict[str, float]:
     }
 
 
-def uncertainty_stats(predictions: dict[str, dict[str, Any]]) -> dict[str, float]:
-    """Summary of each model's uncertainty estimates.
+def signal_stats(predictions: dict[str, dict[str, Any]], key: str) -> dict[str, float]:
+    """Summary statistics for one model's trust signal.
 
-    Note the two uncertainties are NOT the same construct: MACE's is the
-    spread of MC-Dropout passes over a frozen foundation model, CGCNN's is
-    the spread over dropout in a model trained on this corpus. Compare them
-    qualitatively, not as calibrated equivalents.
+    IMPORTANT -- these are different physical quantities and must never be
+    compared numerically against each other:
+
+        MACE  key="max_residual_force"      units eV/Angstrom
+              How far MACE's predicted forces are from zero on a DFT-relaxed
+              geometry, i.e. MACE-vs-DFT geometric disagreement.
+
+        CGCNN key="mc_dropout_uncertainty"  units eV/atom
+              Spread of the prediction across MC-Dropout passes, i.e. the
+              model's own stochastic self-disagreement.
+
+    One is a force, the other is an energy. They answer different questions
+    and are reported side by side only for context.
     """
     values = [
-        r["uncertainty"] for r in predictions.values()
-        if not r.get("failed") and r.get("uncertainty") is not None
+        r[key] for r in predictions.values()
+        if not r.get("failed") and r.get(key) is not None
     ]
     if not values:
         return {"mean": float("nan"), "median": float("nan"), "n": 0}
@@ -529,13 +544,18 @@ def main() -> int:
             print(f"  {name:6s} mean={t['mean_seconds']:.4f}  median={t['median_seconds']:.4f}  n={t['n']}")
 
     print()
-    print("Uncertainty estimates (eV/atom, not cross-calibrated)")
+    print("Trust signals -- DIFFERENT QUANTITIES, do not compare numerically")
     print("-" * 60)
-    for name, preds in (("MACE", mace), ("CGCNN", cgcnn)):
-        if preds:
-            u = uncertainty_stats(preds)
-            if u["n"]:
-                print(f"  {name:6s} mean={u['mean']:.4f}  median={u['median']:.4f}  max={u['max']:.4f}")
+    if mace:
+        s = signal_stats(mace, "max_residual_force")
+        if s["n"]:
+            print(f"  MACE  max residual force (eV/A)     "
+                  f"mean={s['mean']:.4f}  median={s['median']:.4f}  max={s['max']:.4f}")
+    if cgcnn:
+        s = signal_stats(cgcnn, "mc_dropout_uncertainty")
+        if s["n"]:
+            print(f"  CGCNN MC-dropout spread (eV/atom)   "
+                  f"mean={s['mean']:.4f}  median={s['median']:.4f}  max={s['max']:.4f}")
 
     payload = {
         "target_property": TARGET_PROPERTY,
@@ -544,12 +564,20 @@ def main() -> int:
         "mace": {
             "metrics": mace_subsets,
             "timing": timing_stats(mace) if mace else None,
-            "uncertainty": uncertainty_stats(mace) if mace else None,
+            "trust_signal": {
+                "name": "max_residual_force",
+                "units": "eV/Angstrom",
+                **(signal_stats(mace, "max_residual_force") if mace else {}),
+            },
         },
         "cgcnn": {
             "metrics": cgcnn_subsets,
             "timing": timing_stats(cgcnn) if cgcnn else None,
-            "uncertainty": uncertainty_stats(cgcnn) if cgcnn else None,
+            "trust_signal": {
+                "name": "mc_dropout_uncertainty",
+                "units": "eV/atom",
+                **(signal_stats(cgcnn, "mc_dropout_uncertainty") if cgcnn else {}),
+            },
         },
         "per_material": [
             {
@@ -570,7 +598,10 @@ def main() -> int:
             "corpus here; use the cross-validation metrics from baseline_cgcnn.py "
             "--train --k-folds for a generalisation estimate.",
             "MACE is zero-shot on this corpus and was never fitted to these targets.",
-            "The two uncertainty estimates are not cross-calibrated.",
+            "The two trust signals are different physical quantities: MACE reports a "
+            "max residual force (eV/Angstrom) measuring geometric disagreement with "
+            "DFT, CGCNN reports an MC-dropout spread (eV/atom) measuring its own "
+            "stochastic self-disagreement. They must not be compared numerically.",
         ],
     }
 
