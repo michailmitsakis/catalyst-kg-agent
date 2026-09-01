@@ -5,29 +5,43 @@ Reads:
     data/raw/structures/<mpid>.cif  -- crystal structure per structure
 
 Writes (via main()):
-    data/processed/kg.graphml  -- NetworkX-serialized graph
+    data/processed/kg.json     -- canonical NetworkX node_link_data store
+    data/processed/kg.graphml  -- best-effort interop export (list attrs JSON-encoded)
     data/processed/kg_build_report.json  -- per-material parse status
 
 Caching:
     Structures are cached in a pickle file after the first build to avoid
     re-parsing CIF files on every run. Cache location: data/processed/cif_cache.pkl
-    
+
     Cache metadata (timestamps, size) is tracked in data/processed/cif_cache_meta.json
     for monitoring cache health and invalidation decisions.
 
+    The cache is written ONCE at the end of a build, not per-material -- see
+    `_save_cached_structures` / the tail of `build_graph`.
+
 Design notes
 ------------
-- Pure builder: `build_graph(metadata_path, struct_dir) -> nx.MultiDiGraph`.
-  No file writes inside the builder so it is testable in isolation and
-  safe to call from notebooks / `kg/queries.py` ad-hoc.
+- Pure-ish builder: `build_graph(metadata_path, struct_dir) -> (graph, report, stats)`.
+  The graph itself is built in memory; the only side effect is the CIF cache
+  write (one pickle + one metadata JSON at the end of the run). Graph
+  persistence happens in `main()`, not here.
 - Symmetry fields (`crystal_system`, `space_group_*`) are best-effort.
-  pymatgen's public surface has shifted across releases, so we only
-  trust `get_symmetry_dataset()`'s dict keys and tolerate absence.
+  `Structure.get_symmetry_dataset()` supplies the space group symbol
+  (`international`) and number (`number`) but has NO `crystal_system` key,
+  so the crystal system comes from `SpacegroupAnalyzer.get_crystal_system()`.
+- CIF paths are stored POSIX-style (forward slashes) via `as_posix()` so a
+  KG built on Windows still resolves on Linux/macOS. Backslash-separated
+  paths are a single literal filename on POSIX, not a path.
 - One ChemsysNode per unique sorted element set; one ElementNode per
   unique element symbol across the corpus. Multi-edge `HAS_ELEMENT`
   carries per-element count on the edge attribute.
 - Properties live on PropertyNode (not Material attribute) so predicted
-  and measured values can coexist with provenance.
+  and measured values can coexist with provenance. Three properties are
+  ingested from MP metadata when present:
+    energy_above_hull        -- Critic's stability gate + campaign ranking
+    formation_energy_per_atom -- CGCNN training target / MACE comparison target
+    band_gap                 -- ingested for schema demonstration; not read
+                                by the agent loop today
 - All multi-edges (Material -> multiple Structure / Property nodes in
   future) use NetworkX `MultiDiGraph` + `key=` from the edge id.
 """
@@ -44,6 +58,7 @@ from typing import Any, Optional
 
 import networkx as nx
 from pymatgen.core import Structure
+from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
 
 # Ensure project root is in Python path for relative imports
@@ -84,13 +99,13 @@ CACHE_META_FILE = Path("data/processed/cif_cache_meta.json")
 
 def _load_cached_structures() -> dict[str, Structure]:
     """Load cached structures from pickle file if available.
-    
+
     Returns:
         Dict mapping mpid to Structure object, or empty dict if cache missing/corrupt
     """
     if not CACHE_FILE.exists():
         return {}
-    
+
     try:
         with open(CACHE_FILE, "rb") as f:
             cached = pickle.load(f)
@@ -106,19 +121,32 @@ def _load_cached_structures() -> dict[str, Structure]:
 
 
 def _save_cached_structures(struct_cache: dict[str, Structure]) -> None:
-    """Save structures to pickle file for future builds.
-    
+    """Save structures to pickle file and refresh cache metadata.
+
+    Called ONCE per build (not per material): the previous per-material
+    version re-loaded and re-dumped the entire pickle for every record,
+    which is O(N^2) file I/O over the corpus.
+
     Args:
         struct_cache: Dict mapping mpid to Structure object
     """
+    if not struct_cache:
+        return
+
     CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(CACHE_FILE, "wb") as f:
         pickle.dump(struct_cache, f, protocol=pickle.HIGHEST_PROTOCOL)
 
+    meta = _load_cache_metadata()
+    meta["last_updated"] = datetime.now().isoformat()
+    meta["total_structures"] = len(struct_cache)
+    meta["cache_size_mb"] = round(os.path.getsize(CACHE_FILE) / 1024 / 1024, 2)
+    _save_cache_metadata(meta)
+
 
 def _save_cache_metadata(cache_stats: dict[str, Any]) -> None:
     """Save cache metadata (timestamps, stats) for tracking.
-    
+
     Args:
         cache_stats: Dict with timestamps and statistics
     """
@@ -129,7 +157,7 @@ def _save_cache_metadata(cache_stats: dict[str, Any]) -> None:
 
 def _load_cache_metadata() -> dict[str, Any]:
     """Load cache metadata if available.
-    
+
     Returns:
         Dict with cache statistics and timestamps, or empty dict
     """
@@ -140,41 +168,6 @@ def _load_cache_metadata() -> dict[str, Any]:
             return json.load(f)
     except Exception:
         return {}
-
-
-def _get_cached_structure(mpid: str) -> Optional[Structure]:
-    """Get a cached structure by mpid if available.
-    
-    Args:
-        mpid: Material ID (e.g., "mp-2790")
-        
-    Returns:
-        Structure object or None if not in cache
-    """
-    cached = _load_cached_structures()
-    return cached.get(mpid)
-
-
-def _update_cache(structure: Structure, mpid: str) -> None:
-    """Update the cache with a new structure.
-    
-    Args:
-        structure: Parsed Structure object
-        mpid: Material ID to use as cache key
-    """
-    # Load existing cache
-    cached = _load_cached_structures()
-    # Update/insert the new structure
-    cached[mpid] = structure
-    # Save updated cache
-    _save_cached_structures(cached)
-    
-    # Update metadata with timestamp and stats
-    meta = _load_cache_metadata()
-    meta["last_updated"] = datetime.now().isoformat()
-    meta["total_structures"] = len(cached)
-    meta["cache_size_mb"] = round(os.path.getsize(CACHE_FILE) / 1024 / 1024, 2)
-    _save_cache_metadata(meta)
 
 
 # ---------------------------------------------------------------------------
@@ -195,30 +188,54 @@ def _safe_symmetry(struct: Structure) -> dict[str, Any]:
     """Return a dict with `crystal_system`, `space_group_symbol`,
     `space_group_number` keys; values are None if unavailable.
 
-    Uses pymatgen's `get_symmetry_dataset()` (the most stable surface
-    across recent pymatgen releases) and tolerates missing keys.
+    Two different pymatgen surfaces are needed here:
+      - `Structure.get_symmetry_dataset()` returns a dict carrying
+        `international` (Hermann-Mauguin symbol) and `number` (ITA number),
+        but it has NO `crystal_system` key -- reading one always yields None.
+      - `SpacegroupAnalyzer(struct).get_crystal_system()` is the actual
+        source for the crystal system string.
+
+    Each lookup is guarded separately so a failure in one does not blank
+    the other.
     """
     out: dict[str, Any] = {
         "crystal_system": None,
         "space_group_symbol": None,
         "space_group_number": None,
     }
+
+    # Space group symbol / number from the symmetry dataset.
     try:
         ds = struct.get_symmetry_dataset()
+        if isinstance(ds, dict):
+            sg_sym = ds.get("international") or ds.get("spacegroup") or ds.get("symbol")
+            if isinstance(sg_sym, str):
+                out["space_group_symbol"] = sg_sym
+            sg_num = ds.get("number") or ds.get("space_group_number")
+            if isinstance(sg_num, int):
+                out["space_group_number"] = sg_num
     except Exception:
-        return out
-    if not isinstance(ds, dict):
-        return out
-    cs = ds.get("crystal_system")
-    if isinstance(cs, str):
-        out["crystal_system"] = cs
-    # 'international' is the Hermann-Mauguin symbol, 'number' is the ITA number.
-    sg_sym = ds.get("international") or ds.get("spacegroup") or ds.get("symbol")
-    if isinstance(sg_sym, str):
-        out["space_group_symbol"] = sg_sym
-    sg_num = ds.get("number") or ds.get("space_group_number")
-    if isinstance(sg_num, int):
-        out["space_group_number"] = sg_num
+        pass
+
+    # Crystal system from SpacegroupAnalyzer (not present in the dataset dict).
+    try:
+        sga = SpacegroupAnalyzer(struct)
+        cs = sga.get_crystal_system()
+        if isinstance(cs, str):
+            out["crystal_system"] = cs
+        # Backfill space group fields from the analyzer if the dataset lookup
+        # above came up empty.
+        if out["space_group_symbol"] is None:
+            sym = sga.get_space_group_symbol()
+            if isinstance(sym, str):
+                out["space_group_symbol"] = sym
+        if out["space_group_number"] is None:
+            num = sga.get_space_group_number()
+            if isinstance(num, int):
+                out["space_group_number"] = num
+    except Exception:
+        pass
+
     return out
 
 
@@ -247,6 +264,21 @@ def _element_counts(struct: Structure) -> dict[str, int]:
     """
     counts = struct.composition.as_dict()
     return {str(el): int(round(c)) for el, c in counts.items() if c > 0}
+
+
+# ---------------------------------------------------------------------------
+# Property ingestion
+# ---------------------------------------------------------------------------
+
+# (metadata key, PropertyName member, PropertyUnit member)
+# Every property MP metadata may carry. Missing keys are skipped silently --
+# a KG built before formation_energy_per_atom was added to download.py's
+# METADATA_FIELDS simply won't have those nodes.
+_METADATA_PROPERTIES = [
+    ("energy_above_hull", PropertyName.ENERGY_ABOVE_HULL, PropertyUnit.ENERGY_ABOVE_HULL),
+    ("formation_energy_per_atom", PropertyName.FORMATION_ENERGY_PER_ATOM, PropertyUnit.FORMATION_ENERGY_PER_ATOM),
+    ("band_gap", PropertyName.BAND_GAP, PropertyUnit.BAND_GAP),
+]
 
 
 # ---------------------------------------------------------------------------
@@ -317,32 +349,23 @@ def _add_material(
         if G.has_edge(mat.id, element_id(sym), key=key):
             G.edges[mat.id, element_id(sym), key]["count"] = c
 
-    # Property nodes (only what metadata carries today)
-    e_above = record.get("energy_above_hull")
-    if e_above is not None:
+    # Property nodes (whatever the metadata record carries)
+    properties_added: list[str] = []
+    for meta_key, prop_name, prop_unit in _METADATA_PROPERTIES:
+        raw = record.get(meta_key)
+        if raw is None:
+            continue
         p = PropertyNode(
-            id=property_id(mpid, PropertyName.ENERGY_ABOVE_HULL),
+            id=property_id(mpid, prop_name),
             mpid=mpid,
-            name=PropertyName.ENERGY_ABOVE_HULL,
-            value=float(e_above),
-            unit=PropertyUnit.ENERGY_ABOVE_HULL,
+            name=prop_name,
+            value=float(raw),
+            unit=prop_unit,
             source=PropertySource.MATERIALS_PROJECT,
         )
         G.add_node(p.id, **p.model_dump(mode="json"))
-        G.add_edge(mat.id, p.id, key=f"HAS_PROPERTY:{p.name.value}", type="HAS_PROPERTY")
-
-    bg = record.get("band_gap")
-    if bg is not None:
-        p = PropertyNode(
-            id=property_id(mpid, PropertyName.BAND_GAP),
-            mpid=mpid,
-            name=PropertyName.BAND_GAP,
-            value=float(bg),
-            unit=PropertyUnit.BAND_GAP,
-            source=PropertySource.MATERIALS_PROJECT,
-        )
-        G.add_node(p.id, **p.model_dump(mode="json"))
-        G.add_edge(mat.id, p.id, key=f"HAS_PROPERTY:{p.name.value}", type="HAS_PROPERTY")
+        G.add_edge(mat.id, p.id, key=f"HAS_PROPERTY:{prop_name.value}", type="HAS_PROPERTY")
+        properties_added.append(prop_name.value)
 
     return {
         "mpid": mpid,
@@ -350,6 +373,7 @@ def _add_material(
         "crystal_system": sym_info["crystal_system"],
         "space_group_symbol": sym_info["space_group_symbol"],
         "element_counts": counts,
+        "properties_added": properties_added,
     }
 
 
@@ -360,60 +384,70 @@ def _add_material(
 def build_graph(
     metadata_path: Path = DEFAULT_METADATA_PATH,
     struct_dir: Path = DEFAULT_STRUCT_DIR,
-    clear_cache: bool = False,  # Force regeneration of all structures
-) -> tuple[nx.MultiDiGraph, list[dict[str, Any]], dict[str, str]]:
+    clear_cache: bool = False,  # Ignore any existing cache and re-parse every CIF
+) -> tuple[nx.MultiDiGraph, list[dict[str, Any]], dict[str, Any]]:
     """Read metadata + CIFs, return (graph, per-material report list, cache stats).
 
-    Pure function: no files are written unless clear_cache=True.
+    The graph is built in memory and NOT persisted here -- `main()` owns
+    graph persistence. The one side effect of this function is the CIF
+    cache: newly parsed structures are written to `cif_cache.pkl` (plus its
+    metadata JSON) once, at the end of the run.
+
     CIF parse failures are recorded in the report and skipped (the
     Material still gets added, just without structure-derived fields).
-    
+
     Caching:
-        - Structures are loaded from cache if available and up-to-date
-        - Failed parses are always re-attempted (cache is stale for failed files)
-        - Cache stats are returned to track efficiency
-        
+        - Structures are loaded from cache when present (unless clear_cache)
+        - Anything not in the cache is parsed fresh and added to it
+        - The merged cache is written once at the end, not per material
+
     Args:
         metadata_path: Path to metadata.json
         struct_dir: Directory containing CIF files
-        clear_cache: If True, ignore cache and parse all CIFs fresh
-        
+        clear_cache: If True, ignore the existing cache and parse all CIFs fresh
+            (the freshly parsed structures still get written to the cache)
+
     Returns:
         Tuple of (NetworkX graph, per-material report list, cache statistics)
     """
     metadata = json.loads(Path(metadata_path).read_text(encoding="utf-8"))
     G = nx.MultiDiGraph()
     report: list[dict[str, Any]] = []
-    
+
     # Load cached structures if not clearing cache
-    struct_cache = {}
+    struct_cache: dict[str, Structure] = {}
     if not clear_cache:
         struct_cache = _load_cached_structures()
-    
+    cache_at_start = set(struct_cache)
+
     # Track cache stats
-    cache_hits = 0
-    cache_misses = 0
-    cache_failures = 0
-    
+    cache_hits = 0        # served from the pre-existing cache
+    cache_misses = 0      # parsed fresh from CIF this run
+    cache_failures = 0    # CIF present but failed to parse
+
     for record in metadata:
         mpid = record["material_id"]
         cif_path = Path(struct_dir) / f"{mpid}.cif"
         struct: Optional[Structure] = None
         cif_relpath: Optional[str] = None
-        
+
+        # POSIX-style relative path so a KG built on Windows resolves
+        # on Linux/macOS too. Set regardless of cache hit/miss so cached
+        # entries don't silently fall back to a differently-formatted default.
+        try:
+            cif_relpath = cif_path.resolve().relative_to(REPO_ROOT).as_posix()
+        except Exception:
+            cif_relpath = f"data/raw/structures/{mpid}.cif"
+
         # Check cache first
-        if not clear_cache and mpid in struct_cache:
+        if mpid in cache_at_start:
             struct = struct_cache[mpid]
             cache_hits += 1
         elif cif_path.exists():
             try:
                 struct = Structure.from_file(str(cif_path))
-                cif_relpath = str(cif_path.relative_to(REPO_ROOT))
-                
-                # Update cache if we successfully parsed it
-                if not clear_cache:
-                    _update_cache(struct, mpid)
-                    
+                struct_cache[mpid] = struct  # merged + written once after the loop
+                cache_misses += 1
             except Exception as exc:
                 # Don't fail the build for one bad CIF; the report flags it.
                 report.append({
@@ -423,27 +457,26 @@ def build_graph(
                 })
                 struct = None
                 cache_failures += 1
-        
-        # If not in cache and CIF exists but failed to load, count as miss
-        if struct is None and cif_path.exists():
-            cache_misses += 1
-            
+                continue
+
         try:
             row = _add_material(G, record, struct, cif_relpath)
         except Exception as exc:
             report.append({
                 "mpid": mpid, "structure_parsed": False,
                 "error": f"add_material: {type(exc).__name__}: {exc}",
-                "cache_used": mpid in struct_cache and not clear_cache,
+                "cache_used": mpid in cache_at_start,
             })
             continue
-        
+
         report.append({
             **row,
-            "cache_used": (mpid in struct_cache) if not clear_cache else False,
+            "cache_used": mpid in cache_at_start,
         })
-    
-    # Return cache statistics
+
+    # Single cache write for the whole build.
+    _save_cached_structures(struct_cache)
+
     cache_stats = {
         "total_materials": len(metadata),
         "cache_hits": cache_hits,
@@ -451,7 +484,7 @@ def build_graph(
         "cache_failures": cache_failures,
         "cached_structures": len(struct_cache),
     }
-    
+
     return G, report, cache_stats
 
 
@@ -492,14 +525,14 @@ def _to_graphml_safe(G: nx.MultiDiGraph) -> nx.MultiDiGraph:
 # CLI
 # ---------------------------------------------------------------------------
 
-def _summary(G: nx.MultiDiGraph, report: list[dict[str, Any]], cache_stats: Optional[dict[str, str]] = None) -> dict[str, Any]:
+def _summary(G: nx.MultiDiGraph, report: list[dict[str, Any]], cache_stats: Optional[dict[str, Any]] = None) -> dict[str, Any]:
     """Generate summary statistics for the built graph.
-    
+
     Args:
         G: NetworkX graph
         report: Per-material build report
         cache_stats: Cache statistics (optional, from build_graph return)
-        
+
     Returns:
         Dict with node/edge counts, material counts, and cache stats if available
     """
@@ -507,18 +540,27 @@ def _summary(G: nx.MultiDiGraph, report: list[dict[str, Any]], cache_stats: Opti
     for _, d in G.nodes(data=True):
         t = d.get("type", "Unknown")
         by_type[t] = by_type.get(t, 0) + 1
-    
+
     parsed = sum(1 for r in report if r.get("structure_parsed"))
-    
+
+    # Count property nodes by name, so a build that predates the
+    # formation_energy_per_atom field is obvious in the report.
+    props_by_name: dict[str, int] = {}
+    for _, d in G.nodes(data=True):
+        if d.get("type") == NodeType.PROPERTY.value:
+            nm = str(d.get("name", "unknown"))
+            props_by_name[nm] = props_by_name.get(nm, 0) + 1
+
     summary = {
         "n_nodes": G.number_of_nodes(),
         "n_edges": G.number_of_edges(),
         "nodes_by_type": by_type,
+        "properties_by_name": props_by_name,
         "n_materials": len([r for r in report if "mpid" in r]),
         "n_structures_parsed": parsed,
         "n_structures_failed": len([r for r in report if not r.get("structure_parsed")]),
     }
-    
+
     # Add cache stats if available
     if cache_stats:
         summary["cache"] = {
@@ -527,24 +569,24 @@ def _summary(G: nx.MultiDiGraph, report: list[dict[str, Any]], cache_stats: Opti
             "failures": cache_stats.get("cache_failures", 0),
             "cached_count": cache_stats.get("cached_structures", 0),
         }
-    
+
     return summary
 
 
 def main(clear_cache: bool = False) -> None:
     """Main entry point for building the knowledge graph.
-    
+
     Args:
         clear_cache: If True, ignore cache and parse all CIFs fresh
-        
+
     Prints summary statistics including cache efficiency metrics.
     """
     G, report, cache_stats = build_graph(clear_cache=clear_cache)
     summary = _summary(G, report, cache_stats)
-    
+
     out_dir = DEFAULT_OUT_DIR
     out_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # Canonical persistence: JSON. Preserves list-valued attrs (Material.elements,
     # Chemsys.symbols) that GraphML cannot serialize. GraphML export is a
     # best-effort convenience for gephi/cytoscape; lists get JSON-encoded.
@@ -556,7 +598,7 @@ def main(clear_cache: bool = False) -> None:
         json.dumps({"summary": summary, "per_material": report}, indent=2),
         encoding="utf-8",
     )
-    
+
     # Best-effort GraphML: stringify list-valued attrs to JSON, drop None.
     try:
         G_gml = _to_graphml_safe(G)
@@ -564,22 +606,24 @@ def main(clear_cache: bool = False) -> None:
         gml_msg = f"Wrote: data/processed/kg.graphml (list attrs JSON-encoded)"
     except Exception as exc:
         gml_msg = f"GraphML skipped: {type(exc).__name__}: {exc}"
-    
+
     # Print summary with cache stats
     print(f"Nodes: {summary['n_nodes']} ({summary['nodes_by_type']})")
     print(f"Edges: {summary['n_edges']}")
+    print(f"Properties: {summary['properties_by_name']}")
     print(f"Materials: {summary['n_materials']}  "
           f"structures parsed: {summary['n_structures_parsed']}  "
           f"failed: {summary['n_structures_failed']}")
-    
+
     # Display cache statistics if available
     if "cache" in summary and summary["cache"]:
         cache = summary["cache"]
         print(f"\nCache efficiency:")
-        print(f"  Loaded from cache: {cache['hits']} / {cache['cached_count']} structures ({100*cache['hits']/max(cache['cached_count'],1):.1f}%)")
-        print(f"  Re-parsed: {cache['misses']} structures")
-        print(f"  Parse failures: {cache['failures']} structures")
-    
+        print(f"  Served from cache: {cache['hits']}")
+        print(f"  Parsed fresh this run: {cache['misses']}")
+        print(f"  Parse failures: {cache['failures']}")
+        print(f"  Structures now cached: {cache['cached_count']}")
+
     print(f"Wrote: data/processed/kg.json")
     print(gml_msg)
     print(f"Wrote: data/processed/kg_build_report.json")
@@ -588,9 +632,9 @@ def main(clear_cache: bool = False) -> None:
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Build catalyst-kg knowledge graph from CIF files")
-    parser.add_argument("--clear-cache", action="store_true", 
+    parser.add_argument("--clear-cache", action="store_true",
                        help="Force regeneration of all structures (ignore cache)")
     args = parser.parse_args()
-    
+
     # Use clear_cache flag to force regeneration
     main(clear_cache=args.clear_cache)

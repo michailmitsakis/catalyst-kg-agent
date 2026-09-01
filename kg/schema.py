@@ -59,6 +59,7 @@ class PropertyName(str, Enum):
     so adding a new property to the schema is a one-line change here and
     does not require touching the property-bearing graph code."""
     ENERGY_ABOVE_HULL = "energy_above_hull"
+    FORMATION_ENERGY_PER_ATOM = "formation_energy_per_atom"
     BAND_GAP = "band_gap"
 
     @classmethod
@@ -90,6 +91,7 @@ class PropertyName(str, Enum):
 
 class PropertyUnit(str, Enum):
     ENERGY_ABOVE_HULL = "eV/atom"
+    FORMATION_ENERGY_PER_ATOM = "eV/atom"
     BAND_GAP = "eV"
 
     @classmethod

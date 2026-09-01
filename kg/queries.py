@@ -10,6 +10,14 @@ Design notes:
 - Filters are applied during traversal using edge keys and node attributes
 - Returns typed pydantic models via rehydrate_node() for agent consumption
 - Supports both explicit start nodes and type-scoped queries
+
+Naming note: the fluent filter methods are all singular (`edge_type`,
+`node_type`, `element`, ...) and accept one or more values. Earlier
+versions also defined plural variants (`edge_types`, `node_types`) whose
+names collided with the instance attributes assigned in `__init__` --
+the attribute always won, so calling them raised
+`TypeError: 'list' object is not callable`. The plural methods are gone;
+the singular ones are variadic instead.
 """
 
 from __future__ import annotations
@@ -29,8 +37,8 @@ if str(_project_root) not in sys.path:
     sys.path.insert(0, str(_project_root))
 
 from kg.schema import (
-    ChemsysNode, CrystalSystem, ElementNode, KGNode, KGEdge, MaterialNode,
-    NodeType, PropertyName, PropertyNode, StructureNode,
+    ChemsysNode, CrystalSystem, EdgeType, ElementNode, KGNode, KGEdge, MaterialNode,
+    NodeType, PropertyName, PropertyNode, PropertySource, StructureNode,
     chemsys_id, element_id, material_id, property_id, structure_id,
 )
 from kg.graph_store import load_graph, save_graph, DEFAULT_KG_JSON, rehydrate_node
@@ -46,14 +54,14 @@ class QueryBuilder:
     Supports traversing from a start node with filters on:
     - Edge types (HAS_ELEMENT, IN_CHEMSYS, HAS_STRUCTURE, HAS_PROPERTY)
     - Node types (MATERIAL, ELEMENT, CHEMSYS, STRUCTURE, PROPERTY)
-    - Property ranges (energy_above_hull, band_gap, and any custom property)
+    - Property ranges (energy_above_hull, formation_energy_per_atom, band_gap, ...)
     - Element symbols (find all materials containing an element)
     - Chemical systems (find all materials in a chemsys)
 
     Example:
-        >>> qb = build_query(G, "material:mp-123")
-        >>> results = qb.edge_type("HAS_ELEMENT").element("Ni").execute()
-        # Returns node IDs of all Ni-containing materials reachable from mp-123
+        >>> qb = build_query(G, "element:Ni", direction="in")
+        >>> results = qb.edge_type("HAS_ELEMENT").node_type(NodeType.MATERIAL).execute()
+        # Returns node IDs of all Ni-containing materials
     """
 
     def __init__(
@@ -81,100 +89,83 @@ class QueryBuilder:
         self.visited: set[str] = set()
         self.traversal_path: List[str] = [start_node_id]
 
-        # Filters (applied during traversal)
-        self.filters: dict = {}
-        self.edge_types: List[str] = []
-        self.node_types: Optional[List[NodeType]] = None
+        # Filters (applied during traversal). These attribute names are
+        # deliberately distinct from every method name on this class --
+        # an attribute and a method sharing a name silently shadows the
+        # method (see module docstring).
+        self.edge_type_filter: List[str] = []
+        self.node_type_filter: List[str] = []
         self.property_name: Optional[PropertyName] = None
         self.property_min: Optional[float] = None
         self.property_max: Optional[float] = None
         self.element_symbols: List[str] = []
         self.chemsys_symbols: Optional[List[str]] = None
+        self.formula_filter: Optional[str] = None
+        self.crystal_system_filter: Optional[CrystalSystem] = None
+        self.space_group_filter: Optional[int] = None
 
         # Callback for custom filtering (for advanced use cases)
-        self.custom_filter: Optional[Callable[[KGNode], bool]] = None
+        self.custom_filter_fn: Optional[Callable[[KGNode], bool]] = None
 
     def _is_valid_node(self, node_id: str) -> bool:
         """Check if a node exists in the graph."""
         return node_id in self.G.nodes()
 
-    def _get_node_type(self, node_id: str) -> Optional[NodeType]:
-        """Get the NodeType for a node ID."""
-        data = self.G.nodes[node_id]
-        return data.get("type")
+    def _get_node_type(self, node_id: str) -> Optional[str]:
+        """Get the serialized `type` attribute for a node ID."""
+        return self.G.nodes[node_id].get("type")
 
-    def edge_type(self, etype: EdgeType | str) -> "QueryBuilder":
-        """Filter traversal to only follow edges of a specific type.
+    @staticmethod
+    def _as_edge_type_str(etype: EdgeType | str) -> str:
+        return etype if isinstance(etype, str) else etype.value
 
-        Args:
-            etype: Edge type (use EdgeType enum or string like "HAS_ELEMENT")
+    @staticmethod
+    def _as_node_type_str(ntype: NodeType | str) -> str:
+        """Normalize to the serialized string form stored on nodes.
 
-        Returns:
-            Self for method chaining
+        Node `type` attributes are serialized strings ("Material"), so
+        filters are compared as strings rather than enum members.
         """
-        self.edge_types.append(etype if isinstance(etype, str) else etype.value)
-        return self
+        if isinstance(ntype, NodeType):
+            return ntype.value
+        return NodeType(ntype).value
 
-    def edge_types(self, *etypes: EdgeType | str) -> "QueryBuilder":
-        """Filter traversal to only follow edges of specific types.
+    def edge_type(self, *etypes: EdgeType | str) -> "QueryBuilder":
+        """Only follow edges of the given type(s).
 
         Args:
-            *etypes: One or more edge types to match
+            *etypes: One or more edge types (EdgeType members or strings
+                like "HAS_ELEMENT")
 
         Returns:
             Self for method chaining
         """
         for etype in etypes:
-            self.edge_types.append(etype if isinstance(etype, str) else etype.value)
+            value = self._as_edge_type_str(etype)
+            if value not in self.edge_type_filter:
+                self.edge_type_filter.append(value)
         return self
 
-    def node_type(self, ntype: NodeType | str) -> "QueryBuilder":
-        """Filter traversal to only visit nodes of a specific type.
+    def node_type(self, *ntypes: NodeType | str) -> "QueryBuilder":
+        """Only visit nodes of the given type(s).
 
         Args:
-            ntype: Node type (use NodeType enum or string)
+            *ntypes: One or more node types (NodeType members or strings)
 
         Returns:
             Self for method chaining
         """
-        if self.node_types is None:
-            self.node_types = []
-        self.node_types.append(ntype if isinstance(ntype, str) else NodeType(ntype))
-        return self
-
-    def node_types(self, *ntypes: NodeType | str) -> "QueryBuilder":
-        """Filter traversal to visit nodes of specific types.
-
-        Args:
-            *ntypes: One or more node types to match
-
-        Returns:
-            Self for method chaining
-        """
-        if self.node_types is None:
-            self.node_types = []
         for ntype in ntypes:
-            self.node_types.append(ntype if isinstance(ntype, str) else NodeType(ntype))
+            value = self._as_node_type_str(ntype)
+            if value not in self.node_type_filter:
+                self.node_type_filter.append(value)
         return self
 
-    def element(self, symbol: str) -> "QueryBuilder":
-        """Find all materials containing a specific element.
+    def element(self, *symbols: str) -> "QueryBuilder":
+        """Restrict to materials containing the given element(s) (OR logic).
 
         Args:
-            symbol: Element symbol (e.g., "Ni", "Fe")
-
-        Returns:
-            Self for method chaining
-        """
-        if symbol not in self.element_symbols:
-            self.element_symbols.append(symbol)
-        return self
-
-    def elements(self, *symbols: str) -> "QueryBuilder":
-        """Find all materials containing any of the specified elements.
-
-        Args:
-            *symbols: Element symbols to match (OR logic)
+            *symbols: Element symbols (e.g., "Ni", "Fe")
 
         Returns:
             Self for method chaining
@@ -185,7 +176,7 @@ class QueryBuilder:
         return self
 
     def chemsys(self, symbols: List[str]) -> "QueryBuilder":
-        """Find all materials in a chemical system.
+        """Restrict to materials in a chemical system.
 
         Args:
             symbols: List of element symbols defining the chemsys (e.g., ["Ni", "P"])
@@ -236,7 +227,7 @@ class QueryBuilder:
         return self.property_range(name, value - tolerance, value + tolerance)
 
     def material_with_formula(self, formula: str) -> "QueryBuilder":
-        """Find materials with a specific pretty formula.
+        """Restrict to materials with a specific pretty formula.
 
         Args:
             formula: Pretty formula string (e.g., "LiFePO4", "Ni2P")
@@ -248,7 +239,7 @@ class QueryBuilder:
         return self
 
     def crystal_system(self, cs: CrystalSystem | str) -> "QueryBuilder":
-        """Filter for materials with a specific crystal system.
+        """Restrict to structures with a specific crystal system.
 
         Args:
             cs: Crystal system (use CrystalSystem enum or string)
@@ -260,7 +251,7 @@ class QueryBuilder:
         return self
 
     def space_group(self, sg_num: int | str) -> "QueryBuilder":
-        """Filter for materials with a specific space group number.
+        """Restrict to structures with a specific space group number.
 
         Args:
             sg_num: Space group number (1-230)
@@ -268,11 +259,14 @@ class QueryBuilder:
         Returns:
             Self for method chaining
         """
-        self.space_group_filter = int(sg_num) if isinstance(sg_num, str) else sg_num
+        self.space_group_filter = int(sg_num)
         return self
 
-    def custom_filter(self, func: Callable[[KGNode], bool]) -> "QueryBuilder":
-        """Apply a custom filter function to nodes during traversal.
+    def custom(self, func: Callable[[KGNode], bool]) -> "QueryBuilder":
+        """Apply a custom predicate to nodes during traversal.
+
+        Named `custom` rather than `custom_filter` so it cannot shadow
+        the `custom_filter_fn` attribute.
 
         Args:
             func: Function that takes a KGNode and returns True to include
@@ -280,132 +274,124 @@ class QueryBuilder:
         Returns:
             Self for method chaining
         """
-        self.custom_filter = func
+        self.custom_filter_fn = func
         return self
 
-    def _traverse(self, current_id: str) -> List[str]:
-        """Perform graph traversal from a node with applied filters.
+    # -----------------------------------------------------------------------
+    # Traversal internals
+    # -----------------------------------------------------------------------
+
+    def _edge_types_between(self, u: str, v: str) -> List[str]:
+        """All edge `type` values on edges between u and v (multi-edge safe)."""
+        types: List[str] = []
+        if self.G.has_edge(u, v):
+            for _key, data in self.G[u][v].items():
+                if isinstance(data, dict):
+                    t = data.get("type")
+                    if t is not None:
+                        types.append(t)
+        return types
+
+    def _passes_node_filters(self, node_id: str) -> bool:
+        """Check a candidate node against every node-scoped filter.
+
+        Each filter is evaluated against THIS node, not against the
+        neighbourhood of whatever node we arrived from (the previous
+        implementation inspected the current node's sibling list, which
+        did not match the documented semantics).
+        """
+        data = self.G.nodes[node_id]
+        ntype = data.get("type")
+
+        if self.node_type_filter and ntype not in self.node_type_filter:
+            return False
+
+        if ntype == NodeType.MATERIAL.value:
+            if self.formula_filter is not None and data.get("formula_pretty") != self.formula_filter:
+                return False
+            if self.element_symbols:
+                mat_elements = data.get("elements") or []
+                if not any(sym in mat_elements for sym in self.element_symbols):
+                    return False
+
+        if ntype == NodeType.CHEMSYS.value and self.chemsys_symbols:
+            if sorted(data.get("symbols") or []) != sorted(self.chemsys_symbols):
+                return False
+
+        if ntype == NodeType.STRUCTURE.value:
+            if self.crystal_system_filter is not None:
+                cs_val = data.get("crystal_system")
+                expected = (
+                    self.crystal_system_filter.value
+                    if isinstance(self.crystal_system_filter, CrystalSystem)
+                    else str(self.crystal_system_filter)
+                )
+                if cs_val != expected:
+                    return False
+            if self.space_group_filter is not None:
+                if data.get("space_group_number") != self.space_group_filter:
+                    return False
+
+        if ntype == NodeType.PROPERTY.value and self.property_name is not None:
+            if data.get("name") != self.property_name.value:
+                return False
+            value = data.get("value")
+            if value is None:
+                return False
+            if self.property_min is not None and value < self.property_min:
+                return False
+            if self.property_max is not None and value > self.property_max:
+                return False
+
+        if self.custom_filter_fn is not None:
+            try:
+                if not self.custom_filter_fn(rehydrate_node(self.G, node_id)):
+                    return False
+            except Exception:
+                return False
+
+        return True
+
+    def _traverse(self, current_id: str, is_start: bool = False) -> List[str]:
+        """Depth-first traversal from a node with applied filters.
 
         Args:
-            current_id: Current node to traverse from/to
+            current_id: Node to visit
+            is_start: True for the initial node, which is always traversed
+                through even when it does not itself match the filters
+                (queries typically start FROM an Element and look FOR
+                Materials, so the start node's type rarely matches).
 
         Returns:
             List of matched node IDs
         """
-        # Skip if already visited
         if current_id in self.visited:
             return []
-
-        # Get node data for filtering
-        node_data = self.G.nodes[current_id]
-        node_type = node_data.get("type")
-        
-        # Node type filter - but allow start node to pass even if it doesn't match
-        # (we query FROM an element TO materials, so element won't be a Material)
-        is_start_node = len(self.visited) == 0
-        
-        if self.node_types is not None and node_type not in self.node_types and not is_start_node:
-            return []
-
-        # Custom filter
-        if self.custom_filter is not None:
-            try:
-                if not self.custom_filter(rehydrate_node(self.G, current_id)):
-                    return []
-            except Exception:
-                pass  # Skip nodes that fail custom filter
-
-        # Add to results and visited
-        results = [current_id]
         self.visited.add(current_id)
 
-        # Determine neighbors based on direction
+        results: List[str] = []
+        if is_start or self._passes_node_filters(current_id):
+            results.append(current_id)
+
         if self.direction == "out":
             neighbors = list(self.G.successors(current_id))
         else:  # "in"
             neighbors = list(self.G.predecessors(current_id))
 
         for neighbor in neighbors:
-            
-            # Edge type filter - handle MultiDiGraph with custom string keys
-            edge_type = None
-            try:
-                # Try simple lookup first (for single-key edges)
-                edge_data = self.G.edges[current_id, neighbor]
-                if isinstance(edge_data, dict):
-                    edge_type = edge_data.get("type")
-                elif isinstance(edge_data, str):
-                    edge_type = edge_data
-            except (KeyError, TypeError, ValueError):
-                # For MultiDiGraph with custom keys, iterate over all edges manually
-                for u, v, key, data in self.G.edges(keys=True, data=True):
-                    if ((u == current_id and v == neighbor) or (v == current_id and u == neighbor)):
-                        if isinstance(data, dict):
-                            edge_type = data.get("type")
-                        elif isinstance(data, str):
-                            edge_type = data
-                        break
-            
-            if self.edge_types and edge_type is not None and edge_type not in self.edge_types:
-                continue
-
-            # Property filter (only applies to PROPERTY nodes)
             if neighbor in self.visited:
                 continue
-                
-            neighbor_data = self.G.nodes[neighbor]
-            if neighbor_data.get("type") == NodeType.PROPERTY.value:
-                prop_name = neighbor_data.get("name")
-                prop_value = neighbor_data.get("value")
 
-                if self.property_name and prop_name == self.property_name.value:
-                    if prop_value is not None:
-                        if self.property_min is not None and prop_value < self.property_min:
-                            continue
-                        if self.property_max is not None and prop_value > self.property_max:
-                            continue
+            # Edge type filter: check edges in the traversal direction.
+            if self.edge_type_filter:
+                if self.direction == "out":
+                    edge_types = self._edge_types_between(current_id, neighbor)
+                else:
+                    edge_types = self._edge_types_between(neighbor, current_id)
+                if not any(et in self.edge_type_filter for et in edge_types):
+                    continue
 
-            # Element filter
-            if self.element_symbols:
-                element_nodes = [nid for nid in neighbors 
-                                if self.G.nodes[nid].get("type") == NodeType.ELEMENT.value]
-                if element_nodes:
-                    neighbor_elements = [self.G.nodes[eln].get("symbol") for eln in element_nodes]
-                    matching = any(sym in self.element_symbols for sym in neighbor_elements)
-                    if not matching:
-                        continue
-
-            # Chemsys filter
-            if self.chemsys_symbols:
-                chemsys_nodes = [nid for nid in neighbors 
-                                if self.G.nodes[nid].get("type") == NodeType.CHEMSYS.value]
-                if chemsys_nodes:
-                    neighbor_chemsys = self.G.nodes[chemsys_nodes[0]].get("symbols", [])
-                    expected_chemsys = sorted(self.chemsys_symbols)
-                    if sorted(neighbor_chemsys) != expected_chemsys:
-                        continue
-
-            # Crystal system filter
-            if hasattr(self, 'crystal_system_filter'):
-                structure_nodes = [nid for nid in neighbors 
-                                  if self.G.nodes[nid].get("type") == NodeType.STRUCTURE.value]
-                if structure_nodes:
-                    cs_val = self.G.nodes[structure_nodes[0]].get("crystal_system")
-                    if cs_val and cs_val != str(self.crystal_system_filter):
-                        continue
-
-            # Space group filter
-            if hasattr(self, 'space_group_filter'):
-                structure_nodes = [nid for nid in neighbors 
-                                  if self.G.nodes[nid].get("type") == NodeType.STRUCTURE.value]
-                if structure_nodes:
-                    sg_val = self.G.nodes[structure_nodes[0]].get("space_group_number")
-                    if sg_val is not None and sg_val != self.space_group_filter:
-                        continue
-
-            # Recursively traverse neighbors of this neighbor (for multi-hop queries)
-            sub_results = self._traverse(neighbor)
-            results.extend(sub_results)
+            results.extend(self._traverse(neighbor))
 
         return results
 
@@ -415,106 +401,50 @@ class QueryBuilder:
         Returns:
             List of node IDs that match all applied filters
         """
-        # Start from the initial node (or all nodes of a type if no start specified)
-        if self.start_node_id in self.G.nodes():
-            results = self._traverse(self.start_node_id)
-        else:
+        if self.start_node_id not in self.G.nodes():
             raise ValueError(f"Start node not found: {self.start_node_id}")
 
+        self.visited = set()
+        results = self._traverse(self.start_node_id, is_start=True)
+
+        # The start node is included unconditionally to seed traversal;
+        # drop it from the result set unless it genuinely matches.
+        if results and results[0] == self.start_node_id:
+            if not self._passes_node_filters(self.start_node_id):
+                results = results[1:]
         return results
 
     def execute_typed(self) -> List[KGNode]:
-        """Execute query and return typed pydantic models.
+        """Execute query and return typed pydantic models."""
+        return [rehydrate_node(self.G, nid) for nid in self.execute()]
 
-        Returns:
-            List of KGNode models matching the query
-        """
-        node_ids = self.execute()
-        return [rehydrate_node(self.G, nid) for nid in node_ids]
+    def _execute_of_type(self, node_type: NodeType) -> List[KGNode]:
+        """Execute and keep only nodes of one serialized type."""
+        out: List[KGNode] = []
+        for nid in self.execute():
+            if self.G.nodes[nid].get("type") == node_type.value:
+                out.append(rehydrate_node(self.G, nid))
+        return out
 
     def execute_materials_only(self) -> List[MaterialNode]:
-        """Execute query and return only Material nodes.
-
-        Returns:
-            List of MaterialNode models matching the query
-        """
-        node_ids = self.execute()
-        materials = []
-        for nid in node_ids:
-            node_data = self.G.nodes[nid]
-            if node_data.get("type") == NodeType.MATERIAL.value:
-                materials.append(rehydrate_node(self.G, nid))
-        return materials
+        """Execute query and return only Material nodes."""
+        return self._execute_of_type(NodeType.MATERIAL)
 
     def execute_structures_only(self) -> List[StructureNode]:
-        """Execute query and return only Structure nodes.
-
-        Returns:
-            List of StructureNode models matching the query
-        """
-        node_ids = self.execute()
-        structures = []
-        for nid in node_ids:
-            node_data = self.G.nodes[nid]
-            if node_data.get("type") == NodeType.STRUCTURE.value:
-                structures.append(rehydrate_node(self.G, nid))
-        return structures
+        """Execute query and return only Structure nodes."""
+        return self._execute_of_type(NodeType.STRUCTURE)
 
     def execute_properties_only(self) -> List[PropertyNode]:
-        """Execute query and return only Property nodes.
-
-        Returns:
-            List of PropertyNode models matching the query
-        """
-        node_ids = self.execute()
-        properties = []
-        for nid in node_ids:
-            node_data = self.G.nodes[nid]
-            if node_data.get("type") == NodeType.PROPERTY.value:
-                properties.append(rehydrate_node(self.G, nid))
-        return properties
+        """Execute query and return only Property nodes."""
+        return self._execute_of_type(NodeType.PROPERTY)
 
     def execute_elements_only(self) -> List[ElementNode]:
-        """Execute query and return only Element nodes.
-
-        Returns:
-            List of ElementNode models matching the query
-        """
-        node_ids = self.execute()
-        elements = []
-        for nid in node_ids:
-            node_data = self.G.nodes[nid]
-            if node_data.get("type") == NodeType.ELEMENT.value:
-                elements.append(rehydrate_node(self.G, nid))
-        return elements
+        """Execute query and return only Element nodes."""
+        return self._execute_of_type(NodeType.ELEMENT)
 
     def execute_chemsys_only(self) -> List[ChemsysNode]:
-        """Execute query and return only Chemsys nodes.
-
-        Returns:
-            List of ChemsysNode models matching the query
-        """
-        node_ids = self.execute()
-        chemsys_list = []
-        for nid in node_ids:
-            node_data = self.G.nodes[nid]
-            if node_data.get("type") == NodeType.CHEMSYS.value:
-                chemsys_list.append(rehydrate_node(self.G, nid))
-        return chemsys_list
-
-    def execute_structures_only(self) -> List[StructureNode]:
-        """Execute query and return only Structure nodes.
-
-        Returns:
-            List of StructureNode models matching the query
-        """
-        node_ids = self.execute()
-        structures = []
-        for nid in node_ids:
-            node_data = self.G.nodes[nid]
-            if node_data.get("type") == NodeType.STRUCTURE.value:
-                structures.append(rehydrate_node(self.G, nid))
-        return structures
+        """Execute query and return only Chemsys nodes."""
+        return self._execute_of_type(NodeType.CHEMSYS)
 
 
 # ---------------------------------------------------------------------------
@@ -531,24 +461,23 @@ def find_materials_by_element(graph: nx.MultiDiGraph, element_symbol: str) -> Li
     Returns:
         List of MaterialNode models for all materials containing the element
     """
-    # Find the element node
-    element_nodes = [nid for nid, data in graph.nodes(data=True) 
-                     if data.get("type") == NodeType.ELEMENT.value and \
+    element_nodes = [nid for nid, data in graph.nodes(data=True)
+                     if data.get("type") == NodeType.ELEMENT.value and
                         data.get("symbol") == element_symbol]
 
     if not element_nodes:
         return []
 
-    # Query materials connected to this element (materials point TO elements, so use direction="in")
+    # Materials point TO elements, so walk edges backwards.
     qb = QueryBuilder(graph, element_nodes[0], direction="in")
-    qb.edge_type("HAS_ELEMENT")
+    qb.edge_type(EdgeType.HAS_ELEMENT)
     qb.node_type(NodeType.MATERIAL)
 
     return qb.execute_materials_only()
 
 
 def find_materials_in_chemsys(
-    graph: nx.MultiDiGraph, 
+    graph: nx.MultiDiGraph,
     chemsys_name: str  # e.g., "Ni-P" or "Co-Fe-O"
 ) -> List[MaterialNode]:
     """Find all materials in a chemical system.
@@ -560,24 +489,22 @@ def find_materials_in_chemsys(
     Returns:
         List of MaterialNode models for materials in the chemsys
     """
-    # Find the chemsys node by ID (format: "chemsys:<name>")
-    chemsys_id = f"chemsys:{chemsys_name}"
-    chemsys_nodes = [nid for nid, data in graph.nodes(data=True) 
-                     if nid == chemsys_id]
-
-    if not chemsys_nodes:
+    # Chemsys node IDs are built from SORTED symbols (see kg.schema.chemsys_id),
+    # so "P-Ni" and "Ni-P" must resolve to the same node.
+    node_id = chemsys_id(chemsys_name.split("-"))
+    if node_id not in graph.nodes():
         return []
 
-    # Query materials connected to this chemsys (materials point TO chemsys, so use direction="in")
-    qb = QueryBuilder(graph, chemsys_nodes[0], direction="in")
-    qb.edge_type("IN_CHEMSYS")
+    # Materials point TO chemsys, so walk edges backwards.
+    qb = QueryBuilder(graph, node_id, direction="in")
+    qb.edge_type(EdgeType.IN_CHEMSYS)
     qb.node_type(NodeType.MATERIAL)
 
     return qb.execute_materials_only()
 
 
 def find_stable_materials(
-    graph: nx.MultiDiGraph, 
+    graph: nx.MultiDiGraph,
     max_e_above_hull: float,
     source_filter: Optional[PropertySource] = None
 ) -> List[MaterialNode]:
@@ -586,106 +513,94 @@ def find_stable_materials(
     Args:
         graph: The knowledge graph
         max_e_above_hull: Maximum allowed energy above hull (eV/atom)
-        source_filter: Optional filter for property source (e.g., only MaterialsProject data)
+        source_filter: Optional filter for property source (e.g., only
+            MaterialsProject-derived values)
 
     Returns:
         List of MaterialNode models for stable materials
     """
-    # Find all material nodes
-    mat_nodes = [nid for nid, data in graph.nodes(data=True) 
-                 if data.get("type") == NodeType.MATERIAL.value]
-
-    stable_materials = []
-    for mat_nid in mat_nodes:
-        # Find e_above_hull property for this material
-        mat_id = mat_nid.split(":")[-1] if ":" in mat_nid else mat_nid
-        
-        prop_nodes = [nid for nid, data in graph.nodes(data=True) 
-                      if (data.get("type") == NodeType.PROPERTY.value and \
-                          data.get("name") == PropertyName.ENERGY_ABOVE_HULL.value and \
-                          data.get("mpid") == mat_id)]
-        
-        for prop_nid in prop_nodes:
-            prop_data = graph.nodes[prop_nid]
-            value = prop_data.get("value")
-            
-            # Check source filter if specified
-            if source_filter is not None and prop_data.get("source") != str(source_filter):
-                continue
-            
-            # Check stability threshold
-            if value is not None and value <= max_e_above_hull:
-                stable_materials.append(rehydrate_node(graph, mat_nid))
-                break  # Only add each material once
-
-    return stable_materials
+    return find_materials_by_property_range(
+        graph,
+        PropertyName.ENERGY_ABOVE_HULL,
+        float("-inf"),
+        max_e_above_hull,
+        source_filter=source_filter,
+    )
 
 
 def find_materials_by_property_range(
     graph: nx.MultiDiGraph,
     property_name: PropertyName | str,
     min_val: float,
-    max_val: float
+    max_val: float,
+    source_filter: Optional[PropertySource] = None,
 ) -> List[MaterialNode]:
     """Find materials with a property in a given range.
+
+    Scans Property nodes directly rather than traversing from an
+    arbitrary start node (an earlier version hardcoded a dummy
+    "material:mp-123" start node, which raised ValueError on any graph
+    that did not happen to contain it).
 
     Args:
         graph: The knowledge graph
         property_name: Name of the property to query
         min_val: Minimum value (inclusive)
         max_val: Maximum value (inclusive)
+        source_filter: Optional PropertySource restriction
 
     Returns:
         List of MaterialNode models for materials with properties in range
     """
-    qb = QueryBuilder(graph, "material:mp-123")  # Dummy start
-    qb.edge_type("HAS_PROPERTY")
-    qb.property_range(property_name, min_val, max_val)
-    qb.node_type(NodeType.MATERIAL)
+    name_value = (
+        property_name.value if isinstance(property_name, PropertyName) else str(property_name)
+    )
+    source_value = (
+        source_filter.value if isinstance(source_filter, PropertySource) else source_filter
+    )
 
-    return qb.execute_materials_only()
+    matched_mpids: set[str] = set()
+    for _nid, data in graph.nodes(data=True):
+        if data.get("type") != NodeType.PROPERTY.value:
+            continue
+        if data.get("name") != name_value:
+            continue
+        if source_value is not None and data.get("source") != source_value:
+            continue
+        value = data.get("value")
+        if value is None:
+            continue
+        if not (min_val <= float(value) <= max_val):
+            continue
+        mpid = data.get("mpid")
+        if mpid:
+            matched_mpids.add(mpid)
+
+    materials: List[MaterialNode] = []
+    for nid, data in graph.nodes(data=True):
+        if data.get("type") == NodeType.MATERIAL.value and data.get("mpid") in matched_mpids:
+            materials.append(rehydrate_node(graph, nid))
+    return materials
 
 
 def find_all_materials(graph: nx.MultiDiGraph) -> List[MaterialNode]:
-    """Find all materials in the graph.
-
-    Args:
-        graph: The knowledge graph
-
-    Returns:
-        List of all MaterialNode models
-    """
-    mat_nodes = [nid for nid, data in graph.nodes(data=True) 
+    """Find all materials in the graph."""
+    mat_nodes = [nid for nid, data in graph.nodes(data=True)
                  if data.get("type") == NodeType.MATERIAL.value]
     return [rehydrate_node(graph, nid) for nid in mat_nodes]
 
 
 def find_materials_by_formula(graph: nx.MultiDiGraph, formula: str) -> List[MaterialNode]:
-    """Find materials with a specific pretty formula.
-
-    Args:
-        graph: The knowledge graph
-        formula: Pretty formula string (e.g., "LiFePO4")
-
-    Returns:
-        List of MaterialNode models matching the formula
-    """
-    mat_nodes = [nid for nid, data in graph.nodes(data=True) 
-                 if data.get("type") == NodeType.MATERIAL.value and \
+    """Find materials with a specific pretty formula."""
+    mat_nodes = [nid for nid, data in graph.nodes(data=True)
+                 if data.get("type") == NodeType.MATERIAL.value and
                     data.get("formula_pretty") == formula]
     return [rehydrate_node(graph, nid) for nid in mat_nodes]
 
 
 def find_all_elements(graph: nx.MultiDiGraph) -> List[ElementNode]:
-    """Find all elements in the graph.
-
-    Args:
-        graph: The knowledge graph
-
-    Returns:
-        List of all ElementNode models
-    """
-    elem_nodes = [nid for nid, data in graph.nodes(data=True) 
+    """Find all elements in the graph."""
+    elem_nodes = [nid for nid, data in graph.nodes(data=True)
                   if data.get("type") == NodeType.ELEMENT.value]
     return [rehydrate_node(graph, nid) for nid in elem_nodes]
 
@@ -711,7 +626,7 @@ def build_query(
     """
     if not isinstance(graph, nx.MultiDiGraph):
         raise TypeError("graph must be a NetworkX MultiDiGraph")
-    
+
     if node_id not in graph.nodes():
         raise ValueError(f"Node ID not found: {node_id}")
 
@@ -721,8 +636,8 @@ def build_query(
 def get_typed_query(graph: nx.MultiDiGraph) -> QueryBuilder:
     """Entry point for building typed queries.
 
-    This is a convenience function that creates a QueryBuilder with
-    default settings. For more control, use build_query() directly.
+    Convenience wrapper that starts from the first Material node. For
+    control over the start node, use build_query() directly.
 
     Args:
         graph: The knowledge graph
@@ -733,8 +648,7 @@ def get_typed_query(graph: nx.MultiDiGraph) -> QueryBuilder:
     if not graph.nodes():
         raise ValueError("Graph must contain at least one node before querying.")
 
-    # Default to starting from the first material node
-    mat_nodes = [nid for nid, data in graph.nodes(data=True) 
+    mat_nodes = [nid for nid, data in graph.nodes(data=True)
                  if data.get("type") == NodeType.MATERIAL.value]
 
     if not mat_nodes:
@@ -747,7 +661,7 @@ __all__ = [
     # Classes
     "QueryBuilder",
     # Functions
-    "build_query", 
+    "build_query",
     "get_typed_query",
     # Convenience functions
     "find_materials_by_element",
