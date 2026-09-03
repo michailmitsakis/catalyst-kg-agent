@@ -2,7 +2,7 @@
 
 Development log for **catalyst-kg-agent**. The README is the public-facing document; this file is the working record of what was built, what broke, and what was decided.
 
-**Last updated:** 2026-09-02
+**Last updated:** 2026-09-03
 
 ---
 
@@ -14,10 +14,11 @@ The pipeline runs end to end and the surrogate evaluation has been completed wit
 
 - MP data pull → KG build → 686 nodes, 921 edges, 130 materials, 390 properties, 0 CIF failures
 - MACE surrogate with formation energies via self-consistent elemental references (validated to 12 meV/atom against MP on mp-2790)
-- Residual-force escalation gate, calibrated against the corpus distribution
+- Residual-force escalation gate, calibrated against the corpus distribution and **firing on real candidates** (mp-943, Co₃S₄, 0.795 eV/Å)
 - CGCNN baseline trained and cross-validated, with composition-disjoint splits and out-of-fold predictions
 - MACE vs CGCNN comparison, reported split by oxide/non-oxide
-- Budget-bounded campaign loop with journal + MLflow logging
+- Budget-bounded campaign loop with journal + MLflow logging; three-campaign trace verified end to end (see [Campaign trace](#campaign-trace-2026-09-03))
+- Two genuine LLM agents: Retriever (query → structured intent) and Planner (candidate prioritisation)
 
 **Not done / simulated:**
 
@@ -128,12 +129,105 @@ Composition-disjoint CV degrades MAE by ~27% (0.0838 → 0.1065) — modest, ind
 
 ---
 
+## Campaign trace (2026-09-03)
+
+Three campaigns from a freshly built KG, verified end to end. Full table and
+commentary in the README's *Worked example*.
+
+| | demo-001 | demo-002 | demo-003 |
+|---|---|---|---|
+| Query | broad | broad | "Find stable Ni-P HER catalysts" |
+| Skipped (already in KG) | 0 | 19 | 36 |
+| Evaluated | 19 | 17 | 5 |
+| Escalations | 0 | 1 (paid) | 0 |
+| Spent / remaining | 96.5 / 3.5 | 96.5 / 3.5 | 27.5 / 72.5 |
+| Termination | `budget_exhausted` | `budget_exhausted` | `completed` |
+
+Cross-checks that passed: 19+17+5 = 41 distinct `mace_energy_per_atom`
+properties in the KG (no material scored twice); demo-002's arithmetic
+reconciles exactly (1.0 + 17×5.0 + 10.0 + 0.5 overhead = 96.5); escalation
+counts agree between the summary log and the budget tracker.
+
+**Nondeterminism.** The Planner is an LLM, so candidate ordering varies
+between runs. mp-943 was in demo-001's candidate pool but ordered outside the
+affordable window, and surfaced in demo-002 instead. Aggregate behaviour is
+stable; the specific escalation is not. Any published trace is *a* run.
+
+### Campaign-loop bugs found and fixed during this trace
+
+The loop needed six rounds of correction before producing a trustworthy run.
+Recorded because several of these reported plausible-looking numbers while
+being wrong.
+
+| Bug | Symptom | Fix |
+|---|---|---|
+| Retriever returned the whole corpus every step | `n_materials_evaluated: 520` on a 130-material corpus (130 × 4 retrievals) | Track scored mpids; count materials actually scored, not retrieved |
+| `get_eah()` read a nonexistent `properties` attribute | Every material scored `inf`, sort was a no-op, "best candidate" was simply first in retrieval order; `best_candidate_e_above_hull` always null | Traverse `HAS_PROPERTY` edges |
+| `status` overwritten after the loop | Every campaign reported `completed`, including budget exhaustion | Preserve terminal status; added distinct `budget_exhausted` |
+| Prediction ran before its cost was charged | 23 predictions computed, 19 charged — 20% unbilled compute | Deduct before computing |
+| Escalation `deduct()` return ignored | Summary reported "Escalations triggered: 1" while the tracker recorded 0 | Log only affordable escalations; record `escalation_unaffordable` otherwise |
+| Critic called once per batch, after all predictions | All 19 predictions spent 95 of 99.5 units, then the Critic flagged an escalation that could no longer be afforded | Screen incrementally: predict → validate → escalate per candidate |
+
+Also fixed: `prediction_count` off by one (initialised on update rather than
+creation); `budget_remaining` hardcoded to 0.0 in `campaign_state`, contradicting
+the tracker; a KG lookup paid for when the remaining budget could not fund a
+single subsequent prediction.
+
+### Retriever bugs (three stacked failures)
+
+Chemsys filtering had never worked. Three separate faults, each masking the next:
+
+1. `_execute_intent` dispatched on `intent.tool` with `if/elif`, so exactly one
+   constraint was applied and the rest discarded. "Find stable Ni-P HER
+   catalysts" parsed correctly as `stability` + `chemsys=[Ni-P]`, took the
+   stability branch, and returned all 130 — every material in the corpus is
+   below the threshold by construction, so the only discriminating constraint
+   was the one thrown away.
+2. `find_materials_in_chemsys` required a string; the Retriever passed a list.
+   Before the `queries.py` rewrite this silently returned `[]`; after, it
+   raised, and the Retriever's `except` swallowed it into an all-materials
+   fallback.
+3. `_normalize_chemsys` uppercased the input and then tested `part[1].islower()`
+   — a condition the uppercase had just made impossible. Every two-letter
+   element symbol was dropped: `Ni-P` → `['P']`, `Pt` → `[]`.
+
+All three fixed; the query now correctly resolves to the 8 nickel phosphides.
+
+### Planner: from hollow agent to real one
+
+`planner.py` previously constructed a pydantic-ai `Agent` with a system prompt
+and **never called it** — `plan_next_step()` was pure `if/elif`, and
+`campaign.py` passed `use_llm=False` so the agent was not even built. The
+project described itself as multi-agent while only the Retriever made LLM calls.
+
+The Planner now uses an LLM for **candidate prioritisation** — choosing which
+~19 of 130 candidates to spend the budget on, given what has been learned. Loop
+control (continue/escalate/stop) remains fully deterministic. Ordering is
+validated against the candidate list so the output is always a permutation of
+the input: hallucinated ids dropped, duplicates ignored, omissions appended.
+Verified against seven adversarial response shapes.
+
+Also fixed in the same pass: `dataclasses.field` used inside a pydantic
+`BaseModel`, and `MAX_ACTIONS_PER_CAMPAIGN` referenced without being imported
+(`is_campaign_complete()` raised `NameError` whenever called).
+
+---
+
 ## Technical debt
 
-- `ScribeAgent.get_materials_with_properties()` is unused by the agent loop and untested.
+- `ScribeAgent.get_materials_with_properties()` is dead code with three
+  independent defects, any one of which makes it return an empty list:
+  `str(property_name)` on an enum member gives `"PropertyName.ENERGY_ABOVE_HULL"`
+  not `"energy_above_hull"`; `G.edges(prop_nid, edges[0])` passes a node id into
+  the `data` parameter, so the traversal returns nothing; and `edges[0]` raises
+  `IndexError` for a property node with no predecessors. `kg/queries.py`'s
+  `find_materials_by_property_range` already does this correctly — either
+  delegate to it or delete the method.
 - `PlannerAgent.state.remaining_budget` is not synchronised with the campaign's `BudgetTracker`. It exists for standalone testing; `campaign.py`'s tracker is authoritative. Reading it mid-campaign gives stale numbers.
 - `requirements.txt` pins Windows-only packages (`pywin32`, `triton-windows`) and omits `torch_geometric`. Needs regenerating cross-platform.
-- `scripts/run_campaign.py` reads `result["campaign_state"]` and `result["final_materials"]`, but `CampaignOrchestrator.run()` returns those keys flattened at the top level — both come back empty, so the CLI reports zeros on a successful run. It also double-logs to MLflow (the orchestrator logs internally) and imports `log_campaign_params` without using it. **Not yet fixed.**
+- `scripts/run_campaign.py` previously read `result["campaign_state"]` and `result["final_materials"]`, which `CampaignOrchestrator.run()` returns flattened at the top level, so the CLI reported zeros on successful runs; it also double-logged to MLflow. **Fixed 2026-09-03.**
+- A campaign that exhausts its candidate pool spends one final KG lookup discovering there is nothing left (demo-003: 2 lookups, 5 predictions). Defensible — you cannot know the pool is empty without querying — but it is 1 unit of avoidable cost.
+- MLflow creates one *experiment* per campaign id rather than one experiment with many runs, which is unusual and makes cross-campaign comparison awkward in the UI.
 - `PropertyUnit.FORMATION_ENERGY_PER_ATOM` is an enum alias of `ENERGY_ABOVE_HULL` (both are `"eV/atom"`; Python enums collapse duplicate values). Serialisation is correct; do not identify properties by their unit member — use `PropertyName`.
 - GraphML export JSON-encodes list attributes as a workaround; `kg.json` remains canonical.
 
@@ -206,11 +300,30 @@ Full table in the README's *Design Decisions* section. Additions from the correc
 
 ## Next steps (prioritised)
 
-1. **Fix `scripts/run_campaign.py`** — currently reports zeros on successful runs (see Technical debt).
-2. **Run a full campaign** end to end and record the trace, cost breakdown, and final candidate for the README's worked example.
-3. **Regenerate `requirements.txt`** cross-platform, adding `torch_geometric`.
-4. Update `tests/test_predictor.py` and `tests/test_critic.py` if they still reference the removed `uncertainty` field.
-5. Consider fitting elemental references by least squares against training-fold targets — would absorb MP's correction scheme and make the oxide comparison fairer. Must be fit on training folds only.
+1. **Relax `E_ABOVE_HULL_RANGE`** in `data/download.py` beyond the current
+   `(0.0, 0.05)`. Effects: the Critic's stability threshold (0.1) would
+   finally reject something — at present nothing in the corpus can fail it;
+   more high-residual-force materials, so escalations become common rather
+   than occasional; and a larger, more chemically varied CGCNN training set,
+   which is currently the weakest part of the evaluation. Note this
+   regenerates every downstream artifact — KG, elemental references, CGCNN
+   training, force calibration, and all README numbers.
+2. **Re-run the surrogate comparison and CGCNN training** after (1), and
+   update the README Results tables.
+3. Consider whether `TOP_N_BY_STABILITY = 300` should rise; it is currently
+   unreached at 130 but becomes live once the stability filter is relaxed.
+
+Completed since the last revision: `run_campaign.py` fixed; full campaign
+trace recorded; `requirements.txt` regenerated cross-platform with
+`torch_geometric`; `test_predictor.py` and `test_critic.py` updated for the
+removed `uncertainty` field.
+
+Deliberately **not** doing: fitting elemental references by least squares
+against training-fold targets. It would shrink the oxide error and make the
+comparison look tidier, but it would absorb the GGA+U discrepancy into fitted
+constants and hide the most interesting finding in the project. It would also
+break the clean "zero-shot foundation model vs corpus-trained baseline"
+contrast. Kept as a stretch goal with that rationale attached.
 
 ---
 
