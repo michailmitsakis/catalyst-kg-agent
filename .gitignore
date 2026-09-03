@@ -228,8 +228,3 @@ README.md
 # MLFlow Temp files
 mlflow.db-shm
 mlflow.db-wal
-
-#  Model files
-models/mace-mpa-0-medium.model
-models/mace-omat-0-medium.model
-models/cgcnn_catalyst.pt
