@@ -25,22 +25,38 @@ Oxygen:
     "elemental oxygen crystal" in MP is not a physically appropriate
     reference for oxide formation energies.
 
-KNOWN LIMITATION -- oxide offset
---------------------------------
-Materials Project's own `formation_energy_per_atom` applies an empirical
-anion correction to oxides (and other anion-containing compounds) on top
-of raw DFT, fitted to experimental formation enthalpies. See:
-    Wang et al., "A framework for quantifying uncertainty in DFT energy
-    corrections", Sci Rep 11, 15496 (2021)
-    Jain et al., Phys. Rev. B 84, 045115 (2011)  [MP anion corrections]
+KNOWN LIMITATION -- transition-metal oxides
+-------------------------------------------
+MACE formation energies computed against these references disagree with
+MP's `formation_energy_per_atom` far more for transition-metal OXIDES than
+for anything else. Measured on this corpus (see
+models/mace_vs_cgcnn_comparison.json):
 
-The MACE-derived formation energies produced with these references apply
-NO such correction. Consequently, MACE formation energies for
-oxygen-containing compounds carry a roughly systematic offset relative to
-MP's corrected values, while non-oxide compounds do not. Any
-MACE-vs-MP-target comparison should therefore be reported split by
-oxide / non-oxide so the offset is visible rather than averaged away.
-See models/ comparison output and the README "Limitations" section.
+    mean MACE error per transition-metal atom
+      non-oxides:  Co +0.03, W +0.09, Mo +0.18, Fe +0.23, Mn +0.35, Ni +0.46
+      oxides:      Ir +1.16, Mn +2.44, Co +2.58, Fe +2.96, Ni +3.19
+
+The same element shows a 5-10x larger error once oxygen is present, so this
+is not an element-intrinsic model failure.
+
+This is consistent with Materials Project computing transition-metal oxides
+with GGA+U while computing elemental references and most non-oxides with
+plain GGA, then reconciling the two with a fitted correction scheme:
+    Jain et al., Phys. Rev. B 84, 045115 (2011)   [GGA+U mixing scheme]
+    Wang et al., Sci Rep 11, 15496 (2021)         [MP energy corrections]
+
+MP formation energies for these systems are therefore not on a single level
+of theory, and a zero-shot MLIP has no way to reproduce the scheme. Note
+the error magnitudes are roughly half the corresponding Hubbard U values
+and the element ordering is not an exact match, so this is offered as a
+consistent explanation, NOT as a recovery of U values.
+
+Practical consequence: report MACE-vs-MP comparisons split by oxide /
+non-oxide. The non-oxide figure is the fair measure of zero-shot MACE
+accuracy on this corpus; the overall figure is dominated by this artefact.
+(An earlier version of this note attributed the gap to MP's oxygen anion
+correction. That hypothesis was tested and rejected: the error scales with
+METAL content, not oxygen content.)
 
 Usage:
     python models/elemental_references.py                 # build/refresh cache
@@ -278,10 +294,12 @@ def build_references(
         "failed_elements": failures,
         "note": (
             "Energies are MACE-evaluated and self-consistent with each other. "
-            "Oxide formation energies derived from these references carry a "
-            "systematic offset vs Materials Project's formation_energy_per_atom, "
-            "which applies empirical anion corrections. Report oxide and "
-            "non-oxide comparisons separately."
+            "Formation energies for transition-metal oxides derived from these "
+            "references disagree strongly with Materials Project's "
+            "formation_energy_per_atom (~2.4-3.2 eV per metal atom, vs ~0.0-0.5 "
+            "for the same metals in non-oxides), consistent with MP's GGA+U "
+            "treatment of those systems. Report oxide and non-oxide comparisons "
+            "separately; see this module's docstring."
         ),
     }
 
@@ -359,8 +377,8 @@ def formation_energy_per_atom(
 def contains_oxygen(element_counts: dict[str, int]) -> bool:
     """True if the composition contains oxygen.
 
-    Used to split comparison reporting: oxide formation energies carry the
-    anion-correction offset described in this module's docstring.
+    Used to split comparison reporting: transition-metal oxides carry the
+    large GGA+U-related discrepancy described in this module's docstring.
     """
     return "O" in element_counts
 

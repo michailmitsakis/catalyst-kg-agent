@@ -19,23 +19,37 @@ against the MP-derived value stored in the KG:
 This is a like-for-like comparison. Neither model predicts e_above_hull;
 that quantity is read from MP and used only by the Critic's stability gate.
 
-THE OXIDE OFFSET -- READ BEFORE INTERPRETING RESULTS
-----------------------------------------------------
-MP's `formation_energy_per_atom` includes empirical anion corrections
-fitted to experimental formation enthalpies (Jain et al., PRB 84, 045115
-(2011); Wang et al., Sci Rep 11, 15496 (2021)). The MACE-derived formation
-energies apply NO such correction, and oxygen is referenced against
-molecular O2 rather than a corrected gas-phase reference.
+THE OXIDE DISCREPANCY -- READ BEFORE INTERPRETING RESULTS
+---------------------------------------------------------
+MACE's error against MP formation energies is concentrated almost entirely
+in transition-metal oxides. Measured on this corpus, mean MACE error per
+transition-metal atom:
 
-MACE errors on oxygen-containing compounds therefore carry a roughly
-systematic offset that non-oxides do not. Averaging over the whole set
-would hide this, so every metric here is reported three ways: overall,
-oxides only, and non-oxides only. The non-oxide numbers are the cleaner
-measure of MACE's accuracy; the oxide-vs-non-oxide gap is itself the
-evidence for the offset.
+    non-oxides:  Co +0.03, W +0.09, Mo +0.18, Fe +0.23, Mn +0.35, Ni +0.46
+    oxides:      Ir +1.16, Mn +2.44, Co +2.58, Fe +2.96, Ni +3.19
 
-CGCNN is unaffected: it is trained directly on MP's corrected values, so
-it learns whatever correction is present in the targets.
+The same element shows a 5-10x larger error once oxygen is present, and the
+error scales with METAL content rather than oxygen content.
+
+This is consistent with Materials Project computing transition-metal oxides
+with GGA+U while computing elemental references and most non-oxides with
+plain GGA, then reconciling them via a fitted correction scheme (Jain et
+al., PRB 84, 045115 (2011); Wang et al., Sci Rep 11, 15496 (2021)). MP
+formation energies for these systems are therefore not on one level of
+theory, and a zero-shot MLIP cannot reproduce the scheme. Error magnitudes
+are roughly half the corresponding Hubbard U values and the element
+ordering is not an exact match, so this is a consistent explanation, not a
+recovery of U values.
+
+Every metric here is therefore reported three ways: overall, oxides only,
+and non-oxides only. THE NON-OXIDE NUMBERS ARE THE FAIR MEASURE of
+zero-shot MACE accuracy; the overall number is dominated by this artefact.
+
+CGCNN is unaffected: it is trained directly on MP's values, so it absorbs
+whatever correction scheme is present in the targets. That is also why it
+outperforms MACE here -- the benchmark rewards having seen these targets,
+which is a property of the task, not evidence that CGCNN models the physics
+better.
 
 Usage:
     python models/surrogate_comparison.py
@@ -71,6 +85,7 @@ from kg.schema import MaterialNode, NodeType, PropertyName
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUTPUT = REPO_ROOT / "models" / "mace_vs_cgcnn_comparison.json"
 DEFAULT_PLOT_DIR = REPO_ROOT / "notebooks" / "plots"
+DEFAULT_OOF_PATH = REPO_ROOT / "models" / "cgcnn_oof_predictions.json"
 
 TARGET_PROPERTY = PropertyName.FORMATION_ENERGY_PER_ATOM.value
 
@@ -188,8 +203,49 @@ def run_mace(entries: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     return results
 
 
+def load_cgcnn_oof(oof_path: Path = DEFAULT_OOF_PATH) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
+    """Load out-of-fold CGCNN predictions, if a k-fold run produced them.
+
+    These are the honest CGCNN numbers: each material was predicted by the
+    fold model that never trained on it. Re-running the saved checkpoint
+    over the whole corpus (see run_cgcnn) instead reports training-set
+    performance, which is optimistic and not comparable to MACE's zero-shot
+    numbers.
+
+    Returns:
+        (predictions keyed by mpid, metadata dict). Both empty if absent.
+    """
+    path = Path(oof_path)
+    if not path.exists():
+        return {}, {}
+
+    blob = json.loads(path.read_text(encoding="utf-8"))
+    predictions = {
+        mpid: {
+            "value": record["predicted"],
+            "mc_dropout_uncertainty": record.get("mc_dropout_uncertainty"),
+            # OOF predictions were made during training; per-material
+            # inference timing was not recorded then.
+            "seconds": float("nan"),
+            "failed": False,
+        }
+        for mpid, record in blob.get("predictions", {}).items()
+    }
+    meta = {
+        "split_type": blob.get("split_type"),
+        "group_by_composition": blob.get("group_by_composition"),
+        "k_folds": blob.get("k_folds"),
+        "n_materials": blob.get("n_materials"),
+    }
+    return predictions, meta
+
+
 def run_cgcnn(entries: list[dict[str, Any]], kg_path: Path) -> dict[str, dict[str, Any]]:
-    """Run the trained CGCNN over the evaluation set.
+    """Run the trained CGCNN checkpoint over the evaluation set.
+
+    WARNING: the saved checkpoint was trained on this same corpus, so these
+    numbers include training-set performance and are optimistic. Prefer the
+    out-of-fold predictions (load_cgcnn_oof) when available.
 
     Returns:
         mpid -> {value, mc_dropout_uncertainty, seconds}
@@ -271,7 +327,8 @@ def compute_metrics(pairs: list[tuple[float, float]]) -> dict[str, Any]:
     """Error metrics for (prediction, ground_truth) pairs, in eV/atom.
 
     `mean_signed_error` is reported alongside MAE because a systematic
-    offset (such as the oxide anion correction) shows up as a large signed
+    offset (such as the transition-metal-oxide discrepancy) shows up as a
+    large signed
     error while MAE alone would not reveal its direction.
     """
     if not pairs:
@@ -307,8 +364,8 @@ def metrics_by_subset(
 ) -> dict[str, Any]:
     """Compute metrics overall and split by oxide / non-oxide.
 
-    The split is the point: see the module docstring on the anion-correction
-    offset. Reporting only the overall number would average the offset away.
+    The split is the point: see the module docstring on the transition-metal
+    oxide discrepancy. Reporting only the overall number would average it away.
     """
     buckets: dict[str, list[tuple[float, float]]] = {"overall": [], "oxides": [], "non_oxides": []}
 
@@ -485,6 +542,10 @@ def main() -> int:
                         help="Evaluate only the first N materials")
     parser.add_argument("--skip-mace", action="store_true")
     parser.add_argument("--skip-cgcnn", action="store_true")
+    parser.add_argument("--cgcnn-live", action="store_true",
+                        help="Force running the saved CGCNN checkpoint instead of "
+                             "using out-of-fold predictions. Reports training-set "
+                             "performance -- optimistic, not comparable to MACE.")
     parser.add_argument("--out", type=str, default=str(DEFAULT_OUTPUT))
     parser.add_argument("--no-plot", action="store_true")
     args = parser.parse_args()
@@ -504,7 +565,27 @@ def main() -> int:
         return 1
 
     mace = {} if args.skip_mace else run_mace(entries)
-    cgcnn = {} if args.skip_cgcnn else run_cgcnn(entries, kg_path)
+
+    cgcnn: dict[str, dict[str, Any]] = {}
+    cgcnn_source = "none"
+    cgcnn_meta: dict[str, Any] = {}
+    if not args.skip_cgcnn:
+        if not args.cgcnn_live:
+            cgcnn, cgcnn_meta = load_cgcnn_oof()
+        if cgcnn:
+            cgcnn_source = "out-of-fold"
+            print(f"\nCGCNN: using out-of-fold predictions "
+                  f"({cgcnn_meta.get('split_type')} split, "
+                  f"k={cgcnn_meta.get('k_folds')}, n={len(cgcnn)})")
+        else:
+            cgcnn = run_cgcnn(entries, kg_path)
+            cgcnn_source = "live checkpoint"
+            if cgcnn:
+                print("\n  WARNING: these CGCNN numbers include materials the model")
+                print("           trained on and are therefore optimistic. Run")
+                print("           models/baseline_cgcnn.py --train --k-folds 5")
+                print("           --group-by-composition to generate out-of-fold")
+                print("           predictions instead.")
 
     if not mace and not cgcnn:
         print("\n[ERROR] Neither model produced predictions.")
@@ -520,20 +601,28 @@ def main() -> int:
     if mace_subsets:
         print_report("MACE (zero-shot foundation model)", mace_subsets)
     if cgcnn_subsets:
-        print_report("CGCNN (trained on this corpus)", cgcnn_subsets)
+        if cgcnn_source == "out-of-fold":
+            label = (f"CGCNN (out-of-fold, {cgcnn_meta.get('split_type')} split)")
+        else:
+            label = "CGCNN (live checkpoint -- INCLUDES TRAINING DATA, optimistic)"
+        print_report(label, cgcnn_subsets)
 
-    # The oxide/non-oxide MAE gap is the anion-correction offset made visible.
+    # The oxide/non-oxide gap made visible. See module docstring: this
+    # tracks metal content, not oxygen content, and is consistent with MP's
+    # GGA+U treatment of transition-metal oxides.
     if mace_subsets:
         ox = mace_subsets.get("oxides", {})
         nox = mace_subsets.get("non_oxides", {})
         if ox.get("n") and nox.get("n"):
             print()
-            print("Oxide offset check (MACE):")
+            print("Oxide discrepancy check (MACE):")
             print(f"  non-oxide signed error {nox['mean_signed_error']:+.4f} eV/atom")
             print(f"  oxide     signed error {ox['mean_signed_error']:+.4f} eV/atom")
             print(f"  gap                    {ox['mean_signed_error'] - nox['mean_signed_error']:+.4f} eV/atom")
-            print("  A large gap is expected: MP applies empirical anion corrections")
-            print("  to oxides that the MACE-reference formation energies do not.")
+            print("  Consistent with MP's GGA+U treatment of transition-metal oxides")
+            print("  vs plain GGA elsewhere -- MP formation energies for these systems")
+            print("  are not on a single level of theory. The non-oxide figure is the")
+            print("  fair measure of zero-shot MACE accuracy. See module docstring.")
 
     print()
     print("Inference cost (seconds per material)")
@@ -571,6 +660,8 @@ def main() -> int:
             },
         },
         "cgcnn": {
+            "prediction_source": cgcnn_source,
+            "split_metadata": cgcnn_meta,
             "metrics": cgcnn_subsets,
             "timing": timing_stats(cgcnn) if cgcnn else None,
             "trust_signal": {
@@ -591,12 +682,19 @@ def main() -> int:
             for e in entries
         ],
         "caveats": [
-            "MACE formation energies use MACE elemental references with molecular O2 "
-            "for oxygen; MP applies empirical anion corrections. Oxide errors carry a "
-            "systematic offset, which is why metrics are split oxide/non-oxide.",
-            "CGCNN is trained on this ~130-material corpus and evaluated on the same "
-            "corpus here; use the cross-validation metrics from baseline_cgcnn.py "
-            "--train --k-folds for a generalisation estimate.",
+            "MACE's error is concentrated in transition-metal oxides (~2.4-3.2 eV per "
+            "metal atom, vs ~0.0-0.5 for the same metals in non-oxides), consistent "
+            "with MP's GGA+U treatment of those systems versus plain GGA elsewhere. "
+            "MP formation energies for these systems are not on a single level of "
+            "theory. Metrics are split oxide/non-oxide for this reason; the non-oxide "
+            "figure is the fair measure of zero-shot MACE accuracy.",
+            "CGCNN is trained on this ~130-material corpus. When prediction_source is "
+            "'out-of-fold', each material was scored by a fold model that never saw "
+            "it; when it is 'live checkpoint', the numbers include training data and "
+            "are optimistic.",
+            "The corpus spans only ~75 distinct compositions across 130 materials, so "
+            "a random CV split leaks polymorphs between folds. The composition-disjoint "
+            "split (baseline_cgcnn.py --group-by-composition) is the honest estimate.",
             "MACE is zero-shot on this corpus and was never fitted to these targets.",
             "The two trust signals are different physical quantities: MACE reports a "
             "max residual force (eV/Angstrom) measuring geometric disagreement with "

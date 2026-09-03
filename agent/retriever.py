@@ -208,62 +208,94 @@ Output ONLY the QueryIntent fields. Do not invent material IDs or KG data."""
     def _execute_intent(self, intent: "QueryIntent") -> tuple:
         """Execute a QueryIntent (from the LLM) against the KG.
 
-        Mirrors _execute_query but takes the small, LLM-friendly QueryIntent
-        schema instead of the manual-parser filters dict.
+        Every populated constraint is applied as a CONJUNCTION -- element
+        AND chemsys AND stability -- rather than dispatching on `tool` alone.
+
+        The previous version was an if/elif chain keyed on intent.tool, so
+        exactly one constraint was ever used and the rest were silently
+        discarded. "Find stable Ni-P HER catalysts" parsed correctly as
+        tool=stability + chemsys=['Ni-P'], took the stability branch, and
+        returned all 130 materials: every material in this corpus is below
+        the stability threshold by construction (data/download.py caps the
+        pull at e_above_hull <= 0.05), so the only discriminating part of
+        the query was the one thrown away. The correct answer is 8.
+
+        `tool` is still honoured as the primary intent when no constraint
+        fields are populated, which keeps "show me everything" working.
 
         Returns:
             Tuple of (materials, chemsys_groups, elements_found, provenance)
         """
-        materials: List[MaterialNode] = []
         chemsys_groups: List[List[str]] = []
         elements_found: List[str] = []
         provenance: Dict[str, Any] = {
             "filters_applied": intent.model_dump(),
             "nodes_visited": [],
             "edges_matched": [],
+            "constraints_used": [],
         }
 
         try:
-            if intent.tool == "element" and intent.elements:
+            # Each constraint contributes a candidate SET; the result is
+            # their intersection. None means "this constraint said nothing".
+            candidate_sets: List[set] = []
+
+            if intent.elements:
+                element_mpids: set = set()
                 for elem in intent.elements:
                     mats = find_materials_by_element(self.G, elem)
-                    materials.extend(mats)
+                    element_mpids.update(m.mpid for m in mats)
                     elements_found.append(elem)
                     provenance["edges_matched"].append(f"HAS_ELEMENT:{elem}")
-                    for mat in mats:
-                        if isinstance(mat, MaterialNode):
-                            for cnid in self.G.neighbors(mat.id):
-                                node_data = self.G.nodes[cnid]
-                                if node_data.get("type") == NodeType.CHEMSYS.value:
-                                    chemsys_groups.append(node_data.get("symbols", []))
-                                    provenance["nodes_visited"].append(cnid)
+                candidate_sets.append(element_mpids)
+                provenance["constraints_used"].append("elements")
 
-            elif intent.tool == "chemsys" and intent.chemsys:
+            if intent.chemsys:
+                chemsys_mpids: set = set()
                 for cs in intent.chemsys:
+                    # _normalize_chemsys returns a list of symbols;
+                    # find_materials_in_chemsys accepts either form.
                     mats = find_materials_in_chemsys(self.G, self._normalize_chemsys(cs))
-                    materials.extend(mats)
+                    chemsys_mpids.update(m.mpid for m in mats)
                     provenance["edges_matched"].append(f"IN_CHEMSYS:{cs}")
-                    for mat in mats:
-                        if isinstance(mat, MaterialNode):
-                            for cnid in self.G.neighbors(mat.id):
-                                node_data = self.G.nodes[cnid]
-                                if node_data.get("type") == NodeType.CHEMSYS.value:
-                                    chemsys_groups.append(node_data.get("symbols", []))
-                                    provenance["nodes_visited"].append(cnid)
+                candidate_sets.append(chemsys_mpids)
+                provenance["constraints_used"].append("chemsys")
 
-            elif intent.tool == "stability":
-                threshold = intent.threshold if intent.threshold else 0.1
-                materials = find_stable_materials(self.G, threshold)
+            # Stability applies when the LLM asked for it explicitly or gave
+            # a threshold. Note this is a weak filter on this corpus.
+            if intent.tool == "stability" or intent.threshold is not None:
+                threshold = intent.threshold if intent.threshold is not None else 0.1
+                stable_mpids = {m.mpid for m in find_stable_materials(self.G, threshold)}
+                candidate_sets.append(stable_mpids)
                 provenance["threshold"] = threshold
+                provenance["constraints_used"].append("stability")
 
-            else:  # "broad", or a filtered tool with no usable params
+            if candidate_sets:
+                keep = set.intersection(*candidate_sets)
+                all_materials = find_all_materials(self.G)
+                materials = [m for m in all_materials if m.mpid in keep]
+                provenance["mode"] = "filtered"
+                provenance["n_before_intersection"] = [len(s) for s in candidate_sets]
+            else:
+                # No usable constraint -- a genuinely broad query.
                 materials = find_all_materials(self.G)
                 provenance["mode"] = "all_materials"
+
+            # Collect the chemical systems the results span, for provenance.
+            for mat in materials:
+                if isinstance(mat, MaterialNode):
+                    for cnid in self.G.neighbors(mat.id):
+                        node_data = self.G.nodes[cnid]
+                        if node_data.get("type") == NodeType.CHEMSYS.value:
+                            chemsys_groups.append(node_data.get("symbols", []))
+                            provenance["nodes_visited"].append(cnid)
 
         except Exception as e:
             provenance["error"] = f"Intent execution failed ({intent.tool}): {e}"
             materials = find_all_materials(self.G)
             provenance["mode"] = "all_materials_after_error"
+
+        provenance["n_results"] = len(materials)
 
         if chemsys_groups:
             chemsys_strs = []
@@ -370,17 +402,30 @@ Output ONLY the QueryIntent fields. Do not invent material IDs or KG data."""
         return filters
 
     def _normalize_chemsys(self, chemsys_str: str) -> List[str]:
-        """Normalize chemsys string to sorted list of element symbols."""
-        # Handle "Ni-P", "Fe-Co-O", etc.
-        parts = re.split(r'[-_]', chemsys_str.upper())
+        """Normalize a chemsys string to a sorted list of element symbols.
+
+        Handles "Ni-P", "ni-p", "Fe_Co_O", etc. Each part is canonicalised
+        to element casing (first letter upper, second lower) rather than
+        being validated against casing supplied by the caller -- an LLM or a
+        user may type any case.
+
+        The previous version uppercased the whole string first and then
+        required part[1].islower(), a test the uppercase had just made
+        impossible to pass. Every two-letter symbol was silently dropped:
+        "Ni-P" became ["P"], "Pt" became []. The resulting chemsys id
+        matched nothing, so chemsys queries returned zero materials.
+        """
+        parts = re.split(r'[-_,\s]+', chemsys_str.strip())
         elements = []
         for part in parts:
-            if len(part) == 1:
-                elements.append(part)
-            elif len(part) == 2 and part[0].isupper() and part[1].islower():
-                elements.append(part)
-        
-        return sorted(elements)
+            part = part.strip()
+            if not part or not part.isalpha() or len(part) > 2:
+                continue
+            # Canonical element casing: "ni" -> "Ni", "P" -> "P"
+            symbol = part[0].upper() + part[1:].lower()
+            elements.append(symbol)
+
+        return sorted(set(elements))
 
     def _normalize_chemsys_match(self, match_tuple) -> List[str]:
         """Normalize a regex match tuple to sorted list of element symbols."""

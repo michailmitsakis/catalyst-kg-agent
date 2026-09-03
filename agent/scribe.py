@@ -66,7 +66,7 @@ class PredictorOutput(BaseModel):
     material_id: str
     property_name: str
     predicted_value: float
-    uncertainty: float
+    max_residual_force: float
     model_source: str
     
     @classmethod
@@ -76,7 +76,7 @@ class PredictorOutput(BaseModel):
             material_id=result.material_id,
             property_name=MACE_ENERGY_PROPERTY_NAME,
             predicted_value=result.property_value if result.property_value is not None else 0.0,
-            uncertainty=result.uncertainty,
+            max_residual_force=result.max_residual_force,
             model_source=result.model_used,
         )
 
@@ -143,15 +143,18 @@ class ScribeAgent:
         never under "energy_above_hull" -- see module docstring for why.
 
         Args:
-            prediction: PredictorResult object from MACE predictor with
-                energy-per-atom value + MC-Dropout uncertainty
+            prediction: PredictorResult from the MACE predictor, carrying the
+                energy per atom and the max residual force
         """
         material_id = prediction.material_id
 
         # Extract values from PredictorResult
         prop_name = MACE_ENERGY_PROPERTY_NAME
         pred_value = prediction.property_value
-        uncertainty = prediction.uncertainty
+        # The surrogate's trust signal, stored as node metadata alongside the
+        # value. This is a force (eV/Angstrom), not an uncertainty -- see
+        # agent/predictor.py for why the MC-Dropout uncertainty was removed.
+        residual_force = prediction.max_residual_force
         
         if pred_value is None or prediction.prediction_failed:
             print(f"Scribe: Skipping failed prediction for {material_id}")
@@ -171,24 +174,25 @@ class ScribeAgent:
                 current_value = float(prop_data.get("value", 0))
                 new_value = pred_value
                 
-                # Simple average for now (could be weighted by uncertainty later)
+                # Simple average for now (could be force-weighted later)
                 avg_value = (current_value + new_value) / 2
                 self.G.nodes[prop_nid]["value"] = avg_value
                 self.G.nodes[prop_nid]["source"] = PropertySource.MACE_FINETUNED.value
                 
-                # Store uncertainty as metadata (average with existing if present)
-                current_uncertainty = float(prop_data.get("uncertainty", 0))
-                new_uncertainty = uncertainty
-                avg_uncertainty = (current_uncertainty + new_uncertainty) / 2
-                self.G.nodes[prop_nid]["uncertainty"] = round(avg_uncertainty, 4)
+                # Store the residual force as metadata (average with existing)
+                current_force = float(prop_data.get("max_residual_force", 0))
+                avg_force = (current_force + residual_force) / 2
+                self.G.nodes[prop_nid]["max_residual_force"] = round(avg_force, 4)
                 
-                # Add prediction count if it exists, otherwise initialize
-                if "prediction_count" not in self.G.nodes[prop_nid]:
-                    self.G.nodes[prop_nid]["prediction_count"] = 1
-                else:
-                    self.G.nodes[prop_nid]["prediction_count"] += 1
+                # Increment. Nodes created before prediction_count was
+                # initialised on creation count as 1 prior prediction, so
+                # this update makes 2.
+                self.G.nodes[prop_nid]["prediction_count"] = (
+                    int(self.G.nodes[prop_nid].get("prediction_count", 1)) + 1
+                )
                 
-            print(f"Scribe: Updated existing property {prop_name} for {material_id} (avg uncertainty={avg_uncertainty:.3f})")
+            print(f"Scribe: Updated existing property {prop_name} for {material_id} "
+                  f"(avg residual force={avg_force:.3f} eV/A)")
             return
 
         # Create new PropertyNode for this prediction. prop_name is a raw
@@ -205,14 +209,20 @@ class ScribeAgent:
         )
 
         self.G.add_node(prop_node.id, **prop_node.model_dump(mode="json"))
-        
-        # Add uncertainty as metadata
-        self.G.nodes[prop_node.id]["uncertainty"] = round(uncertainty, 4)
+
+        # Add the trust signal as metadata
+        self.G.nodes[prop_node.id]["max_residual_force"] = round(residual_force, 4)
+
+        # This IS the first prediction, so the count starts at 1. Leaving it
+        # unset here meant the field only appeared on the second write, so a
+        # material predicted twice reported prediction_count = 1.
+        self.G.nodes[prop_node.id]["prediction_count"] = 1
 
         # Add edge from material to property
         self.G.add_edge(material_id, prop_node.id, key=f"HAS_PROPERTY:{prop_name}", type="HAS_PROPERTY")
         
-        print(f"Scribe: Added new property {prop_name}={pred_value:.4f} eV/atom for {material_id} (uncertainty={uncertainty:.1%})")
+        print(f"Scribe: Added new property {prop_name}={pred_value:.4f} eV/atom "
+              f"for {material_id} (residual force={residual_force:.3f} eV/A)")
 
     def get_materials_with_properties(
         self,
@@ -264,7 +274,7 @@ def create_scribe(graph_path: Path = None) -> ScribeAgent:
     """Factory function to create a scribe agent.
 
     Args:
-        graph_path: Path to knowledge graph JSON
+        graph_path: Path to knowledge graph JSON    
 
     Returns:
         Configured ScribeAgent instance

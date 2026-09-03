@@ -1,0 +1,920 @@
+{
+  "split_type": "composition-disjoint",
+  "group_by_composition": true,
+  "k_folds": 5,
+  "target_property": "formation_energy_per_atom",
+  "n_materials": 130,
+  "note": "Each material was predicted by the fold model that did NOT train on it. Use these for an unbiased CGCNN comparison; re-running the saved checkpoint over the full corpus reports training-set performance instead.",
+  "predictions": {
+    "mp-1271784": {
+      "formula": "Co3O4",
+      "predicted": -1.2253660128470503,
+      "mc_dropout_uncertainty": 0.04946146919447522,
+      "ground_truth": -1.2599564790725708,
+      "fold": 1
+    },
+    "mp-1271793": {
+      "formula": "Co3O4",
+      "predicted": -1.2852285530553276,
+      "mc_dropout_uncertainty": 0.04124736364668399,
+      "ground_truth": -1.2903382778167725,
+      "fold": 1
+    },
+    "mp-1513": {
+      "formula": "Co9S8",
+      "predicted": -0.4198127174932018,
+      "mc_dropout_uncertainty": 0.042715471150106446,
+      "ground_truth": -0.43911677598953247,
+      "fold": 1
+    },
+    "mp-1522": {
+      "formula": "FeS2",
+      "predicted": -0.6219687208855775,
+      "mc_dropout_uncertainty": 0.0369329391264874,
+      "ground_truth": -0.8474769592285156,
+      "fold": 1
+    },
+    "mp-18748": {
+      "formula": "Co3O4",
+      "predicted": -1.1886311895776331,
+      "mc_dropout_uncertainty": 0.034219243919056175,
+      "ground_truth": -1.2798583507537842,
+      "fold": 1
+    },
+    "mp-19326": {
+      "formula": "MnO2",
+      "predicted": -1.8792760079144755,
+      "mc_dropout_uncertainty": 0.08399580778563268,
+      "ground_truth": -1.8068263530731201,
+      "fold": 1
+    },
+    "mp-19395": {
+      "formula": "MnO2",
+      "predicted": -1.8449034606860066,
+      "mc_dropout_uncertainty": 0.14768609362829607,
+      "ground_truth": -1.8058298826217651,
+      "fold": 1
+    },
+    "mp-20027": {
+      "formula": "FeP2",
+      "predicted": -0.43070242870314357,
+      "mc_dropout_uncertainty": 0.050173390117901125,
+      "ground_truth": -0.5353094935417175,
+      "fold": 1
+    },
+    "mp-219": {
+      "formula": "MoP",
+      "predicted": -0.5541567460096879,
+      "mc_dropout_uncertainty": 0.03580006877743326,
+      "ground_truth": -0.6960018873214722,
+      "fold": 1
+    },
+    "mp-226": {
+      "formula": "FeS2",
+      "predicted": -0.5655183816175923,
+      "mc_dropout_uncertainty": 0.05154499757374304,
+      "ground_truth": -0.8374183177947998,
+      "fold": 1
+    },
+    "mp-22619": {
+      "formula": "NiP2",
+      "predicted": -0.2467479384482647,
+      "mc_dropout_uncertainty": 0.045941140917410916,
+      "ground_truth": -0.40791869163513184,
+      "fold": 1
+    },
+    "mp-22749": {
+      "formula": "Mn5C2",
+      "predicted": -0.06479862781213364,
+      "mc_dropout_uncertainty": 0.07999042587035513,
+      "ground_truth": -0.0028497003950178623,
+      "fold": 1
+    },
+    "mp-2420": {
+      "formula": "PW",
+      "predicted": -0.3471395488578824,
+      "mc_dropout_uncertainty": 0.040398772316721655,
+      "ground_truth": -0.3642590641975403,
+      "fold": 1
+    },
+    "mp-27413": {
+      "formula": "Mo8P5",
+      "predicted": -0.49288932084892156,
+      "mc_dropout_uncertainty": 0.03572343697486792,
+      "ground_truth": -0.5042400360107422,
+      "fold": 1
+    },
+    "mp-2790": {
+      "formula": "Ni12P5",
+      "predicted": -0.5165767583597085,
+      "mc_dropout_uncertainty": 0.0345133459796122,
+      "ground_truth": -0.47139981389045715,
+      "fold": 1
+    },
+    "mp-33009": {
+      "formula": "MnO2",
+      "predicted": -1.8180116184684953,
+      "mc_dropout_uncertainty": 0.10768186656608546,
+      "ground_truth": -1.7760038375854492,
+      "fold": 1
+    },
+    "mp-486": {
+      "formula": "NiP2",
+      "predicted": -0.4178626571434672,
+      "mc_dropout_uncertainty": 0.03856766226859806,
+      "ground_truth": -0.40135568380355835,
+      "fold": 1
+    },
+    "mp-510408": {
+      "formula": "MnO2",
+      "predicted": -1.8743177829387958,
+      "mc_dropout_uncertainty": 0.1135368435404702,
+      "ground_truth": -1.7760848999023438,
+      "fold": 1
+    },
+    "mp-568328": {
+      "formula": "FeP4",
+      "predicted": -0.4363955402722601,
+      "mc_dropout_uncertainty": 0.05234329048076353,
+      "ground_truth": -0.3418431878089905,
+      "fold": 1
+    },
+    "mp-570553": {
+      "formula": "FeP4",
+      "predicted": -0.384702551121963,
+      "mc_dropout_uncertainty": 0.0445514744129371,
+      "ground_truth": -0.3700419068336487,
+      "fold": 1
+    },
+    "mp-644514": {
+      "formula": "MnO2",
+      "predicted": -1.8363413320204294,
+      "mc_dropout_uncertainty": 0.07377738342212585,
+      "ground_truth": -1.8225278854370117,
+      "fold": 1
+    },
+    "mp-754806": {
+      "formula": "Ni5O6",
+      "predicted": -1.11402730633808,
+      "mc_dropout_uncertainty": 0.03929716886206893,
+      "ground_truth": -1.0683391094207764,
+      "fold": 1
+    },
+    "mp-773511": {
+      "formula": "Co5NiO12",
+      "predicted": -1.0691859092199767,
+      "mc_dropout_uncertainty": 0.02171403126765367,
+      "ground_truth": -0.996432363986969,
+      "fold": 1
+    },
+    "mp-796336": {
+      "formula": "MnO2",
+      "predicted": -1.8671852878126836,
+      "mc_dropout_uncertainty": 0.08722275701007247,
+      "ground_truth": -1.7864398956298828,
+      "fold": 1
+    },
+    "mp-796340": {
+      "formula": "MnO2",
+      "predicted": -1.8018249273706097,
+      "mc_dropout_uncertainty": 0.0926729692840245,
+      "ground_truth": -1.7864452600479126,
+      "fold": 1
+    },
+    "mp-974355": {
+      "formula": "Mn2S3",
+      "predicted": -0.8426935071787067,
+      "mc_dropout_uncertainty": 0.010536209973879669,
+      "ground_truth": -0.9031388163566589,
+      "fold": 1
+    },
+    "mp-10004": {
+      "formula": "Mo3P",
+      "predicted": -0.48475452188806484,
+      "mc_dropout_uncertainty": 0.048841872323251975,
+      "ground_truth": -0.34859219193458557,
+      "fold": 2
+    },
+    "mp-1018809": {
+      "formula": "MoS2",
+      "predicted": -0.6373951932901305,
+      "mc_dropout_uncertainty": 0.027168609149719945,
+      "ground_truth": -0.9637532830238342,
+      "fold": 2
+    },
+    "mp-1023924": {
+      "formula": "MoS2",
+      "predicted": -0.6449268690351038,
+      "mc_dropout_uncertainty": 0.025118824930776884,
+      "ground_truth": -0.9517026543617249,
+      "fold": 2
+    },
+    "mp-1023939": {
+      "formula": "MoS2",
+      "predicted": -0.646474444913305,
+      "mc_dropout_uncertainty": 0.029773693884815454,
+      "ground_truth": -0.9589067697525024,
+      "fold": 2
+    },
+    "mp-1025874": {
+      "formula": "MoS2",
+      "predicted": -0.6326181902683529,
+      "mc_dropout_uncertainty": 0.02696354283406156,
+      "ground_truth": -0.9617292284965515,
+      "fold": 2
+    },
+    "mp-1027525": {
+      "formula": "MoS2",
+      "predicted": -0.6370478736352769,
+      "mc_dropout_uncertainty": 0.02559482871746758,
+      "ground_truth": -0.962460994720459,
+      "fold": 2
+    },
+    "mp-1050": {
+      "formula": "Ni3S4",
+      "predicted": -0.5471747015487958,
+      "mc_dropout_uncertainty": 0.02348731973748518,
+      "ground_truth": -0.6585213541984558,
+      "fold": 2
+    },
+    "mp-1102036": {
+      "formula": "NiP",
+      "predicted": -0.39283071094955346,
+      "mc_dropout_uncertainty": 0.05728395386954216,
+      "ground_truth": -0.4241112470626831,
+      "fold": 2
+    },
+    "mp-1183728": {
+      "formula": "Co2S3",
+      "predicted": -0.4144442224621211,
+      "mc_dropout_uncertainty": 0.061657653367829135,
+      "ground_truth": -0.480042964220047,
+      "fold": 2
+    },
+    "mp-1189099": {
+      "formula": "Mo3P",
+      "predicted": -0.4828000858427494,
+      "mc_dropout_uncertainty": 0.04830103220723904,
+      "ground_truth": -0.347673237323761,
+      "fold": 2
+    },
+    "mp-1189340": {
+      "formula": "Fe2P",
+      "predicted": -0.44610822533000416,
+      "mc_dropout_uncertainty": 0.04225422155157221,
+      "ground_truth": -0.45759278535842896,
+      "fold": 2
+    },
+    "mp-126": {
+      "formula": "Pt",
+      "predicted": -0.2002242581022421,
+      "mc_dropout_uncertainty": 0.1454437459790237,
+      "ground_truth": 0.0,
+      "fold": 2
+    },
+    "mp-1434": {
+      "formula": "MoS2",
+      "predicted": -0.6311390955280628,
+      "mc_dropout_uncertainty": 0.023160895559492314,
+      "ground_truth": -0.9661425352096558,
+      "fold": 2
+    },
+    "mp-1887": {
+      "formula": "MoP2",
+      "predicted": -0.5494308168681379,
+      "mc_dropout_uncertainty": 0.0334697521647817,
+      "ground_truth": -0.542120099067688,
+      "fold": 2
+    },
+    "mp-18922": {
+      "formula": "Mn5O8",
+      "predicted": -1.8321362133628651,
+      "mc_dropout_uncertainty": 0.06630460581287535,
+      "ground_truth": -1.9565608501434326,
+      "fold": 2
+    },
+    "mp-19079": {
+      "formula": "CoO",
+      "predicted": -1.1366386057969127,
+      "mc_dropout_uncertainty": 0.028955232208480813,
+      "ground_truth": -1.234916090965271,
+      "fold": 2
+    },
+    "mp-19128": {
+      "formula": "CoO",
+      "predicted": -1.1287671532236392,
+      "mc_dropout_uncertainty": 0.030864966880067332,
+      "ground_truth": -1.271418571472168,
+      "fold": 2
+    },
+    "mp-19884": {
+      "formula": "Mn3P",
+      "predicted": -0.5928742409354535,
+      "mc_dropout_uncertainty": 0.04307592252383939,
+      "ground_truth": -0.35836413502693176,
+      "fold": 2
+    },
+    "mp-21167": {
+      "formula": "Ni2P",
+      "predicted": -0.44146353357832924,
+      "mc_dropout_uncertainty": 0.05624241231674402,
+      "ground_truth": -0.4738251864910126,
+      "fold": 2
+    },
+    "mp-22408": {
+      "formula": "CoO",
+      "predicted": -1.1322084060596442,
+      "mc_dropout_uncertainty": 0.029816338186684894,
+      "ground_truth": -1.2718311548233032,
+      "fold": 2
+    },
+    "mp-2301": {
+      "formula": "NiP3",
+      "predicted": -0.288009484864725,
+      "mc_dropout_uncertainty": 0.06708235989661872,
+      "ground_truth": -0.31343600153923035,
+      "fold": 2
+    },
+    "mp-27844": {
+      "formula": "NiP",
+      "predicted": -0.37050809735049106,
+      "mc_dropout_uncertainty": 0.04868834529640433,
+      "ground_truth": -0.45283228158950806,
+      "fold": 2
+    },
+    "mp-2815": {
+      "formula": "MoS2",
+      "predicted": -0.6542232562244195,
+      "mc_dropout_uncertainty": 0.027403278336277457,
+      "ground_truth": -0.9644498229026794,
+      "fold": 2
+    },
+    "mp-35596": {
+      "formula": "Fe2NiO4",
+      "predicted": -1.4718011846911048,
+      "mc_dropout_uncertainty": 0.04842033145986996,
+      "ground_truth": -1.5910413265228271,
+      "fold": 2
+    },
+    "mp-656884": {
+      "formula": "Ni9O10",
+      "predicted": -1.140843036373405,
+      "mc_dropout_uncertainty": 0.029610521540055376,
+      "ground_truth": -1.1083093881607056,
+      "fold": 2
+    },
+    "mp-778": {
+      "formula": "Fe2P",
+      "predicted": -0.4338875241706554,
+      "mc_dropout_uncertainty": 0.0502000414670227,
+      "ground_truth": -0.45708832144737244,
+      "fold": 2
+    },
+    "mp-1005": {
+      "formula": "FeP",
+      "predicted": -0.48050002353278876,
+      "mc_dropout_uncertainty": 0.047629108456069276,
+      "ground_truth": -0.5973374247550964,
+      "fold": 3
+    },
+    "mp-1023925": {
+      "formula": "WS2",
+      "predicted": -0.6331664364346672,
+      "mc_dropout_uncertainty": 0.03399631781630475,
+      "ground_truth": -0.8761316537857056,
+      "fold": 3
+    },
+    "mp-1023937": {
+      "formula": "WS2",
+      "predicted": -0.6619603898389098,
+      "mc_dropout_uncertainty": 0.02664171780975699,
+      "ground_truth": -0.8694221377372742,
+      "fold": 3
+    },
+    "mp-1025571": {
+      "formula": "WS2",
+      "predicted": -0.6318785442974082,
+      "mc_dropout_uncertainty": 0.03254738358061856,
+      "ground_truth": -0.8784126043319702,
+      "fold": 3
+    },
+    "mp-1028441": {
+      "formula": "WS2",
+      "predicted": -0.6191314110909745,
+      "mc_dropout_uncertainty": 0.034278111366384124,
+      "ground_truth": -0.8797867298126221,
+      "fold": 3
+    },
+    "mp-11508": {
+      "formula": "MoP4",
+      "predicted": -0.33651919524925056,
+      "mc_dropout_uncertainty": 0.05221102392407339,
+      "ground_truth": -0.37985947728157043,
+      "fold": 3
+    },
+    "mp-1188188": {
+      "formula": "Mn3C",
+      "predicted": -0.04914879799235872,
+      "mc_dropout_uncertainty": 0.07717317521960025,
+      "ground_truth": -0.005029761698096991,
+      "fold": 3
+    },
+    "mp-1213762": {
+      "formula": "Co3P",
+      "predicted": -0.33671725166621047,
+      "mc_dropout_uncertainty": 0.0633876434242844,
+      "ground_truth": -0.2571760416030884,
+      "fold": 3
+    },
+    "mp-1279232": {
+      "formula": "Fe(NiO2)2",
+      "predicted": -1.2960923771641442,
+      "mc_dropout_uncertainty": 0.043848257507605355,
+      "ground_truth": -1.287956714630127,
+      "fold": 3
+    },
+    "mp-1282693": {
+      "formula": "Fe(NiO2)2",
+      "predicted": -1.3111042183454535,
+      "mc_dropout_uncertainty": 0.031229630849564944,
+      "ground_truth": -1.2947773933410645,
+      "fold": 3
+    },
+    "mp-14285": {
+      "formula": "CoP2",
+      "predicted": -0.41157491802198876,
+      "mc_dropout_uncertainty": 0.04565537693786128,
+      "ground_truth": -0.5062888860702515,
+      "fold": 3
+    },
+    "mp-1783": {
+      "formula": "MnS",
+      "predicted": -0.7748663568350795,
+      "mc_dropout_uncertainty": 0.03276378245599051,
+      "ground_truth": -1.1284443140029907,
+      "fold": 3
+    },
+    "mp-1894": {
+      "formula": "WC",
+      "predicted": -0.21857511668438556,
+      "mc_dropout_uncertainty": 0.06155451440919733,
+      "ground_truth": -0.1535407453775406,
+      "fold": 3
+    },
+    "mp-1944": {
+      "formula": "CoP3",
+      "predicted": -0.3188635129678148,
+      "mc_dropout_uncertainty": 0.050599676452010384,
+      "ground_truth": -0.4952442944049835,
+      "fold": 3
+    },
+    "mp-2065": {
+      "formula": "MnS",
+      "predicted": -0.8455545150826886,
+      "mc_dropout_uncertainty": 0.020721796393805877,
+      "ground_truth": -1.1403586864471436,
+      "fold": 3
+    },
+    "mp-2070": {
+      "formula": "CoS2",
+      "predicted": -0.49201350944486116,
+      "mc_dropout_uncertainty": 0.05256760729187003,
+      "ground_truth": -0.4548134207725525,
+      "fold": 3
+    },
+    "mp-224": {
+      "formula": "WS2",
+      "predicted": -0.5984863197416852,
+      "mc_dropout_uncertainty": 0.028274935315492387,
+      "ground_truth": -0.8835800290107727,
+      "fold": 3
+    },
+    "mp-2562": {
+      "formula": "MnS",
+      "predicted": -0.8125946290139541,
+      "mc_dropout_uncertainty": 0.03552098661145954,
+      "ground_truth": -1.1258301734924316,
+      "fold": 3
+    },
+    "mp-640147": {
+      "formula": "Fe(NiO2)2",
+      "predicted": -1.3600940889597983,
+      "mc_dropout_uncertainty": 0.04786749630332207,
+      "ground_truth": -1.3086459636688232,
+      "fold": 3
+    },
+    "mp-656887": {
+      "formula": "Ni3O4",
+      "predicted": -1.0925064792190151,
+      "mc_dropout_uncertainty": 0.029549446279604777,
+      "ground_truth": -1.0467500686645508,
+      "fold": 3
+    },
+    "mp-754064": {
+      "formula": "MnP2",
+      "predicted": -0.41720025039145914,
+      "mc_dropout_uncertainty": 0.050336949667979525,
+      "ground_truth": -0.4312802851200104,
+      "fold": 3
+    },
+    "mp-754800": {
+      "formula": "Ni3O4",
+      "predicted": -1.1287357033718424,
+      "mc_dropout_uncertainty": 0.03012130717218176,
+      "ground_truth": -1.0055433511734009,
+      "fold": 3
+    },
+    "mp-756594": {
+      "formula": "Co(NiO2)4",
+      "predicted": -1.0524379196486995,
+      "mc_dropout_uncertainty": 0.018684305226054517,
+      "ground_truth": -0.9620420932769775,
+      "fold": 3
+    },
+    "mp-761471": {
+      "formula": "Co5O8",
+      "predicted": -1.1400052129716431,
+      "mc_dropout_uncertainty": 0.027980763329159532,
+      "ground_truth": -1.169614553451538,
+      "fold": 3
+    },
+    "mp-850049": {
+      "formula": "CoS2",
+      "predicted": -0.5030061387182441,
+      "mc_dropout_uncertainty": 0.05119216048568115,
+      "ground_truth": -0.4529151916503906,
+      "fold": 3
+    },
+    "mp-9813": {
+      "formula": "WS2",
+      "predicted": -0.6068763209546422,
+      "mc_dropout_uncertainty": 0.030114502863909723,
+      "ground_truth": -0.8826962113380432,
+      "fold": 3
+    },
+    "mp-1018804": {
+      "formula": "MnS2",
+      "predicted": -0.9352176557245696,
+      "mc_dropout_uncertainty": 0.009354215515786257,
+      "ground_truth": -0.7663607597351074,
+      "fold": 4
+    },
+    "mp-1178424": {
+      "formula": "CoNiO3",
+      "predicted": -1.0611165820328805,
+      "mc_dropout_uncertainty": 0.018037561195846975,
+      "ground_truth": -1.1366519927978516,
+      "fold": 4
+    },
+    "mp-1180046": {
+      "formula": "NiS2",
+      "predicted": -0.7065973429781149,
+      "mc_dropout_uncertainty": 0.023592846165660805,
+      "ground_truth": -0.5915265679359436,
+      "fold": 4
+    },
+    "mp-1232659": {
+      "formula": "MnO",
+      "predicted": -1.857172897160142,
+      "mc_dropout_uncertainty": 0.08007457417553591,
+      "ground_truth": -2.0325698852539062,
+      "fold": 4
+    },
+    "mp-1272234": {
+      "formula": "CoNiO3",
+      "predicted": -1.0969296311622658,
+      "mc_dropout_uncertainty": 0.02219875543100863,
+      "ground_truth": -1.1130342483520508,
+      "fold": 4
+    },
+    "mp-1279343": {
+      "formula": "CoNiO3",
+      "predicted": -1.081178387020496,
+      "mc_dropout_uncertainty": 0.019318083003873634,
+      "ground_truth": -1.1362851858139038,
+      "fold": 4
+    },
+    "mp-13446": {
+      "formula": "Co2P",
+      "predicted": -0.3884368820763918,
+      "mc_dropout_uncertainty": 0.04184918333707354,
+      "ground_truth": -0.3851807415485382,
+      "fold": 4
+    },
+    "mp-1386044": {
+      "formula": "MnS2",
+      "predicted": -0.9877657190171045,
+      "mc_dropout_uncertainty": 0.01614908768133037,
+      "ground_truth": -0.7979342341423035,
+      "fold": 4
+    },
+    "mp-1411545": {
+      "formula": "NiS2",
+      "predicted": -0.7082304551270144,
+      "mc_dropout_uncertainty": 0.02859621265913666,
+      "ground_truth": -0.5565472841262817,
+      "fold": 4
+    },
+    "mp-1422029": {
+      "formula": "MnS2",
+      "predicted": -0.9967032879717773,
+      "mc_dropout_uncertainty": 0.01132328739253897,
+      "ground_truth": -0.7995039224624634,
+      "fold": 4
+    },
+    "mp-1444811": {
+      "formula": "NiS2",
+      "predicted": -0.7084286607664274,
+      "mc_dropout_uncertainty": 0.02308053994635878,
+      "ground_truth": -0.5477620959281921,
+      "fold": 4
+    },
+    "mp-1547": {
+      "formula": "NiS",
+      "predicted": -0.5914057077299997,
+      "mc_dropout_uncertainty": 0.03466518140200496,
+      "ground_truth": -0.6106647253036499,
+      "fold": 4
+    },
+    "mp-1552": {
+      "formula": "Mo2C",
+      "predicted": -0.14418723560065283,
+      "mc_dropout_uncertainty": 0.06841982338231657,
+      "ground_truth": -0.13904961943626404,
+      "fold": 4
+    },
+    "mp-1849": {
+      "formula": "Mn2P",
+      "predicted": -0.40137312432662187,
+      "mc_dropout_uncertainty": 0.04580658824140379,
+      "ground_truth": -0.5131480693817139,
+      "fold": 4
+    },
+    "mp-18708": {
+      "formula": "Fe3P",
+      "predicted": -0.37266816238705647,
+      "mc_dropout_uncertainty": 0.06373805494234693,
+      "ground_truth": -0.3541557788848877,
+      "fold": 4
+    },
+    "mp-19009": {
+      "formula": "NiO",
+      "predicted": -1.0775760903758635,
+      "mc_dropout_uncertainty": 0.024404355937200316,
+      "ground_truth": -1.2180852890014648,
+      "fold": 4
+    },
+    "mp-2019629": {
+      "formula": "Mn2P",
+      "predicted": -0.37373199407124036,
+      "mc_dropout_uncertainty": 0.04314375747338824,
+      "ground_truth": -0.6206113696098328,
+      "fold": 4
+    },
+    "mp-22204": {
+      "formula": "Co2P",
+      "predicted": -0.37755094520752086,
+      "mc_dropout_uncertainty": 0.06030822615409048,
+      "ground_truth": -0.4063388407230377,
+      "fold": 4
+    },
+    "mp-2282": {
+      "formula": "NiS2",
+      "predicted": -0.6096190760863556,
+      "mc_dropout_uncertainty": 0.03946207683745538,
+      "ground_truth": -0.5763651728630066,
+      "fold": 4
+    },
+    "mp-2662": {
+      "formula": "MnP",
+      "predicted": -0.44090073822504705,
+      "mc_dropout_uncertainty": 0.039003025734973475,
+      "ground_truth": -0.6152445077896118,
+      "fold": 4
+    },
+    "mp-2723": {
+      "formula": "IrO2",
+      "predicted": -1.0560814610209608,
+      "mc_dropout_uncertainty": 0.020895240191210505,
+      "ground_truth": -1.2608928680419922,
+      "fold": 4
+    },
+    "mp-505531": {
+      "formula": "FeS",
+      "predicted": -0.8497330866079829,
+      "mc_dropout_uncertainty": 0.03803358756886233,
+      "ground_truth": -0.7574410438537598,
+      "fold": 4
+    },
+    "mp-753222": {
+      "formula": "Fe2CoO4",
+      "predicted": -1.5464651917061623,
+      "mc_dropout_uncertainty": 0.05687064715855095,
+      "ground_truth": -1.572501540184021,
+      "fold": 4
+    },
+    "mp-849059": {
+      "formula": "NiS2",
+      "predicted": -0.6288228791249934,
+      "mc_dropout_uncertainty": 0.026730957196381626,
+      "ground_truth": -0.5702683329582214,
+      "fold": 4
+    },
+    "mp-850131": {
+      "formula": "NiS2",
+      "predicted": -0.6672064370556146,
+      "mc_dropout_uncertainty": 0.036370864375548886,
+      "ground_truth": -0.569828987121582,
+      "fold": 4
+    },
+    "mp-943": {
+      "formula": "Co3S4",
+      "predicted": -0.440709544549493,
+      "mc_dropout_uncertainty": 0.04750493753820978,
+      "ground_truth": -0.5121890306472778,
+      "fold": 4
+    },
+    "mp-1022963": {
+      "formula": "IrO3",
+      "predicted": -1.1332735740554203,
+      "mc_dropout_uncertainty": 0.03251676023307527,
+      "ground_truth": -0.9383537173271179,
+      "fold": 5
+    },
+    "mp-1105127": {
+      "formula": "MnP4",
+      "predicted": -0.35481930510477167,
+      "mc_dropout_uncertainty": 0.046080417795449205,
+      "ground_truth": -0.3580339550971985,
+      "fold": 5
+    },
+    "mp-11328": {
+      "formula": "P2W",
+      "predicted": -0.4030547068327184,
+      "mc_dropout_uncertainty": 0.03791447515040228,
+      "ground_truth": -0.38150328397750854,
+      "fold": 5
+    },
+    "mp-11329": {
+      "formula": "P2W",
+      "predicted": -0.4047041620723277,
+      "mc_dropout_uncertainty": 0.03413315985011768,
+      "ground_truth": -0.3582199811935425,
+      "fold": 5
+    },
+    "mp-1178232": {
+      "formula": "FeO",
+      "predicted": -1.5522428121323921,
+      "mc_dropout_uncertainty": 0.08633282041631313,
+      "ground_truth": -1.4694833755493164,
+      "fold": 5
+    },
+    "mp-1272680": {
+      "formula": "CoO2",
+      "predicted": -1.0976600199331044,
+      "mc_dropout_uncertainty": 0.026488371718798105,
+      "ground_truth": -1.0582683086395264,
+      "fold": 5
+    },
+    "mp-1274279": {
+      "formula": "FeO",
+      "predicted": -1.5457098003797496,
+      "mc_dropout_uncertainty": 0.08646241303928087,
+      "ground_truth": -1.481519341468811,
+      "fold": 5
+    },
+    "mp-1278455": {
+      "formula": "CoO2",
+      "predicted": -1.0972140050559211,
+      "mc_dropout_uncertainty": 0.03675015092783246,
+      "ground_truth": -1.059971570968628,
+      "fold": 5
+    },
+    "mp-1283030": {
+      "formula": "FeO",
+      "predicted": -1.5274964947391971,
+      "mc_dropout_uncertainty": 0.07406440582599308,
+      "ground_truth": -1.4674575328826904,
+      "fold": 5
+    },
+    "mp-1400906": {
+      "formula": "CoO2",
+      "predicted": -1.1613247444146757,
+      "mc_dropout_uncertainty": 0.0249040164131135,
+      "ground_truth": -1.0724326372146606,
+      "fold": 5
+    },
+    "mp-18759": {
+      "formula": "Mn3O4",
+      "predicted": -1.797906967594574,
+      "mc_dropout_uncertainty": 0.09697994317951711,
+      "ground_truth": -2.0504093170166016,
+      "fold": 5
+    },
+    "mp-19306": {
+      "formula": "Fe3O4",
+      "predicted": -1.4990250156178595,
+      "mc_dropout_uncertainty": 0.05625485499977619,
+      "ground_truth": -1.6295830011367798,
+      "fold": 5
+    },
+    "mp-19770": {
+      "formula": "Fe2O3",
+      "predicted": -1.4869418572212976,
+      "mc_dropout_uncertainty": 0.09374283023513921,
+      "ground_truth": -1.7070913314819336,
+      "fold": 5
+    },
+    "mp-22270": {
+      "formula": "CoP",
+      "predicted": -0.4641664001239178,
+      "mc_dropout_uncertainty": 0.03783790056001742,
+      "ground_truth": -0.500380277633667,
+      "fold": 5
+    },
+    "mp-2296": {
+      "formula": "Ni3P",
+      "predicted": -0.4925889689686258,
+      "mc_dropout_uncertainty": 0.038297412793222164,
+      "ground_truth": -0.42414167523384094,
+      "fold": 5
+    },
+    "mp-2305": {
+      "formula": "MoC",
+      "predicted": -0.18184679348839472,
+      "mc_dropout_uncertainty": 0.07192754044292743,
+      "ground_truth": -0.16041842103004456,
+      "fold": 5
+    },
+    "mp-31770": {
+      "formula": "Fe3O4",
+      "predicted": -1.5719040296837072,
+      "mc_dropout_uncertainty": 0.08108892030619841,
+      "ground_truth": -1.6279356479644775,
+      "fold": 5
+    },
+    "mp-362": {
+      "formula": "Ni3S2",
+      "predicted": -0.6029778305262357,
+      "mc_dropout_uncertainty": 0.026754168914757407,
+      "ground_truth": -0.5714508295059204,
+      "fold": 5
+    },
+    "mp-487": {
+      "formula": "MnP4",
+      "predicted": -0.37106294710142296,
+      "mc_dropout_uncertainty": 0.06187054047449462,
+      "ground_truth": -0.3586301803588867,
+      "fold": 5
+    },
+    "mp-550206": {
+      "formula": "CoO2",
+      "predicted": -1.0805652367956957,
+      "mc_dropout_uncertainty": 0.030256423564015086,
+      "ground_truth": -1.0656832456588745,
+      "fold": 5
+    },
+    "mp-715262": {
+      "formula": "FeO",
+      "predicted": -1.5324611898009564,
+      "mc_dropout_uncertainty": 0.06009930559753557,
+      "ground_truth": -1.472239375114441,
+      "fold": 5
+    },
+    "mp-753348": {
+      "formula": "Fe(CoO2)2",
+      "predicted": -1.3213951285343535,
+      "mc_dropout_uncertainty": 0.05670726891841353,
+      "ground_truth": -1.4195594787597656,
+      "fold": 5
+    },
+    "mp-754168": {
+      "formula": "Co(NiO2)2",
+      "predicted": -1.0396694810950378,
+      "mc_dropout_uncertainty": 0.021914329240007312,
+      "ground_truth": -1.1609935760498047,
+      "fold": 5
+    },
+    "mp-754748": {
+      "formula": "CoO2",
+      "predicted": -1.1045916399576208,
+      "mc_dropout_uncertainty": 0.026221741777561074,
+      "ground_truth": -1.066634178161621,
+      "fold": 5
+    },
+    "mp-755453": {
+      "formula": "MnP4",
+      "predicted": -0.37460832499926666,
+      "mc_dropout_uncertainty": 0.06248877044159057,
+      "ground_truth": -0.3191864788532257,
+      "fold": 5
+    },
+    "mp-759037": {
+      "formula": "Fe9O10",
+      "predicted": -1.5795473784415552,
+      "mc_dropout_uncertainty": 0.05647840602490092,
+      "ground_truth": -1.5020958185195923,
+      "fold": 5
+    }
+  }
+}

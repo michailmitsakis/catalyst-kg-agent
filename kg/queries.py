@@ -478,20 +478,34 @@ def find_materials_by_element(graph: nx.MultiDiGraph, element_symbol: str) -> Li
 
 def find_materials_in_chemsys(
     graph: nx.MultiDiGraph,
-    chemsys_name: str  # e.g., "Ni-P" or "Co-Fe-O"
+    chemsys_name: str | List[str]  # "Ni-P", "Co-Fe-O", or ["Ni", "P"]
 ) -> List[MaterialNode]:
     """Find all materials in a chemical system.
 
+    Accepts either a dash-joined string or a list of element symbols.
+    agent/retriever.py passes the list form (from _normalize_chemsys), so
+    requiring a string here raised AttributeError inside the Retriever's
+    try/except and silently fell back to returning the whole corpus.
+
     Args:
         graph: The knowledge graph
-        chemsys_name: Chemical system name (e.g., "Ni-P", "Co-Fe-O")
+        chemsys_name: Chemical system as "Ni-P" or ["Ni", "P"]
 
     Returns:
         List of MaterialNode models for materials in the chemsys
     """
+    symbols = (
+        list(chemsys_name)
+        if isinstance(chemsys_name, (list, tuple, set))
+        else str(chemsys_name).split("-")
+    )
+    symbols = [s.strip() for s in symbols if str(s).strip()]
+    if not symbols:
+        return []
+
     # Chemsys node IDs are built from SORTED symbols (see kg.schema.chemsys_id),
     # so "P-Ni" and "Ni-P" must resolve to the same node.
-    node_id = chemsys_id(chemsys_name.split("-"))
+    node_id = chemsys_id(symbols)
     if node_id not in graph.nodes():
         return []
 

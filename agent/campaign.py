@@ -53,8 +53,12 @@ class CampaignState:
         self.campaign_id = campaign_id
         self.start_time: Optional[datetime] = None
         self.end_time: Optional[datetime] = None
-        self.status: str = "running"  # running, completed, failed
+        # running -> completed (finished normally)
+        #          -> budget_exhausted (spent its budget; expected outcome)
+        #          -> failed (genuine fault)
+        self.status: str = "running"
         self.final_materials: list[MaterialNode] = []
+        self.budget_remaining: float = 0.0
         self.best_candidate: Optional[MaterialNode] = None
         self.logs: list[dict[str, Any]] = []
 
@@ -84,7 +88,10 @@ class CampaignState:
             "best_candidate_mpid": (
                 self.best_candidate.mpid if self.best_candidate else None
             ),
-            "budget_remaining": 0.0,  # Filled by orchestrator
+            # Set by the orchestrator before the journal is written; the
+            # hardcoded 0.0 it used to carry contradicted
+            # budget_tracker.remaining_budget in every journal.
+            "budget_remaining": self.budget_remaining,
         }
 
 
@@ -151,13 +158,21 @@ class CampaignOrchestrator:
             self._critic = create_critic()
         return self._critic
 
-    def get_planner(self, use_llm: bool = False):
+    def get_planner(self, use_llm: bool = True):
         """Get or create Planner agent.
 
-        use_llm defaults to False here: campaign.py already owns the
-        continue/escalate/stop wiring against the BudgetTracker it holds,
-        so Planner is consulted for its decision logic (budget/experiment-
-        count rules), not for LLM-driven planning.
+        use_llm defaults to True: the Planner uses an LLM to ORDER the
+        remaining candidates (the acquisition-function role), which is where
+        a model adds something rules cannot. Its continue/escalate/stop
+        logic stays deterministic regardless of this flag -- see
+        agent/planner.py. If Ollama is unreachable the Planner falls back to
+        the corpus order and the campaign still runs.
+
+        Note: PlannerAgent keeps its own internal PlannerState.remaining_budget
+        for standalone use (see tests/test_planner.py), but campaign.py never
+        feeds it real deductions -- self.tracker is the only source of truth
+        for budget here. Treat planner.state.remaining_budget as decorative
+        when Planner is driven from this campaign loop.
         """
         if self._planner is None:
             from agent.planner import PlannerAgent, create_planner
@@ -202,11 +217,39 @@ class CampaignOrchestrator:
         # total for the final journal/MLflow summary.
         all_predictions: list[Any] = []
 
+        # mpids already scored by the Predictor. The Retriever is stateless
+        # and returns the same candidate set on every call, so without this
+        # the loop re-scores the same first material every step until the
+        # budget dies.
+        #
+        # Seeded from the KG, not empty: any material that already carries a
+        # MACE prediction from an EARLIER campaign is skipped, so successive
+        # campaigns advance through the corpus instead of re-deriving the
+        # same results. This is what makes the graph function as compounding
+        # memory rather than a write-only log.
+        scored_mpids: set[str] = self._already_predicted_mpids()
+        if scored_mpids:
+            self.state.log("resuming_from_kg", {"n_already_predicted": len(scored_mpids)})
+            print(f"Campaign: {len(scored_mpids)} materials already predicted in "
+                  f"earlier campaigns; skipping them.")
+
         # Main loop - use MAX_ACTIONS_PER_CAMPAIGN and budget check
         step = 0
         while step < MAX_ACTIONS_PER_CAMPAIGN and self.tracker.remaining_budget > 0:
             step += 1
             self.state.log(f"step_{step}", {"remaining_budget": self.tracker.remaining_budget})
+
+            # Stop before paying for a retrieval that cannot fund a single
+            # surrogate call. demo-001 spent a KG lookup on step 2 with 3.5
+            # units left -- enough for the lookup, never enough for the
+            # 5.0-unit prediction it was retrieving candidates for.
+            if self.tracker.remaining_budget < (KG_LOOKUP_COST + SURROGATE_COST):
+                self.state.status = "budget_exhausted"
+                self.state.log("budget_exhausted", {
+                    "remaining": round(self.tracker.remaining_budget, 2),
+                    "reason": "insufficient for a retrieval plus one surrogate call",
+                })
+                break
 
             # 1. Retrieve candidates
             retriever = self.get_retriever()
@@ -217,55 +260,133 @@ class CampaignOrchestrator:
 
             # Deduct KG lookup cost
             if not self.tracker.deduct(ActionCategory.KG_LOOKUP, result.query_cost):
-                self.state.status = "failed"
+                # Running out of budget is the EXPECTED termination of a
+                # budget-bounded campaign, not an error. "failed" is reserved
+                # for genuine faults so the two can be told apart in MLflow.
+                self.state.status = "budget_exhausted"
                 self.state.log("budget_exhausted", {})
                 break
 
-            materials = result.materials
-            self.state.final_materials.extend(materials)
+            # Retrieved set is deduplicated against everything already
+            # scored, so `final_materials` counts unique materials rather
+            # than retrievals. (Previously this extended by all 130 every
+            # step, reporting 520 "materials evaluated" on a 130-material
+            # corpus.)
+            materials = [
+                m for m in result.materials
+                if getattr(m, "mpid", None) not in scored_mpids
+            ]
 
-            # 2. Predict properties (optional - use predictor if available)
+            if not materials:
+                self.state.log("candidates_exhausted", {
+                    "n_scored": len(scored_mpids),
+                })
+                break
+
+            # 2a. Ask the Planner which candidates to spend the budget on.
+            # The budget only covers a fraction of the corpus, so the choice
+            # of WHICH candidates is the substantive decision. The Planner
+            # returns a permutation of `materials` -- never a subset, never
+            # with additions -- so this is safe to use unconditionally.
+            prioritized = planner.prioritize_candidates(
+                candidates=materials,
+                predictions_so_far=all_predictions,
+                remaining_budget=self.tracker.remaining_budget,
+            )
+            materials = prioritized.ordered_materials
+            self.state.log("prioritization", {
+                "provenance": prioritized.provenance,
+                "n_llm_ranked": prioritized.n_llm_ranked,
+                "n_dropped_unknown": prioritized.n_dropped_unknown,
+                "reason": prioritized.reason,
+            })
+
+            # 2b. Screen candidates one at a time: predict, then validate,
+            # then escalate if warranted -- before moving to the next one.
+            #
+            # An earlier version ran the ENTIRE prediction batch first and
+            # called the Critic once afterwards. The Critic's judgement was
+            # already per-material, but its TIMING was per-batch: in a
+            # 100-unit campaign all 19 surrogate calls spent 95 units, and
+            # only then did the Critic flag mp-943 (Co3S4, residual force
+            # 0.795 eV/A) for escalation -- with 3.5 units left against a
+            # 10-unit escalation cost. The gate fired correctly and arrived
+            # too late to act on.
+            #
+            # Screening incrementally means an escalation can be funded
+            # while budget remains, which is how a real screening loop
+            # behaves: you act on a bad reading before running eighteen more
+            # measurements. Escalations now compete with surrogate calls for
+            # the same budget, which is exactly what the cost model is for.
+            critic_decisions = []
             try:
                 predictor = self.get_predictor()
+                critic = self.get_critic()
                 predictions = []
+                evaluated: list[MaterialNode] = []
 
                 for mat in materials:
-                    pred_result = predictor.predict(mat)
-                    predictions.append(pred_result)
-
-                    # Deduct surrogate cost; stop this step's predictions if
-                    # budget runs out mid-loop rather than silently
-                    # overspending past zero.
+                    # Charge BEFORE computing. predict() is the expensive
+                    # step, so running it first and deducting afterwards
+                    # meant the last prediction of every step was real MACE
+                    # compute that was never billed.
                     if not self.tracker.deduct(ActionCategory.SURROGATE_QUERY, SURROGATE_COST):
                         self.state.log("budget_exhausted_mid_predictions", {
                             "material_id": getattr(mat, "mpid", None),
                         })
                         break
 
+                    pred_result = predictor.predict(mat)
+                    predictions.append(pred_result)
+                    evaluated.append(mat)
+                    scored_mpids.add(getattr(mat, "mpid", None))
+
+                    # Validate this material immediately, on its own.
+                    decisions = critic.validate_materials([mat], [pred_result])
+                    critic_decisions.extend(decisions)
+
+                    for dec in decisions:
+                        if not dec.requires_escalation:
+                            continue
+                        # Only log an escalation that was actually AFFORDED.
+                        # Ignoring deduct()'s return here previously made the
+                        # summary report an escalation the budget tracker had
+                        # no record of.
+                        if self.tracker.deduct(
+                            ActionCategory.EXPERIMENT_ESCALATION, EXPERIMENT_COST
+                        ):
+                            self.state.log("critic_escalation", {
+                                "material_id": getattr(mat, "mpid", None),
+                                "reason": dec.reason,
+                            })
+                        else:
+                            self.state.log("escalation_unaffordable", {
+                                "material_id": getattr(mat, "mpid", None),
+                                "reason": dec.reason,
+                                "required": EXPERIMENT_COST,
+                                "remaining": round(self.tracker.remaining_budget, 2),
+                            })
+
             except NotImplementedError:
                 # Skip prediction if not implemented yet
                 predictions = None
+                evaluated = list(materials)
 
-            # 3. Critic validation
-            critic_decisions = []
-            if materials and predictions:
-                critic = self.get_critic()
-                critic_decisions = critic.validate_materials(materials, predictions)
-
-                # Track escalations (expensive DFT/UMA checks)
-                for dec in critic_decisions:
-                    if dec.requires_escalation:
-                        self.state.log("critic_escalation", {"material_id": dec.reason})
-                        # Deduct experiment cost
-                        self.tracker.deduct(ActionCategory.EXPERIMENT_ESCALATION, EXPERIMENT_COST)
+            # `final_materials` counts materials actually SCORED, not merely
+            # retrieved. The Retriever returns the whole candidate set each
+            # call; counting retrievals reported 520 "materials evaluated" on
+            # a 130-material corpus, and counting de-duplicated retrievals
+            # would still have reported 457.
+            self.state.final_materials.extend(evaluated)
 
             # 3b. Consult Planner for the continue/escalate/stop decision.
+            # This part is deterministic -- no LLM call. See planner.py.
             # campaign.py still owns BudgetTracker and performs all actual
             # cost deduction above; Planner's decision informs loop control
             # (e.g. stopping early once max experiments is reached) without
             # re-deducting cost itself.
             planner_decision = planner.plan_next_step(
-                retrieved_materials=materials,
+                retrieved_materials=evaluated,
                 predictions=predictions,
                 critic_decisions=critic_decisions,
             )
@@ -313,32 +434,35 @@ class CampaignOrchestrator:
             # Reload graph after Scribe write to get latest data
             self.G = load_graph(self.graph_path)
 
-        # Sort by stability for final output (lowest e_above_hull first)
+        # Sort by stability for final output (lowest e_above_hull first).
+        #
+        # Properties are separate NODES joined by HAS_PROPERTY edges, not a
+        # "properties" list attribute on the material node. The previous
+        # version read self.G.nodes[mat.id]["properties"], which never
+        # exists, so every material scored inf, the sort was a no-op, and
+        # "best candidate" was simply the first material in retrieval order.
         if self.state.final_materials:
-            def get_eah(mat):
-                props = self.G.nodes.get(mat.id, {}).get("properties", [])
-                for p in props:
-                    if isinstance(p, dict) and p.get("name") == "energy_above_hull":
-                        return float(p.get("value", float("inf")))
-                return float("inf")
-            
-            self.state.final_materials.sort(key=get_eah)
+            self.state.final_materials.sort(key=self._get_e_above_hull)
 
         if self.state.final_materials:
             self.state.best_candidate = self.state.final_materials[0]
 
-        # End timing
+        # End timing. Preserve any terminal status the loop already set --
+        # an earlier version overwrote it unconditionally, so a campaign that
+        # ran out of budget still reported success.
         self.state.end_time = datetime.now()
-        self.state.status = "completed"
+        if self.state.status == "running":
+            self.state.status = "completed"
 
         # Compute best_candidate_e_above_hull from final materials
         best_e_above_hull = None
         if self.state.best_candidate:
-            props = self.G.nodes.get(self.state.best_candidate.id, {}).get("properties", [])
-            for p in props:
-                if isinstance(p, dict) and p.get("name") == "energy_above_hull":
-                    best_e_above_hull = float(p.get("value", float("inf")))
-                    break
+            value = self._get_e_above_hull(self.state.best_candidate)
+            if value != float("inf"):
+                best_e_above_hull = value
+
+        # Surface the real remaining budget in the state dict.
+        self.state.budget_remaining = round(self.tracker.remaining_budget, 2)
 
         # Export journal
         self._write_journal(best_e_above_hull)
@@ -350,7 +474,7 @@ class CampaignOrchestrator:
             predictions_made=len(all_predictions),
             escalations_triggered=sum(1 for log in self.state.logs if log.get("event") == "critic_escalation"),
             best_candidate_e_above_hull=best_e_above_hull,
-            final_outcome="completed",
+            final_outcome=self.state.status,
         )
 
         # Get summary stats
@@ -360,6 +484,58 @@ class CampaignOrchestrator:
 
         return result
 
+
+    def _already_predicted_mpids(self) -> set[str]:
+        """mpids that already carry a MACE prediction in the knowledge graph.
+
+        Read at campaign start so a new campaign skips work an earlier one
+        already did. Without this the graph accumulates predictions that
+        nothing ever consults, and every campaign re-derives the same first
+        N materials until its budget runs out.
+
+        Returns:
+            Set of mpid strings, empty if none have been predicted yet
+        """
+        from agent.scribe import MACE_ENERGY_PROPERTY_NAME
+
+        found: set[str] = set()
+        for _nid, data in self.G.nodes(data=True):
+            if data.get("type") != NodeType.PROPERTY.value:
+                continue
+            if data.get("name") != MACE_ENERGY_PROPERTY_NAME:
+                continue
+            mpid = data.get("mpid")
+            if mpid:
+                found.add(mpid)
+        return found
+
+    def _get_e_above_hull(self, material) -> float:
+        """Look up a material's MP-derived e_above_hull from the graph.
+
+        Property values live on their own nodes, reached via HAS_PROPERTY
+        edges from the material. Returns inf when absent so that materials
+        without a stability value sort last rather than first.
+
+        Args:
+            material: MaterialNode whose e_above_hull is wanted
+
+        Returns:
+            e_above_hull in eV/atom, or inf if not present
+        """
+        node_id = getattr(material, "id", None)
+        if node_id is None or node_id not in self.G:
+            return float("inf")
+
+        for _src, target, data in self.G.edges(node_id, data=True):
+            if data.get("type") != "HAS_PROPERTY":
+                continue
+            prop = self.G.nodes.get(target, {})
+            if prop.get("name") == "energy_above_hull":
+                try:
+                    return float(prop["value"])
+                except (KeyError, TypeError, ValueError):
+                    return float("inf")
+        return float("inf")
 
     def _write_journal(self, best_candidate_e_above_hull: Optional[float] = None):
         """Write campaign journal to JSON file.

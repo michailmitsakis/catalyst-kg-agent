@@ -1,10 +1,13 @@
 """Test Critic agent for safety validation.
 
 Tests that:
-1. Critic validates e_above_hull threshold
-2. Uncertainty gate works correctly
+1. Critic validates e_above_hull threshold (from the KG's MP-derived value)
+2. The residual-force escalation gate is wired correctly
 3. Schema compliance checks work
 4. Cost impact tracking works
+
+Note: the escalation signal is max residual force (eV/Angstrom), not a
+model-uncertainty estimate. See agent/predictor.py for why.
 
 Run with: python tests/test_critic.py
 """
@@ -16,7 +19,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from kg.graph_store import load_graph, rehydrate_node
-from agent.critic import CriticAgent, get_stability_threshold, get_uncertainty_gate
+from agent.critic import CriticAgent, get_stability_threshold, get_force_gate
 
 
 def test_critic_initialization():
@@ -29,14 +32,14 @@ def test_critic_initialization():
         critic = CriticAgent(graph_path=graph_path)
         
         stability_thresh = get_stability_threshold()
-        uncertainty_gate = get_uncertainty_gate()
-        
+        force_gate = get_force_gate()
+
         print(f"[PASS] CriticAgent initialized")
         print(f"  - Stability threshold: {stability_thresh} eV/atom")
-        print(f"  - Uncertainty gate: {uncertainty_gate:.1%}")
-        
+        print(f"  - Force gate: {force_gate:.3f} eV/A")
+
         assert critic.stability_threshold == stability_thresh, "Stability threshold mismatch"
-        assert critic.uncertainty_gate == uncertainty_gate, "Uncertainty gate mismatch"
+        assert critic.force_gate == force_gate, "Force gate mismatch"
         
     except Exception as e:
         print(f"[FAIL] Failed to initialize CriticAgent: {e}")
@@ -137,12 +140,22 @@ def test_critic_decision_output():
         first_mat_id = mat_nodes[0]
         mat_node = rehydrate_node(G, first_mat_id)
         
-        # Create a mock prediction result
-        class MockPrediction:
-            material_id = "mp-2790"  # Match the test material's mpid
-            uncertainty = 0.1  # Low uncertainty
+        # Use a real PredictorResult rather than a mock: the Critic reads
+        # max_residual_force, and a hand-rolled mock silently drifts from the
+        # real schema whenever that contract changes (which is exactly what
+        # happened when `uncertainty` was removed).
+        from agent.predictor import PredictorResult
 
-        predictions = [MockPrediction()]
+        predictions = [
+            PredictorResult(
+                material_id=mat_node.mpid,
+                property_value=-6.146,
+                formation_energy_per_atom=-0.484,
+                max_residual_force=critic.force_gate / 5.0,  # comfortably below the gate
+                model_used="mace",
+                prediction_failed=False,
+            )
+        ]
         
         # Validate material
         decisions = critic.validate_materials([mat_node], predictions)

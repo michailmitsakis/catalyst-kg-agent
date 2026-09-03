@@ -1,582 +1,141 @@
-## Latest Updates (2026-08-31) ✅
+# PROJECT_STATE
 
-### Double-Deduction Bug Fixed ✅
+Development log for **catalyst-kg-agent**. The README is the public-facing document; this file is the working record of what was built, what broke, and what was decided.
 
-**Date**: 2026-08-31
-
-**Issue**: Sequential mode charged surrogate cost twice per prediction (lines 197 and 226 in `agent/campaign.py`)
-
-**Fix**: Removed duplicate deduction at line 226, added comment explaining cost already deducted at line 197
-
-**Verification**: Tested both sequential and batch modes — identical budget accounting (95 credits for 19 predictions)
+**Last updated:** 2026-09-02
 
 ---
 
-### CGCNN vs MACE Comparison Complete ✅
+## Current status
 
-**Date**: 2026-08-31
+The pipeline runs end to end and the surrogate evaluation has been completed with results reported in the README. A substantial correctness pass was carried out on 2026-09-01/02 (see [Correctness pass](#correctness-pass-2026-09-0102)); several previously-claimed results turned out to be invalid and were either fixed or withdrawn.
 
-**Files Created**:
-1. `models/comparison/MACE_CGCNN_surrogate_comparison.ipynb` — Jupyter notebook
-2. `models/gnn_surrogate/MACE_CGCNN_surrogate_comparison.py` — Standalone script
+**Working:**
 
-**Features**:
-- Trains CGCNN from-scratch on ~130 catalyst materials (honest small dataset)
-- Compares MACE vs CGCNN on:
-  - e_above_hull predictions (raw values per material)
-  - MC-Dropout uncertainty estimates
-  - Inference speed per candidate
-  - Stability-classification agreement (both vs 0.1 eV/atom threshold)
-- Generates comprehensive plots and statistics
+- MP data pull → KG build → 686 nodes, 921 edges, 130 materials, 390 properties, 0 CIF failures
+- MACE surrogate with formation energies via self-consistent elemental references (validated to 12 meV/atom against MP on mp-2790)
+- Residual-force escalation gate, calibrated against the corpus distribution
+- CGCNN baseline trained and cross-validated, with composition-disjoint splits and out-of-fold predictions
+- MACE vs CGCNN comparison, reported split by oxide/non-oxide
+- Budget-bounded campaign loop with journal + MLflow logging
 
-**To Run**:
-```bash
-python models/gnn_surrogate/MACE_CGCNN_surrogate_comparison.py --train-cgcnn
-```
+**Not done / simulated:**
+
+- The "expensive experiment" escalation deducts cost and logs; nothing is actually computed
+- No catalytic-activity modelling of any kind
+- UMA relaxation showcase requires FAIRChem (not a listed dependency); reports "skipped" without it
 
 ---
 
-### UMA Final Fidelity Check Showcase ✅
+## Correctness pass (2026-09-01/02)
 
-**Date**: 2026-08-31
+A file-by-file review found that several components either could not run or were producing physically wrong numbers. Recorded here because the earlier version of this document reported some of these as verified.
 
-**Files Created**:
-1. `models/verification/UMA_final_fidelity_check.ipynb` — Jupyter notebook
-2. `models/verification/UMA_final_fidelity_check.py` — Standalone script
+### Critical: results that were wrong
 
-**Features**:
-- Demonstrates UMA relaxation on mp-2790 (best candidate from campaigns)
-- **IMPORTANT**: Keeps UMA/OMat24 energies in SEPARATE TIER from MP energies
-- Shows volume comparison and energy stability check
-- Generates plots demonstrating the fidelity gate concept
+| Issue | Impact | Resolution |
+|---|---|---|
+| **Missing periodic boundary conditions** | `predictor.py` rebuilt pymatgen's `MSONAtoms` into a fresh `ase.Atoms` without `pbc=`, which defaults to `False`. MACE evaluated every crystal as an isolated cluster in vacuum. Formation energies were wrong by ~1.6 eV/atom and came out **positive for hull-stable compounds**. `elemental_references.py` never re-wrapped, so references were correct — the asymmetry was the entire error. | Removed the re-wrap. `MSONAtoms` is an `ase.Atoms` subclass and is accepted directly. mp-2790 went from +1.1035 to −0.4837 eV/atom vs MP's −0.4714 (a 128× improvement). |
+| **`e_above_hull` was never computed** | `predictor.py` referenced an undefined variable `structure` inside the formation-energy block. The `NameError` was swallowed by a bare `except`, falling through to return the raw MACE energy per atom **labelled as e_above_hull**. This produced the −4.5591 "e_above_hull" recorded throughout the previous PROJECT_STATE — a physically impossible negative hull distance. | Removed the fake calculation. The predictor now reports raw energy per atom and a properly-referenced formation energy, and states plainly that it does not compute e_above_hull. Stability is read from the KG's MP value. |
+| **MC-Dropout uncertainty was identically zero** | MACE inference is deterministic with no active dropout, so N "dropout passes" returned bit-identical energies and `np.std` was exactly 0.0 for every material. The Critic's uncertainty gate could never fire on any input — the escalation path was dead in practice. Tests passed only because they injected uncertainty values by hand. | Replaced with **max residual force** (eV/Å) as the trust signal. See [Escalation signal](#escalation-signal-design-note). |
+| **`kg/schema.py` would not parse** | Decorator arguments had been merged into adjacent docstrings (`propesource", mode="before")`, `@field_validator("rty. Use ...`). `SyntaxError` on import; nothing depending on it could run. | Reassembled the `PropertyNode` block from the intact fragments. |
+| **Scribe would have corrupted MP data** | `_add_prediction_to_kg` hardcoded `prop_name = "energy_above_hull"` and averaged MACE predictions into the same PropertyNode holding MP's ground-truth value. | MACE predictions now write to `mace_energy_per_atom`, never merged with MP values. |
 
-**To Run** (requires FAIRChem):
-```bash
-python models/verification/UMA_final_fidelity_check.py --campaign-id <your-campaign-id>
-```
+### Components that could not run at all
 
----
+- `MACE_CGCNN_surrogate_comparison.py` — **SyntaxError** (stray un-commented text). Also: missing `import sys`, `G` used as an undefined global in three functions, `config.CGCNN_CONFIG` (nonexistent), `evaluate(...)[:0]` returning an empty tuple, non-existent pymatgen methods, `np.polyfit(x, x, 1)` correlating a variable with itself. Rewritten from scratch as `models/surrogate_comparison.py`.
+- `UMA_final_fidelity_check.py` — missing `import sys`, undefined `G`, nonexistent `fairchem.relaxation.relax` API, keys read that were never written, `mp_eah:.4f` on a possible `None`. **Deleted**; the notebook is now the single UMA artifact.
+- `baseline_cgcnn.py` — training, prediction, and comparison functions were all `[TODO]` print stubs. The model itself would not have run: `edge_index` built transposed, `dx_cart[:, 0]` indexing a 1-D array, a 94-dim one-hot layer fed 1-D atomic numbers, `DataLoader` imported from the wrong module, and a duplicated `Th` entry in the atom table holding thallium's values. Rewritten as a working implementation.
 
-### CLI Documentation Updated ✅
+### Structural bugs
 
-**Date**: 2026-08-31
+- `agent/planner.py` was fully implemented and tested but **never imported by `campaign.py`** — the orchestrator ran its own inline loop while the README diagram described the Planner as live. Now wired in: campaign.py owns the `BudgetTracker`, Planner advises on continue/escalate/stop.
+- Batch mode only ever persisted the **last step's** predictions (`predictions` was reassigned each iteration), and a `step > 1` guard meant single-iteration campaigns persisted nothing at all. Now accumulates across all steps.
+- `tracker.deduct()`'s return value was ignored in the prediction loop, allowing overspend past zero.
+- `kg/queries.py` — three methods (`edge_types`, `node_types`, `custom_filter`) were permanently shadowed by instance attributes of the same name; calling them raised `TypeError: 'list' object is not callable`. `find_materials_by_property_range` hardcoded a dummy start node `material:mp-123` and raised `ValueError` on any graph lacking it.
+- `kg/build_graph.py` — `crystal_system` was `None` on all 130 structures (the key does not exist in `get_symmetry_dataset()`'s return; it needs `SpacegroupAnalyzer`). CIF paths were stored with Windows backslashes, unusable on Linux/macOS. The CIF cache was re-loaded and re-dumped once per material — O(N²) file I/O.
+- `kg/graph_store.py` — dead branch referencing an undefined `edge_data`.
 
-**File**: `scripts/run_campaign.py`
+### Documentation corruption
 
-**Changes**:
-- Added `--campaign-id` argument documentation explaining journal file naming convention
-- Updated docstrings to clarify that `campaign_id` becomes the prefix in `agent/journal/<campaign_id>.json`
-- Example: `python scripts/run_campaign.py --budget 100 --campaign-id my-campaign-2026-08-31` creates `agent/journal/my-campaign-2026-08-31.json`
-
----
-
-### Ollama Integration Complete ✅
-
-**Date**: 2026-08-30
-
-**Change**: Replaced all "unsloth" references with proper Ollama integration throughout the codebase
-
-**Files Modified**:
-1. `scripts/run_campaign.py` - CLI entry point updated:
-   - Changed `--unsloth-model` argument to `--ollama-model`
-   - Updated help text to reference Ollama models (e.g., gemma4:latest)
-   - All internal variable names changed from unsloth_ to ollama_
-
-**Key Architecture Details**:
-- **RetrieverAgent**: Uses `OllamaModel` with `OllamaProvider(base_url="http://localhost:11434")`
-- **Default Model**: gemma4:latest (configured via OLLAMA_MODEL env var)
-- **Base URL**: Includes `/v1` suffix for OpenAI-compatible API endpoint
-- **No unsloth dependency**: The system uses pure Ollama integration throughout
-
-**Verification**:
-- All agent initializations use OllamaModel/OllamaProvider pattern
-- Campaign orchestrator properly passes model configuration to MLflow logger
-- CLI entry point supports `--ollama-model gemma4:latest` flag
+The previous PROJECT_STATE.md contained systematic text corruption: `\u0007gent/campaign.py`, `\formula_pretty`, `\band_gap`, `\num_sites`, `` `ash `` code fences. Root cause: the file was processed with **escape-sequence interpretation**, so Windows-style paths like `\agent` became `\a` (bell) + `gent`, `\band_gap` became backspace + `and_gap`, and so on. Avoid running this file through any tool that interprets backslash escapes.
 
 ---
 
-### Full Campaign Test Results ✅
+## Escalation signal (design note)
 
-**Date**: 2026-08-30
+The Critic escalates on **max residual force** (eV/Å) rather than a model-uncertainty estimate.
 
-**Command**: `python scripts/run_campaign.py --budget 100 --max-experiments 10 --ollama-model gemma4:latest`
+**Rationale.** Every structure in the corpus is a DFT-relaxed Materials Project geometry, so DFT's own forces on those atoms are ≈0 by construction. Whatever residual force MACE reports is therefore direct MACE-vs-DFT geometric disagreement — a per-material, physically interpretable measure of whether the surrogate can be trusted here. It costs no extra inference (forces come from the same evaluation as the energy) and it is the standard practitioner check for MLIP trustworthiness.
 
-**Results Summary**:
-- **Campaign ID**: 6699ce32
-- **Duration**: ~2 minutes (20:23:58 - 20:25:37)
-- **Status**: ✅ Completed successfully
-- **Materials Evaluated**: 520 materials processed
+**Alternatives rejected:**
 
-**Budget Tracking** (Perfect accounting):
-- Initial Budget: 100.0 credits
-- Total Spent: 99.5 credits
-- Remaining: 0.5 credits (termination threshold)
-- Breakdown:
-  - KG Lookup: 4.0 credits (4 operations @ 1.0 each)
-  - Surrogate Queries: 95.0 credits (19 predictions @ 5.0 each)
-  - Experiment Escalation: 0.0 credits (0 escalations triggered)
+- *MC Dropout* — structurally always 0.0 (see above).
+- *Two-checkpoint ensemble* (`mace-mpa-0` + `mace-omat-0`) — the checkpoints have different training sets and energy references, so their spread would be dominated by a near-constant offset rather than genuine per-material disagreement.
+- *Positional-perturbation sensitivity* — viable and cheap, but residual force measures the same underlying property more directly.
 
-**Cost Efficiency**:
-- KG Lookup efficiency: 1.0 credit per operation
-- Surrogate Query efficiency: 5.0 credits per prediction
-- No escalation costs incurred (all predictions within uncertainty gate)
+**Calibration.** The gate was set from the measured distribution across all 130 materials, not chosen a priori:
 
-**Pipeline Verification**:
-✅ **Retriever** → Successfully queried KG, returned material candidates
-✅ **Predictor** → MACE model generated e_above_hull predictions for all materials
-✅ **Critic** → Validated all predictions against stability threshold (0.1 eV/atom) and uncertainty gate (0.3)
-✅ **No Escalations** → All predictions had low uncertainty (<30%), confirming system works correctly
-✅ **Budget Termination** → Campaign stopped when budget reached 0.5 credits (as designed)
+| Statistic | eV/Å |
+|---|---|
+| median | 0.2229 |
+| mean ± std | 0.2578 ± 0.1879 |
+| p90 / p95 | 0.5197 / 0.6343 |
+| max | 0.9181 |
 
-**Output Artifacts**:
-- JSON Journal: `agent/journal/6699ce32.json` (comprehensive campaign log)
-- Best Candidate: mp-2790 (lowest e_above_hull from evaluated materials)
-- MLflow Run: Ready for inspection (SQLite backend at sqlite:///mlflow.db)
+`FORCE_GATE_EV_PER_ANG = 0.5` → 14/130 escalate (10.8%). Lower gates escalate the majority of the corpus (0.1 → 78.5%) and collapse the cost-tiering premise. The distribution is smooth with no natural boundary, so this is a judgement about escalation rate rather than a threshold the data selected.
 
-**Key Observations**:
-1. **No escalations occurred** - This is expected and confirms the system works correctly. The Critic properly validated all predictions and none exceeded the uncertainty gate threshold.
-2. **Budget tracking accurate** - Every operation was charged correctly (4 KG lookups, 19 surrogate queries)
-3. **Pipeline fully functional** - All components (Retriever → Predictor → Critic) executed in correct order
-4. **Termination logic working** - Campaign stopped when budget reached termination threshold
-
-**Next Steps**: Step 3 - Test escalation logic by triggering high-uncertainty predictions (already validated via test_critic_escalation.py)
+**Honest caveat.** A median of 0.223 eV/Å is higher than would be expected for exactly-reproduced DFT geometries. Contributors: the CIF round-trip idealises fractional coordinates (pymatgen warns on ~9 structures), and MP's GGA+U systems are not reproducible by the surrogate. The gate therefore separates *relative* disagreement, not absolute trustworthiness.
 
 ---
 
-### Scribe KG Integration Complete ✅
+## Results summary
 
-**Date**: 2026-08-30
+Full tables in the README. Headline figures:
 
-**Change**: Added Scribe integration to CampaignOrchestrator.run() with mode flag support
+| Measurement | Value |
+|---|---|
+| MACE formation energy, mp-2790 vs MP | 0.0123 eV/atom error |
+| MACE MAE, non-oxides (fair figure) | 0.121 eV/atom |
+| MACE MAE, oxides | 1.100 eV/atom |
+| CGCNN 5-fold CV, random split | 0.0838 ± 0.0191 eV/atom |
+| CGCNN 5-fold CV, composition-disjoint | 0.1065 ± 0.0335 eV/atom |
+| Mean-predictor baseline | 0.412 eV/atom |
+| MACE inference | 0.191 s/material (CPU, mean) |
 
-**Files Modified**:
-1. `agent/campaign.py` - Added ScribeAgent import and integration
-2. `scripts/run_campaign.py` - Added --mode CLI argument
+### Finding: transition-metal oxide discrepancy
 
-#### Testing Results
-**Test Commands**:
-1. **Batch mode**: `python scripts/run_campaign.py --budget 50 --max-experiments 5 --mode batch`
-   - ✅ Campaign completed successfully
-   - ✅ Scribe wrote predictions to KG (count depends on retriever query results)
-   
-2. **Sequential mode**: `python scripts/run_campaign.py --budget 50 --max-experiments 5 --mode sequential`
-   - ✅ Campaign completed successfully  
-   - ✅ Scribe wrote predictions to KG immediately after each material
-   
-**Observed Behavior**:
-- Both modes process the same materials retrieved from KG
-- Prediction count varies based on retriever query results (e.g., "find all stable materials" returns different counts depending on KG state and LLM interpretation)
-- All tested materials already had `energy_above_hull` properties in KG, so Scribe averaged new predictions with existing values
-- Prediction count incremented for each material
-- Uncertainty metadata updated (currently 0.000 due to MACE model)
+MACE's error against MP formation energies scales with **metal** content, not oxygen content:
 
-#### Benefits of This Implementation
-1. **KG as Compounding Memory**: Predictions persist across campaigns
-2. **Adaptive Discovery Ready**: Sequential mode enables querying KG with new criteria based on previous results
-3. **Performance Option**: Batch mode for speed, sequential mode for adaptivity
-4. **Backward Compatible**: Default batch mode maintains existing behavior
+| Element | Non-oxides (eV/metal atom) | Oxides |
+|---|---|---|
+| Co | +0.03 | +2.58 |
+| Fe | +0.23 | +2.96 |
+| Mn | +0.35 | +2.44 |
+| Ni | +0.46 | +3.19 |
 
----
+Consistent with MP computing transition-metal oxides under GGA+U while computing elemental references under plain GGA, then reconciling via a fitted scheme (Jain 2011, Wang 2021). MP formation energies for these systems are not on a single level of theory.
 
-### CGCNN Baseline Implementation Complete ✅
+Two hypotheses were tested and **rejected** before arriving at this: (1) MP's oxygen anion correction, and (2) a poor molecular-O₂ MACE reference. Both predict error scaling with oxygen fraction; a fit of error vs oxygen fraction gave slope −3.61 with intercept +3.24, i.e. scaling with metal fraction instead. Stated as a consistent explanation, not a proven mechanism — magnitudes are ~half the corresponding Hubbard U values and element ordering is not an exact match.
 
-**Date**: 2026-08-30
+The same subset is independently flagged by the residual-force distribution (CoO₂, MnO₂, Co₃O₄, IrO₃ dominate the high-force tail).
 
-**File**: models/baseline_cgcnn.py (replaced placeholder with full implementation)
+### Finding: composition leakage in cross-validation
 
-**Key Improvements over Original Code**:
-1. **Multi-feature edges** - Uses 4 edge features (total distance + x, y, z components) instead of single feature
-2. **Super-cell construction** - Properly handles periodic boundary conditions using super-cells to capture all nearest neighbors
-3. **Batch normalization** - Added BN layers after each GraphConv for better training stability
-4. **Configurable architecture** - Support for different model sizes (hidden channels, number of conv layers)
-5. **Comprehensive metrics** - MSE, MAE, RMSE, R², and maximum error
-6. **Output normalization framework** - Min-max and z-score normalization support with saved constants
-7. **Dataset type support** - Support for uniform/static vs phononic datasets
-8. **Better edge construction** - Proper handling of periodic boundary conditions with lattice vector normalization
+130 materials span only ~75 distinct compositions (7 MoS₂ polymorphs, 7 MnO₂, 6 NiS₂, 6 WS₂, 5 CoO₂); 62% share a formula with another entry. Random CV splits leak polymorphs between folds, letting the model score via composition lookup.
 
-**Model Variants Supported**:
-- model_small: hidden_channels=128, num_conv_layers=3
-- model_medium (default): hidden_channels=256, num_conv_layers=4  
-- model_large: hidden_channels=512, num_conv_layers=4
-
-**Usage**:
-`ash
-    # Train with default settings
-    python models/baseline_cgcnn.py --train --epochs 500
-    
-    # Train with different architecture
-    python models/baseline_cgcnn.py --train --epochs 500 --hidden-channels 128 --num-conv-layers 3
-    
-    # Predict on single material
-    python models/baseline_cgcnn.py --predict mpid=mp-2790
-    
-    # Compare with MACE (when both models are trained)
-    python models/baseline_cgcnn.py --compare-mace
-`
-
-**Next Steps**: Run evaluation notebook (notebooks/03_gnn_surrogate_eval.ipynb) to compare CGCNN vs MACE on accuracy, training cost, and data efficiency.
+Composition-disjoint CV degrades MAE by ~27% (0.0838 → 0.1065) — modest, indicating the model learned genuine structure–property signal. Both numbers are reported; the gap is the measurement. `--group-by-composition` implements this, and k-fold runs now emit out-of-fold predictions so downstream comparison uses unbiased CGCNN numbers.
 
 ---
 
-## What Works Now ✅
-
-### End-to-End Pipeline:
-1. Retriever parses natural language query via Ollama (gemma4:latest) ✅
-2. KG lookup returns materials with structure_id populated ✅
-3. Predictor loads MACE model and converts structures to ASE Atoms format ✅
-4. MC Dropout inference produces e_above_hull predictions with uncertainty ✅
-5. Critic validates against stability threshold (0.1 eV/atom) and uncertainty gate (0.3) ✅
-6. Single-material escalation: Only high-uncertainty materials are escalated (not batch) ✅
-7. Planner manages budget and decides next action ✅
-8. All operations logged to MLflow and JSON journals ✅
-
-### Ollama Integration:
-✅ Full integration using OllamaModel/OllamaProvider pattern
-✅ Default model: gemma4:latest via OLLAMA_MODEL env var
-✅ Base URL with /v1 suffix for OpenAI-compatible API
-✅ No unsloth dependencies - pure Ollama throughout
-
-### NLP Query Limitation:
-⚠️ Natural language queries (e.g., "find all stable materials") are interpreted by LLM into KG queries
-- Ambiguity in query interpretation can lead to different material counts across runs
-- Fixed default query means same materials retrieved each campaign unless custom query provided
-- Adaptive querying based on previous results not implemented (out of scope)
-
-### CGCNN Baseline:
-✅ Full implementation with multi-feature edges, super-cell construction, batch normalization
-✅ Configurable architecture (hidden channels, conv layers)
-✅ Comprehensive metrics (MSE, MAE, RMSE, R², max error)
-✅ Training pipeline ready for MP subset data
-✅ Prediction pipeline with uncertainty estimation
-
-### Verified Components:
-- MaterialNode.schema + structure_id field ✅
-- HAS_STRUCTURE edge traversal in graph_store.py ✅
-- MACECalculator initialization with model_paths list ✅
-- get_potential_energy() method call ✅
-- ASE Atoms conversion from pymatgen structures ✅
-- Atom count detection (num_atoms / get_number_of_atoms()) ✅
-- Ollama base URL with /v1 suffix ✅
-- Campaign orchestrator synchronous execution ✅
-- MLflow SQLite tracking backend ✅
-- Critic single-material escalation logic ✅
-- CGCNN multi-feature edges implementation ✅
-- CGCNN super-cell graph construction ✅
-- CGCNN batch normalization layers ✅
-- OllamaModel/OllamaProvider integration pattern ✅
-
-### Environment Status:
-- **Ollama**: Running on localhost:11434, gemma4:latest model active (GPU-accelerated)
-- **MACE**: Checkpoint loaded (mace-mpa-0-medium.model, 79.5MB), cuequivariance disabled
-- **MLflow**: SQLite backend at sqlite:///mlflow.db, experiments created per campaign
-- **Budget**: INITIAL_BUDGET=100.0, MAX_EXPERIMENTS=10, STABILITY_THRESHOLD=0.1, UNCERTAINTY_GATE=0.3
-- **CGCNN**: Implementation complete, ready for training on MP subset
-
----
-
-## Open items
-
-### High priority
-
-1. ✅ **Critic uncertainty gate integrated** — UNCERTAINTY_GATE threshold (30%) properly validates Predictor outputs:
-   - MC Dropout uncertainty compared against gate in _check_uncertainty() method
-   - High uncertainty predictions trigger 
-equires_escalation=True flag
-   - Escalation cost tracked via EXPERIMENT_COST constant
-   - **VERIFIED**: Logic works correctly (tested with 35% uncertainty → escalation triggered)
-
-2. ✅ **Scribe KG updates** — Property predictions now properly logged to KG:
-   - _add_prediction_to_kg() accepts PredictorResult objects directly
-   - Handles duplicate properties by averaging values and tracking prediction count
-   - Tags all MACE predictions with source=PropertySource.MACE_FINETUNED
-   - **VERIFIED**: Test shows existing properties are updated correctly
-
-3. ✅ **MLflow tracking fixed** — Run IDs and metrics now properly captured:
-   - Fixed MLflowLogger to start runs immediately (not in __enter__)
-   - Metrics logged to active run before ending
-   - Materials evaluated read from 
-_materials_evaluated in journal
-   - **VERIFIED**: 23 experiments created, metrics persisted correctly
-
-4. ✅ **Critic single-material escalation fixed** — Each material evaluated independently:
-   - Fixed bug where ALL materials were escalated if ANY had high uncertainty (batch behavior)
-   - Now matches predictions to materials by material_id for correct per-material evaluation
-   - Only high-uncertainty materials are escalated (production-ready behavior)
-   - **VERIFIED**: Test with mixed uncertainties (70% + 10%) shows only 1/2 escalated
-
-5. ✅ **Uncertainty storage in KG** — PropertyNodes now persist uncertainty metadata:
-   - _add_prediction_to_kg() stores uncertainty as node attribute
-   - Multiple predictions average uncertainty values (weighted by count)
-   - Enables re-testing of Critic escalation logic later
-   - **VERIFIED**: Test shows uncertainty tracked across multiple predictions (6 predictions for mp-2790, avg=0.4844)
-
-6. ✅ **Critic escalation logic verified** — High-uncertainty predictions trigger escalation:
-   - Uncertainty gate (30%) correctly flags predictions above threshold
-   - Stability check works alongside uncertainty check
-   - Batch validation handles mixed uncertainty levels
-   - **VERIFIED**: 9/9 tests pass, core escalation flow working correctly
-
-7. ✅ **Scribe KG integration implemented** — Predictions now persist to KG:
-   - CampaignOrchestrator.run() calls scribe.log_campaign_results()
-   - Supports batch mode (default) and sequential mode via --mode flag
-   - Novelty detection prevents redundant writes, averages existing properties
-   - **VERIFIED**: Test campaign wrote 26 predictions to KG successfully
-
-8. ✅ **CGCNN baseline complete** — Full implementation with multi-feature edges and super-cell construction:
-   - Configurable architecture (hidden channels, conv layers)
-   - Comprehensive metrics tracking
-   - Training pipeline ready
-   - Prediction pipeline with uncertainty estimation
-   - **VERIFIED**: Implementation follows polbeni/GNN-materials reference pattern
-   - Training pipeline ready
-   - Prediction pipeline with uncertainty estimation
-   - **VERIFIED**: Implementation follows polbeni/GNN-materials reference pattern
-
-### Medium priority
-
-1. ✅ **Write unit tests** — All test files now complete:
-   - 	ests/test_queries.py — KG query tests (QueryBuilder, convenience functions) ✅
-   - 	ests/test_retriever.py — Retriever agent tests (initialization, element/chemsys queries, provenance, LLM integration with Ollama) ✅
-   - 	ests/test_critic.py — Critic agent tests (stability check, uncertainty gate, schema validation) ✅
-   - 	ests/test_predictor.py — MACE predictor tests (checkpoint loading, prediction, MC Dropout) ✅
-   - 	ests/test_critic_escalation.py — Manual escalation logic tests with KG metadata ✅
-   - 	ests/test_planner.py — Planner agent tests (initialization, budget tracking, max experiments) ✅
-
-2. ✅ **Full campaign loop tested** — End-to-end integration verified:
-   - Command: `python scripts/run_campaign.py --budget 100 --max-experiments 10`
-   - Results: 520 materials evaluated, 19 surrogate predictions made
-   - Budget tracking: Perfect accounting (4 KG lookups @ 1.0 + 19 queries @ 5.0 = 99 credits)
-   - Pipeline verified: Retriever → Predictor → Critic → Scribe all working
-   - JSON journal output: Comprehensive campaign log with budget breakdown
-   - **VERIFIED**: Full integration test passed, ready for production use
-
-3. ✅ **Scribe KG integration implemented** — Predictions now persist to KG:
-   - CampaignOrchestrator.run() calls scribe.log_campaign_results()
-   - Supports batch mode (default) and sequential mode via --mode flag
-   - Novelty detection prevents redundant writes, averages existing properties
-   - **VERIFIED**: Test campaign wrote 26 predictions to KG successfully
-
-### Low priority / stretch
-
-1. **UMA relaxation integration** — models/verification/uma_relax.py is stub; needs ASE workflow for final-candidate verification (must stay separate from MP-derived stats)
-
-2. **RDF ontology layer** — stretch/rdf_ontology.py not started; CMSO/ASMO alignment for stretch goal
-
-3. **Notebook explorations** — notebooks scaffolded but not created; need actual analysis outputs
-
----
-
-## Completed items (as of 2026-08-30)
-
-### Phase 1: Infrastructure ✅
-
-- **.env configuration** — All environment variables defined:
-  - MP_API_KEY, OLLAMA_BASE_URL, MLFLOW_TRACKING_URI
-  - INITIAL_BUDGET=100, MAX_EXPERIMENTS=10, STABILITY_THRESHOLD=0.1, UNCERTAINTY_GATE=0.3
-
-- **tracking/mlflow_setup.py** — MLflow tracking module with:
-  - MLflowLogger context manager for campaign tracking
-  - Metric logging functions (cost metrics, campaign metrics)
-  - Parameter logging (model versions, checkpoint info)
-  - Artifact logging (journals, log files)
-
-- **agent/logging.py** — Dual-mode error logging module with:
-  - Structured JSON journal (gent/journal/<campaign_id>.json)
-  - Human-readable console logs + file logs (logs/campaign_<timestamp>.log)
-  - Log levels: INFO, WARNING, ERROR, CRITICAL
-  - Exception capture with full tracebacks
-
-### Phase 2: Agent Implementation ✅
-
-- **agent/retriever.py** — Fully implemented KG query agent:
-  - Natural language parsing (elements, chemsys, properties)
-  - Query execution via kg/queries.py convenience functions
-  - Provenance tracking for Critic verification (shows "parsed_by": "llm" + actual intent)
-  - Two-stage design: LLM outputs simple QueryIntent schema → Python executes KG query deterministically
-  - Model switched to unsloth/Qwen3.5-2B-MTP-GGUF via Ollama
-  - **VERIFIED**: All tests pass, LLM returns ~32 materials from KG (no more fallback to manual parsing)
-
-- **agent/predictor.py** — MACE surrogate with MC Dropout:
-  - Single-material e_above_hull calculation via pymatgen
-  - MC Dropout inference (N=5 passes) for uncertainty estimation
-  - Fallback handling for prediction failures
-
-- **agent/campaign.py** — Campaign orchestrator class (refactored):
-  - CampaignOrchestrator.run() implements full agent loop
-  - Properly tracks costs via BudgetTracker (KG_LOOKUP, SURROGATE_QUERY, EXPERIMENT_ESCALATION)
-  - Integrates Retriever → Predictor → Critic in correct order
-  - Writes JSON journal to gent/journal/<campaign_id>.json
-
-- **agent/critic.py** — Safety gate implementation:
-  - Loads STABILITY_THRESHOLD and UNCERTAINTY_GATE from .env
-  - KG traversal for stability checks via _get_e_above_hull_from_kg()
-  - Schema validation (no NaN/Inf, required fields present)
-  - Decision output with approval/rejection/escalation flags
-
-- **agent/planner.py** — Budget-bounded orchestrator:
-  - Loads MAX_EXPERIMENTS from environment
-  - Decision logic: continue / escalate / stop based on budget + experiments + Critic feedback
-  - State tracking (actions taken, materials evaluated, rejections)
-
-- **agent/scribe.py** — KG persistence layer:
-  - Adds property predictions as new PropertyNodes with source tags
-  - Query materials by property range for filtering
-  - Saves updated graph back to JSON
-
-### Phase 3: CLI & Testing ✅
-
-- **scripts/run_campaign.py** — CLI entry point (refactored):
-  - Argument parsing (--budget, --max-experiments)
-  - Imports and calls CampaignOrchestrator.run() from gent.campaign
-  - Removed duplicated campaign loop logic (~320 lines → ~100 lines)
-  - MLflow + JSON journal logging integration
-  - **FIXED**: Now uses single source of truth (CampaignOrchestrator) instead of inline logic
-
-- **Test suites created:**
-  - 	ests/test_queries.py — KG query tests (QueryBuilder, convenience functions)
-  - 	ests/test_retriever.py — Retriever agent tests (initialization, element/chemsys queries, provenance, LLM integration with Ollama)
-  - 	ests/test_critic.py — Critic agent tests (stability check, uncertainty gate, schema validation)
-  - 	ests/test_predictor.py — MACE predictor tests (checkpoint loading, prediction, MC Dropout)
-  - 	ests/test_critic_escalation.py — Manual escalation logic tests with KG metadata
-  - 	ests/test_planner.py — Planner agent tests (initialization, budget tracking, max experiments)
-
-### Phase 4: Integration Fixes ✅
-
-- **Critic-Planner integration** — Fixed execution order and feedback loop:
-  - Predictor now runs BEFORE Critic validation
-  - Critic decisions passed to Planner for escalation decision
-  - Proper type hints (List[CriticDecision]) for type safety
-  - Escalation flag properly triggers 
-ext_action="escalate" in Planner
-
-- **Campaign refactoring** — Consolidated duplicated logic:
-  - gent/campaign.py now fully implements orchestrator business logic
-  - scripts/run_campaign.py is pure CLI wrapper calling orchestrator
-  - Removed unused agent imports from CLI script (predictor, critic, planner)
-  - Proper cost tracking via BudgetTracker with categorized costs
-
-- **CGCNN implementation** — Replaced placeholder with full implementation:
-  - Multi-feature edges (4 features: total dist + x, y, z components)
-  - Super-cell construction for periodic boundary conditions
-  - Batch normalization after each GraphConv layer
-  - Configurable architecture (hidden channels, conv layers)
-  - Comprehensive metrics (MSE, MAE, RMSE, R², max error)
-  - Output normalization framework with saved constants
-  - **VERIFIED**: Implementation follows polbeni/GNN-materials reference pattern
-
-### Phase 5: Verification & Testing ✅
-
-- **MACE Predictor Tests** — All tests pass:
-  `ash
-  python tests/test_predictor.py
-  `
-  - Checkpoint loading: PASS (79.5MB mace-mpa-0-medium.model)
-  - Single-material prediction: PASS (mp-2790 Ni12P5, e_above_hull = -4.5591 eV/atom)
-  - MC Dropout uncertainty: PASS (5 passes, std dev computed correctly)
-
-- **Critic Escalation Tests** — All tests pass with single-material evaluation:
-  `ash
-  python tests/test_critic_escalation.py
-  `
-  - Low uncertainty (5%): APPROVED
-  - High uncertainty (60%): REJECTED ESCALATE
-  - Mixed batch (70% + 10%): Only high-uncertainty material escalated (1/2)
-
-- **Critic Unit Tests** — All tests pass:
-  `ash
-  python tests/test_critic.py
-  `
-  - Initialization: PASS
-  - Stability check: PASS (e_above_hull from KG validated)
-  - Schema validation: PASS
-  - Decision output: PASS (MockPrediction with material_id works correctly)
-
-- **Full Campaign Run** — Successfully executed with minimal budget:
-  `ash
-  python scripts/run_campaign.py --budget 50 --max-experiments 3
-  `
-  - Ollama server running on localhost:11434 with gemma4:latest (GPU-accelerated)
-  - Campaign completed successfully without errors
-  - MLflow tracking functional with SQLite backend
-  - JSON journal logging working
-
-- **CGCNN Implementation Verification** — All components verified:
-  - Multi-feature edge construction: PASS
-  - Super-cell graph building: PASS
-  - Batch normalization integration: PASS
-  - Configurable architecture: PASS
-  - Metrics computation: PASS
-
----
-
-## Full Campaign Integration Test ✅
-
-**Date**: 2026-08-30
-
-**Test Command**:
-```bash
-python scripts/run_campaign.py --budget 100 --max-experiments 10 --ollama-model gemma4:latest
-```
-
-**Results Summary**:
-- **Campaign ID**: 6699ce32
-- **Duration**: ~2 minutes (20:23:58 - 20:25:37)
-- **Status**: ✅ Completed successfully
-- **Materials Evaluated**: 520 materials processed
-
-**Budget Tracking** (Perfect accounting):
-- Initial Budget: 100.0 credits
-- Total Spent: 99.5 credits
-- Remaining: 0.5 credits (termination threshold)
-- Breakdown:
-  - KG Lookup: 4.0 credits (4 operations @ 1.0 each)
-  - Surrogate Queries: 95.0 credits (19 predictions @ 5.0 each)
-  - Experiment Escalation: 0.0 credits (0 escalations triggered)
-
-**Cost Efficiency**:
-- KG Lookup efficiency: 1.0 credit per operation
-- Surrogate Query efficiency: 5.0 credits per prediction
-- No escalation costs incurred (all predictions within uncertainty gate)
-
-**Pipeline Verification**:
-✅ **Retriever** → Successfully queried KG, returned material candidates  
-✅ **Predictor** → MACE model generated e_above_hull predictions for all materials  
-✅ **Critic** → Validated all predictions against stability threshold (0.1 eV/atom) and uncertainty gate (0.3)  
-✅ **No Escalations** → All predictions had low uncertainty (<30%), confirming system works correctly  
-✅ **Budget Termination** → Campaign stopped when budget reached 0.5 credits (as designed)
-
-**Output Artifacts**:
-- JSON Journal: `agent/journal/6699ce32.json` (comprehensive campaign log)
-- Best Candidate: mp-2790 (lowest e_above_hull from evaluated materials)
-- MLflow Run: Ready for inspection (SQLite backend at sqlite:///mlflow.db)
-
-**Key Observations**:
-1. **No escalations occurred** - This is expected and confirms the system works correctly. The Critic properly validated all predictions and none exceeded the uncertainty gate threshold.
-2. **Budget tracking accurate** - Every operation was charged correctly (4 KG lookups, 19 surrogate queries)
-3. **Pipeline fully functional** - All components (Retriever → Predictor → Critic) executed in correct order
-4. **Termination logic working** - Campaign stopped when budget reached termination threshold
-
-**Next Steps**: Step 3 - Test escalation logic by triggering high-uncertainty predictions (already validated via test_critic_escalation.py)
-
----
-
-## Source rationale (job-sourcing)
-
-Themes mined from JDs/Slack posts: eval-as-discipline (Dunia, NVIDIA), BO breaking in green-field spaces (Dunia), negative results (RadicalAI, Dunia), closed-loop orchestration (Siemens Energy, alqem.ai, CuspAI), cost-aware agents (Dunia), physical plausibility + uncertainty (Dunia, alqem.ai, CuspAI), FAIR/traceable data (Siemens, alqem.ai), production DFT pipelines (alqem.ai), cross-campaign learning (Dunia).
-
-Academic lineage: Bai et al. *Nat. Commun.* 2024 + JACS Au 2022 (KG-SDL direct citations, Cambridge/World Avatar group). Tejs Vegge MaterialsCommons talk (FAIR + KG, AI4X 2026). Ian Foster CMSC 35370 "AI Agents for Science" (University of Chicago, 2026) — reference architecture for Reasoning Core / Memory / Trust Layer.
-
-Related projects: [i-mandel](https://github.com/artificial-scientist-lab/ai-mandel) (agent loop pattern), [tomic-agents](https://github.com/Eigenwise/atomic-agents) (schema discipline), [AdsMind](https://arxiv.org/abs/2606.19152) (physics-grounded multi-agent, similar architecture but single-candidate focus).
-
----
-
-## Technical debt notes
-
-- **gent/campaign.py** now the primary orchestrator; scripts/run_campaign.py is CLI wrapper only (no duplicated loop logic)
-- **PropertyNode source tagging** — UMA/OMat24 values must stay in separate tier per PROJECT_STATE rule; ensure Scribe doesn't mix sources numerically
-- **GraphML export** — _to_graphml_safe() JSON-encodes list attrs as workaround; canonical store remains kg.json
-- **MC Dropout uncertainty** — Current implementation uses std dev of energy predictions; verify this correlates with e_above_hull uncertainty
-- **CGCNN evaluation pending** — Need to run comparison notebook to establish baseline performance metrics
+## Technical debt
+
+- `ScribeAgent.get_materials_with_properties()` is unused by the agent loop and untested.
+- `PlannerAgent.state.remaining_budget` is not synchronised with the campaign's `BudgetTracker`. It exists for standalone testing; `campaign.py`'s tracker is authoritative. Reading it mid-campaign gives stale numbers.
+- `requirements.txt` pins Windows-only packages (`pywin32`, `triton-windows`) and omits `torch_geometric`. Needs regenerating cross-platform.
+- `scripts/run_campaign.py` reads `result["campaign_state"]` and `result["final_materials"]`, but `CampaignOrchestrator.run()` returns those keys flattened at the top level — both come back empty, so the CLI reports zeros on a successful run. It also double-logs to MLflow (the orchestrator logs internally) and imports `log_campaign_params` without using it. **Not yet fixed.**
+- `PropertyUnit.FORMATION_ENERGY_PER_ATOM` is an enum alias of `ENERGY_ABOVE_HULL` (both are `"eV/atom"`; Python enums collapse duplicate values). Serialisation is correct; do not identify properties by their unit member — use `PropertyName`.
+- GraphML export JSON-encodes list attributes as a workaround; `kg.json` remains canonical.
 
 ---
 
@@ -584,217 +143,92 @@ Related projects: [i-mandel](https://github.com/artificial-scientist-lab/ai-man
 
 ### Data: Materials Project via mp-api, clean-energy/catalyst subset
 
-Current filter (from data/download.py):
+Filter (from `data/download.py`):
 
 - **chemsys groups:**
-  - HER systems: Ni-P, Co-P, Fe-P, Mo-P, W-P, Mn-P, Ni-S, Co-S, Fe-S, Mo-S, W-S, Mn-S, Ni-C, Co-C, Fe-C, Mo-C, W-C, Mn-C
-  - OER systems: Ni-O, Co-O, Fe-O, Mn-O, Ni-Fe-O, Co-Fe-O, Ni-Co-O
-  - Benchmarks (precious-metal reference): Pt, Ir-O
-- **constraints:** energy_above_hull ∈ [0, 0.05], 
-um_sites ∈ [0, 20]
-- **fields pulled:** material_id, ormula_pretty, elements, energy_above_hull, structure, and_gap
-- **post-processing:** dedupe by material_id, rank by energy_above_hull
-- **first-run yield:** ~130 unique candidates
+  - HER: Ni-P, Co-P, Fe-P, Mo-P, W-P, Mn-P, Ni-S, Co-S, Fe-S, Mo-S, W-S, Mn-S, Ni-C, Co-C, Fe-C, Mo-C, W-C, Mn-C
+  - OER: Ni-O, Co-O, Fe-O, Mn-O, Ni-Fe-O, Co-Fe-O, Ni-Co-O
+  - Benchmarks: Pt, Ir-O
+- **constraints:** `energy_above_hull` ∈ [0, 0.05], `num_sites` ∈ [0, 20]
+- **fields pulled:** `material_id`, `formula_pretty`, `elements`, `energy_above_hull`, `formation_energy_per_atom`, `band_gap`
+- **post-processing:** dedupe by material_id, rank by energy_above_hull, cap at 300
+- **yield:** 130 unique candidates
+
+`formation_energy_per_atom` was added during the correctness pass; it is the CGCNN training target and the surrogate-comparison target. `band_gap` is ingested to exercise the multi-property schema but is **not read by the agent loop**.
 
 ### KG layer: NetworkX + Pydantic schemas
 
-- pymatgen for structure parsing (CIF → Structure objects)
-- CMSO/ASMO ontology skill (from materials-simulation-skills) flagged for RDF stretch goal
-- Schema-first design: all node/edge types defined in kg/schema.py as Pydantic models
-- Stable namespaced IDs: material:mp-126, element:Ni, chemsys:Ni-P, property:mp-126:energy_above_hull
+Canonical store `data/processed/kg.json` (node-link JSON). GraphML is best-effort interop. Every node and edge is a pydantic model in `kg/schema.py`; `PropertyName`/`PropertyUnit`/`PropertySource` are open-vocabulary enums that coerce unknown strings rather than requiring a schema edit per new property.
+
+### Property tiers — never mixed numerically
+
+| Tier | Source | Role |
+|---|---|---|
+| MP | Materials Project DFT | stability gate, training target, comparison ground truth |
+| MACE | `mace-mpa-0-medium` | surrogate ranking, formation energy, residual-force signal |
+| UMA | FAIRChem OMat24 | optional showcase only |
+
+`PropertyNode.source` records the tier. MACE writes to `mace_energy_per_atom`, never to `energy_above_hull`.
 
 ### Surrogates — two, compared not merged
 
-| Slot | Choice | Notes |
-|---|---|---|
-| Production | MACE (`mace-mpa-0-medium.model`) | Fine-tuned checkpoint in `models/gnn_surrogate/`, MC Dropout (N=5) for uncertainty |
-| Baseline | Custom CGCNN-style GNN (PyG), from-scratch | `models/comparison/MACE_CGCNN_surrogate_comparison.py` — **IMPLEMENTED** with multi-feature edges, super-cell construction, BN layers |
+MACE (`mace-mpa-0-medium`) runs zero-shot in the live loop. CGCNN is an **offline baseline only** — it is not a second real-time predictor path. Both predict `formation_energy_per_atom` so the comparison is like-for-like.
 
-Eval notebook (`notebooks/MACE_CGCNN_surrogate_comparison.ipynb`) compares both: accuracy, training cost, data-efficiency. Ready to run.
+Formation energy uses MACE-evaluated elemental references (`models/elemental_references.py`), cached to `data/processed/mace_elemental_refs.json`. Solid elements use the lowest-hull MP elemental crystal; oxygen uses molecular O₂ in a 15 Å vacuum box. All references come from the same checkpoint as the material energies, so the subtraction is self-consistent.
 
 ### Agent layer: pydantic-ai, schema-first, Ollama for LLM
 
-Multi-agent, atomic-agents-style strict I/O schema discipline. Uses Ollama (not Unsloth) for natural language query parsing:
-
-**Why Ollama over Unsloth:** Unsloth's GGUF model format wasn't compatible with pydantic-ai's model inference system. Ollama provides OpenAI-compatible API that integrates cleanly with pydantic-ai's OllamaProvider, allowing local LLM usage without custom wrapper code.
-
-- **Retriever** — KG lookup via kg/queries.py, cheap (cost=1.0)
-  - Parses natural language queries into filters (elements, chemsys, properties) using Ollama LLM when enabled
-  - Returns typed KGLookupResult with provenance tracking
-- **Predictor** — MACE surrogate inference, medium cost (cost=5.0)
-  - Single-material e_above_hull prediction with MC Dropout uncertainty
-- **Critic** — plausibility + uncertainty gate, before escalation (KEY safety piece)
-  - Validates e_above_hull threshold from KG
-  - Rejects if Predictor uncertainty > gate (default 30%)
-  - Escalates to expensive DFT/UMA if needed
-- **Planner** — orchestrator, holds budget, decides next action
-  - Budget-bounded loop (max 50 actions, default)
-  - Tracks cost per step, experiments count, rejections
-- **Scribe** — writes campaign results back into KG (compounding memory)
-  - Adds property predictions as new PropertyNodes with source tags
+Typed contracts between agents. Ollama drives the Retriever's optional natural-language query parsing; the Planner is instantiated with `use_llm=False` from the campaign loop, since its decision logic is rule-based.
 
 ### Loop: budget-bounded, Critic-gated, Scribe persists
 
-Inspired by ai-mandel (independent stages, journaled JSON logs) but tighter and budget-bounded rather than open-ended.
-
-**Cost model:** gent/cost_model.py
-- KG_LOOKUP_COST = 1.0 (cheap)
-- SURROGATE_COST = 5.0 (medium)
-- EXPERIMENT_COST = 10.0 (high, held-out lookup)
-- INITIAL_BUDGET = 100.0
-- MAX_ACTIONS_PER_CAMPAIGN = 50
+`agent/campaign.py` owns the `BudgetTracker` and performs all deduction. The Planner is consulted per step for continue/escalate/stop. The Critic gates escalation on stability (MP-sourced) and residual force (MACE-sourced). The Scribe writes property predictions to the KG; campaign metadata stays in the journal and MLflow.
 
 ### Tracking: MLflow + JSON journals
 
-- **MLflow:** 	racking/mlflow_setup.py — campaign metrics, params, artifacts
-- **JSON journal:** gent/journal/<campaign_id>.json — step-by-step logs with timestamps
-- Console logging via gent/logging.py — dual-mode (console + file)
+Per-campaign journal at `agent/journal/<campaign_id>.json`; MLflow to `sqlite:///mlflow.db`.
 
 ---
 
-## Considered-rejected (also in README "Design Decisions" table)
+## Considered and rejected
 
-| Alternative | Why rejected |
+Full table in the README's *Design Decisions* section. Additions from the correctness pass:
+
+| Considered | Rejected because |
 |---|---|
-| OQMD | weaker graph structure than MP |
-| lematerial-llm-synthesis | extraction risk + frontier-API dep; future-work instead |
-| ChemPile | text corpus, no structures |
-| OC20 / OC25 / AQCat25 | scale (millions of DFT calcs + slab/solvent complexity), not local-feasible |
-| NVIDIA nvalchemi-toolkit | MD-scale throughput, project = single-point inference |
-| dmol QM9 GNN | toy tutorial, wrong modality (molecules, no periodicity) |
-| Neo4j / RDF (rdflib) | stretch goal only; infra overhead too high now |
-| Foundry-ML | redundant w/ MP, less deep |
-| atomic-agents framework | borrowed schema discipline, kept pydantic-ai as execution framework |
-| ai-mandel | inspiration only, replaced open-ended loop w/ budget-bounded |
+| Computing true `e_above_hull` in the Predictor | Requires the convex hull of all competing phases per chemical system — an MP phase-diagram call plus MACE evaluation of every competing phase, turning an O(1) surrogate into O(phases) and defeating the cost-tiering premise. Stability is read from MP instead. |
+| MC-Dropout uncertainty on MACE | Deterministic inference, no active dropout: always exactly 0.0. |
+| Two-checkpoint MACE ensemble for uncertainty | Different energy references between checkpoints; spread would be a constant offset, not model disagreement. |
+| Excluding oxides from the comparison | Would remove 49/130 materials and the entire OER half of the corpus. Kept with molecular-O₂ reference and oxide/non-oxide split reporting instead. |
+| Fine-tuning MACE on this corpus | Would make the MACE-vs-CGCNN comparison harder to interpret (both trained on the same 130 materials). Zero-shot keeps the contrast clean. |
 
 ---
 
-# Optional late stage: UMA relaxation check
+## Next steps (prioritised)
 
-Final-candidate only. **Hard rule:** UMA/OMat24 energies stay in separate tier, never numerically mixed with MP-derived stats (different DFT settings per FAIRChem disclaimer). Source: `models/verification/UMA_final_fidelity_check.py` (showcase).
-
-## Next steps (prioritized)
-
-1. **Run CGCNN evaluation** — Execute 
-notebooks/03_gnn_surrogate_eval.ipynb:
-   - Train CGCNN baseline on MP subset
-   - Compare MACE vs. CGCNN on held-out test set
-   - Report accuracy, training time, data efficiency metrics
-
-2. **Notebooks** — 
-notebooks/04_campaign_analysis.ipynb:
-   - Read journal files + MLflow runs
-   - Plot cost per step, budget depletion curves
-   - Compare different threshold configurations
-
-3. **UMA relaxation integration** — `models/verification/UMA_final_fidelity_check.py` is showcase; needs ASE workflow for final-candidate verification (must stay separate from MP-derived stats)
+1. **Fix `scripts/run_campaign.py`** — currently reports zeros on successful runs (see Technical debt).
+2. **Run a full campaign** end to end and record the trace, cost breakdown, and final candidate for the README's worked example.
+3. **Regenerate `requirements.txt`** cross-platform, adding `torch_geometric`.
+4. Update `tests/test_predictor.py` and `tests/test_critic.py` if they still reference the removed `uncertainty` field.
+5. Consider fitting elemental references by least squares against training-fold targets — would absorb MP's correction scheme and make the oxide comparison fairer. Must be fit on training folds only.
 
 ---
 
-## Stretch Goals (Future Enhancements)
+## Stretch goals
 
-### 1. CIF Caching System
-**Purpose**: Performance optimization for repeated KG builds
-
-**What it would do**:
-- Cache parsed Structure objects in `data/processed/cif_cache.pkl`
-- Track cache hit rate and efficiency metrics
-- Provide `--clear-cache` flag for regeneration
-- Reduce CIF parsing time from minutes to seconds on subsequent runs
-
-**Current Status**: 
-- Basic caching exists in build_graph.py but not optimized
-- Each run re-parses all CIF files even if already cached
-- **Recommendation**: Implement as stretch goal after core features are stable
-
-**Implementation Priority**: Low (nice-to-have, not essential)
+- Target-property model (adsorption energy / overpotential proxy) so the pipeline selects for catalytic activity, not just stability.
+- Neo4j Community + Cypher once the KG schema stabilises.
+- `rdflib` RDF/OWL layer aligned with CMSO/ASMO ontologies.
+- Novelty checking in the Scribe before treating candidates as new discoveries.
+- Literature-mined synthesis-route edges via `lematerial-llm-synthesis`.
+- Uncertainty-weighted averaging when the Scribe merges repeated predictions (currently a simple mean).
 
 ---
 
-### 2. Enhanced Novelty Detection
-**Purpose**: Prevent redundant KG writes and improve data quality
+## Source rationale (job-sourcing)
 
-**What it would do**:
-- Check if material already exists in KG before writing predictions
-- Detect duplicate entries across different sources (MACE_FINETUNED, UMA, etc.)
-- Skip writing if property already exists with same source
-- Merge predictions from different sources intelligently
+Themes mined from job descriptions and community posts: evaluation as its own discipline (Dunia, NVIDIA), Bayesian optimisation breaking down in green-field spaces (Dunia), negative results as a neglected data source (RadicalAI, Dunia), closed-loop orchestration (Siemens Energy, alqem.ai, CuspAI), cost-aware agents (Dunia), physical plausibility and uncertainty (Dunia, alqem.ai, CuspAI), FAIR/traceable data (Siemens, alqem.ai), production DFT pipelines (alqem.ai), cross-campaign learning (Dunia).
 
-**Current Status**:
-- Basic novelty detection exists: checks if property name matches for material
-- Does NOT check across sources comprehensively
-- **Recommendation**: Implement as extension to Scribe._add_prediction_to_kg()
+Academic lineage: Bai et al. *Nat. Commun.* 2024 and *JACS Au* 2022 (KG-SDL, Cambridge/World Avatar group); Tejs Vegge's MaterialsCommons talk (FAIR + KG, AI4X 2026); Ian Foster, CMSC 35370 *AI Agents for Science* (University of Chicago, 2026) — reference architecture for Reasoning Core / Memory / Trust Layer.
 
-**Implementation Priority**: Medium (improves data quality)
-
----
-
-### 3. Batch Statistics Computation
-**Purpose**: Enable adaptive retrieval and campaign monitoring
-
-**What it would do**:
-- Compute min/max/avg metrics for each batch of predictions
-- Track uncertainty statistics (mean, std dev)
-- Log batch-level summary to MLflow/journal
-- Use min_e_above_hull as threshold for next retrieval query
-
-**Current Status**:
-- Not implemented yet
-- Campaign runs compute all predictions but don't aggregate statistics
-- **Recommendation**: Add as Scribe.log_predictions() optional parameter
-
-**Implementation Priority**: Medium (enables adaptive discovery)
-
----
-
-### 4. Multiple Property Types Support
-**Purpose**: Expand beyond e_above_hull to comprehensive property tracking
-
-**What it would do**:
-- Support multiple property names (formation_energy, band_gap, formation_volume, etc.)
-- Add property-specific units and validation
-- Track property correlations across materials
-- Enable multi-objective optimization queries
-
-**Current Status**:
-- Only `energy_above_hull` supported
-- Scribe hardcoded to use this single property
-- **Recommendation**: Make property name configurable in PredictorResult
-
-**Implementation Priority**: Medium (expands system capabilities)
-
----
-
-### 5. Weighted Averaging with Uncertainty
-**Purpose**: Improve prediction accuracy when multiple predictions exist
-
-**What it would do**:
-- Weight predictions by inverse uncertainty (lower uncertainty = higher weight)
-- Track prediction count and confidence intervals
-- Provide statistical significance metrics
-- Flag low-confidence averages for re-prediction
-
-**Current Status**:
-- Simple unweighted average: `(current + new) / 2`
-- No uncertainty weighting
-- **Recommendation**: Implement as optional mode in Scribe._add_prediction_to_kg()
-
-**Implementation Priority**: Low (nice-to-have enhancement)
-
----
-
-### 6. RDF Ontology Layer
-**Purpose**: FAIR data compliance and semantic interoperability
-
-**What it would do**:
-- Map materials to CMSO/ASMO ontology classes
-- Create RDF triples for KG export
-- Enable reasoning over material relationships
-- Support SPARQL queries for advanced analysis
-
-**Current Status**:
-- Stub exists in `stretch/rdf_ontology.py`
-- Not implemented yet
-- **Recommendation**: Keep as stretch goal, focus on core system first
-
-**Implementation Priority**: Low (stretch goal, not essential)
+Related projects: [ai-mandel](https://github.com/artificial-scientist-lab/ai-mandel) (agent loop pattern), [atomic-agents](https://github.com/Eigenwise/atomic-agents) (schema discipline), [AdsMind](https://arxiv.org/abs/2606.19152) (physics-grounded multi-agent, similar architecture but single-candidate focus).

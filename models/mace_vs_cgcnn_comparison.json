@@ -1,0 +1,1149 @@
+{
+  "target_property": "formation_energy_per_atom",
+  "n_materials": 130,
+  "n_oxides": 49,
+  "mace": {
+    "metrics": {
+      "overall": {
+        "n": 130,
+        "mae": 0.4902371473731045,
+        "rmse": 0.7136101549333749,
+        "mean_signed_error": 0.4720306139619613,
+        "max_error": 1.6099082770832478,
+        "r2": -1.1602749119328366,
+        "pearson_r": 0.17618515222552755
+      },
+      "oxides": {
+        "n": 49,
+        "mae": 1.1002652241800432,
+        "rmse": 1.1353097192834491,
+        "mean_signed_error": 1.1002652241800432,
+        "max_error": 1.6099082770832478,
+        "r2": -12.637019774587136,
+        "pearson_r": 0.7595699998595961
+      },
+      "non_oxides": {
+        "n": 81,
+        "mae": 0.12120781695903042,
+        "rmse": 0.1938450807831809,
+        "mean_signed_error": 0.09198745469423272,
+        "max_error": 0.8028820437892392,
+        "r2": 0.4584439662235208,
+        "pearson_r": 0.7633680805694587
+      }
+    },
+    "timing": {
+      "mean_seconds": 0.19126714999989558,
+      "median_seconds": 0.06971155000064755,
+      "n": 130
+    },
+    "trust_signal": {
+      "name": "max_residual_force",
+      "units": "eV/Angstrom",
+      "mean": 0.25775389249750447,
+      "median": 0.22286685967978648,
+      "max": 0.9180897046884622,
+      "n": 130
+    }
+  },
+  "cgcnn": {
+    "prediction_source": "out-of-fold",
+    "split_metadata": {
+      "split_type": "composition-disjoint",
+      "group_by_composition": true,
+      "k_folds": 5,
+      "n_materials": 130
+    },
+    "metrics": {
+      "overall": {
+        "n": 130,
+        "mae": 0.10763894636468041,
+        "rmse": 0.1427404563953306,
+        "mean_signed_error": 0.04029999534118052,
+        "max_error": 0.35357790181255,
+        "r2": 0.9135666907699155,
+        "pearson_r": 0.959666601445288
+      },
+      "oxides": {
+        "n": 49,
+        "mae": 0.08087477984458569,
+        "rmse": 0.0995105635118141,
+        "mean_signed_error": 0.015328626230581842,
+        "max_error": 0.2525022729472983,
+        "r2": 0.8952318850800685,
+        "pearson_r": 0.9474845182543201
+      },
+      "non_oxides": {
+        "n": 81,
+        "mae": 0.12382961500029326,
+        "rmse": 0.16343208147523838,
+        "mean_signed_error": 0.05540613221055503,
+        "max_error": 0.35357790181255,
+        "r2": 0.6150463391748533,
+        "pearson_r": 0.8175416956199937
+      }
+    },
+    "timing": {
+      "mean_seconds": NaN,
+      "median_seconds": NaN,
+      "n": 130
+    },
+    "trust_signal": {
+      "name": "mc_dropout_uncertainty",
+      "units": "eV/atom",
+      "mean": 0.04613366863767576,
+      "median": 0.03993042457708852,
+      "max": 0.14768609362829607,
+      "n": 130
+    }
+  },
+  "per_material": [
+    {
+      "mpid": "mp-10004",
+      "formula": "Mo3P",
+      "is_oxide": false,
+      "ground_truth": -0.3485922019940517,
+      "mace": -0.3506405911615662,
+      "cgcnn": -0.48475452188806484
+    },
+    {
+      "mpid": "mp-1005",
+      "formula": "FeP",
+      "is_oxide": false,
+      "ground_truth": -0.5973374473214275,
+      "mace": -0.6046433308945263,
+      "cgcnn": -0.48050002353278876
+    },
+    {
+      "mpid": "mp-1018804",
+      "formula": "MnS2",
+      "is_oxide": false,
+      "ground_truth": -0.7663607583692524,
+      "mace": -0.5452556609091754,
+      "cgcnn": -0.9352176557245696
+    },
+    {
+      "mpid": "mp-1018809",
+      "formula": "MoS2",
+      "is_oxide": false,
+      "ground_truth": -0.9637533052083332,
+      "mace": -0.8728198664315894,
+      "cgcnn": -0.6373951932901305
+    },
+    {
+      "mpid": "mp-1022963",
+      "formula": "IrO3",
+      "is_oxide": true,
+      "ground_truth": -0.9383537137499998,
+      "mace": -0.602893332648275,
+      "cgcnn": -1.1332735740554203
+    },
+    {
+      "mpid": "mp-1023924",
+      "formula": "MoS2",
+      "is_oxide": false,
+      "ground_truth": -0.9517026318749989,
+      "mace": -0.8642210209921233,
+      "cgcnn": -0.6449268690351038
+    },
+    {
+      "mpid": "mp-1023925",
+      "formula": "WS2",
+      "is_oxide": false,
+      "ground_truth": -0.8761316268749985,
+      "mace": -0.8349604822044485,
+      "cgcnn": -0.6331664364346672
+    },
+    {
+      "mpid": "mp-1023937",
+      "formula": "WS2",
+      "is_oxide": false,
+      "ground_truth": -0.8694221118750013,
+      "mace": -0.8329402452806702,
+      "cgcnn": -0.6619603898389098
+    },
+    {
+      "mpid": "mp-1023939",
+      "formula": "MoS2",
+      "is_oxide": false,
+      "ground_truth": -0.9589067502083329,
+      "mace": -0.8687754824692329,
+      "cgcnn": -0.646474444913305
+    },
+    {
+      "mpid": "mp-1025571",
+      "formula": "WS2",
+      "is_oxide": false,
+      "ground_truth": -0.8784126318749972,
+      "mace": -0.8330142480247194,
+      "cgcnn": -0.6318785442974082
+    },
+    {
+      "mpid": "mp-1025874",
+      "formula": "MoS2",
+      "is_oxide": false,
+      "ground_truth": -0.9617292007638886,
+      "mace": -0.8696355442661945,
+      "cgcnn": -0.6326181902683529
+    },
+    {
+      "mpid": "mp-1027525",
+      "formula": "MoS2",
+      "is_oxide": false,
+      "ground_truth": -0.9624610102083343,
+      "mace": -0.8693158115566284,
+      "cgcnn": -0.6370478736352769
+    },
+    {
+      "mpid": "mp-1028441",
+      "formula": "WS2",
+      "is_oxide": false,
+      "ground_truth": -0.8797867568750016,
+      "mace": -0.8331456707780704,
+      "cgcnn": -0.6191314110909745
+    },
+    {
+      "mpid": "mp-1050",
+      "formula": "Ni3S4",
+      "is_oxide": false,
+      "ground_truth": -0.6585213785714268,
+      "mace": -0.38255172516709646,
+      "cgcnn": -0.5471747015487958
+    },
+    {
+      "mpid": "mp-1102036",
+      "formula": "NiP",
+      "is_oxide": false,
+      "ground_truth": -0.4241112523214288,
+      "mace": -0.4335074214034167,
+      "cgcnn": -0.39283071094955346
+    },
+    {
+      "mpid": "mp-1105127",
+      "formula": "MnP4",
+      "is_oxide": false,
+      "ground_truth": -0.35803394030049207,
+      "mace": -0.36182379757544414,
+      "cgcnn": -0.35481930510477167
+    },
+    {
+      "mpid": "mp-11328",
+      "formula": "P2W",
+      "is_oxide": false,
+      "ground_truth": -0.38150328531745953,
+      "mace": -0.3954883662421107,
+      "cgcnn": -0.4030547068327184
+    },
+    {
+      "mpid": "mp-11329",
+      "formula": "P2W",
+      "is_oxide": false,
+      "ground_truth": -0.35821996865079103,
+      "mace": -0.3705571124827003,
+      "cgcnn": -0.4047041620723277
+    },
+    {
+      "mpid": "mp-11508",
+      "formula": "MoP4",
+      "is_oxide": false,
+      "ground_truth": -0.37985946338095145,
+      "mace": -0.3165826362664603,
+      "cgcnn": -0.33651919524925056
+    },
+    {
+      "mpid": "mp-1178232",
+      "formula": "FeO",
+      "is_oxide": true,
+      "ground_truth": -1.4694833324999985,
+      "mace": -0.03370131265178067,
+      "cgcnn": -1.5522428121323921
+    },
+    {
+      "mpid": "mp-1178424",
+      "formula": "CoNiO3",
+      "is_oxide": true,
+      "ground_truth": -1.1366519479999995,
+      "mace": 0.05189735798897388,
+      "cgcnn": -1.0611165820328805
+    },
+    {
+      "mpid": "mp-1180046",
+      "formula": "NiS2",
+      "is_oxide": false,
+      "ground_truth": -0.5915265383333329,
+      "mace": -0.2373559449198357,
+      "cgcnn": -0.7065973429781149
+    },
+    {
+      "mpid": "mp-1183728",
+      "formula": "Co2S3",
+      "is_oxide": false,
+      "ground_truth": -0.4800429516874999,
+      "mace": -0.3657773741678092,
+      "cgcnn": -0.4144442224621211
+    },
+    {
+      "mpid": "mp-1188188",
+      "formula": "Mn3C",
+      "is_oxide": false,
+      "ground_truth": -0.00502976189467752,
+      "mace": -0.1514482780209203,
+      "cgcnn": -0.04914879799235872
+    },
+    {
+      "mpid": "mp-1189099",
+      "formula": "Mo3P",
+      "is_oxide": false,
+      "ground_truth": -0.34767323511905346,
+      "mace": -0.34358351400466347,
+      "cgcnn": -0.4828000858427494
+    },
+    {
+      "mpid": "mp-1189340",
+      "formula": "Fe2P",
+      "is_oxide": false,
+      "ground_truth": -0.4575927709920633,
+      "mace": -0.4535537790858619,
+      "cgcnn": -0.44610822533000416
+    },
+    {
+      "mpid": "mp-1213762",
+      "formula": "Co3P",
+      "is_oxide": false,
+      "ground_truth": -0.2571760488690451,
+      "mace": -0.36490717219378777,
+      "cgcnn": -0.33671725166621047
+    },
+    {
+      "mpid": "mp-1232659",
+      "formula": "MnO",
+      "is_oxide": true,
+      "ground_truth": -2.032569766465519,
+      "mace": -0.9063940397941463,
+      "cgcnn": -1.857172897160142
+    },
+    {
+      "mpid": "mp-126",
+      "formula": "Pt",
+      "is_oxide": false,
+      "ground_truth": 0.0,
+      "mace": -1.2273675409346652e-09,
+      "cgcnn": -0.2002242581022421
+    },
+    {
+      "mpid": "mp-1271784",
+      "formula": "Co3O4",
+      "is_oxide": true,
+      "ground_truth": -1.2599565135714283,
+      "mace": -0.2794460171576434,
+      "cgcnn": -1.2253660128470503
+    },
+    {
+      "mpid": "mp-1271793",
+      "formula": "Co3O4",
+      "is_oxide": true,
+      "ground_truth": -1.290338224285714,
+      "mace": -0.2877881846583499,
+      "cgcnn": -1.2852285530553276
+    },
+    {
+      "mpid": "mp-1272234",
+      "formula": "CoNiO3",
+      "is_oxide": true,
+      "ground_truth": -1.1130342869999992,
+      "mace": 0.03768797321371409,
+      "cgcnn": -1.0969296311622658
+    },
+    {
+      "mpid": "mp-1272680",
+      "formula": "CoO2",
+      "is_oxide": true,
+      "ground_truth": -1.0582683141666667,
+      "mace": -0.24173025575147378,
+      "cgcnn": -1.0976600199331044
+    },
+    {
+      "mpid": "mp-1274279",
+      "formula": "FeO",
+      "is_oxide": true,
+      "ground_truth": -1.4815193874999997,
+      "mace": -0.032366830438039784,
+      "cgcnn": -1.5457098003797496
+    },
+    {
+      "mpid": "mp-1278455",
+      "formula": "CoO2",
+      "is_oxide": true,
+      "ground_truth": -1.0599715175000004,
+      "mace": -0.2238258666665569,
+      "cgcnn": -1.0972140050559211
+    },
+    {
+      "mpid": "mp-1279232",
+      "formula": "Fe(NiO2)2",
+      "is_oxide": true,
+      "ground_truth": -1.2879567164285706,
+      "mace": 0.028816850625315915,
+      "cgcnn": -1.2960923771641442
+    },
+    {
+      "mpid": "mp-1279343",
+      "formula": "CoNiO3",
+      "is_oxide": true,
+      "ground_truth": -1.1362852369999998,
+      "mace": 0.02128450940323745,
+      "cgcnn": -1.081178387020496
+    },
+    {
+      "mpid": "mp-1282693",
+      "formula": "Fe(NiO2)2",
+      "is_oxide": true,
+      "ground_truth": -1.2947773978571422,
+      "mace": 0.0296737890291352,
+      "cgcnn": -1.3111042183454535
+    },
+    {
+      "mpid": "mp-1283030",
+      "formula": "FeO",
+      "is_oxide": true,
+      "ground_truth": -1.4674575262499987,
+      "mace": -0.03805453441276185,
+      "cgcnn": -1.5274964947391971
+    },
+    {
+      "mpid": "mp-13446",
+      "formula": "Co2P",
+      "is_oxide": false,
+      "ground_truth": -0.38518074488095366,
+      "mace": -0.5160989854838087,
+      "cgcnn": -0.3884368820763918
+    },
+    {
+      "mpid": "mp-1386044",
+      "formula": "MnS2",
+      "is_oxide": false,
+      "ground_truth": -0.7979342075359194,
+      "mace": -0.570829584895173,
+      "cgcnn": -0.9877657190171045
+    },
+    {
+      "mpid": "mp-1400906",
+      "formula": "CoO2",
+      "is_oxide": true,
+      "ground_truth": -1.0724326600000016,
+      "mace": -0.15750756817383404,
+      "cgcnn": -1.1613247444146757
+    },
+    {
+      "mpid": "mp-1411545",
+      "formula": "NiS2",
+      "is_oxide": false,
+      "ground_truth": -0.5565472616666666,
+      "mace": -0.2283697580831836,
+      "cgcnn": -0.7082304551270144
+    },
+    {
+      "mpid": "mp-1422029",
+      "formula": "MnS2",
+      "is_oxide": false,
+      "ground_truth": -0.7995039067025852,
+      "mace": -0.5896214782899545,
+      "cgcnn": -0.9967032879717773
+    },
+    {
+      "mpid": "mp-14285",
+      "formula": "CoP2",
+      "is_oxide": false,
+      "ground_truth": -0.5062888728174618,
+      "mace": -0.5275580133810474,
+      "cgcnn": -0.41157491802198876
+    },
+    {
+      "mpid": "mp-1434",
+      "formula": "MoS2",
+      "is_oxide": false,
+      "ground_truth": -0.9661425452083326,
+      "mace": -0.8715713350790928,
+      "cgcnn": -0.6311390955280628
+    },
+    {
+      "mpid": "mp-1444811",
+      "formula": "NiS2",
+      "is_oxide": false,
+      "ground_truth": -0.5477620666666662,
+      "mace": -0.21984936827334955,
+      "cgcnn": -0.7084286607664274
+    },
+    {
+      "mpid": "mp-1513",
+      "formula": "Co9S8",
+      "is_oxide": false,
+      "ground_truth": -0.4391167660294119,
+      "mace": -0.4855382460042632,
+      "cgcnn": -0.4198127174932018
+    },
+    {
+      "mpid": "mp-1522",
+      "formula": "FeS2",
+      "is_oxide": false,
+      "ground_truth": -0.8474769699999989,
+      "mace": -0.5171003403922798,
+      "cgcnn": -0.6219687208855775
+    },
+    {
+      "mpid": "mp-1547",
+      "formula": "NiS",
+      "is_oxide": false,
+      "ground_truth": -0.6106647137499989,
+      "mace": -0.35810705835139434,
+      "cgcnn": -0.5914057077299997
+    },
+    {
+      "mpid": "mp-1552",
+      "formula": "Mo2C",
+      "is_oxide": false,
+      "ground_truth": -0.13904961666666557,
+      "mace": -0.12263543387346054,
+      "cgcnn": -0.14418723560065283
+    },
+    {
+      "mpid": "mp-1783",
+      "formula": "MnS",
+      "is_oxide": false,
+      "ground_truth": -1.1284442586476295,
+      "mace": -0.3255622148583903,
+      "cgcnn": -0.7748663568350795
+    },
+    {
+      "mpid": "mp-1849",
+      "formula": "Mn2P",
+      "is_oxide": false,
+      "ground_truth": -0.513148089057198,
+      "mace": -0.5783594176763742,
+      "cgcnn": -0.40137312432662187
+    },
+    {
+      "mpid": "mp-18708",
+      "formula": "Fe3P",
+      "is_oxide": false,
+      "ground_truth": -0.354155793035714,
+      "mace": -0.34226920277733797,
+      "cgcnn": -0.37266816238705647
+    },
+    {
+      "mpid": "mp-18748",
+      "formula": "Co3O4",
+      "is_oxide": true,
+      "ground_truth": -1.279858292857144,
+      "mace": -0.2735749433269019,
+      "cgcnn": -1.1886311895776331
+    },
+    {
+      "mpid": "mp-18759",
+      "formula": "Mn3O4",
+      "is_oxide": true,
+      "ground_truth": -2.0504092405418723,
+      "mace": -1.1018288623018293,
+      "cgcnn": -1.797906967594574
+    },
+    {
+      "mpid": "mp-1887",
+      "formula": "MoP2",
+      "is_oxide": false,
+      "ground_truth": -0.5421201086507944,
+      "mace": -0.5170454475393296,
+      "cgcnn": -0.5494308168681379
+    },
+    {
+      "mpid": "mp-18922",
+      "formula": "Mn5O8",
+      "is_oxide": true,
+      "ground_truth": -1.9565608430503982,
+      "mace": -1.0623666645442933,
+      "cgcnn": -1.8321362133628651
+    },
+    {
+      "mpid": "mp-1894",
+      "formula": "WC",
+      "is_oxide": false,
+      "ground_truth": -0.1535407450000008,
+      "mace": -0.04071504407359505,
+      "cgcnn": -0.21857511668438556
+    },
+    {
+      "mpid": "mp-19009",
+      "formula": "NiO",
+      "is_oxide": true,
+      "ground_truth": -1.2180853000000003,
+      "mace": 0.39182297708324754,
+      "cgcnn": -1.0775760903758635
+    },
+    {
+      "mpid": "mp-19079",
+      "formula": "CoO",
+      "is_oxide": true,
+      "ground_truth": -1.23491615,
+      "mace": -0.0757780833486148,
+      "cgcnn": -1.1366386057969127
+    },
+    {
+      "mpid": "mp-19128",
+      "formula": "CoO",
+      "is_oxide": true,
+      "ground_truth": -1.2714185662500004,
+      "mace": -0.11863553143435723,
+      "cgcnn": -1.1287671532236392
+    },
+    {
+      "mpid": "mp-19306",
+      "formula": "Fe3O4",
+      "is_oxide": true,
+      "ground_truth": -1.6295829685714278,
+      "mace": -0.3415275972817886,
+      "cgcnn": -1.4990250156178595
+    },
+    {
+      "mpid": "mp-19326",
+      "formula": "MnO2",
+      "is_oxide": true,
+      "ground_truth": -1.806826337643681,
+      "mace": -0.9528503238061363,
+      "cgcnn": -1.8792760079144755
+    },
+    {
+      "mpid": "mp-19395",
+      "formula": "MnO2",
+      "is_oxide": true,
+      "ground_truth": -1.8058299401436801,
+      "mace": -0.9630285062634742,
+      "cgcnn": -1.8449034606860066
+    },
+    {
+      "mpid": "mp-1944",
+      "formula": "CoP3",
+      "is_oxide": false,
+      "ground_truth": -0.49524429785714297,
+      "mace": -0.48309454671661367,
+      "cgcnn": -0.3188635129678148
+    },
+    {
+      "mpid": "mp-19770",
+      "formula": "Fe2O3",
+      "is_oxide": true,
+      "ground_truth": -1.7070913529999998,
+      "mace": -0.40213210217482587,
+      "cgcnn": -1.4869418572212976
+    },
+    {
+      "mpid": "mp-19884",
+      "formula": "Mn3P",
+      "is_oxide": false,
+      "ground_truth": -0.35836413960899094,
+      "mace": -0.35944037090907166,
+      "cgcnn": -0.5928742409354535
+    },
+    {
+      "mpid": "mp-20027",
+      "formula": "FeP2",
+      "is_oxide": false,
+      "ground_truth": -0.5353095164285703,
+      "mace": -0.5432257702052743,
+      "cgcnn": -0.43070242870314357
+    },
+    {
+      "mpid": "mp-2019629",
+      "formula": "Mn2P",
+      "is_oxide": false,
+      "ground_truth": -0.6206113400916801,
+      "mace": -0.5513895724804581,
+      "cgcnn": -0.37373199407124036
+    },
+    {
+      "mpid": "mp-2065",
+      "formula": "MnS",
+      "is_oxide": false,
+      "ground_truth": -1.1403587336476289,
+      "mace": -0.5411471946962303,
+      "cgcnn": -0.8455545150826886
+    },
+    {
+      "mpid": "mp-2070",
+      "formula": "CoS2",
+      "is_oxide": false,
+      "ground_truth": -0.454813428541667,
+      "mace": -0.3457376053821113,
+      "cgcnn": -0.49201350944486116
+    },
+    {
+      "mpid": "mp-21167",
+      "formula": "Ni2P",
+      "is_oxide": false,
+      "ground_truth": -0.47382519154761993,
+      "mace": -0.49440513317479606,
+      "cgcnn": -0.44146353357832924
+    },
+    {
+      "mpid": "mp-219",
+      "formula": "MoP",
+      "is_oxide": false,
+      "ground_truth": -0.6960018689880947,
+      "mace": -0.6609212549090486,
+      "cgcnn": -0.5541567460096879
+    },
+    {
+      "mpid": "mp-22204",
+      "formula": "Co2P",
+      "is_oxide": false,
+      "ground_truth": -0.4063388534920615,
+      "mace": -0.534856748757444,
+      "cgcnn": -0.37755094520752086
+    },
+    {
+      "mpid": "mp-22270",
+      "formula": "CoP",
+      "is_oxide": false,
+      "ground_truth": -0.5003802552380954,
+      "mace": -0.5927588852367833,
+      "cgcnn": -0.4641664001239178
+    },
+    {
+      "mpid": "mp-224",
+      "formula": "WS2",
+      "is_oxide": false,
+      "ground_truth": -0.883580008541666,
+      "mace": -0.8314047760905225,
+      "cgcnn": -0.5984863197416852
+    },
+    {
+      "mpid": "mp-22408",
+      "formula": "CoO",
+      "is_oxide": true,
+      "ground_truth": -1.2718311462500012,
+      "mace": -0.10237661774296214,
+      "cgcnn": -1.1322084060596442
+    },
+    {
+      "mpid": "mp-226",
+      "formula": "FeS2",
+      "is_oxide": false,
+      "ground_truth": -0.8374183041666647,
+      "mace": -0.4783421604072613,
+      "cgcnn": -0.5655183816175923
+    },
+    {
+      "mpid": "mp-22619",
+      "formula": "NiP2",
+      "is_oxide": false,
+      "ground_truth": -0.40791869115079277,
+      "mace": -0.3510422388303649,
+      "cgcnn": -0.2467479384482647
+    },
+    {
+      "mpid": "mp-22749",
+      "formula": "Mn5C2",
+      "is_oxide": false,
+      "ground_truth": -0.0028497003758839617,
+      "mace": -0.15480188033155606,
+      "cgcnn": -0.06479862781213364
+    },
+    {
+      "mpid": "mp-2282",
+      "formula": "NiS2",
+      "is_oxide": false,
+      "ground_truth": -0.5763651724999997,
+      "mace": -0.2400214325935366,
+      "cgcnn": -0.6096190760863556
+    },
+    {
+      "mpid": "mp-2296",
+      "formula": "Ni3P",
+      "is_oxide": false,
+      "ground_truth": -0.4241416638690474,
+      "mace": -0.44252962858403766,
+      "cgcnn": -0.4925889689686258
+    },
+    {
+      "mpid": "mp-2301",
+      "formula": "NiP3",
+      "is_oxide": false,
+      "ground_truth": -0.31343600348214196,
+      "mace": -0.2865199383979675,
+      "cgcnn": -0.288009484864725
+    },
+    {
+      "mpid": "mp-2305",
+      "formula": "MoC",
+      "is_oxide": false,
+      "ground_truth": -0.16041841499999876,
+      "mace": -0.018397889268172207,
+      "cgcnn": -0.18184679348839472
+    },
+    {
+      "mpid": "mp-2420",
+      "formula": "PW",
+      "is_oxide": false,
+      "ground_truth": -0.3642590639880936,
+      "mace": -0.3786615776374589,
+      "cgcnn": -0.3471395488578824
+    },
+    {
+      "mpid": "mp-2562",
+      "formula": "MnS",
+      "is_oxide": false,
+      "ground_truth": -1.1258302186476286,
+      "mace": -0.5252042127195748,
+      "cgcnn": -0.8125946290139541
+    },
+    {
+      "mpid": "mp-2662",
+      "formula": "MnP",
+      "is_oxide": false,
+      "ground_truth": -0.6152445087869465,
+      "mace": -0.6632765853314018,
+      "cgcnn": -0.44090073822504705
+    },
+    {
+      "mpid": "mp-2723",
+      "formula": "IrO2",
+      "is_oxide": true,
+      "ground_truth": -1.2608928416666647,
+      "mace": -0.93309974636664,
+      "cgcnn": -1.0560814610209608
+    },
+    {
+      "mpid": "mp-27413",
+      "formula": "Mo8P5",
+      "is_oxide": false,
+      "ground_truth": -0.504240016913918,
+      "mace": -0.5035107847026339,
+      "cgcnn": -0.49288932084892156
+    },
+    {
+      "mpid": "mp-27844",
+      "formula": "NiP",
+      "is_oxide": false,
+      "ground_truth": -0.4528322921130936,
+      "mace": -0.43525868185425765,
+      "cgcnn": -0.37050809735049106
+    },
+    {
+      "mpid": "mp-2790",
+      "formula": "Ni12P5",
+      "is_oxide": false,
+      "ground_truth": -0.4713997999929969,
+      "mace": -0.4836582771323439,
+      "cgcnn": -0.5165767583597085
+    },
+    {
+      "mpid": "mp-2815",
+      "formula": "MoS2",
+      "is_oxide": false,
+      "ground_truth": -0.964449816875001,
+      "mace": -0.8750235116036489,
+      "cgcnn": -0.6542232562244195
+    },
+    {
+      "mpid": "mp-31770",
+      "formula": "Fe3O4",
+      "is_oxide": true,
+      "ground_truth": -1.627935621428571,
+      "mace": -0.3632977734299603,
+      "cgcnn": -1.5719040296837072
+    },
+    {
+      "mpid": "mp-33009",
+      "formula": "MnO2",
+      "is_oxide": true,
+      "ground_truth": -1.7760038343103446,
+      "mace": -0.9532466964586481,
+      "cgcnn": -1.8180116184684953
+    },
+    {
+      "mpid": "mp-35596",
+      "formula": "Fe2NiO4",
+      "is_oxide": true,
+      "ground_truth": -1.5910412692857139,
+      "mace": -0.18178215044039447,
+      "cgcnn": -1.4718011846911048
+    },
+    {
+      "mpid": "mp-362",
+      "formula": "Ni3S2",
+      "is_oxide": false,
+      "ground_truth": -0.5714508529999996,
+      "mace": -0.35728189554753786,
+      "cgcnn": -0.6029778305262357
+    },
+    {
+      "mpid": "mp-486",
+      "formula": "NiP2",
+      "is_oxide": false,
+      "ground_truth": -0.4013556986507929,
+      "mace": -0.3651175450254467,
+      "cgcnn": -0.4178626571434672
+    },
+    {
+      "mpid": "mp-487",
+      "formula": "MnP4",
+      "is_oxide": false,
+      "ground_truth": -0.3586301763004919,
+      "mace": -0.36697559660366874,
+      "cgcnn": -0.37106294710142296
+    },
+    {
+      "mpid": "mp-505531",
+      "formula": "FeS",
+      "is_oxide": false,
+      "ground_truth": -0.7574410312499991,
+      "mace": -0.5168617982903072,
+      "cgcnn": -0.8497330866079829
+    },
+    {
+      "mpid": "mp-510408",
+      "formula": "MnO2",
+      "is_oxide": true,
+      "ground_truth": -1.7760848793103463,
+      "mace": -0.956339139113811,
+      "cgcnn": -1.8743177829387958
+    },
+    {
+      "mpid": "mp-550206",
+      "formula": "CoO2",
+      "is_oxide": true,
+      "ground_truth": -1.0656832483333336,
+      "mace": -0.2465145624494145,
+      "cgcnn": -1.0805652367956957
+    },
+    {
+      "mpid": "mp-568328",
+      "formula": "FeP4",
+      "is_oxide": false,
+      "ground_truth": -0.3418431917142847,
+      "mace": -0.38495889345651957,
+      "cgcnn": -0.4363955402722601
+    },
+    {
+      "mpid": "mp-570553",
+      "formula": "FeP4",
+      "is_oxide": false,
+      "ground_truth": -0.37004192121428403,
+      "mace": -0.38311560621267304,
+      "cgcnn": -0.384702551121963
+    },
+    {
+      "mpid": "mp-640147",
+      "formula": "Fe(NiO2)2",
+      "is_oxide": true,
+      "ground_truth": -1.3086460092857126,
+      "mace": 0.053066030219882876,
+      "cgcnn": -1.3600940889597983
+    },
+    {
+      "mpid": "mp-644514",
+      "formula": "MnO2",
+      "is_oxide": true,
+      "ground_truth": -1.822527924032569,
+      "mace": -0.9498553876018567,
+      "cgcnn": -1.8363413320204294
+    },
+    {
+      "mpid": "mp-656884",
+      "formula": "Ni9O10",
+      "is_oxide": true,
+      "ground_truth": -1.1083094205263162,
+      "mace": 0.3601364318048894,
+      "cgcnn": -1.140843036373405
+    },
+    {
+      "mpid": "mp-656887",
+      "formula": "Ni3O4",
+      "is_oxide": true,
+      "ground_truth": -1.0467500692857143,
+      "mace": 0.3620676290626097,
+      "cgcnn": -1.0925064792190151
+    },
+    {
+      "mpid": "mp-715262",
+      "formula": "FeO",
+      "is_oxide": true,
+      "ground_truth": -1.4722393325,
+      "mace": -0.033819846978076384,
+      "cgcnn": -1.5324611898009564
+    },
+    {
+      "mpid": "mp-753222",
+      "formula": "Fe2CoO4",
+      "is_oxide": true,
+      "ground_truth": -1.5725015085714276,
+      "mace": -0.39398140887328736,
+      "cgcnn": -1.5464651917061623
+    },
+    {
+      "mpid": "mp-753348",
+      "formula": "Fe(CoO2)2",
+      "is_oxide": true,
+      "ground_truth": -1.4195594342857163,
+      "mace": -0.3242611876451882,
+      "cgcnn": -1.3213951285343535
+    },
+    {
+      "mpid": "mp-754064",
+      "formula": "MnP2",
+      "is_oxide": false,
+      "ground_truth": -0.431280275738916,
+      "mace": -0.4642800502116051,
+      "cgcnn": -0.41720025039145914
+    },
+    {
+      "mpid": "mp-754168",
+      "formula": "Co(NiO2)2",
+      "is_oxide": true,
+      "ground_truth": -1.160993608571429,
+      "mace": 0.14929975467124645,
+      "cgcnn": -1.0396694810950378
+    },
+    {
+      "mpid": "mp-754748",
+      "formula": "CoO2",
+      "is_oxide": true,
+      "ground_truth": -1.0666341325000002,
+      "mace": -0.252951990412317,
+      "cgcnn": -1.1045916399576208
+    },
+    {
+      "mpid": "mp-754800",
+      "formula": "Ni3O4",
+      "is_oxide": true,
+      "ground_truth": -1.0055433507142857,
+      "mace": 0.3726285536528824,
+      "cgcnn": -1.1287357033718424
+    },
+    {
+      "mpid": "mp-754806",
+      "formula": "Ni5O6",
+      "is_oxide": true,
+      "ground_truth": -1.0683391100000004,
+      "mace": 0.36200740581032953,
+      "cgcnn": -1.11402730633808
+    },
+    {
+      "mpid": "mp-755453",
+      "formula": "MnP4",
+      "is_oxide": false,
+      "ground_truth": -0.31918647530049143,
+      "mace": -0.34274204724351165,
+      "cgcnn": -0.37460832499926666
+    },
+    {
+      "mpid": "mp-756594",
+      "formula": "Co(NiO2)4",
+      "is_oxide": true,
+      "ground_truth": -0.9620420676923078,
+      "mace": 0.24079830503603894,
+      "cgcnn": -1.0524379196486995
+    },
+    {
+      "mpid": "mp-759037",
+      "formula": "Fe9O10",
+      "is_oxide": true,
+      "ground_truth": -1.5020958310526311,
+      "mace": -0.15467188710310786,
+      "cgcnn": -1.5795473784415552
+    },
+    {
+      "mpid": "mp-761471",
+      "formula": "Co5O8",
+      "is_oxide": true,
+      "ground_truth": -1.1696145799999988,
+      "mace": -0.24880493149637495,
+      "cgcnn": -1.1400052129716431
+    },
+    {
+      "mpid": "mp-773511",
+      "formula": "Co5NiO12",
+      "is_oxide": true,
+      "ground_truth": -0.996432388888889,
+      "mace": -0.1251504869935749,
+      "cgcnn": -1.0691859092199767
+    },
+    {
+      "mpid": "mp-778",
+      "formula": "Fe2P",
+      "is_oxide": false,
+      "ground_truth": -0.4570883226587294,
+      "mace": -0.4552631874074864,
+      "cgcnn": -0.4338875241706554
+    },
+    {
+      "mpid": "mp-796336",
+      "formula": "MnO2",
+      "is_oxide": true,
+      "ground_truth": -1.786439895699235,
+      "mace": -0.9584395771998553,
+      "cgcnn": -1.8671852878126836
+    },
+    {
+      "mpid": "mp-796340",
+      "formula": "MnO2",
+      "is_oxide": true,
+      "ground_truth": -1.7864452501436796,
+      "mace": -0.958389924306962,
+      "cgcnn": -1.8018249273706097
+    },
+    {
+      "mpid": "mp-849059",
+      "formula": "NiS2",
+      "is_oxide": false,
+      "ground_truth": -0.5702683249999995,
+      "mace": -0.24009828881678263,
+      "cgcnn": -0.6288228791249934
+    },
+    {
+      "mpid": "mp-850049",
+      "formula": "CoS2",
+      "is_oxide": false,
+      "ground_truth": -0.4529151927083331,
+      "mace": -0.34966615823961167,
+      "cgcnn": -0.5030061387182441
+    },
+    {
+      "mpid": "mp-850131",
+      "formula": "NiS2",
+      "is_oxide": false,
+      "ground_truth": -0.5698289999999991,
+      "mace": -0.24298758304101753,
+      "cgcnn": -0.6672064370556146
+    },
+    {
+      "mpid": "mp-943",
+      "formula": "Co3S4",
+      "is_oxide": false,
+      "ground_truth": -0.5121890544642866,
+      "mace": -0.4136702590723109,
+      "cgcnn": -0.440709544549493
+    },
+    {
+      "mpid": "mp-974355",
+      "formula": "Mn2S3",
+      "is_oxide": false,
+      "ground_truth": -0.9031387954806022,
+      "mace": -0.5800759334107362,
+      "cgcnn": -0.8426935071787067
+    },
+    {
+      "mpid": "mp-9813",
+      "formula": "WS2",
+      "is_oxide": false,
+      "ground_truth": -0.8826962018750019,
+      "mace": -0.829504174881385,
+      "cgcnn": -0.6068763209546422
+    }
+  ],
+  "caveats": [
+    "MACE formation energies use MACE elemental references with molecular O2 for oxygen; MP applies empirical anion corrections. Oxide errors carry a systematic offset, which is why metrics are split oxide/non-oxide.",
+    "CGCNN is trained on this ~130-material corpus. When prediction_source is 'out-of-fold', each material was scored by a fold model that never saw it; when it is 'live checkpoint', the numbers include training data and are optimistic.",
+    "The corpus spans only ~75 distinct compositions across 130 materials, so a random CV split leaks polymorphs between folds. The composition-disjoint split (baseline_cgcnn.py --group-by-composition) is the honest estimate.",
+    "MACE is zero-shot on this corpus and was never fitted to these targets.",
+    "The two trust signals are different physical quantities: MACE reports a max residual force (eV/Angstrom) measuring geometric disagreement with DFT, CGCNN reports an MC-dropout spread (eV/atom) measuring its own stochastic self-disagreement. They must not be compared numerically."
+  ]
+}

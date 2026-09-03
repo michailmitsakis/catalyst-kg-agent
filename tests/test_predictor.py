@@ -1,10 +1,16 @@
-"""Test MACE-MP-0 model loading and basic prediction.
+"""Test MACE model loading and basic prediction.
 
 Tests that:
 1. MACE checkpoint is found at expected path
 2. MACE calculator loads successfully
 3. Single-material prediction works end-to-end
-4. MC Dropout uncertainty estimation works
+4. Formation energy is computed from cached elemental references
+5. The residual-force trust signal is produced and is physically sane
+
+Note: there is no MC-Dropout uncertainty. MACE inference is deterministic
+with no active dropout, so the previous "uncertainty" was identically 0.0
+for every material. The escalation signal is max residual force instead --
+see agent/predictor.py.
 
 Run with: python tests/test_predictor.py
 """
@@ -72,15 +78,19 @@ def test_single_material_prediction():
         result = predictor.predict(mat_node)
         
         print(f"\nPrediction result:")
-        print(f"  Property value (e_above_hull): {result.property_value:.4f} eV")
-        print(f"  Uncertainty (MC Dropout std): {result.uncertainty:.3%}")
-        print(f"  Model used: {result.model_used}")
-        print(f"  Failed: {result.prediction_failed}")
-        
+        print(f"  Energy per atom      : {result.property_value:.4f} eV/atom")
+        if result.formation_energy_per_atom is not None:
+            print(f"  Formation energy     : {result.formation_energy_per_atom:+.4f} eV/atom")
+        else:
+            print(f"  Formation energy     : None (run models/elemental_references.py)")
+        print(f"  Max residual force   : {result.max_residual_force:.4f} eV/A")
+        print(f"  Model used           : {result.model_used}")
+        print(f"  Failed               : {result.prediction_failed}")
+
         assert not result.prediction_failed, "Prediction failed unexpectedly"
-        assert result.property_value is not None, "No e_above_hull value returned"
-        assert result.uncertainty >= 0, "Uncertainty should be non-negative"
-        
+        assert result.property_value is not None, "No energy value returned"
+        assert result.max_residual_force >= 0, "Force magnitude must be non-negative"
+
         print("[PASS] Single-material prediction successful!")
         
     except ImportError as e:
@@ -97,9 +107,16 @@ def test_single_material_prediction():
         raise
 
 
-def test_mc_dropout_uncertainty():
-    """Test that MC Dropout uncertainty estimation works."""
-    print("\nTesting MC Dropout uncertainty estimation...")
+def test_residual_force_signal():
+    """Test that the residual-force trust signal is produced and sane.
+
+    These are DFT-relaxed MP geometries, so DFT's own forces on them are
+    ~0. MACE's residual force measures its disagreement with that geometry.
+    A value of exactly 0.0 across materials would indicate the signal is not
+    actually being computed -- which is the failure mode that made the
+    previous MC-Dropout "uncertainty" useless.
+    """
+    print("\nTesting residual-force trust signal...")
     
     # Load KG and get first material with structure
     graph_path = Path("data/processed/kg.json")
@@ -112,17 +129,58 @@ def test_mc_dropout_uncertainty():
     mat_node = rehydrate_node(G, first_mat_id)
     
     if not hasattr(mat_node, 'structure_id') or mat_node.structure_id is None:
-        print("[WARN] Material has no structure_id - skipping uncertainty test")
+        print("[WARN] Material has no structure_id - skipping force test")
         return
-    
+
     predictor = PredictorAgent(checkpoint_path=MACE_CHECKPOINT_PATH)
     result = predictor.predict(mat_node)
-    
-    # MC Dropout should produce non-zero uncertainty (unless all predictions identical)
-    assert result.uncertainty >= 0, "Uncertainty should be non-negative"
-    
-    print(f"  Uncertainty from {predictor.n_dropout_passes} MC Dropout passes: {result.uncertainty:.3%}")
-    print("[PASS] MC Dropout uncertainty estimation works!")
+
+    assert result.max_residual_force >= 0, "Force magnitude must be non-negative"
+    assert result.max_residual_force < 50, (
+        f"Residual force {result.max_residual_force:.2f} eV/A is implausibly large "
+        f"for a relaxed structure -- check that periodic boundary conditions "
+        f"survived the pymatgen -> ASE conversion"
+    )
+
+    print(f"  Max residual force: {result.max_residual_force:.4f} eV/A")
+    print("[PASS] Residual-force signal produced")
+
+
+def test_formation_energy():
+    """Test that formation energy is computed from cached elemental references.
+
+    A formation energy near the raw energy per atom (around -6 eV/atom for
+    this corpus) means the reference subtraction did not happen. Correct
+    values sit roughly in -2 to +1 eV/atom.
+    """
+    print("\nTesting formation energy calculation...")
+
+    graph_path = Path("data/processed/kg.json")
+    G = load_graph(graph_path)
+
+    mat_nodes = [nid for nid, data in G.nodes(data=True)
+                 if data.get("type") == "Material"]
+    mat_node = rehydrate_node(G, mat_nodes[0])
+
+    predictor = PredictorAgent(checkpoint_path=MACE_CHECKPOINT_PATH)
+    result = predictor.predict(mat_node)
+
+    if result.formation_energy_per_atom is None:
+        print("[SKIP] No elemental references cached.")
+        print("       Run: python models/elemental_references.py")
+        return
+
+    e_f = result.formation_energy_per_atom
+    print(f"  {mat_node.mpid} ({mat_node.formula_pretty})")
+    print(f"    energy per atom : {result.property_value:.4f} eV/atom")
+    print(f"    formation energy: {e_f:+.4f} eV/atom")
+
+    assert -10.0 < e_f < 5.0, f"Formation energy {e_f} is outside any plausible range"
+    if abs(e_f - result.property_value) < 0.1:
+        print("[FAIL] Formation energy ~= raw energy: reference subtraction did not happen")
+        raise AssertionError("Elemental reference subtraction appears to be a no-op")
+
+    print("[PASS] Formation energy computed from elemental references")
 
 
 def main():
@@ -144,7 +202,8 @@ def main():
         test_mace_checkpoint_exists()
         test_predictor_initialization()
         test_single_material_prediction()
-        test_mc_dropout_uncertainty()
+        test_residual_force_signal()
+        test_formation_energy()
         
         print("\n" + "="*60)
         print("All tests passed!")

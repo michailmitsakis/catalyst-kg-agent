@@ -48,8 +48,15 @@ HONEST LIMITATIONS
 Usage:
     python models/baseline_cgcnn.py --train
     python models/baseline_cgcnn.py --train --k-folds 5
+    python models/baseline_cgcnn.py --train --k-folds 5 --group-by-composition
     python models/baseline_cgcnn.py --predict mp-2790
     python models/baseline_cgcnn.py --evaluate
+
+Report BOTH cross-validation numbers. The random split inflates the score
+because ~62% of this corpus shares a composition with another entry (7 MoS2
+polymorphs, 7 MnO2, ...), so polymorphs leak between folds; the
+composition-disjoint split is the honest generalisation estimate. The gap
+between them measures how much of the score was composition memorisation.
 """
 
 from __future__ import annotations
@@ -82,6 +89,7 @@ from kg.schema import NodeType, PropertyName
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_MODEL_PATH = REPO_ROOT / "models" / "cgcnn_catalyst.pt"
 DEFAULT_METRICS_PATH = REPO_ROOT / "models" / "cgcnn_training_metrics.json"
+DEFAULT_OOF_PATH = REPO_ROOT / "models" / "cgcnn_oof_predictions.json"
 
 TARGET_PROPERTY = PropertyName.FORMATION_ENERGY_PER_ATOM.value
 
@@ -204,6 +212,8 @@ def structure_to_graph(
     if target is not None:
         data.y = torch.tensor([float(target)], dtype=torch.float)
     data.mpid = mpid
+    # Carried so folds can be grouped by composition -- see make_folds().
+    data.formula = structure.composition.reduced_formula
     return data
 
 
@@ -561,11 +571,73 @@ def baseline_metrics(dataset: list[Data], test_idx: np.ndarray, train_idx: np.nd
     }
 
 
+def make_folds(
+    dataset: list[Data],
+    k_folds: int,
+    seed: int,
+    group_by_composition: bool,
+) -> list[np.ndarray]:
+    """Split indices into k folds, optionally keeping compositions together.
+
+    WHY THIS MATTERS ON THIS CORPUS
+    -------------------------------
+    The 130 materials cover only ~75 distinct compositions: there are 7
+    MoS2 polymorphs, 7 MnO2, 6 NiS2, 6 WS2, 5 CoO2, and so on. Roughly 62%
+    of the corpus shares a formula with at least one other entry.
+
+    Polymorphs of one composition have very similar formation energies --
+    they differ only by a small structural term, while the composition term
+    dominates the corpus range. With a RANDOM split, MoS2 polymorphs land
+    in both the training and test folds, and the model can score well by
+    learning composition -> energy, i.e. recalling an answer it has already
+    seen, without learning any structure-property relationship.
+
+    A composition-grouped split sends every polymorph of a formula to the
+    same fold, so the test fold contains only compositions the model has
+    never seen. That is the harder and more honest estimate of
+    generalisation. Report both: the gap between them measures how much of
+    the random-split score was composition memorisation.
+
+    Args:
+        dataset: graphs, each carrying `.formula`
+        k_folds: number of folds
+        seed: RNG seed
+        group_by_composition: if True, keep same-formula entries together
+
+    Returns:
+        List of index arrays, one per fold
+    """
+    rng = np.random.default_rng(seed)
+
+    if not group_by_composition:
+        return np.array_split(rng.permutation(len(dataset)), k_folds)
+
+    # Bucket indices by composition, then greedily assign whole groups to
+    # the currently smallest fold so fold sizes stay roughly balanced.
+    groups: dict[str, list[int]] = {}
+    for idx, graph in enumerate(dataset):
+        formula = getattr(graph, "formula", None) or f"__{idx}"
+        groups.setdefault(formula, []).append(idx)
+
+    order = list(groups.values())
+    rng.shuffle(order)
+    order.sort(key=len, reverse=True)  # place big groups first
+
+    folds: list[list[int]] = [[] for _ in range(k_folds)]
+    for group in order:
+        smallest = min(range(k_folds), key=lambda i: len(folds[i]))
+        folds[smallest].extend(group)
+
+    return [np.array(sorted(f), dtype=int) for f in folds]
+
+
 def train_model(
     config: CGCNNConfig,
     k_folds: int = 0,
     model_path: Path = DEFAULT_MODEL_PATH,
     metrics_path: Path = DEFAULT_METRICS_PATH,
+    group_by_composition: bool = False,
+    oof_path: Path = DEFAULT_OOF_PATH,
 ) -> int:
     """Train the CGCNN, optionally with k-fold cross-validation.
 
@@ -574,6 +646,11 @@ def train_model(
         k_folds: 0 for a single split, >= 2 for k-fold CV
         model_path: where to save the final checkpoint
         metrics_path: where to save metrics JSON
+        group_by_composition: keep same-formula polymorphs in one fold (see
+            make_folds) -- the honest generalisation estimate on this corpus
+        oof_path: where to save out-of-fold predictions (k-fold runs only).
+            Each material is predicted by the fold model that never saw it,
+            so downstream comparisons can quote an unbiased CGCNN number.
 
     Returns:
         Process exit code
@@ -606,7 +683,21 @@ def train_model(
     rng = np.random.default_rng(config.seed)
     indices = rng.permutation(len(dataset))
 
+    split_kind = "composition-disjoint" if group_by_composition else "random"
+    print(f"Split type: {split_kind}")
+    if not group_by_composition:
+        n_formulas = len({getattr(g, "formula", i) for i, g in enumerate(dataset)})
+        if n_formulas < len(dataset):
+            print(
+                f"  NOTE: {len(dataset)} materials span only {n_formulas} compositions.\n"
+                f"        A random split lets polymorphs of one formula appear in both\n"
+                f"        train and test folds, which inflates the score. Re-run with\n"
+                f"        --group-by-composition for the honest estimate."
+            )
+    print()
+
     results: dict[str, Any] = {
+        "split_type": split_kind,
         "config": asdict(config),
         "target_property": TARGET_PROPERTY,
         "n_graphs": len(dataset),
@@ -619,11 +710,16 @@ def train_model(
     }
 
     if k_folds and k_folds >= 2:
-        folds = np.array_split(indices, k_folds)
+        folds = make_folds(dataset, k_folds, config.seed, group_by_composition)
         fold_metrics: list[dict[str, Any]] = []
         best_model = None
         best_normalizer = None
         best_mae = float("inf")
+        # Out-of-fold predictions: every material predicted by the one fold
+        # model that did not train on it. This is what downstream comparison
+        # should use for CGCNN instead of re-running the final model over
+        # materials it memorised.
+        oof: dict[str, dict[str, Any]] = {}
 
         for fold_i in range(k_folds):
             print(f"--- Fold {fold_i + 1}/{k_folds} ---")
@@ -634,7 +730,22 @@ def train_model(
                 dataset, config, device, train_idx, test_idx, verbose=False
             )
             metrics["mean_predictor_baseline"] = baseline_metrics(dataset, test_idx, train_idx)
+            metrics["fold"] = fold_i + 1
             fold_metrics.append(metrics)
+
+            # Record this fold's held-out predictions.
+            for idx in test_idx:
+                graph = dataset[int(idx)]
+                mean_norm, std_norm = model.predict_with_uncertainty(
+                    graph, n_passes=config.mc_dropout_passes
+                )
+                oof[graph.mpid] = {
+                    "formula": getattr(graph, "formula", None),
+                    "predicted": float(normalizer.denorm(mean_norm)),
+                    "mc_dropout_uncertainty": float(std_norm * normalizer.std),
+                    "ground_truth": float(graph.y.item()),
+                    "fold": fold_i + 1,
+                }
 
             print(
                 f"  test MAE={metrics['test']['mae']:.4f}  "
@@ -654,7 +765,7 @@ def train_model(
 
         print()
         print("=" * 60)
-        print(f"{k_folds}-fold cross-validation")
+        print(f"{k_folds}-fold cross-validation ({split_kind} split)")
         print("=" * 60)
         print(f"  MAE  : {np.mean(maes):.4f} +/- {np.std(maes):.4f} eV/atom")
         print(f"  RMSE : {np.mean(rmses):.4f} +/- {np.std(rmses):.4f} eV/atom")
@@ -665,6 +776,8 @@ def train_model(
 
         results["cross_validation"] = {
             "k_folds": k_folds,
+            "split_type": split_kind,
+            "group_by_composition": group_by_composition,
             "mae_mean": float(np.mean(maes)), "mae_std": float(np.std(maes)),
             "rmse_mean": float(np.mean(rmses)), "rmse_std": float(np.std(rmses)),
             "r2_mean": float(np.mean(r2s)), "r2_std": float(np.std(r2s)),
@@ -672,6 +785,25 @@ def train_model(
             "folds": fold_metrics,
         }
         model, normalizer = best_model, best_normalizer
+
+        # Persist out-of-fold predictions for downstream comparison.
+        oof_payload = {
+            "split_type": split_kind,
+            "group_by_composition": group_by_composition,
+            "k_folds": k_folds,
+            "target_property": TARGET_PROPERTY,
+            "n_materials": len(oof),
+            "note": (
+                "Each material was predicted by the fold model that did NOT train "
+                "on it. Use these for an unbiased CGCNN comparison; re-running the "
+                "saved checkpoint over the full corpus reports training-set "
+                "performance instead."
+            ),
+            "predictions": oof,
+        }
+        oof_path.parent.mkdir(parents=True, exist_ok=True)
+        oof_path.write_text(json.dumps(oof_payload, indent=2), encoding="utf-8")
+        print(f"\nSaved out-of-fold predictions to {oof_path}")
 
     else:
         split = int(config.train_split * len(dataset))
@@ -872,6 +1004,11 @@ def main() -> int:
                         help="Evaluate a saved checkpoint over the dataset")
     parser.add_argument("--k-folds", type=int, default=0,
                         help="k-fold cross-validation (0 = single split)")
+    parser.add_argument("--group-by-composition", action="store_true",
+                        help="Keep same-formula polymorphs in the same fold. On this "
+                             "corpus (130 materials, ~75 compositions) a random split "
+                             "leaks composition between folds and inflates the score; "
+                             "this flag gives the honest generalisation estimate.")
     parser.add_argument("--epochs", type=int, default=None)
     parser.add_argument("--batch-size", type=int, default=None)
     parser.add_argument("--hidden-channels", type=int, default=None)
@@ -899,7 +1036,11 @@ def main() -> int:
             setattr(config, field, value)
 
     if args.train:
-        code = train_model(config, k_folds=args.k_folds)
+        code = train_model(
+            config,
+            k_folds=args.k_folds,
+            group_by_composition=args.group_by_composition,
+        )
         if code != 0:
             return code
 
