@@ -1439,5 +1439,663 @@
     "energy_above_hull": 0.04757809125000101,
     "formation_energy_per_atom": -0.2571760488690451,
     "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1306224",
+    "formula_pretty": "Mn2O3",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.05031748937500069,
+    "formation_energy_per_atom": -1.9636023541724128,
+    "band_gap": 0.3511000000000002
+  },
+  {
+    "material_id": "mp-752759",
+    "formula_pretty": "Co2NiO6",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.050460871111112304,
+    "formation_energy_per_atom": -0.9384899866666672,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-753469",
+    "formula_pretty": "Co2NiO6",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.05083281055555755,
+    "formation_energy_per_atom": -0.9381180472222224,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-19006",
+    "formula_pretty": "MnO",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.053368562500001104,
+    "formation_energy_per_atom": -1.979201203965518,
+    "band_gap": 0.18440000000000012
+  },
+  {
+    "material_id": "mp-2831286",
+    "formula_pretty": "MnO",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.05536453875000191,
+    "formation_energy_per_atom": -1.9772052277155172,
+    "band_gap": 0.9851000000000001
+  },
+  {
+    "material_id": "mp-765860",
+    "formula_pretty": "Fe2CoO4",
+    "elements": [
+      "Co",
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.05538123749999979,
+    "formation_energy_per_atom": -1.527350056428572,
+    "band_gap": 1.2323
+  },
+  {
+    "material_id": "mp-754430",
+    "formula_pretty": "Mn7O12",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.0557821250657895,
+    "formation_energy_per_atom": -1.8674783881851182,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-13154",
+    "formula_pretty": "Fe3C",
+    "elements": [
+      "C",
+      "Fe"
+    ],
+    "energy_above_hull": 0.056359594999999985,
+    "formation_energy_per_atom": 0.056359594999999985,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-510623",
+    "formula_pretty": "Fe3C",
+    "elements": [
+      "C",
+      "Fe"
+    ],
+    "energy_above_hull": 0.05671033062500008,
+    "formation_energy_per_atom": 0.05671033062500008,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1278937",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.05732840500000069,
+    "formation_energy_per_atom": -1.0151042550000007,
+    "band_gap": 1.0532
+  },
+  {
+    "material_id": "mp-1275132",
+    "formula_pretty": "Co2NiO4",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.057834809081645844,
+    "formation_energy_per_atom": -1.1706307964285716,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1209828",
+    "formula_pretty": "PW3",
+    "elements": [
+      "P",
+      "W"
+    ],
+    "energy_above_hull": 0.057999603124997634,
+    "formation_energy_per_atom": -0.12412992886905272,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-999539",
+    "formula_pretty": "MnO",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.05855402375000196,
+    "formation_energy_per_atom": -1.9740157427155172,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1303934",
+    "formula_pretty": "Mn2O3",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.05860406837500065,
+    "formation_energy_per_atom": -1.9553157751724128,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-755671",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.05984685722222238,
+    "formation_energy_per_atom": -1.7626810668103456,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2794",
+    "formula_pretty": "Fe5C2",
+    "elements": [
+      "C",
+      "Fe"
+    ],
+    "energy_above_hull": 0.05985946571428613,
+    "formation_energy_per_atom": 0.059859465714285624,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1871",
+    "formula_pretty": "Fe2C",
+    "elements": [
+      "C",
+      "Fe"
+    ],
+    "energy_above_hull": 0.06014737499999967,
+    "formation_energy_per_atom": 0.060147375000000856,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1103643",
+    "formula_pretty": "NiS2",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.06017464333333411,
+    "formation_energy_per_atom": -0.531351894999999,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-25424",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.0608851422222223,
+    "formation_energy_per_atom": -1.7616427818103457,
+    "band_gap": 1.8708
+  },
+  {
+    "material_id": "mp-763787",
+    "formula_pretty": "Fe8O9",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.061250607647057365,
+    "formation_energy_per_atom": -1.486613475588236,
+    "band_gap": 1.4134000000000002
+  },
+  {
+    "material_id": "mp-850249",
+    "formula_pretty": "Fe4S5",
+    "elements": [
+      "Fe",
+      "S"
+    ],
+    "energy_above_hull": 0.06171048499999987,
+    "formation_energy_per_atom": -0.7257425258333328,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1106195",
+    "formula_pretty": "PW3",
+    "elements": [
+      "P",
+      "W"
+    ],
+    "energy_above_hull": 0.06177334375000498,
+    "formation_energy_per_atom": -0.12035618824404537,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-850083",
+    "formula_pretty": "Fe4S5",
+    "elements": [
+      "Fe",
+      "S"
+    ],
+    "energy_above_hull": 0.06218277333333333,
+    "formation_energy_per_atom": -0.7252702374999992,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1304693",
+    "formula_pretty": "Co2NiO4",
+    "elements": [
+      "Co",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.06273705336735969,
+    "formation_energy_per_atom": -1.165728552142857,
+    "band_gap": 1.7410999999999999
+  },
+  {
+    "material_id": "mp-1221498",
+    "formula_pretty": "Mo2C",
+    "elements": [
+      "C",
+      "Mo"
+    ],
+    "energy_above_hull": 0.06276392999999914,
+    "formation_energy_per_atom": -0.07628568666666762,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-25223",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.06357083222222215,
+    "formation_energy_per_atom": -1.7589570918103459,
+    "band_gap": 1.4647999999999999
+  },
+  {
+    "material_id": "mp-870701",
+    "formula_pretty": "Fe4S5",
+    "elements": [
+      "Fe",
+      "S"
+    ],
+    "energy_above_hull": 0.06386601999999986,
+    "formation_energy_per_atom": -0.7235869908333328,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-770543",
+    "formula_pretty": "Mn2O3",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.064272060375,
+    "formation_energy_per_atom": -1.9496477831724135,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2164",
+    "formula_pretty": "Mo3S4",
+    "elements": [
+      "Mo",
+      "S"
+    ],
+    "energy_above_hull": 0.06481158214285543,
+    "formation_energy_per_atom": -0.7633105994642884,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2034",
+    "formula_pretty": "W2C",
+    "elements": [
+      "C",
+      "W"
+    ],
+    "energy_above_hull": 0.06544971916666498,
+    "formation_energy_per_atom": -0.03691077750000223,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-756471",
+    "formula_pretty": "FeCo5O12",
+    "elements": [
+      "Co",
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.0687365362500012,
+    "formation_energy_per_atom": -1.0620533683333337,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1271850",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.06878597638888806,
+    "formation_energy_per_atom": -1.7537419476436813,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-2647022",
+    "formula_pretty": "Pt",
+    "elements": [
+      "Pt"
+    ],
+    "energy_above_hull": 0.06909371500000105,
+    "formation_energy_per_atom": 0.06909371500000105,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-33065",
+    "formula_pretty": "W2C",
+    "elements": [
+      "C",
+      "W"
+    ],
+    "energy_above_hull": 0.07076890666666458,
+    "formation_energy_per_atom": -0.031591590000005,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1272141",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.07234734555555633,
+    "formation_energy_per_atom": -1.750180578477013,
+    "band_gap": 1.9298000000000002
+  },
+  {
+    "material_id": "mp-1281832",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.07324839500000113,
+    "formation_energy_per_atom": -0.9991842650000002,
+    "band_gap": 1.0263999999999998
+  },
+  {
+    "material_id": "mp-1095353",
+    "formula_pretty": "IrO2",
+    "elements": [
+      "Ir",
+      "O"
+    ],
+    "energy_above_hull": 0.07562860166666496,
+    "formation_energy_per_atom": -1.1852642399999997,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-25275",
+    "formula_pretty": "MnO2",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.07605056388888798,
+    "formation_energy_per_atom": -1.74647736014368,
+    "band_gap": 1.4489999999999998
+  },
+  {
+    "material_id": "mp-1272388",
+    "formula_pretty": "FeNiO3",
+    "elements": [
+      "Fe",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.07753396433333215,
+    "formation_energy_per_atom": -1.280436607,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-18257",
+    "formula_pretty": "Fe7C3",
+    "elements": [
+      "C",
+      "Fe"
+    ],
+    "energy_above_hull": 0.08109436999999886,
+    "formation_energy_per_atom": 0.08109436999999957,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-768499",
+    "formula_pretty": "FeNiO3",
+    "elements": [
+      "Fe",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.08205045533333166,
+    "formation_energy_per_atom": -1.2759201160000004,
+    "band_gap": 0.5852999999999997
+  },
+  {
+    "material_id": "mp-22684",
+    "formula_pretty": "Fe2NiO4",
+    "elements": [
+      "Fe",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.08234843142857073,
+    "formation_energy_per_atom": -1.5086928378571431,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-567397",
+    "formula_pretty": "W2C",
+    "elements": [
+      "C",
+      "W"
+    ],
+    "energy_above_hull": 0.08328427666666727,
+    "formation_energy_per_atom": -0.01907622000000073,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-752536",
+    "formula_pretty": "Mn5O8",
+    "elements": [
+      "Mn",
+      "O"
+    ],
+    "energy_above_hull": 0.08359430060897388,
+    "formation_energy_per_atom": -1.8861581768965523,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-7586",
+    "formula_pretty": "Ni3C",
+    "elements": [
+      "C",
+      "Ni"
+    ],
+    "energy_above_hull": 0.08418333624999974,
+    "formation_energy_per_atom": 0.08418333624999974,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1147746",
+    "formula_pretty": "CoS",
+    "elements": [
+      "Co",
+      "S"
+    ],
+    "energy_above_hull": 0.08453702791666728,
+    "formation_energy_per_atom": -0.37589248890624916,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-770274",
+    "formula_pretty": "NiP4",
+    "elements": [
+      "Ni",
+      "P"
+    ],
+    "energy_above_hull": 0.08669885783333342,
+    "formation_energy_per_atom": -0.16404994495237873,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-753682",
+    "formula_pretty": "FeO",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.08710199499999938,
+    "formation_energy_per_atom": -1.3944173925000003,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1188678",
+    "formula_pretty": "Fe4O5",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.08759998166666527,
+    "formation_energy_per_atom": -1.5192371644444447,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1225019",
+    "formula_pretty": "Fe5NiO8",
+    "elements": [
+      "Fe",
+      "Ni",
+      "O"
+    ],
+    "energy_above_hull": 0.08858638517857909,
+    "formation_energy_per_atom": -1.5285248985714293,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-25234",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.08874155166666586,
+    "formation_energy_per_atom": -0.9836911083333355,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-767469",
+    "formula_pretty": "Ni9S10",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.08902302263157758,
+    "formation_energy_per_atom": -0.5482300460526315,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-856161",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.08908489499999916,
+    "formation_energy_per_atom": -0.9833477650000025,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1271940",
+    "formula_pretty": "Co3O4",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.08989810071428561,
+    "formation_energy_per_atom": -1.2004401235714286,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1627",
+    "formula_pretty": "Mo2S3",
+    "elements": [
+      "Mo",
+      "S"
+    ],
+    "energy_above_hull": 0.09554071300000189,
+    "formation_energy_per_atom": -0.773987577687501,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1275937",
+    "formula_pretty": "CoO2",
+    "elements": [
+      "Co",
+      "O"
+    ],
+    "energy_above_hull": 0.09650163333333239,
+    "formation_energy_per_atom": -0.9759310266666693,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-850068",
+    "formula_pretty": "NiS2",
+    "elements": [
+      "Ni",
+      "S"
+    ],
+    "energy_above_hull": 0.0968874108333333,
+    "formation_energy_per_atom": -0.4946391274999993,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-32939",
+    "formula_pretty": "Fe7O8",
+    "elements": [
+      "Fe",
+      "O"
+    ],
+    "energy_above_hull": 0.0979422586666665,
+    "formation_energy_per_atom": -1.4587677839999997,
+    "band_gap": 0.0
+  },
+  {
+    "material_id": "mp-1390701",
+    "formula_pretty": "CoS2",
+    "elements": [
+      "Co",
+      "S"
+    ],
+    "energy_above_hull": 0.09849998916666713,
+    "formation_energy_per_atom": -0.3563134393750005,
+    "band_gap": 0.0
   }
 ]

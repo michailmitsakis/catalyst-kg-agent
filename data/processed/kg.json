@@ -6509,46 +6509,2861 @@
       "id": "property:mp-1213762:band_gap"
     },
     {
-      "type": "Property",
-      "mpid": "mp-2296",
-      "name": "mace_energy_per_atom",
-      "value": -6.121899855911552,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.1889,
-      "prediction_count": 1,
-      "id": "property:mp-2296:mace_energy_per_atom"
+      "type": "Material",
+      "mpid": "mp-1306224",
+      "formula_pretty": "Mn2O3",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1306224"
     },
     {
-      "id": "mp-2296"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-22619",
-      "name": "mace_energy_per_atom",
-      "value": -5.871767884469874,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.2041,
-      "prediction_count": 1,
-      "id": "property:mp-22619:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-22619"
+      "type": "Structure",
+      "mpid": "mp-1306224",
+      "cif_path": "data/raw/structures/mp-1306224.cif",
+      "space_group_symbol": "P-1",
+      "space_group_number": 2,
+      "crystal_system": "triclinic",
+      "num_sites": 10,
+      "id": "structure:mp-1306224"
     },
     {
       "type": "Property",
-      "mpid": "mp-2301",
-      "name": "mace_energy_per_atom",
-      "value": -5.775516667699876,
+      "mpid": "mp-1306224",
+      "name": "energy_above_hull",
+      "value": 0.05031748937500069,
       "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.4038,
-      "prediction_count": 1,
-      "id": "property:mp-2301:mace_energy_per_atom"
+      "source": "MaterialsProject",
+      "id": "property:mp-1306224:energy_above_hull"
     },
     {
-      "id": "mp-2301"
+      "type": "Property",
+      "mpid": "mp-1306224",
+      "name": "formation_energy_per_atom",
+      "value": -1.9636023541724128,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1306224:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1306224",
+      "name": "band_gap",
+      "value": 0.3511000000000002,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1306224:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-752759",
+      "formula_pretty": "Co2NiO6",
+      "elements": [
+        "Co",
+        "Ni",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-752759"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-752759",
+      "cif_path": "data/raw/structures/mp-752759.cif",
+      "space_group_symbol": "Cmce",
+      "space_group_number": 64,
+      "crystal_system": "orthorhombic",
+      "num_sites": 18,
+      "id": "structure:mp-752759"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-752759",
+      "name": "energy_above_hull",
+      "value": 0.050460871111112304,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-752759:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-752759",
+      "name": "formation_energy_per_atom",
+      "value": -0.9384899866666672,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-752759:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-752759",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-752759:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-753469",
+      "formula_pretty": "Co2NiO6",
+      "elements": [
+        "Co",
+        "Ni",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-753469"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-753469",
+      "cif_path": "data/raw/structures/mp-753469.cif",
+      "space_group_symbol": "P-1",
+      "space_group_number": 2,
+      "crystal_system": "triclinic",
+      "num_sites": 18,
+      "id": "structure:mp-753469"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-753469",
+      "name": "energy_above_hull",
+      "value": 0.05083281055555755,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-753469:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-753469",
+      "name": "formation_energy_per_atom",
+      "value": -0.9381180472222224,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-753469:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-753469",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-753469:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-19006",
+      "formula_pretty": "MnO",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-19006"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-19006",
+      "cif_path": "data/raw/structures/mp-19006.cif",
+      "space_group_symbol": "Fm-3m",
+      "space_group_number": 225,
+      "crystal_system": "cubic",
+      "num_sites": 4,
+      "id": "structure:mp-19006"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-19006",
+      "name": "energy_above_hull",
+      "value": 0.053368562500001104,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-19006:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-19006",
+      "name": "formation_energy_per_atom",
+      "value": -1.979201203965518,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-19006:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-19006",
+      "name": "band_gap",
+      "value": 0.18440000000000012,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-19006:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-2831286",
+      "formula_pretty": "MnO",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-2831286"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-2831286",
+      "cif_path": "data/raw/structures/mp-2831286.cif",
+      "space_group_symbol": "Cmc2_1",
+      "space_group_number": 36,
+      "crystal_system": "orthorhombic",
+      "num_sites": 8,
+      "id": "structure:mp-2831286"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2831286",
+      "name": "energy_above_hull",
+      "value": 0.05536453875000191,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2831286:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2831286",
+      "name": "formation_energy_per_atom",
+      "value": -1.9772052277155172,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2831286:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2831286",
+      "name": "band_gap",
+      "value": 0.9851000000000001,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-2831286:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-765860",
+      "formula_pretty": "Fe2CoO4",
+      "elements": [
+        "Co",
+        "Fe",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-765860"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-765860",
+      "cif_path": "data/raw/structures/mp-765860.cif",
+      "space_group_symbol": "Imma",
+      "space_group_number": 74,
+      "crystal_system": "orthorhombic",
+      "num_sites": 14,
+      "id": "structure:mp-765860"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-765860",
+      "name": "energy_above_hull",
+      "value": 0.05538123749999979,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-765860:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-765860",
+      "name": "formation_energy_per_atom",
+      "value": -1.527350056428572,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-765860:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-765860",
+      "name": "band_gap",
+      "value": 1.2323,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-765860:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-754430",
+      "formula_pretty": "Mn7O12",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-754430"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-754430",
+      "cif_path": "data/raw/structures/mp-754430.cif",
+      "space_group_symbol": "Im-3",
+      "space_group_number": 204,
+      "crystal_system": "cubic",
+      "num_sites": 19,
+      "id": "structure:mp-754430"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-754430",
+      "name": "energy_above_hull",
+      "value": 0.0557821250657895,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-754430:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-754430",
+      "name": "formation_energy_per_atom",
+      "value": -1.8674783881851182,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-754430:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-754430",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-754430:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-13154",
+      "formula_pretty": "Fe3C",
+      "elements": [
+        "C",
+        "Fe"
+      ],
+      "structure_id": null,
+      "id": "material:mp-13154"
+    },
+    {
+      "type": "Chemsys",
+      "symbols": [
+        "C",
+        "Fe"
+      ],
+      "id": "chemsys:C-Fe"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-13154",
+      "cif_path": "data/raw/structures/mp-13154.cif",
+      "space_group_symbol": "P6_322",
+      "space_group_number": 182,
+      "crystal_system": "hexagonal",
+      "num_sites": 8,
+      "id": "structure:mp-13154"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-13154",
+      "name": "energy_above_hull",
+      "value": 0.056359594999999985,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-13154:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-13154",
+      "name": "formation_energy_per_atom",
+      "value": 0.056359594999999985,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-13154:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-13154",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-13154:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-510623",
+      "formula_pretty": "Fe3C",
+      "elements": [
+        "C",
+        "Fe"
+      ],
+      "structure_id": null,
+      "id": "material:mp-510623"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-510623",
+      "cif_path": "data/raw/structures/mp-510623.cif",
+      "space_group_symbol": "Pnma",
+      "space_group_number": 62,
+      "crystal_system": "orthorhombic",
+      "num_sites": 16,
+      "id": "structure:mp-510623"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-510623",
+      "name": "energy_above_hull",
+      "value": 0.05671033062500008,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-510623:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-510623",
+      "name": "formation_energy_per_atom",
+      "value": 0.05671033062500008,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-510623:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-510623",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-510623:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1278937",
+      "formula_pretty": "CoO2",
+      "elements": [
+        "Co",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1278937"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1278937",
+      "cif_path": "data/raw/structures/mp-1278937.cif",
+      "space_group_symbol": "Fddd",
+      "space_group_number": 70,
+      "crystal_system": "orthorhombic",
+      "num_sites": 12,
+      "id": "structure:mp-1278937"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1278937",
+      "name": "energy_above_hull",
+      "value": 0.05732840500000069,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1278937:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1278937",
+      "name": "formation_energy_per_atom",
+      "value": -1.0151042550000007,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1278937:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1278937",
+      "name": "band_gap",
+      "value": 1.0532,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1278937:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1275132",
+      "formula_pretty": "Co2NiO4",
+      "elements": [
+        "Co",
+        "Ni",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1275132"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1275132",
+      "cif_path": "data/raw/structures/mp-1275132.cif",
+      "space_group_symbol": "P-1",
+      "space_group_number": 2,
+      "crystal_system": "triclinic",
+      "num_sites": 14,
+      "id": "structure:mp-1275132"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1275132",
+      "name": "energy_above_hull",
+      "value": 0.057834809081645844,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1275132:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1275132",
+      "name": "formation_energy_per_atom",
+      "value": -1.1706307964285716,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1275132:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1275132",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1275132:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1209828",
+      "formula_pretty": "PW3",
+      "elements": [
+        "P",
+        "W"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1209828"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1209828",
+      "cif_path": "data/raw/structures/mp-1209828.cif",
+      "space_group_symbol": "I-42m",
+      "space_group_number": 121,
+      "crystal_system": "tetragonal",
+      "num_sites": 16,
+      "id": "structure:mp-1209828"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1209828",
+      "name": "energy_above_hull",
+      "value": 0.057999603124997634,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1209828:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1209828",
+      "name": "formation_energy_per_atom",
+      "value": -0.12412992886905272,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1209828:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1209828",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1209828:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-999539",
+      "formula_pretty": "MnO",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-999539"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-999539",
+      "cif_path": "data/raw/structures/mp-999539.cif",
+      "space_group_symbol": "P6_3mc",
+      "space_group_number": 186,
+      "crystal_system": "hexagonal",
+      "num_sites": 4,
+      "id": "structure:mp-999539"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-999539",
+      "name": "energy_above_hull",
+      "value": 0.05855402375000196,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-999539:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-999539",
+      "name": "formation_energy_per_atom",
+      "value": -1.9740157427155172,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-999539:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-999539",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-999539:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1303934",
+      "formula_pretty": "Mn2O3",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1303934"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1303934",
+      "cif_path": "data/raw/structures/mp-1303934.cif",
+      "space_group_symbol": "C2/c",
+      "space_group_number": 15,
+      "crystal_system": "monoclinic",
+      "num_sites": 10,
+      "id": "structure:mp-1303934"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1303934",
+      "name": "energy_above_hull",
+      "value": 0.05860406837500065,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1303934:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1303934",
+      "name": "formation_energy_per_atom",
+      "value": -1.9553157751724128,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1303934:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1303934",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1303934:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-755671",
+      "formula_pretty": "MnO2",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-755671"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-755671",
+      "cif_path": "data/raw/structures/mp-755671.cif",
+      "space_group_symbol": "R-3m",
+      "space_group_number": 166,
+      "crystal_system": "trigonal",
+      "num_sites": 6,
+      "id": "structure:mp-755671"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-755671",
+      "name": "energy_above_hull",
+      "value": 0.05984685722222238,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-755671:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-755671",
+      "name": "formation_energy_per_atom",
+      "value": -1.7626810668103456,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-755671:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-755671",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-755671:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-2794",
+      "formula_pretty": "Fe5C2",
+      "elements": [
+        "C",
+        "Fe"
+      ],
+      "structure_id": null,
+      "id": "material:mp-2794"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-2794",
+      "cif_path": "data/raw/structures/mp-2794.cif",
+      "space_group_symbol": "C2/c",
+      "space_group_number": 15,
+      "crystal_system": "monoclinic",
+      "num_sites": 14,
+      "id": "structure:mp-2794"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2794",
+      "name": "energy_above_hull",
+      "value": 0.05985946571428613,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2794:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2794",
+      "name": "formation_energy_per_atom",
+      "value": 0.059859465714285624,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2794:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2794",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-2794:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1871",
+      "formula_pretty": "Fe2C",
+      "elements": [
+        "C",
+        "Fe"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1871"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1871",
+      "cif_path": "data/raw/structures/mp-1871.cif",
+      "space_group_symbol": "Pnnm",
+      "space_group_number": 58,
+      "crystal_system": "orthorhombic",
+      "num_sites": 6,
+      "id": "structure:mp-1871"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1871",
+      "name": "energy_above_hull",
+      "value": 0.06014737499999967,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1871:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1871",
+      "name": "formation_energy_per_atom",
+      "value": 0.060147375000000856,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1871:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1871",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1871:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1103643",
+      "formula_pretty": "NiS2",
+      "elements": [
+        "Ni",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1103643"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1103643",
+      "cif_path": "data/raw/structures/mp-1103643.cif",
+      "space_group_symbol": "Pnma",
+      "space_group_number": 62,
+      "crystal_system": "orthorhombic",
+      "num_sites": 12,
+      "id": "structure:mp-1103643"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1103643",
+      "name": "energy_above_hull",
+      "value": 0.06017464333333411,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1103643:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1103643",
+      "name": "formation_energy_per_atom",
+      "value": -0.531351894999999,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1103643:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1103643",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1103643:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-25424",
+      "formula_pretty": "MnO2",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-25424"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-25424",
+      "cif_path": "data/raw/structures/mp-25424.cif",
+      "space_group_symbol": "R-3m",
+      "space_group_number": 166,
+      "crystal_system": "trigonal",
+      "num_sites": 3,
+      "id": "structure:mp-25424"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25424",
+      "name": "energy_above_hull",
+      "value": 0.0608851422222223,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-25424:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25424",
+      "name": "formation_energy_per_atom",
+      "value": -1.7616427818103457,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-25424:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25424",
+      "name": "band_gap",
+      "value": 1.8708,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-25424:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-763787",
+      "formula_pretty": "Fe8O9",
+      "elements": [
+        "Fe",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-763787"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-763787",
+      "cif_path": "data/raw/structures/mp-763787.cif",
+      "space_group_symbol": "P-1",
+      "space_group_number": 2,
+      "crystal_system": "triclinic",
+      "num_sites": 17,
+      "id": "structure:mp-763787"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-763787",
+      "name": "energy_above_hull",
+      "value": 0.061250607647057365,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-763787:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-763787",
+      "name": "formation_energy_per_atom",
+      "value": -1.486613475588236,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-763787:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-763787",
+      "name": "band_gap",
+      "value": 1.4134000000000002,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-763787:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-850249",
+      "formula_pretty": "Fe4S5",
+      "elements": [
+        "Fe",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-850249"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-850249",
+      "cif_path": "data/raw/structures/mp-850249.cif",
+      "space_group_symbol": "P1",
+      "space_group_number": 1,
+      "crystal_system": "triclinic",
+      "num_sites": 18,
+      "id": "structure:mp-850249"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-850249",
+      "name": "energy_above_hull",
+      "value": 0.06171048499999987,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-850249:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-850249",
+      "name": "formation_energy_per_atom",
+      "value": -0.7257425258333328,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-850249:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-850249",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-850249:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1106195",
+      "formula_pretty": "PW3",
+      "elements": [
+        "P",
+        "W"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1106195"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1106195",
+      "cif_path": "data/raw/structures/mp-1106195.cif",
+      "space_group_symbol": "I-4",
+      "space_group_number": 82,
+      "crystal_system": "tetragonal",
+      "num_sites": 16,
+      "id": "structure:mp-1106195"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1106195",
+      "name": "energy_above_hull",
+      "value": 0.06177334375000498,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1106195:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1106195",
+      "name": "formation_energy_per_atom",
+      "value": -0.12035618824404537,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1106195:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1106195",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1106195:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-850083",
+      "formula_pretty": "Fe4S5",
+      "elements": [
+        "Fe",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-850083"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-850083",
+      "cif_path": "data/raw/structures/mp-850083.cif",
+      "space_group_symbol": "P1",
+      "space_group_number": 1,
+      "crystal_system": "triclinic",
+      "num_sites": 18,
+      "id": "structure:mp-850083"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-850083",
+      "name": "energy_above_hull",
+      "value": 0.06218277333333333,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-850083:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-850083",
+      "name": "formation_energy_per_atom",
+      "value": -0.7252702374999992,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-850083:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-850083",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-850083:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1304693",
+      "formula_pretty": "Co2NiO4",
+      "elements": [
+        "Co",
+        "Ni",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1304693"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1304693",
+      "cif_path": "data/raw/structures/mp-1304693.cif",
+      "space_group_symbol": "P-1",
+      "space_group_number": 2,
+      "crystal_system": "triclinic",
+      "num_sites": 14,
+      "id": "structure:mp-1304693"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1304693",
+      "name": "energy_above_hull",
+      "value": 0.06273705336735969,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1304693:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1304693",
+      "name": "formation_energy_per_atom",
+      "value": -1.165728552142857,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1304693:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1304693",
+      "name": "band_gap",
+      "value": 1.7410999999999999,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1304693:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1221498",
+      "formula_pretty": "Mo2C",
+      "elements": [
+        "C",
+        "Mo"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1221498"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1221498",
+      "cif_path": "data/raw/structures/mp-1221498.cif",
+      "space_group_symbol": "P-3m1",
+      "space_group_number": 164,
+      "crystal_system": "trigonal",
+      "num_sites": 3,
+      "id": "structure:mp-1221498"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1221498",
+      "name": "energy_above_hull",
+      "value": 0.06276392999999914,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1221498:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1221498",
+      "name": "formation_energy_per_atom",
+      "value": -0.07628568666666762,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1221498:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1221498",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1221498:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-25223",
+      "formula_pretty": "MnO2",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-25223"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-25223",
+      "cif_path": "data/raw/structures/mp-25223.cif",
+      "space_group_symbol": "P-3m1",
+      "space_group_number": 164,
+      "crystal_system": "trigonal",
+      "num_sites": 3,
+      "id": "structure:mp-25223"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25223",
+      "name": "energy_above_hull",
+      "value": 0.06357083222222215,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-25223:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25223",
+      "name": "formation_energy_per_atom",
+      "value": -1.7589570918103459,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-25223:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25223",
+      "name": "band_gap",
+      "value": 1.4647999999999999,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-25223:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-870701",
+      "formula_pretty": "Fe4S5",
+      "elements": [
+        "Fe",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-870701"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-870701",
+      "cif_path": "data/raw/structures/mp-870701.cif",
+      "space_group_symbol": "P2",
+      "space_group_number": 3,
+      "crystal_system": "monoclinic",
+      "num_sites": 18,
+      "id": "structure:mp-870701"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-870701",
+      "name": "energy_above_hull",
+      "value": 0.06386601999999986,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-870701:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-870701",
+      "name": "formation_energy_per_atom",
+      "value": -0.7235869908333328,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-870701:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-870701",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-870701:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-770543",
+      "formula_pretty": "Mn2O3",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-770543"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-770543",
+      "cif_path": "data/raw/structures/mp-770543.cif",
+      "space_group_symbol": "R-3c",
+      "space_group_number": 167,
+      "crystal_system": "trigonal",
+      "num_sites": 10,
+      "id": "structure:mp-770543"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-770543",
+      "name": "energy_above_hull",
+      "value": 0.064272060375,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-770543:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-770543",
+      "name": "formation_energy_per_atom",
+      "value": -1.9496477831724135,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-770543:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-770543",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-770543:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-2164",
+      "formula_pretty": "Mo3S4",
+      "elements": [
+        "Mo",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-2164"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-2164",
+      "cif_path": "data/raw/structures/mp-2164.cif",
+      "space_group_symbol": "R-3",
+      "space_group_number": 148,
+      "crystal_system": "trigonal",
+      "num_sites": 14,
+      "id": "structure:mp-2164"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2164",
+      "name": "energy_above_hull",
+      "value": 0.06481158214285543,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2164:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2164",
+      "name": "formation_energy_per_atom",
+      "value": -0.7633105994642884,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2164:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2164",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-2164:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-2034",
+      "formula_pretty": "W2C",
+      "elements": [
+        "C",
+        "W"
+      ],
+      "structure_id": null,
+      "id": "material:mp-2034"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-2034",
+      "cif_path": "data/raw/structures/mp-2034.cif",
+      "space_group_symbol": "Pbcn",
+      "space_group_number": 60,
+      "crystal_system": "orthorhombic",
+      "num_sites": 12,
+      "id": "structure:mp-2034"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2034",
+      "name": "energy_above_hull",
+      "value": 0.06544971916666498,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2034:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2034",
+      "name": "formation_energy_per_atom",
+      "value": -0.03691077750000223,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2034:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2034",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-2034:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-756471",
+      "formula_pretty": "FeCo5O12",
+      "elements": [
+        "Co",
+        "Fe",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-756471"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-756471",
+      "cif_path": "data/raw/structures/mp-756471.cif",
+      "space_group_symbol": "C2/m",
+      "space_group_number": 12,
+      "crystal_system": "monoclinic",
+      "num_sites": 18,
+      "id": "structure:mp-756471"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-756471",
+      "name": "energy_above_hull",
+      "value": 0.0687365362500012,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-756471:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-756471",
+      "name": "formation_energy_per_atom",
+      "value": -1.0620533683333337,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-756471:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-756471",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-756471:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1271850",
+      "formula_pretty": "MnO2",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1271850"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1271850",
+      "cif_path": "data/raw/structures/mp-1271850.cif",
+      "space_group_symbol": "P6_3/mmc",
+      "space_group_number": 194,
+      "crystal_system": "hexagonal",
+      "num_sites": 12,
+      "id": "structure:mp-1271850"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1271850",
+      "name": "energy_above_hull",
+      "value": 0.06878597638888806,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1271850:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1271850",
+      "name": "formation_energy_per_atom",
+      "value": -1.7537419476436813,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1271850:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1271850",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1271850:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-2647022",
+      "formula_pretty": "Pt",
+      "elements": [
+        "Pt"
+      ],
+      "structure_id": null,
+      "id": "material:mp-2647022"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-2647022",
+      "cif_path": "data/raw/structures/mp-2647022.cif",
+      "space_group_symbol": "P6_3/mmc",
+      "space_group_number": 194,
+      "crystal_system": "hexagonal",
+      "num_sites": 2,
+      "id": "structure:mp-2647022"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2647022",
+      "name": "energy_above_hull",
+      "value": 0.06909371500000105,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2647022:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2647022",
+      "name": "formation_energy_per_atom",
+      "value": 0.06909371500000105,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-2647022:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2647022",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-2647022:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-33065",
+      "formula_pretty": "W2C",
+      "elements": [
+        "C",
+        "W"
+      ],
+      "structure_id": null,
+      "id": "material:mp-33065"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-33065",
+      "cif_path": "data/raw/structures/mp-33065.cif",
+      "space_group_symbol": "Pnnm",
+      "space_group_number": 58,
+      "crystal_system": "orthorhombic",
+      "num_sites": 6,
+      "id": "structure:mp-33065"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-33065",
+      "name": "energy_above_hull",
+      "value": 0.07076890666666458,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-33065:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-33065",
+      "name": "formation_energy_per_atom",
+      "value": -0.031591590000005,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-33065:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-33065",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-33065:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1272141",
+      "formula_pretty": "MnO2",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1272141"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1272141",
+      "cif_path": "data/raw/structures/mp-1272141.cif",
+      "space_group_symbol": "R-3m",
+      "space_group_number": 166,
+      "crystal_system": "trigonal",
+      "num_sites": 3,
+      "id": "structure:mp-1272141"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1272141",
+      "name": "energy_above_hull",
+      "value": 0.07234734555555633,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1272141:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1272141",
+      "name": "formation_energy_per_atom",
+      "value": -1.750180578477013,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1272141:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1272141",
+      "name": "band_gap",
+      "value": 1.9298000000000002,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1272141:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1281832",
+      "formula_pretty": "CoO2",
+      "elements": [
+        "Co",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1281832"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1281832",
+      "cif_path": "data/raw/structures/mp-1281832.cif",
+      "space_group_symbol": "P-1",
+      "space_group_number": 2,
+      "crystal_system": "triclinic",
+      "num_sites": 6,
+      "id": "structure:mp-1281832"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1281832",
+      "name": "energy_above_hull",
+      "value": 0.07324839500000113,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1281832:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1281832",
+      "name": "formation_energy_per_atom",
+      "value": -0.9991842650000002,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1281832:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1281832",
+      "name": "band_gap",
+      "value": 1.0263999999999998,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1281832:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1095353",
+      "formula_pretty": "IrO2",
+      "elements": [
+        "Ir",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1095353"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1095353",
+      "cif_path": "data/raw/structures/mp-1095353.cif",
+      "space_group_symbol": "Pa-3",
+      "space_group_number": 205,
+      "crystal_system": "cubic",
+      "num_sites": 12,
+      "id": "structure:mp-1095353"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1095353",
+      "name": "energy_above_hull",
+      "value": 0.07562860166666496,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1095353:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1095353",
+      "name": "formation_energy_per_atom",
+      "value": -1.1852642399999997,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1095353:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1095353",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1095353:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-25275",
+      "formula_pretty": "MnO2",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-25275"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-25275",
+      "cif_path": "data/raw/structures/mp-25275.cif",
+      "space_group_symbol": "Fd-3m",
+      "space_group_number": 227,
+      "crystal_system": "cubic",
+      "num_sites": 12,
+      "id": "structure:mp-25275"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25275",
+      "name": "energy_above_hull",
+      "value": 0.07605056388888798,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-25275:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25275",
+      "name": "formation_energy_per_atom",
+      "value": -1.74647736014368,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-25275:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25275",
+      "name": "band_gap",
+      "value": 1.4489999999999998,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-25275:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1272388",
+      "formula_pretty": "FeNiO3",
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1272388"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1272388",
+      "cif_path": "data/raw/structures/mp-1272388.cif",
+      "space_group_symbol": "R3",
+      "space_group_number": 146,
+      "crystal_system": "trigonal",
+      "num_sites": 10,
+      "id": "structure:mp-1272388"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1272388",
+      "name": "energy_above_hull",
+      "value": 0.07753396433333215,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1272388:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1272388",
+      "name": "formation_energy_per_atom",
+      "value": -1.280436607,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1272388:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1272388",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1272388:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-18257",
+      "formula_pretty": "Fe7C3",
+      "elements": [
+        "C",
+        "Fe"
+      ],
+      "structure_id": null,
+      "id": "material:mp-18257"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-18257",
+      "cif_path": "data/raw/structures/mp-18257.cif",
+      "space_group_symbol": "P6_3mc",
+      "space_group_number": 186,
+      "crystal_system": "hexagonal",
+      "num_sites": 20,
+      "id": "structure:mp-18257"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-18257",
+      "name": "energy_above_hull",
+      "value": 0.08109436999999886,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-18257:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-18257",
+      "name": "formation_energy_per_atom",
+      "value": 0.08109436999999957,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-18257:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-18257",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-18257:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-768499",
+      "formula_pretty": "FeNiO3",
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-768499"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-768499",
+      "cif_path": "data/raw/structures/mp-768499.cif",
+      "space_group_symbol": "R-3",
+      "space_group_number": 148,
+      "crystal_system": "trigonal",
+      "num_sites": 10,
+      "id": "structure:mp-768499"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-768499",
+      "name": "energy_above_hull",
+      "value": 0.08205045533333166,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-768499:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-768499",
+      "name": "formation_energy_per_atom",
+      "value": -1.2759201160000004,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-768499:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-768499",
+      "name": "band_gap",
+      "value": 0.5852999999999997,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-768499:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-22684",
+      "formula_pretty": "Fe2NiO4",
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-22684"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-22684",
+      "cif_path": "data/raw/structures/mp-22684.cif",
+      "space_group_symbol": "Fd-3m",
+      "space_group_number": 227,
+      "crystal_system": "cubic",
+      "num_sites": 14,
+      "id": "structure:mp-22684"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-22684",
+      "name": "energy_above_hull",
+      "value": 0.08234843142857073,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-22684:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-22684",
+      "name": "formation_energy_per_atom",
+      "value": -1.5086928378571431,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-22684:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-22684",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-22684:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-567397",
+      "formula_pretty": "W2C",
+      "elements": [
+        "C",
+        "W"
+      ],
+      "structure_id": null,
+      "id": "material:mp-567397"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-567397",
+      "cif_path": "data/raw/structures/mp-567397.cif",
+      "space_group_symbol": "P-31m",
+      "space_group_number": 162,
+      "crystal_system": "trigonal",
+      "num_sites": 9,
+      "id": "structure:mp-567397"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-567397",
+      "name": "energy_above_hull",
+      "value": 0.08328427666666727,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-567397:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-567397",
+      "name": "formation_energy_per_atom",
+      "value": -0.01907622000000073,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-567397:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-567397",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-567397:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-752536",
+      "formula_pretty": "Mn5O8",
+      "elements": [
+        "Mn",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-752536"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-752536",
+      "cif_path": "data/raw/structures/mp-752536.cif",
+      "space_group_symbol": "R-3m",
+      "space_group_number": 166,
+      "crystal_system": "trigonal",
+      "num_sites": 13,
+      "id": "structure:mp-752536"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-752536",
+      "name": "energy_above_hull",
+      "value": 0.08359430060897388,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-752536:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-752536",
+      "name": "formation_energy_per_atom",
+      "value": -1.8861581768965523,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-752536:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-752536",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-752536:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-7586",
+      "formula_pretty": "Ni3C",
+      "elements": [
+        "C",
+        "Ni"
+      ],
+      "structure_id": null,
+      "id": "material:mp-7586"
+    },
+    {
+      "type": "Chemsys",
+      "symbols": [
+        "C",
+        "Ni"
+      ],
+      "id": "chemsys:C-Ni"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-7586",
+      "cif_path": "data/raw/structures/mp-7586.cif",
+      "space_group_symbol": "R-3c",
+      "space_group_number": 167,
+      "crystal_system": "trigonal",
+      "num_sites": 8,
+      "id": "structure:mp-7586"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-7586",
+      "name": "energy_above_hull",
+      "value": 0.08418333624999974,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-7586:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-7586",
+      "name": "formation_energy_per_atom",
+      "value": 0.08418333624999974,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-7586:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-7586",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-7586:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1147746",
+      "formula_pretty": "CoS",
+      "elements": [
+        "Co",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1147746"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1147746",
+      "cif_path": "data/raw/structures/mp-1147746.cif",
+      "space_group_symbol": "P4/nmm",
+      "space_group_number": 129,
+      "crystal_system": "tetragonal",
+      "num_sites": 4,
+      "id": "structure:mp-1147746"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1147746",
+      "name": "energy_above_hull",
+      "value": 0.08453702791666728,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1147746:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1147746",
+      "name": "formation_energy_per_atom",
+      "value": -0.37589248890624916,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1147746:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1147746",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1147746:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-770274",
+      "formula_pretty": "NiP4",
+      "elements": [
+        "Ni",
+        "P"
+      ],
+      "structure_id": null,
+      "id": "material:mp-770274"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-770274",
+      "cif_path": "data/raw/structures/mp-770274.cif",
+      "space_group_symbol": "C2/c",
+      "space_group_number": 15,
+      "crystal_system": "monoclinic",
+      "num_sites": 20,
+      "id": "structure:mp-770274"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-770274",
+      "name": "energy_above_hull",
+      "value": 0.08669885783333342,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-770274:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-770274",
+      "name": "formation_energy_per_atom",
+      "value": -0.16404994495237873,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-770274:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-770274",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-770274:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-753682",
+      "formula_pretty": "FeO",
+      "elements": [
+        "Fe",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-753682"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-753682",
+      "cif_path": "data/raw/structures/mp-753682.cif",
+      "space_group_symbol": "P4_2/mmc",
+      "space_group_number": 131,
+      "crystal_system": "tetragonal",
+      "num_sites": 8,
+      "id": "structure:mp-753682"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-753682",
+      "name": "energy_above_hull",
+      "value": 0.08710199499999938,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-753682:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-753682",
+      "name": "formation_energy_per_atom",
+      "value": -1.3944173925000003,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-753682:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-753682",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-753682:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1188678",
+      "formula_pretty": "Fe4O5",
+      "elements": [
+        "Fe",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1188678"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1188678",
+      "cif_path": "data/raw/structures/mp-1188678.cif",
+      "space_group_symbol": "Cmcm",
+      "space_group_number": 63,
+      "crystal_system": "orthorhombic",
+      "num_sites": 18,
+      "id": "structure:mp-1188678"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1188678",
+      "name": "energy_above_hull",
+      "value": 0.08759998166666527,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1188678:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1188678",
+      "name": "formation_energy_per_atom",
+      "value": -1.5192371644444447,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1188678:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1188678",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1188678:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1225019",
+      "formula_pretty": "Fe5NiO8",
+      "elements": [
+        "Fe",
+        "Ni",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1225019"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1225019",
+      "cif_path": "data/raw/structures/mp-1225019.cif",
+      "space_group_symbol": "R-3m",
+      "space_group_number": 166,
+      "crystal_system": "trigonal",
+      "num_sites": 14,
+      "id": "structure:mp-1225019"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1225019",
+      "name": "energy_above_hull",
+      "value": 0.08858638517857909,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1225019:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1225019",
+      "name": "formation_energy_per_atom",
+      "value": -1.5285248985714293,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1225019:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1225019",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1225019:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-25234",
+      "formula_pretty": "CoO2",
+      "elements": [
+        "Co",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-25234"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-25234",
+      "cif_path": "data/raw/structures/mp-25234.cif",
+      "space_group_symbol": "C2/m",
+      "space_group_number": 12,
+      "crystal_system": "monoclinic",
+      "num_sites": 6,
+      "id": "structure:mp-25234"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25234",
+      "name": "energy_above_hull",
+      "value": 0.08874155166666586,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-25234:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25234",
+      "name": "formation_energy_per_atom",
+      "value": -0.9836911083333355,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-25234:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-25234",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-25234:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-767469",
+      "formula_pretty": "Ni9S10",
+      "elements": [
+        "Ni",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-767469"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-767469",
+      "cif_path": "data/raw/structures/mp-767469.cif",
+      "space_group_symbol": "P-1",
+      "space_group_number": 2,
+      "crystal_system": "triclinic",
+      "num_sites": 19,
+      "id": "structure:mp-767469"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-767469",
+      "name": "energy_above_hull",
+      "value": 0.08902302263157758,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-767469:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-767469",
+      "name": "formation_energy_per_atom",
+      "value": -0.5482300460526315,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-767469:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-767469",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-767469:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-856161",
+      "formula_pretty": "CoO2",
+      "elements": [
+        "Co",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-856161"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-856161",
+      "cif_path": "data/raw/structures/mp-856161.cif",
+      "space_group_symbol": "P1",
+      "space_group_number": 1,
+      "crystal_system": "triclinic",
+      "num_sites": 12,
+      "id": "structure:mp-856161"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-856161",
+      "name": "energy_above_hull",
+      "value": 0.08908489499999916,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-856161:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-856161",
+      "name": "formation_energy_per_atom",
+      "value": -0.9833477650000025,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-856161:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-856161",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-856161:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1271940",
+      "formula_pretty": "Co3O4",
+      "elements": [
+        "Co",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1271940"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1271940",
+      "cif_path": "data/raw/structures/mp-1271940.cif",
+      "space_group_symbol": "Imma",
+      "space_group_number": 74,
+      "crystal_system": "orthorhombic",
+      "num_sites": 14,
+      "id": "structure:mp-1271940"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1271940",
+      "name": "energy_above_hull",
+      "value": 0.08989810071428561,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1271940:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1271940",
+      "name": "formation_energy_per_atom",
+      "value": -1.2004401235714286,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1271940:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1271940",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1271940:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1627",
+      "formula_pretty": "Mo2S3",
+      "elements": [
+        "Mo",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1627"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1627",
+      "cif_path": "data/raw/structures/mp-1627.cif",
+      "space_group_symbol": "P2_1/m",
+      "space_group_number": 11,
+      "crystal_system": "monoclinic",
+      "num_sites": 10,
+      "id": "structure:mp-1627"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1627",
+      "name": "energy_above_hull",
+      "value": 0.09554071300000189,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1627:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1627",
+      "name": "formation_energy_per_atom",
+      "value": -0.773987577687501,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1627:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1627",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1627:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1275937",
+      "formula_pretty": "CoO2",
+      "elements": [
+        "Co",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1275937"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1275937",
+      "cif_path": "data/raw/structures/mp-1275937.cif",
+      "space_group_symbol": "Cm",
+      "space_group_number": 8,
+      "crystal_system": "monoclinic",
+      "num_sites": 12,
+      "id": "structure:mp-1275937"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1275937",
+      "name": "energy_above_hull",
+      "value": 0.09650163333333239,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1275937:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1275937",
+      "name": "formation_energy_per_atom",
+      "value": -0.9759310266666693,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1275937:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1275937",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1275937:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-850068",
+      "formula_pretty": "NiS2",
+      "elements": [
+        "Ni",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-850068"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-850068",
+      "cif_path": "data/raw/structures/mp-850068.cif",
+      "space_group_symbol": "Pbcn",
+      "space_group_number": 60,
+      "crystal_system": "orthorhombic",
+      "num_sites": 12,
+      "id": "structure:mp-850068"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-850068",
+      "name": "energy_above_hull",
+      "value": 0.0968874108333333,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-850068:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-850068",
+      "name": "formation_energy_per_atom",
+      "value": -0.4946391274999993,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-850068:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-850068",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-850068:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-32939",
+      "formula_pretty": "Fe7O8",
+      "elements": [
+        "Fe",
+        "O"
+      ],
+      "structure_id": null,
+      "id": "material:mp-32939"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-32939",
+      "cif_path": "data/raw/structures/mp-32939.cif",
+      "space_group_symbol": "Fm-3m",
+      "space_group_number": 225,
+      "crystal_system": "cubic",
+      "num_sites": 15,
+      "id": "structure:mp-32939"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-32939",
+      "name": "energy_above_hull",
+      "value": 0.0979422586666665,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-32939:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-32939",
+      "name": "formation_energy_per_atom",
+      "value": -1.4587677839999997,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-32939:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-32939",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-32939:band_gap"
+    },
+    {
+      "type": "Material",
+      "mpid": "mp-1390701",
+      "formula_pretty": "CoS2",
+      "elements": [
+        "Co",
+        "S"
+      ],
+      "structure_id": null,
+      "id": "material:mp-1390701"
+    },
+    {
+      "type": "Structure",
+      "mpid": "mp-1390701",
+      "cif_path": "data/raw/structures/mp-1390701.cif",
+      "space_group_symbol": "Fd-3m",
+      "space_group_number": 227,
+      "crystal_system": "cubic",
+      "num_sites": 12,
+      "id": "structure:mp-1390701"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1390701",
+      "name": "energy_above_hull",
+      "value": 0.09849998916666713,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1390701:energy_above_hull"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1390701",
+      "name": "formation_energy_per_atom",
+      "value": -0.3563134393750005,
+      "unit": "eV/atom",
+      "source": "MaterialsProject",
+      "id": "property:mp-1390701:formation_energy_per_atom"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1390701",
+      "name": "band_gap",
+      "value": 0.0,
+      "unit": "eV",
+      "source": "MaterialsProject",
+      "id": "property:mp-1390701:band_gap"
     },
     {
       "type": "Property",
@@ -6594,6 +9409,62 @@
     },
     {
       "type": "Property",
+      "mpid": "mp-2301",
+      "name": "mace_energy_per_atom",
+      "value": -5.775516667699876,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.4038,
+      "prediction_count": 1,
+      "id": "property:mp-2301:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-2301"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2296",
+      "name": "mace_energy_per_atom",
+      "value": -6.121899855911552,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.1889,
+      "prediction_count": 1,
+      "id": "property:mp-2296:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-2296"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-22619",
+      "name": "mace_energy_per_atom",
+      "value": -5.871767884469874,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.2041,
+      "prediction_count": 1,
+      "id": "property:mp-22619:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-22619"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1189340",
+      "name": "mace_energy_per_atom",
+      "value": -7.896868975349212,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.2988,
+      "prediction_count": 1,
+      "id": "property:mp-1189340:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-1189340"
+    },
+    {
+      "type": "Property",
       "mpid": "mp-1005",
       "name": "mace_energy_per_atom",
       "value": -7.535582223164315,
@@ -6622,90 +9493,6 @@
     },
     {
       "type": "Property",
-      "mpid": "mp-18708",
-      "name": "mace_energy_per_atom",
-      "value": -8.041772551037468,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.2893,
-      "prediction_count": 1,
-      "id": "property:mp-18708:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-18708"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-1189340",
-      "name": "mace_energy_per_atom",
-      "value": -7.896868975349212,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.2988,
-      "prediction_count": 1,
-      "id": "property:mp-1189340:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-1189340"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-219",
-      "name": "mace_energy_per_atom",
-      "value": -8.777006687280043,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.0,
-      "prediction_count": 1,
-      "id": "property:mp-219:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-219"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-10004",
-      "name": "mace_energy_per_atom",
-      "value": -9.827863749573504,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.1255,
-      "prediction_count": 1,
-      "id": "property:mp-10004:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-10004"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-1887",
-      "name": "mace_energy_per_atom",
-      "value": -7.725705729216361,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.1957,
-      "prediction_count": 1,
-      "id": "property:mp-1887:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-1887"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-11508",
-      "name": "mace_energy_per_atom",
-      "value": -6.7993027973883216,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.1458,
-      "prediction_count": 1,
-      "id": "property:mp-11508:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-11508"
-    },
-    {
-      "type": "Property",
       "mpid": "mp-2662",
       "name": "mace_energy_per_atom",
       "value": -7.8823267337858125,
@@ -6720,87 +9507,45 @@
     },
     {
       "type": "Property",
-      "mpid": "mp-2065",
+      "mpid": "mp-362",
       "name": "mace_energy_per_atom",
-      "value": -7.1223911075989035,
+      "value": -5.469295085025981,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.0001,
+      "max_residual_force": 0.2878,
       "prediction_count": 1,
-      "id": "property:mp-2065:mace_energy_per_atom"
+      "id": "property:mp-362:mace_energy_per_atom"
     },
     {
-      "id": "mp-2065"
+      "id": "mp-362"
     },
     {
       "type": "Property",
-      "mpid": "mp-2305",
+      "mpid": "mp-1050",
       "name": "mace_energy_per_atom",
-      "value": -10.041955010667412,
+      "value": -5.210617577419021,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.0,
+      "max_residual_force": 0.0303,
       "prediction_count": 1,
-      "id": "property:mp-2305:mace_energy_per_atom"
+      "id": "property:mp-1050:mace_energy_per_atom"
     },
     {
-      "id": "mp-2305"
+      "id": "mp-1050"
     },
     {
       "type": "Property",
-      "mpid": "mp-1552",
+      "mpid": "mp-505531",
       "name": "mace_energy_per_atom",
-      "value": -10.417793809623914,
+      "value": -6.809994455008358,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.1169,
+      "max_residual_force": 0.1512,
       "prediction_count": 1,
-      "id": "property:mp-1552:mace_energy_per_atom"
+      "id": "property:mp-505531:mace_energy_per_atom"
     },
     {
-      "id": "mp-1552"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-19009",
-      "name": "mace_energy_per_atom",
-      "value": -4.835016929222722,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.0,
-      "prediction_count": 1,
-      "id": "property:mp-19009:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-19009"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-1434",
-      "name": "mace_energy_per_atom",
-      "value": -7.22982330268714,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.2567,
-      "prediction_count": 1,
-      "id": "property:mp-1434:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-1434"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-224",
-      "name": "mace_energy_per_atom",
-      "value": -7.89304358914584,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.2537,
-      "prediction_count": 1,
-      "id": "property:mp-224:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-224"
+      "id": "mp-505531"
     },
     {
       "type": "Property",
@@ -6818,129 +9563,45 @@
     },
     {
       "type": "Property",
-      "mpid": "mp-2070",
+      "mpid": "mp-2065",
       "name": "mace_energy_per_atom",
-      "value": -5.457734676401347,
+      "value": -7.1223911075989035,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.4768,
+      "max_residual_force": 0.0001,
       "prediction_count": 1,
-      "id": "property:mp-2070:mace_energy_per_atom"
+      "id": "property:mp-2065:mace_energy_per_atom"
     },
     {
-      "id": "mp-2070"
+      "id": "mp-2065"
     },
     {
       "type": "Property",
-      "mpid": "mp-1180046",
+      "mpid": "mp-224",
       "name": "mace_energy_per_atom",
-      "value": -4.907673276490361,
+      "value": -7.89304358914584,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.1383,
+      "max_residual_force": 0.2537,
       "prediction_count": 1,
-      "id": "property:mp-1180046:mace_energy_per_atom"
+      "id": "property:mp-224:mace_energy_per_atom"
     },
     {
-      "id": "mp-1180046"
+      "id": "mp-224"
     },
     {
       "type": "Property",
-      "mpid": "mp-778",
+      "mpid": "mp-1434",
       "name": "mace_energy_per_atom",
-      "value": -7.898578383670836,
+      "value": -7.22982330268714,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.3146,
+      "max_residual_force": 0.2567,
       "prediction_count": 1,
-      "id": "property:mp-778:mace_energy_per_atom"
+      "id": "property:mp-1434:mace_energy_per_atom"
     },
     {
-      "id": "mp-778"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-1849",
-      "name": "mace_energy_per_atom",
-      "value": -8.40582295551922,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.2889,
-      "prediction_count": 1,
-      "id": "property:mp-1849:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-1849"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-22204",
-      "name": "mace_energy_per_atom",
-      "value": -7.065857538644778,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.3765,
-      "prediction_count": 1,
-      "id": "property:mp-22204:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-22204"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-22408",
-      "name": "mace_energy_per_atom",
-      "value": -5.991736133221997,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.2455,
-      "prediction_count": 1,
-      "id": "property:mp-22408:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-22408"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-1274279",
-      "name": "mace_energy_per_atom",
-      "value": -6.605962150699087,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.068,
-      "prediction_count": 1,
-      "id": "property:mp-1274279:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-1274279"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-1232659",
-      "name": "mace_energy_per_atom",
-      "value": -7.768100616239815,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.3519,
-      "prediction_count": 1,
-      "id": "property:mp-1232659:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-1232659"
-    },
-    {
-      "type": "Property",
-      "mpid": "mp-1422029",
-      "name": "mace_energy_per_atom",
-      "value": -6.349849923286946,
-      "unit": "eV/atom",
-      "source": "MACE-finetuned",
-      "max_residual_force": 0.1187,
-      "prediction_count": 1,
-      "id": "property:mp-1422029:mace_energy_per_atom"
-    },
-    {
-      "id": "mp-1422029"
+      "id": "mp-1434"
     },
     {
       "type": "Property",
@@ -6972,59 +9633,213 @@
     },
     {
       "type": "Property",
-      "mpid": "mp-505531",
+      "mpid": "mp-18708",
       "name": "mace_energy_per_atom",
-      "value": -6.809994455008358,
+      "value": -8.041772551037468,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.1512,
+      "max_residual_force": 0.2893,
       "prediction_count": 1,
-      "id": "property:mp-505531:mace_energy_per_atom"
+      "id": "property:mp-18708:mace_energy_per_atom"
     },
     {
-      "id": "mp-505531"
+      "id": "mp-18708"
     },
     {
       "type": "Property",
-      "mpid": "mp-1400906",
+      "mpid": "mp-22204",
       "name": "mace_energy_per_atom",
-      "value": -5.643454857250398,
+      "value": -7.065857538644778,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.4531,
+      "max_residual_force": 0.3765,
       "prediction_count": 1,
-      "id": "property:mp-1400906:mace_energy_per_atom"
+      "id": "property:mp-22204:mace_energy_per_atom"
     },
     {
-      "id": "mp-1400906"
+      "id": "mp-22204"
     },
     {
       "type": "Property",
-      "mpid": "mp-1279343",
+      "mpid": "mp-19009",
       "name": "mace_energy_per_atom",
-      "value": -5.361019826565089,
+      "value": -4.835016929222722,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.3458,
+      "max_residual_force": 0.0,
       "prediction_count": 1,
-      "id": "property:mp-1279343:mace_energy_per_atom"
+      "id": "property:mp-19009:mace_energy_per_atom"
     },
     {
-      "id": "mp-1279343"
+      "id": "mp-19009"
     },
     {
-      "id": "property:mp-1102036:mace_energy_per_atom",
       "type": "Property",
-      "mpid": "mp-1102036",
+      "mpid": "mp-1274279",
       "name": "mace_energy_per_atom",
-      "value": -6.017690899718128,
+      "value": -6.605962150699087,
       "unit": "eV/atom",
       "source": "MACE-finetuned",
-      "max_residual_force": 0.1734,
-      "prediction_count": 1
+      "max_residual_force": 0.068,
+      "prediction_count": 1,
+      "id": "property:mp-1274279:mace_energy_per_atom"
     },
     {
-      "id": "mp-1102036"
+      "id": "mp-1274279"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1887",
+      "name": "mace_energy_per_atom",
+      "value": -7.725705729216361,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.1957,
+      "prediction_count": 1,
+      "id": "property:mp-1887:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-1887"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-219",
+      "name": "mace_energy_per_atom",
+      "value": -8.777006687280043,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.0,
+      "prediction_count": 1,
+      "id": "property:mp-219:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-219"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-11508",
+      "name": "mace_energy_per_atom",
+      "value": -6.7993027973883216,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.1458,
+      "prediction_count": 1,
+      "id": "property:mp-11508:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-11508"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-2070",
+      "name": "mace_energy_per_atom",
+      "value": -5.457734676401347,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.4768,
+      "prediction_count": 1,
+      "id": "property:mp-2070:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-2070"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1422029",
+      "name": "mace_energy_per_atom",
+      "value": -6.349849923286946,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.1187,
+      "prediction_count": 1,
+      "id": "property:mp-1422029:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-1422029"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1232659",
+      "name": "mace_energy_per_atom",
+      "value": -7.768100616239815,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.3519,
+      "prediction_count": 1,
+      "id": "property:mp-1232659:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-1232659"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-644514",
+      "name": "mace_energy_per_atom",
+      "value": -7.084034050656176,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.7674,
+      "prediction_count": 1,
+      "id": "property:mp-644514:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-644514"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-19770",
+      "name": "mace_energy_per_atom",
+      "value": -6.596832925637988,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.0681,
+      "prediction_count": 1,
+      "id": "property:mp-19770:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-19770"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-1271793",
+      "name": "mace_energy_per_atom",
+      "value": -6.004256745964897,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.6328,
+      "prediction_count": 1,
+      "id": "property:mp-1271793:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-1271793"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-35596",
+      "name": "mace_energy_per_atom",
+      "value": -6.099951283287216,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.4067,
+      "prediction_count": 1,
+      "id": "property:mp-35596:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-35596"
+    },
+    {
+      "type": "Property",
+      "mpid": "mp-754168",
+      "name": "mace_energy_per_atom",
+      "value": -5.188586172822121,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.1929,
+      "prediction_count": 1,
+      "id": "property:mp-754168:mace_energy_per_atom"
+    },
+    {
+      "id": "mp-754168"
     },
     {
       "id": "property:mp-27844:mace_energy_per_atom",
@@ -7069,6 +9884,20 @@
       "id": "mp-486"
     },
     {
+      "id": "property:mp-770274:mace_energy_per_atom",
+      "type": "Property",
+      "mpid": "mp-770274",
+      "name": "mace_energy_per_atom",
+      "value": -5.641627960316238,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.5062,
+      "prediction_count": 1
+    },
+    {
+      "id": "mp-770274"
+    },
+    {
       "id": "property:mp-2790:mace_energy_per_atom",
       "type": "Property",
       "mpid": "mp-2790",
@@ -7081,6 +9910,20 @@
     },
     {
       "id": "mp-2790"
+    },
+    {
+      "id": "property:mp-1102036:mace_energy_per_atom",
+      "type": "Property",
+      "mpid": "mp-1102036",
+      "name": "mace_energy_per_atom",
+      "value": -6.017690899718128,
+      "unit": "eV/atom",
+      "source": "MACE-finetuned",
+      "max_residual_force": 0.1734,
+      "prediction_count": 1
+    },
+    {
+      "id": "mp-1102036"
     }
   ],
   "links": [
@@ -12882,22 +15725,2663 @@
       "key": "HAS_PROPERTY:band_gap"
     },
     {
-      "type": "HAS_PROPERTY",
-      "source": "mp-2296",
-      "target": "property:mp-2296:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1306224",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-1306224",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1306224",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1306224",
+      "target": "structure:mp-1306224",
+      "key": "HAS_STRUCTURE"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-22619",
-      "target": "property:mp-22619:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
+      "source": "material:mp-1306224",
+      "target": "property:mp-1306224:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-2301",
-      "target": "property:mp-2301:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
+      "source": "material:mp-1306224",
+      "target": "property:mp-1306224:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1306224",
+      "target": "property:mp-1306224:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-752759",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-752759",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 12,
+      "source": "material:mp-752759",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-752759",
+      "target": "chemsys:Co-Ni-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-752759",
+      "target": "structure:mp-752759",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-752759",
+      "target": "property:mp-752759:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-752759",
+      "target": "property:mp-752759:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-752759",
+      "target": "property:mp-752759:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-753469",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-753469",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 12,
+      "source": "material:mp-753469",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-753469",
+      "target": "chemsys:Co-Ni-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-753469",
+      "target": "structure:mp-753469",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-753469",
+      "target": "property:mp-753469:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-753469",
+      "target": "property:mp-753469:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-753469",
+      "target": "property:mp-753469:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-19006",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-19006",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-19006",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-19006",
+      "target": "structure:mp-19006",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-19006",
+      "target": "property:mp-19006:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-19006",
+      "target": "property:mp-19006:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-19006",
+      "target": "property:mp-19006:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-2831286",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-2831286",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-2831286",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-2831286",
+      "target": "structure:mp-2831286",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2831286",
+      "target": "property:mp-2831286:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2831286",
+      "target": "property:mp-2831286:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2831286",
+      "target": "property:mp-2831286:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-765860",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-765860",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-765860",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-765860",
+      "target": "chemsys:Co-Fe-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-765860",
+      "target": "structure:mp-765860",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-765860",
+      "target": "property:mp-765860:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-765860",
+      "target": "property:mp-765860:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-765860",
+      "target": "property:mp-765860:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 7,
+      "source": "material:mp-754430",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 12,
+      "source": "material:mp-754430",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-754430",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-754430",
+      "target": "structure:mp-754430",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-754430",
+      "target": "property:mp-754430:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-754430",
+      "target": "property:mp-754430:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-754430",
+      "target": "property:mp-754430:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-13154",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-13154",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-13154",
+      "target": "chemsys:C-Fe",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-13154",
+      "target": "structure:mp-13154",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-13154",
+      "target": "property:mp-13154:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-13154",
+      "target": "property:mp-13154:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-13154",
+      "target": "property:mp-13154:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-510623",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 12,
+      "source": "material:mp-510623",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-510623",
+      "target": "chemsys:C-Fe",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-510623",
+      "target": "structure:mp-510623",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-510623",
+      "target": "property:mp-510623:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-510623",
+      "target": "property:mp-510623:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-510623",
+      "target": "property:mp-510623:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1278937",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1278937",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1278937",
+      "target": "chemsys:Co-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1278937",
+      "target": "structure:mp-1278937",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1278937",
+      "target": "property:mp-1278937:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1278937",
+      "target": "property:mp-1278937:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1278937",
+      "target": "property:mp-1278937:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1275132",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1275132",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1275132",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1275132",
+      "target": "chemsys:Co-Ni-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1275132",
+      "target": "structure:mp-1275132",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1275132",
+      "target": "property:mp-1275132:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1275132",
+      "target": "property:mp-1275132:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1275132",
+      "target": "property:mp-1275132:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1209828",
+      "target": "element:P",
+      "key": "HAS_ELEMENT:P"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 12,
+      "source": "material:mp-1209828",
+      "target": "element:W",
+      "key": "HAS_ELEMENT:W"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1209828",
+      "target": "chemsys:P-W",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1209828",
+      "target": "structure:mp-1209828",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1209828",
+      "target": "property:mp-1209828:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1209828",
+      "target": "property:mp-1209828:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1209828",
+      "target": "property:mp-1209828:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-999539",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-999539",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-999539",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-999539",
+      "target": "structure:mp-999539",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-999539",
+      "target": "property:mp-999539:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-999539",
+      "target": "property:mp-999539:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-999539",
+      "target": "property:mp-999539:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1303934",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-1303934",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1303934",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1303934",
+      "target": "structure:mp-1303934",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1303934",
+      "target": "property:mp-1303934:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1303934",
+      "target": "property:mp-1303934:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1303934",
+      "target": "property:mp-1303934:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-755671",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-755671",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-755671",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-755671",
+      "target": "structure:mp-755671",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-755671",
+      "target": "property:mp-755671:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-755671",
+      "target": "property:mp-755671:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-755671",
+      "target": "property:mp-755671:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-2794",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 10,
+      "source": "material:mp-2794",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-2794",
+      "target": "chemsys:C-Fe",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-2794",
+      "target": "structure:mp-2794",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2794",
+      "target": "property:mp-2794:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2794",
+      "target": "property:mp-2794:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2794",
+      "target": "property:mp-2794:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1871",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1871",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1871",
+      "target": "chemsys:C-Fe",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1871",
+      "target": "structure:mp-1871",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1871",
+      "target": "property:mp-1871:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1871",
+      "target": "property:mp-1871:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1871",
+      "target": "property:mp-1871:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1103643",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1103643",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1103643",
+      "target": "chemsys:Ni-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1103643",
+      "target": "structure:mp-1103643",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1103643",
+      "target": "property:mp-1103643:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1103643",
+      "target": "property:mp-1103643:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1103643",
+      "target": "property:mp-1103643:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 1,
+      "source": "material:mp-25424",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-25424",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-25424",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-25424",
+      "target": "structure:mp-25424",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25424",
+      "target": "property:mp-25424:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25424",
+      "target": "property:mp-25424:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25424",
+      "target": "property:mp-25424:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-763787",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 9,
+      "source": "material:mp-763787",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-763787",
+      "target": "chemsys:Fe-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-763787",
+      "target": "structure:mp-763787",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-763787",
+      "target": "property:mp-763787:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-763787",
+      "target": "property:mp-763787:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-763787",
+      "target": "property:mp-763787:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-850249",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 10,
+      "source": "material:mp-850249",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-850249",
+      "target": "chemsys:Fe-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-850249",
+      "target": "structure:mp-850249",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-850249",
+      "target": "property:mp-850249:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-850249",
+      "target": "property:mp-850249:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-850249",
+      "target": "property:mp-850249:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1106195",
+      "target": "element:P",
+      "key": "HAS_ELEMENT:P"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 12,
+      "source": "material:mp-1106195",
+      "target": "element:W",
+      "key": "HAS_ELEMENT:W"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1106195",
+      "target": "chemsys:P-W",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1106195",
+      "target": "structure:mp-1106195",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1106195",
+      "target": "property:mp-1106195:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1106195",
+      "target": "property:mp-1106195:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1106195",
+      "target": "property:mp-1106195:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-850083",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 10,
+      "source": "material:mp-850083",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-850083",
+      "target": "chemsys:Fe-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-850083",
+      "target": "structure:mp-850083",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-850083",
+      "target": "property:mp-850083:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-850083",
+      "target": "property:mp-850083:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-850083",
+      "target": "property:mp-850083:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1304693",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1304693",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1304693",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1304693",
+      "target": "chemsys:Co-Ni-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1304693",
+      "target": "structure:mp-1304693",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1304693",
+      "target": "property:mp-1304693:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1304693",
+      "target": "property:mp-1304693:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1304693",
+      "target": "property:mp-1304693:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 1,
+      "source": "material:mp-1221498",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1221498",
+      "target": "element:Mo",
+      "key": "HAS_ELEMENT:Mo"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1221498",
+      "target": "chemsys:C-Mo",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1221498",
+      "target": "structure:mp-1221498",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1221498",
+      "target": "property:mp-1221498:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1221498",
+      "target": "property:mp-1221498:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1221498",
+      "target": "property:mp-1221498:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 1,
+      "source": "material:mp-25223",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-25223",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-25223",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-25223",
+      "target": "structure:mp-25223",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25223",
+      "target": "property:mp-25223:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25223",
+      "target": "property:mp-25223:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25223",
+      "target": "property:mp-25223:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-870701",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 10,
+      "source": "material:mp-870701",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-870701",
+      "target": "chemsys:Fe-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-870701",
+      "target": "structure:mp-870701",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-870701",
+      "target": "property:mp-870701:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-870701",
+      "target": "property:mp-870701:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-870701",
+      "target": "property:mp-870701:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-770543",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-770543",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-770543",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-770543",
+      "target": "structure:mp-770543",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-770543",
+      "target": "property:mp-770543:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-770543",
+      "target": "property:mp-770543:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-770543",
+      "target": "property:mp-770543:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-2164",
+      "target": "element:Mo",
+      "key": "HAS_ELEMENT:Mo"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-2164",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-2164",
+      "target": "chemsys:Mo-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-2164",
+      "target": "structure:mp-2164",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2164",
+      "target": "property:mp-2164:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2164",
+      "target": "property:mp-2164:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2164",
+      "target": "property:mp-2164:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-2034",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-2034",
+      "target": "element:W",
+      "key": "HAS_ELEMENT:W"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-2034",
+      "target": "chemsys:C-W",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-2034",
+      "target": "structure:mp-2034",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2034",
+      "target": "property:mp-2034:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2034",
+      "target": "property:mp-2034:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2034",
+      "target": "property:mp-2034:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 5,
+      "source": "material:mp-756471",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 1,
+      "source": "material:mp-756471",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 12,
+      "source": "material:mp-756471",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-756471",
+      "target": "chemsys:Co-Fe-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-756471",
+      "target": "structure:mp-756471",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-756471",
+      "target": "property:mp-756471:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-756471",
+      "target": "property:mp-756471:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-756471",
+      "target": "property:mp-756471:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1271850",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1271850",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1271850",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1271850",
+      "target": "structure:mp-1271850",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1271850",
+      "target": "property:mp-1271850:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1271850",
+      "target": "property:mp-1271850:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1271850",
+      "target": "property:mp-1271850:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-2647022",
+      "target": "element:Pt",
+      "key": "HAS_ELEMENT:Pt"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-2647022",
+      "target": "chemsys:Pt",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-2647022",
+      "target": "structure:mp-2647022",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2647022",
+      "target": "property:mp-2647022:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2647022",
+      "target": "property:mp-2647022:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-2647022",
+      "target": "property:mp-2647022:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-33065",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-33065",
+      "target": "element:W",
+      "key": "HAS_ELEMENT:W"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-33065",
+      "target": "chemsys:C-W",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-33065",
+      "target": "structure:mp-33065",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-33065",
+      "target": "property:mp-33065:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-33065",
+      "target": "property:mp-33065:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-33065",
+      "target": "property:mp-33065:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 1,
+      "source": "material:mp-1272141",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1272141",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1272141",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1272141",
+      "target": "structure:mp-1272141",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1272141",
+      "target": "property:mp-1272141:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1272141",
+      "target": "property:mp-1272141:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1272141",
+      "target": "property:mp-1272141:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1281832",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1281832",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1281832",
+      "target": "chemsys:Co-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1281832",
+      "target": "structure:mp-1281832",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1281832",
+      "target": "property:mp-1281832:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1281832",
+      "target": "property:mp-1281832:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1281832",
+      "target": "property:mp-1281832:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1095353",
+      "target": "element:Ir",
+      "key": "HAS_ELEMENT:Ir"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1095353",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1095353",
+      "target": "chemsys:Ir-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1095353",
+      "target": "structure:mp-1095353",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1095353",
+      "target": "property:mp-1095353:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1095353",
+      "target": "property:mp-1095353:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1095353",
+      "target": "property:mp-1095353:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-25275",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-25275",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-25275",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-25275",
+      "target": "structure:mp-25275",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25275",
+      "target": "property:mp-25275:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25275",
+      "target": "property:mp-25275:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25275",
+      "target": "property:mp-25275:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1272388",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1272388",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-1272388",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1272388",
+      "target": "chemsys:Fe-Ni-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1272388",
+      "target": "structure:mp-1272388",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1272388",
+      "target": "property:mp-1272388:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1272388",
+      "target": "property:mp-1272388:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1272388",
+      "target": "property:mp-1272388:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-18257",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 14,
+      "source": "material:mp-18257",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-18257",
+      "target": "chemsys:C-Fe",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-18257",
+      "target": "structure:mp-18257",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-18257",
+      "target": "property:mp-18257:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-18257",
+      "target": "property:mp-18257:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-18257",
+      "target": "property:mp-18257:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-768499",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-768499",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-768499",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-768499",
+      "target": "chemsys:Fe-Ni-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-768499",
+      "target": "structure:mp-768499",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-768499",
+      "target": "property:mp-768499:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-768499",
+      "target": "property:mp-768499:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-768499",
+      "target": "property:mp-768499:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-22684",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-22684",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-22684",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-22684",
+      "target": "chemsys:Fe-Ni-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-22684",
+      "target": "structure:mp-22684",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-22684",
+      "target": "property:mp-22684:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-22684",
+      "target": "property:mp-22684:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-22684",
+      "target": "property:mp-22684:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 3,
+      "source": "material:mp-567397",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-567397",
+      "target": "element:W",
+      "key": "HAS_ELEMENT:W"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-567397",
+      "target": "chemsys:C-W",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-567397",
+      "target": "structure:mp-567397",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-567397",
+      "target": "property:mp-567397:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-567397",
+      "target": "property:mp-567397:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-567397",
+      "target": "property:mp-567397:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 5,
+      "source": "material:mp-752536",
+      "target": "element:Mn",
+      "key": "HAS_ELEMENT:Mn"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-752536",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-752536",
+      "target": "chemsys:Mn-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-752536",
+      "target": "structure:mp-752536",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-752536",
+      "target": "property:mp-752536:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-752536",
+      "target": "property:mp-752536:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-752536",
+      "target": "property:mp-752536:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-7586",
+      "target": "element:C",
+      "key": "HAS_ELEMENT:C"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-7586",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-7586",
+      "target": "chemsys:C-Ni",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-7586",
+      "target": "structure:mp-7586",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-7586",
+      "target": "property:mp-7586:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-7586",
+      "target": "property:mp-7586:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-7586",
+      "target": "property:mp-7586:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1147746",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-1147746",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1147746",
+      "target": "chemsys:Co-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1147746",
+      "target": "structure:mp-1147746",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1147746",
+      "target": "property:mp-1147746:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1147746",
+      "target": "property:mp-1147746:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1147746",
+      "target": "property:mp-1147746:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-770274",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 16,
+      "source": "material:mp-770274",
+      "target": "element:P",
+      "key": "HAS_ELEMENT:P"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-770274",
+      "target": "chemsys:Ni-P",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-770274",
+      "target": "structure:mp-770274",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-770274",
+      "target": "property:mp-770274:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-770274",
+      "target": "property:mp-770274:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-770274",
+      "target": "property:mp-770274:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-753682",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-753682",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-753682",
+      "target": "chemsys:Fe-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-753682",
+      "target": "structure:mp-753682",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-753682",
+      "target": "property:mp-753682:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-753682",
+      "target": "property:mp-753682:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-753682",
+      "target": "property:mp-753682:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1188678",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 10,
+      "source": "material:mp-1188678",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1188678",
+      "target": "chemsys:Fe-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1188678",
+      "target": "structure:mp-1188678",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1188678",
+      "target": "property:mp-1188678:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1188678",
+      "target": "property:mp-1188678:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1188678",
+      "target": "property:mp-1188678:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 5,
+      "source": "material:mp-1225019",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 1,
+      "source": "material:mp-1225019",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1225019",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1225019",
+      "target": "chemsys:Fe-Ni-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1225019",
+      "target": "structure:mp-1225019",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1225019",
+      "target": "property:mp-1225019:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1225019",
+      "target": "property:mp-1225019:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1225019",
+      "target": "property:mp-1225019:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 2,
+      "source": "material:mp-25234",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-25234",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-25234",
+      "target": "chemsys:Co-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-25234",
+      "target": "structure:mp-25234",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25234",
+      "target": "property:mp-25234:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25234",
+      "target": "property:mp-25234:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-25234",
+      "target": "property:mp-25234:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 9,
+      "source": "material:mp-767469",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 10,
+      "source": "material:mp-767469",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-767469",
+      "target": "chemsys:Ni-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-767469",
+      "target": "structure:mp-767469",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-767469",
+      "target": "property:mp-767469:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-767469",
+      "target": "property:mp-767469:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-767469",
+      "target": "property:mp-767469:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-856161",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-856161",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-856161",
+      "target": "chemsys:Co-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-856161",
+      "target": "structure:mp-856161",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-856161",
+      "target": "property:mp-856161:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-856161",
+      "target": "property:mp-856161:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-856161",
+      "target": "property:mp-856161:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-1271940",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1271940",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1271940",
+      "target": "chemsys:Co-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1271940",
+      "target": "structure:mp-1271940",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1271940",
+      "target": "property:mp-1271940:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1271940",
+      "target": "property:mp-1271940:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1271940",
+      "target": "property:mp-1271940:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1627",
+      "target": "element:Mo",
+      "key": "HAS_ELEMENT:Mo"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 6,
+      "source": "material:mp-1627",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1627",
+      "target": "chemsys:Mo-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1627",
+      "target": "structure:mp-1627",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1627",
+      "target": "property:mp-1627:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1627",
+      "target": "property:mp-1627:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1627",
+      "target": "property:mp-1627:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1275937",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1275937",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1275937",
+      "target": "chemsys:Co-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1275937",
+      "target": "structure:mp-1275937",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1275937",
+      "target": "property:mp-1275937:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1275937",
+      "target": "property:mp-1275937:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1275937",
+      "target": "property:mp-1275937:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-850068",
+      "target": "element:Ni",
+      "key": "HAS_ELEMENT:Ni"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-850068",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-850068",
+      "target": "chemsys:Ni-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-850068",
+      "target": "structure:mp-850068",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-850068",
+      "target": "property:mp-850068:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-850068",
+      "target": "property:mp-850068:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-850068",
+      "target": "property:mp-850068:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 7,
+      "source": "material:mp-32939",
+      "target": "element:Fe",
+      "key": "HAS_ELEMENT:Fe"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-32939",
+      "target": "element:O",
+      "key": "HAS_ELEMENT:O"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-32939",
+      "target": "chemsys:Fe-O",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-32939",
+      "target": "structure:mp-32939",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-32939",
+      "target": "property:mp-32939:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-32939",
+      "target": "property:mp-32939:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-32939",
+      "target": "property:mp-32939:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 4,
+      "source": "material:mp-1390701",
+      "target": "element:Co",
+      "key": "HAS_ELEMENT:Co"
+    },
+    {
+      "type": "HAS_ELEMENT",
+      "count": 8,
+      "source": "material:mp-1390701",
+      "target": "element:S",
+      "key": "HAS_ELEMENT:S"
+    },
+    {
+      "type": "IN_CHEMSYS",
+      "source": "material:mp-1390701",
+      "target": "chemsys:Co-S",
+      "key": "IN_CHEMSYS"
+    },
+    {
+      "type": "HAS_STRUCTURE",
+      "source": "material:mp-1390701",
+      "target": "structure:mp-1390701",
+      "key": "HAS_STRUCTURE"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1390701",
+      "target": "property:mp-1390701:energy_above_hull",
+      "key": "HAS_PROPERTY:energy_above_hull"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1390701",
+      "target": "property:mp-1390701:formation_energy_per_atom",
+      "key": "HAS_PROPERTY:formation_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "material:mp-1390701",
+      "target": "property:mp-1390701:band_gap",
+      "key": "HAS_PROPERTY:band_gap"
     },
     {
       "type": "HAS_PROPERTY",
@@ -12919,6 +18403,30 @@
     },
     {
       "type": "HAS_PROPERTY",
+      "source": "mp-2301",
+      "target": "property:mp-2301:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-2296",
+      "target": "property:mp-2296:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-22619",
+      "target": "property:mp-22619:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-1189340",
+      "target": "property:mp-1189340:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
       "source": "mp-1005",
       "target": "property:mp-1005:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
@@ -12931,80 +18439,26 @@
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-18708",
-      "target": "property:mp-18708:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-1189340",
-      "target": "property:mp-1189340:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-219",
-      "target": "property:mp-219:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-10004",
-      "target": "property:mp-10004:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-1887",
-      "target": "property:mp-1887:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-11508",
-      "target": "property:mp-11508:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
       "source": "mp-2662",
       "target": "property:mp-2662:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-2065",
-      "target": "property:mp-2065:mace_energy_per_atom",
+      "source": "mp-362",
+      "target": "property:mp-362:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-2305",
-      "target": "property:mp-2305:mace_energy_per_atom",
+      "source": "mp-1050",
+      "target": "property:mp-1050:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-1552",
-      "target": "property:mp-1552:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-19009",
-      "target": "property:mp-19009:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-1434",
-      "target": "property:mp-1434:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-224",
-      "target": "property:mp-224:mace_energy_per_atom",
+      "source": "mp-505531",
+      "target": "property:mp-505531:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
@@ -13015,56 +18469,20 @@
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-2070",
-      "target": "property:mp-2070:mace_energy_per_atom",
+      "source": "mp-2065",
+      "target": "property:mp-2065:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-1180046",
-      "target": "property:mp-1180046:mace_energy_per_atom",
+      "source": "mp-224",
+      "target": "property:mp-224:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-778",
-      "target": "property:mp-778:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-1849",
-      "target": "property:mp-1849:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-22204",
-      "target": "property:mp-22204:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-22408",
-      "target": "property:mp-22408:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-1274279",
-      "target": "property:mp-1274279:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-1232659",
-      "target": "property:mp-1232659:mace_energy_per_atom",
-      "key": "HAS_PROPERTY:mace_energy_per_atom"
-    },
-    {
-      "type": "HAS_PROPERTY",
-      "source": "mp-1422029",
-      "target": "property:mp-1422029:mace_energy_per_atom",
+      "source": "mp-1434",
+      "target": "property:mp-1434:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
@@ -13081,26 +18499,92 @@
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-505531",
-      "target": "property:mp-505531:mace_energy_per_atom",
+      "source": "mp-18708",
+      "target": "property:mp-18708:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-1400906",
-      "target": "property:mp-1400906:mace_energy_per_atom",
+      "source": "mp-22204",
+      "target": "property:mp-22204:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-1279343",
-      "target": "property:mp-1279343:mace_energy_per_atom",
+      "source": "mp-19009",
+      "target": "property:mp-19009:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
       "type": "HAS_PROPERTY",
-      "source": "mp-1102036",
-      "target": "property:mp-1102036:mace_energy_per_atom",
+      "source": "mp-1274279",
+      "target": "property:mp-1274279:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-1887",
+      "target": "property:mp-1887:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-219",
+      "target": "property:mp-219:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-11508",
+      "target": "property:mp-11508:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-2070",
+      "target": "property:mp-2070:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-1422029",
+      "target": "property:mp-1422029:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-1232659",
+      "target": "property:mp-1232659:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-644514",
+      "target": "property:mp-644514:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-19770",
+      "target": "property:mp-19770:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-1271793",
+      "target": "property:mp-1271793:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-35596",
+      "target": "property:mp-35596:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-754168",
+      "target": "property:mp-754168:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     },
     {
@@ -13123,8 +18607,20 @@
     },
     {
       "type": "HAS_PROPERTY",
+      "source": "mp-770274",
+      "target": "property:mp-770274:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
       "source": "mp-2790",
       "target": "property:mp-2790:mace_energy_per_atom",
+      "key": "HAS_PROPERTY:mace_energy_per_atom"
+    },
+    {
+      "type": "HAS_PROPERTY",
+      "source": "mp-1102036",
+      "target": "property:mp-1102036:mace_energy_per_atom",
       "key": "HAS_PROPERTY:mace_energy_per_atom"
     }
   ]

@@ -1,27 +1,27 @@
 {
   "summary": {
-    "n_nodes": 686,
-    "n_edges": 921,
+    "n_nodes": 983,
+    "n_edges": 1343,
     "nodes_by_type": {
-      "Material": 130,
+      "Material": 189,
       "Element": 12,
-      "Chemsys": 24,
-      "Structure": 130,
-      "Property": 390
+      "Chemsys": 26,
+      "Structure": 189,
+      "Property": 567
     },
     "properties_by_name": {
-      "energy_above_hull": 130,
-      "formation_energy_per_atom": 130,
-      "band_gap": 130
+      "energy_above_hull": 189,
+      "formation_energy_per_atom": 189,
+      "band_gap": 189
     },
-    "n_materials": 130,
-    "n_structures_parsed": 130,
+    "n_materials": 189,
+    "n_structures_parsed": 189,
     "n_structures_failed": 0,
     "cache": {
       "hits": 0,
-      "misses": 130,
+      "misses": 189,
       "failures": 0,
-      "cached_count": 130
+      "cached_count": 189
     }
   },
   "per_material": [
@@ -2108,6 +2108,959 @@
       "element_counts": {
         "Co": 12,
         "P": 4
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1306224",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Mn": 4,
+        "O": 6
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-752759",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Cmce",
+      "element_counts": {
+        "Co": 4,
+        "Ni": 2,
+        "O": 12
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-753469",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Co": 4,
+        "Ni": 2,
+        "O": 12
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-19006",
+      "structure_parsed": true,
+      "crystal_system": "cubic",
+      "space_group_symbol": "Fm-3m",
+      "element_counts": {
+        "Mn": 2,
+        "O": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-2831286",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Cmc2_1",
+      "element_counts": {
+        "Mn": 4,
+        "O": 4
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-765860",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Imma",
+      "element_counts": {
+        "Fe": 4,
+        "Co": 2,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-754430",
+      "structure_parsed": true,
+      "crystal_system": "cubic",
+      "space_group_symbol": "Im-3",
+      "element_counts": {
+        "Mn": 7,
+        "O": 12
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-13154",
+      "structure_parsed": true,
+      "crystal_system": "hexagonal",
+      "space_group_symbol": "P6_322",
+      "element_counts": {
+        "Fe": 6,
+        "C": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-510623",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Pnma",
+      "element_counts": {
+        "Fe": 12,
+        "C": 4
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1278937",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Fddd",
+      "element_counts": {
+        "Co": 4,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1275132",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Co": 4,
+        "Ni": 2,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1209828",
+      "structure_parsed": true,
+      "crystal_system": "tetragonal",
+      "space_group_symbol": "I-42m",
+      "element_counts": {
+        "P": 4,
+        "W": 12
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-999539",
+      "structure_parsed": true,
+      "crystal_system": "hexagonal",
+      "space_group_symbol": "P6_3mc",
+      "element_counts": {
+        "Mn": 2,
+        "O": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1303934",
+      "structure_parsed": true,
+      "crystal_system": "monoclinic",
+      "space_group_symbol": "C2/c",
+      "element_counts": {
+        "Mn": 4,
+        "O": 6
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-755671",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Mn": 2,
+        "O": 4
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-2794",
+      "structure_parsed": true,
+      "crystal_system": "monoclinic",
+      "space_group_symbol": "C2/c",
+      "element_counts": {
+        "Fe": 10,
+        "C": 4
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1871",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Pnnm",
+      "element_counts": {
+        "Fe": 4,
+        "C": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1103643",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Pnma",
+      "element_counts": {
+        "Ni": 4,
+        "S": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-25424",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Mn": 1,
+        "O": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-763787",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Fe": 8,
+        "O": 9
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-850249",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P1",
+      "element_counts": {
+        "Fe": 8,
+        "S": 10
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1106195",
+      "structure_parsed": true,
+      "crystal_system": "tetragonal",
+      "space_group_symbol": "I-4",
+      "element_counts": {
+        "P": 4,
+        "W": 12
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-850083",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P1",
+      "element_counts": {
+        "Fe": 8,
+        "S": 10
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1304693",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Co": 4,
+        "Ni": 2,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1221498",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "P-3m1",
+      "element_counts": {
+        "Mo": 2,
+        "C": 1
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-25223",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "P-3m1",
+      "element_counts": {
+        "Mn": 1,
+        "O": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-870701",
+      "structure_parsed": true,
+      "crystal_system": "monoclinic",
+      "space_group_symbol": "P2",
+      "element_counts": {
+        "Fe": 8,
+        "S": 10
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-770543",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R-3c",
+      "element_counts": {
+        "Mn": 4,
+        "O": 6
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-2164",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R-3",
+      "element_counts": {
+        "Mo": 6,
+        "S": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-2034",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Pbcn",
+      "element_counts": {
+        "W": 8,
+        "C": 4
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-756471",
+      "structure_parsed": true,
+      "crystal_system": "monoclinic",
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Fe": 1,
+        "Co": 5,
+        "O": 12
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1271850",
+      "structure_parsed": true,
+      "crystal_system": "hexagonal",
+      "space_group_symbol": "P6_3/mmc",
+      "element_counts": {
+        "Mn": 4,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-2647022",
+      "structure_parsed": true,
+      "crystal_system": "hexagonal",
+      "space_group_symbol": "P6_3/mmc",
+      "element_counts": {
+        "Pt": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-33065",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Pnnm",
+      "element_counts": {
+        "W": 4,
+        "C": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1272141",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Mn": 1,
+        "O": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1281832",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Co": 2,
+        "O": 4
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1095353",
+      "structure_parsed": true,
+      "crystal_system": "cubic",
+      "space_group_symbol": "Pa-3",
+      "element_counts": {
+        "Ir": 4,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-25275",
+      "structure_parsed": true,
+      "crystal_system": "cubic",
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Mn": 4,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1272388",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R3",
+      "element_counts": {
+        "Fe": 2,
+        "Ni": 2,
+        "O": 6
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-18257",
+      "structure_parsed": true,
+      "crystal_system": "hexagonal",
+      "space_group_symbol": "P6_3mc",
+      "element_counts": {
+        "Fe": 14,
+        "C": 6
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-768499",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R-3",
+      "element_counts": {
+        "Fe": 2,
+        "Ni": 2,
+        "O": 6
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-22684",
+      "structure_parsed": true,
+      "crystal_system": "cubic",
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Fe": 4,
+        "Ni": 2,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-567397",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "P-31m",
+      "element_counts": {
+        "W": 6,
+        "C": 3
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-752536",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Mn": 5,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-7586",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R-3c",
+      "element_counts": {
+        "Ni": 6,
+        "C": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1147746",
+      "structure_parsed": true,
+      "crystal_system": "tetragonal",
+      "space_group_symbol": "P4/nmm",
+      "element_counts": {
+        "Co": 2,
+        "S": 2
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-770274",
+      "structure_parsed": true,
+      "crystal_system": "monoclinic",
+      "space_group_symbol": "C2/c",
+      "element_counts": {
+        "Ni": 4,
+        "P": 16
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-753682",
+      "structure_parsed": true,
+      "crystal_system": "tetragonal",
+      "space_group_symbol": "P4_2/mmc",
+      "element_counts": {
+        "Fe": 4,
+        "O": 4
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1188678",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Cmcm",
+      "element_counts": {
+        "Fe": 8,
+        "O": 10
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1225019",
+      "structure_parsed": true,
+      "crystal_system": "trigonal",
+      "space_group_symbol": "R-3m",
+      "element_counts": {
+        "Fe": 5,
+        "Ni": 1,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-25234",
+      "structure_parsed": true,
+      "crystal_system": "monoclinic",
+      "space_group_symbol": "C2/m",
+      "element_counts": {
+        "Co": 2,
+        "O": 4
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-767469",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P-1",
+      "element_counts": {
+        "Ni": 9,
+        "S": 10
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-856161",
+      "structure_parsed": true,
+      "crystal_system": "triclinic",
+      "space_group_symbol": "P1",
+      "element_counts": {
+        "Co": 4,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1271940",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Imma",
+      "element_counts": {
+        "Co": 6,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1627",
+      "structure_parsed": true,
+      "crystal_system": "monoclinic",
+      "space_group_symbol": "P2_1/m",
+      "element_counts": {
+        "Mo": 4,
+        "S": 6
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1275937",
+      "structure_parsed": true,
+      "crystal_system": "monoclinic",
+      "space_group_symbol": "Cm",
+      "element_counts": {
+        "Co": 4,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-850068",
+      "structure_parsed": true,
+      "crystal_system": "orthorhombic",
+      "space_group_symbol": "Pbcn",
+      "element_counts": {
+        "Ni": 4,
+        "S": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-32939",
+      "structure_parsed": true,
+      "crystal_system": "cubic",
+      "space_group_symbol": "Fm-3m",
+      "element_counts": {
+        "Fe": 7,
+        "O": 8
+      },
+      "properties_added": [
+        "energy_above_hull",
+        "formation_energy_per_atom",
+        "band_gap"
+      ],
+      "cache_used": false
+    },
+    {
+      "mpid": "mp-1390701",
+      "structure_parsed": true,
+      "crystal_system": "cubic",
+      "space_group_symbol": "Fd-3m",
+      "element_counts": {
+        "Co": 4,
+        "S": 8
       },
       "properties_added": [
         "energy_above_hull",

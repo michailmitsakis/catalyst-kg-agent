@@ -1,11 +1,11 @@
 {
   "campaign_state": {
     "campaign_id": "demo-002",
-    "start_time": "2026-09-03T23:44:27.692715",
-    "end_time": "2026-09-03T23:44:53.133452",
+    "start_time": "2026-09-06T21:44:06.020593",
+    "end_time": "2026-09-06T21:44:29.647098",
     "status": "budget_exhausted",
-    "n_materials_evaluated": 17,
-    "best_candidate_mpid": "mp-1434",
+    "n_materials_evaluated": 15,
+    "best_candidate_mpid": "mp-18708",
     "budget_remaining": 3.5
   },
   "budget_tracker": {
@@ -14,13 +14,13 @@
     "total_spent": 96.5,
     "costs_by_category": {
       "kg_lookup": 1.0,
-      "surrogate_query": 85.0,
-      "experiment_escalation": 10.0
+      "surrogate_query": 75.0,
+      "experiment_escalation": 20.0
     },
     "actions_by_category": {
       "kg_lookup": 1,
-      "surrogate_query": 17,
-      "experiment_escalation": 1
+      "surrogate_query": 15,
+      "experiment_escalation": 2
     },
     "efficiency": {
       "kg_lookup": 1.0,
@@ -28,6 +28,6 @@
       "experiment_escalation": 10.0
     }
   },
-  "end_time": "2026-09-03T23:44:53.133452",
+  "end_time": "2026-09-06T21:44:29.647598",
   "best_candidate_e_above_hull": 0.0
 }

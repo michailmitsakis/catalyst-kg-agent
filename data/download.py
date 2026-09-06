@@ -45,11 +45,15 @@ BENCHMARK_SYSTEMS = ["Pt", "Ir-O"]
 
 CHEMSYS_GROUPS = HER_SYSTEMS + OER_SYSTEMS + BENCHMARK_SYSTEMS
 
-# Stability filter per AtomisticSkills workflow: e_above_hull <= 50 meV/atom
-# is the conventional "metastable but synthesizable" cutoff.
-E_ABOVE_HULL_RANGE = (0.0, 0.05)
+# Stability filter: 50 meV/atom is the conventional "metastable but
+# synthesizable" cutoff. We pull to 100 meV/atom so the Critic's
+# STABILITY_THRESHOLD (0.05) has a band to actually reject -- with the pull
+# and the threshold at the same value, nothing in the corpus could ever fail
+# the stability gate. See Sun et al., Sci. Adv. 2 (2016) e1600225 on the
+# thermodynamic scale of metastability.
+E_ABOVE_HULL_RANGE = (0.0, 0.1)
 NUM_SITES_RANGE = (0, 20)
-TOP_N_BY_STABILITY = 300  # sane cap, likely won't be hit
+TOP_N_BY_STABILITY = 500  # raised from 300; the cap starts to bind at 0.1
 
 METADATA_FIELDS = [
     "material_id",

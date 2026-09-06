@@ -1,11 +1,11 @@
 {
   "campaign_state": {
     "campaign_id": "demo-001",
-    "start_time": "2026-09-03T23:42:47.340067",
-    "end_time": "2026-09-03T23:43:15.347564",
+    "start_time": "2026-09-06T21:42:57.982896",
+    "end_time": "2026-09-06T21:43:32.801171",
     "status": "budget_exhausted",
     "n_materials_evaluated": 19,
-    "best_candidate_mpid": "mp-2296",
+    "best_candidate_mpid": "mp-22270",
     "budget_remaining": 3.5
   },
   "budget_tracker": {
@@ -28,6 +28,6 @@
       "experiment_escalation": null
     }
   },
-  "end_time": "2026-09-03T23:43:15.347564",
+  "end_time": "2026-09-06T21:43:32.801171",
   "best_candidate_e_above_hull": 0.0
 }

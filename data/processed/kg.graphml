@@ -5233,39 +5233,2315 @@
   <data key="d13">eV</data>
   <data key="d14">MaterialsProject</data>
 </node>
-<node id="property:mp-2296:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-2296</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.121899855911552</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1889</data>
-  <data key="d16">1</data>
+<node id="material:mp-1306224">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1306224</data>
+  <data key="d2">Mn2O3</data>
+  <data key="d3">["Mn", "O"]</data>
 </node>
-<node id="mp-2296"/>
-<node id="property:mp-22619:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-22619</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.871767884469874</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2041</data>
-  <data key="d16">1</data>
+<node id="structure:mp-1306224">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1306224</data>
+  <data key="d6">data/raw/structures/mp-1306224.cif</data>
+  <data key="d7">P-1</data>
+  <data key="d8">2</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">10</data>
 </node>
-<node id="mp-22619"/>
-<node id="property:mp-2301:mace_energy_per_atom">
+<node id="property:mp-1306224:energy_above_hull">
   <data key="d0">Property</data>
-  <data key="d1">mp-2301</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.775516667699876</data>
+  <data key="d1">mp-1306224</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05031748937500069</data>
   <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.4038</data>
-  <data key="d16">1</data>
+  <data key="d14">MaterialsProject</data>
 </node>
-<node id="mp-2301"/>
+<node id="property:mp-1306224:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1306224</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.9636023541724128</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1306224:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1306224</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.3511000000000002</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-752759">
+  <data key="d0">Material</data>
+  <data key="d1">mp-752759</data>
+  <data key="d2">Co2NiO6</data>
+  <data key="d3">["Co", "Ni", "O"]</data>
+</node>
+<node id="structure:mp-752759">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-752759</data>
+  <data key="d6">data/raw/structures/mp-752759.cif</data>
+  <data key="d7">Cmce</data>
+  <data key="d8">64</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">18</data>
+</node>
+<node id="property:mp-752759:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-752759</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.050460871111112304</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-752759:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-752759</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.9384899866666672</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-752759:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-752759</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-753469">
+  <data key="d0">Material</data>
+  <data key="d1">mp-753469</data>
+  <data key="d2">Co2NiO6</data>
+  <data key="d3">["Co", "Ni", "O"]</data>
+</node>
+<node id="structure:mp-753469">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-753469</data>
+  <data key="d6">data/raw/structures/mp-753469.cif</data>
+  <data key="d7">P-1</data>
+  <data key="d8">2</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">18</data>
+</node>
+<node id="property:mp-753469:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-753469</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05083281055555755</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-753469:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-753469</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.9381180472222224</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-753469:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-753469</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-19006">
+  <data key="d0">Material</data>
+  <data key="d1">mp-19006</data>
+  <data key="d2">MnO</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-19006">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-19006</data>
+  <data key="d6">data/raw/structures/mp-19006.cif</data>
+  <data key="d7">Fm-3m</data>
+  <data key="d8">225</data>
+  <data key="d9">cubic</data>
+  <data key="d10">4</data>
+</node>
+<node id="property:mp-19006:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-19006</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.053368562500001104</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-19006:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-19006</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.979201203965518</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-19006:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-19006</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.18440000000000012</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-2831286">
+  <data key="d0">Material</data>
+  <data key="d1">mp-2831286</data>
+  <data key="d2">MnO</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-2831286">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-2831286</data>
+  <data key="d6">data/raw/structures/mp-2831286.cif</data>
+  <data key="d7">Cmc2_1</data>
+  <data key="d8">36</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">8</data>
+</node>
+<node id="property:mp-2831286:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2831286</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05536453875000191</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2831286:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2831286</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.9772052277155172</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2831286:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2831286</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.9851000000000001</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-765860">
+  <data key="d0">Material</data>
+  <data key="d1">mp-765860</data>
+  <data key="d2">Fe2CoO4</data>
+  <data key="d3">["Co", "Fe", "O"]</data>
+</node>
+<node id="structure:mp-765860">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-765860</data>
+  <data key="d6">data/raw/structures/mp-765860.cif</data>
+  <data key="d7">Imma</data>
+  <data key="d8">74</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">14</data>
+</node>
+<node id="property:mp-765860:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-765860</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05538123749999979</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-765860:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-765860</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.527350056428572</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-765860:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-765860</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">1.2323</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-754430">
+  <data key="d0">Material</data>
+  <data key="d1">mp-754430</data>
+  <data key="d2">Mn7O12</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-754430">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-754430</data>
+  <data key="d6">data/raw/structures/mp-754430.cif</data>
+  <data key="d7">Im-3</data>
+  <data key="d8">204</data>
+  <data key="d9">cubic</data>
+  <data key="d10">19</data>
+</node>
+<node id="property:mp-754430:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-754430</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.0557821250657895</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-754430:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-754430</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.8674783881851182</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-754430:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-754430</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-13154">
+  <data key="d0">Material</data>
+  <data key="d1">mp-13154</data>
+  <data key="d2">Fe3C</data>
+  <data key="d3">["C", "Fe"]</data>
+</node>
+<node id="chemsys:C-Fe">
+  <data key="d0">Chemsys</data>
+  <data key="d5">["C", "Fe"]</data>
+</node>
+<node id="structure:mp-13154">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-13154</data>
+  <data key="d6">data/raw/structures/mp-13154.cif</data>
+  <data key="d7">P6_322</data>
+  <data key="d8">182</data>
+  <data key="d9">hexagonal</data>
+  <data key="d10">8</data>
+</node>
+<node id="property:mp-13154:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-13154</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.056359594999999985</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-13154:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-13154</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">0.056359594999999985</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-13154:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-13154</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-510623">
+  <data key="d0">Material</data>
+  <data key="d1">mp-510623</data>
+  <data key="d2">Fe3C</data>
+  <data key="d3">["C", "Fe"]</data>
+</node>
+<node id="structure:mp-510623">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-510623</data>
+  <data key="d6">data/raw/structures/mp-510623.cif</data>
+  <data key="d7">Pnma</data>
+  <data key="d8">62</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">16</data>
+</node>
+<node id="property:mp-510623:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-510623</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05671033062500008</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-510623:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-510623</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">0.05671033062500008</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-510623:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-510623</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1278937">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1278937</data>
+  <data key="d2">CoO2</data>
+  <data key="d3">["Co", "O"]</data>
+</node>
+<node id="structure:mp-1278937">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1278937</data>
+  <data key="d6">data/raw/structures/mp-1278937.cif</data>
+  <data key="d7">Fddd</data>
+  <data key="d8">70</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-1278937:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1278937</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05732840500000069</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1278937:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1278937</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.0151042550000007</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1278937:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1278937</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">1.0532</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1275132">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1275132</data>
+  <data key="d2">Co2NiO4</data>
+  <data key="d3">["Co", "Ni", "O"]</data>
+</node>
+<node id="structure:mp-1275132">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1275132</data>
+  <data key="d6">data/raw/structures/mp-1275132.cif</data>
+  <data key="d7">P-1</data>
+  <data key="d8">2</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">14</data>
+</node>
+<node id="property:mp-1275132:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1275132</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.057834809081645844</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1275132:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1275132</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.1706307964285716</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1275132:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1275132</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1209828">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1209828</data>
+  <data key="d2">PW3</data>
+  <data key="d3">["P", "W"]</data>
+</node>
+<node id="structure:mp-1209828">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1209828</data>
+  <data key="d6">data/raw/structures/mp-1209828.cif</data>
+  <data key="d7">I-42m</data>
+  <data key="d8">121</data>
+  <data key="d9">tetragonal</data>
+  <data key="d10">16</data>
+</node>
+<node id="property:mp-1209828:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1209828</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.057999603124997634</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1209828:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1209828</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.12412992886905272</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1209828:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1209828</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-999539">
+  <data key="d0">Material</data>
+  <data key="d1">mp-999539</data>
+  <data key="d2">MnO</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-999539">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-999539</data>
+  <data key="d6">data/raw/structures/mp-999539.cif</data>
+  <data key="d7">P6_3mc</data>
+  <data key="d8">186</data>
+  <data key="d9">hexagonal</data>
+  <data key="d10">4</data>
+</node>
+<node id="property:mp-999539:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-999539</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05855402375000196</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-999539:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-999539</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.9740157427155172</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-999539:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-999539</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1303934">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1303934</data>
+  <data key="d2">Mn2O3</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-1303934">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1303934</data>
+  <data key="d6">data/raw/structures/mp-1303934.cif</data>
+  <data key="d7">C2/c</data>
+  <data key="d8">15</data>
+  <data key="d9">monoclinic</data>
+  <data key="d10">10</data>
+</node>
+<node id="property:mp-1303934:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1303934</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05860406837500065</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1303934:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1303934</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.9553157751724128</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1303934:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1303934</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-755671">
+  <data key="d0">Material</data>
+  <data key="d1">mp-755671</data>
+  <data key="d2">MnO2</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-755671">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-755671</data>
+  <data key="d6">data/raw/structures/mp-755671.cif</data>
+  <data key="d7">R-3m</data>
+  <data key="d8">166</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">6</data>
+</node>
+<node id="property:mp-755671:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-755671</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05984685722222238</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-755671:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-755671</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.7626810668103456</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-755671:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-755671</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-2794">
+  <data key="d0">Material</data>
+  <data key="d1">mp-2794</data>
+  <data key="d2">Fe5C2</data>
+  <data key="d3">["C", "Fe"]</data>
+</node>
+<node id="structure:mp-2794">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-2794</data>
+  <data key="d6">data/raw/structures/mp-2794.cif</data>
+  <data key="d7">C2/c</data>
+  <data key="d8">15</data>
+  <data key="d9">monoclinic</data>
+  <data key="d10">14</data>
+</node>
+<node id="property:mp-2794:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2794</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.05985946571428613</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2794:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2794</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">0.059859465714285624</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2794:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2794</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1871">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1871</data>
+  <data key="d2">Fe2C</data>
+  <data key="d3">["C", "Fe"]</data>
+</node>
+<node id="structure:mp-1871">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1871</data>
+  <data key="d6">data/raw/structures/mp-1871.cif</data>
+  <data key="d7">Pnnm</data>
+  <data key="d8">58</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">6</data>
+</node>
+<node id="property:mp-1871:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1871</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06014737499999967</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1871:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1871</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">0.060147375000000856</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1871:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1871</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1103643">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1103643</data>
+  <data key="d2">NiS2</data>
+  <data key="d3">["Ni", "S"]</data>
+</node>
+<node id="structure:mp-1103643">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1103643</data>
+  <data key="d6">data/raw/structures/mp-1103643.cif</data>
+  <data key="d7">Pnma</data>
+  <data key="d8">62</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-1103643:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1103643</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06017464333333411</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1103643:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1103643</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.531351894999999</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1103643:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1103643</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-25424">
+  <data key="d0">Material</data>
+  <data key="d1">mp-25424</data>
+  <data key="d2">MnO2</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-25424">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-25424</data>
+  <data key="d6">data/raw/structures/mp-25424.cif</data>
+  <data key="d7">R-3m</data>
+  <data key="d8">166</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">3</data>
+</node>
+<node id="property:mp-25424:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25424</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.0608851422222223</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-25424:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25424</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.7616427818103457</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-25424:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25424</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">1.8708</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-763787">
+  <data key="d0">Material</data>
+  <data key="d1">mp-763787</data>
+  <data key="d2">Fe8O9</data>
+  <data key="d3">["Fe", "O"]</data>
+</node>
+<node id="structure:mp-763787">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-763787</data>
+  <data key="d6">data/raw/structures/mp-763787.cif</data>
+  <data key="d7">P-1</data>
+  <data key="d8">2</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">17</data>
+</node>
+<node id="property:mp-763787:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-763787</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.061250607647057365</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-763787:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-763787</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.486613475588236</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-763787:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-763787</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">1.4134000000000002</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-850249">
+  <data key="d0">Material</data>
+  <data key="d1">mp-850249</data>
+  <data key="d2">Fe4S5</data>
+  <data key="d3">["Fe", "S"]</data>
+</node>
+<node id="structure:mp-850249">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-850249</data>
+  <data key="d6">data/raw/structures/mp-850249.cif</data>
+  <data key="d7">P1</data>
+  <data key="d8">1</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">18</data>
+</node>
+<node id="property:mp-850249:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-850249</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06171048499999987</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-850249:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-850249</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.7257425258333328</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-850249:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-850249</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1106195">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1106195</data>
+  <data key="d2">PW3</data>
+  <data key="d3">["P", "W"]</data>
+</node>
+<node id="structure:mp-1106195">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1106195</data>
+  <data key="d6">data/raw/structures/mp-1106195.cif</data>
+  <data key="d7">I-4</data>
+  <data key="d8">82</data>
+  <data key="d9">tetragonal</data>
+  <data key="d10">16</data>
+</node>
+<node id="property:mp-1106195:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1106195</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06177334375000498</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1106195:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1106195</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.12035618824404537</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1106195:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1106195</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-850083">
+  <data key="d0">Material</data>
+  <data key="d1">mp-850083</data>
+  <data key="d2">Fe4S5</data>
+  <data key="d3">["Fe", "S"]</data>
+</node>
+<node id="structure:mp-850083">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-850083</data>
+  <data key="d6">data/raw/structures/mp-850083.cif</data>
+  <data key="d7">P1</data>
+  <data key="d8">1</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">18</data>
+</node>
+<node id="property:mp-850083:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-850083</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06218277333333333</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-850083:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-850083</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.7252702374999992</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-850083:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-850083</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1304693">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1304693</data>
+  <data key="d2">Co2NiO4</data>
+  <data key="d3">["Co", "Ni", "O"]</data>
+</node>
+<node id="structure:mp-1304693">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1304693</data>
+  <data key="d6">data/raw/structures/mp-1304693.cif</data>
+  <data key="d7">P-1</data>
+  <data key="d8">2</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">14</data>
+</node>
+<node id="property:mp-1304693:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1304693</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06273705336735969</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1304693:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1304693</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.165728552142857</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1304693:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1304693</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">1.7410999999999999</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1221498">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1221498</data>
+  <data key="d2">Mo2C</data>
+  <data key="d3">["C", "Mo"]</data>
+</node>
+<node id="structure:mp-1221498">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1221498</data>
+  <data key="d6">data/raw/structures/mp-1221498.cif</data>
+  <data key="d7">P-3m1</data>
+  <data key="d8">164</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">3</data>
+</node>
+<node id="property:mp-1221498:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1221498</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06276392999999914</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1221498:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1221498</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.07628568666666762</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1221498:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1221498</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-25223">
+  <data key="d0">Material</data>
+  <data key="d1">mp-25223</data>
+  <data key="d2">MnO2</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-25223">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-25223</data>
+  <data key="d6">data/raw/structures/mp-25223.cif</data>
+  <data key="d7">P-3m1</data>
+  <data key="d8">164</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">3</data>
+</node>
+<node id="property:mp-25223:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25223</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06357083222222215</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-25223:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25223</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.7589570918103459</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-25223:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25223</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">1.4647999999999999</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-870701">
+  <data key="d0">Material</data>
+  <data key="d1">mp-870701</data>
+  <data key="d2">Fe4S5</data>
+  <data key="d3">["Fe", "S"]</data>
+</node>
+<node id="structure:mp-870701">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-870701</data>
+  <data key="d6">data/raw/structures/mp-870701.cif</data>
+  <data key="d7">P2</data>
+  <data key="d8">3</data>
+  <data key="d9">monoclinic</data>
+  <data key="d10">18</data>
+</node>
+<node id="property:mp-870701:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-870701</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06386601999999986</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-870701:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-870701</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.7235869908333328</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-870701:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-870701</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-770543">
+  <data key="d0">Material</data>
+  <data key="d1">mp-770543</data>
+  <data key="d2">Mn2O3</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-770543">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-770543</data>
+  <data key="d6">data/raw/structures/mp-770543.cif</data>
+  <data key="d7">R-3c</data>
+  <data key="d8">167</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">10</data>
+</node>
+<node id="property:mp-770543:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-770543</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.064272060375</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-770543:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-770543</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.9496477831724135</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-770543:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-770543</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-2164">
+  <data key="d0">Material</data>
+  <data key="d1">mp-2164</data>
+  <data key="d2">Mo3S4</data>
+  <data key="d3">["Mo", "S"]</data>
+</node>
+<node id="structure:mp-2164">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-2164</data>
+  <data key="d6">data/raw/structures/mp-2164.cif</data>
+  <data key="d7">R-3</data>
+  <data key="d8">148</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">14</data>
+</node>
+<node id="property:mp-2164:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2164</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06481158214285543</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2164:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2164</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.7633105994642884</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2164:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2164</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-2034">
+  <data key="d0">Material</data>
+  <data key="d1">mp-2034</data>
+  <data key="d2">W2C</data>
+  <data key="d3">["C", "W"]</data>
+</node>
+<node id="structure:mp-2034">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-2034</data>
+  <data key="d6">data/raw/structures/mp-2034.cif</data>
+  <data key="d7">Pbcn</data>
+  <data key="d8">60</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-2034:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2034</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06544971916666498</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2034:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2034</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.03691077750000223</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2034:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2034</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-756471">
+  <data key="d0">Material</data>
+  <data key="d1">mp-756471</data>
+  <data key="d2">FeCo5O12</data>
+  <data key="d3">["Co", "Fe", "O"]</data>
+</node>
+<node id="structure:mp-756471">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-756471</data>
+  <data key="d6">data/raw/structures/mp-756471.cif</data>
+  <data key="d7">C2/m</data>
+  <data key="d8">12</data>
+  <data key="d9">monoclinic</data>
+  <data key="d10">18</data>
+</node>
+<node id="property:mp-756471:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-756471</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.0687365362500012</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-756471:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-756471</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.0620533683333337</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-756471:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-756471</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1271850">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1271850</data>
+  <data key="d2">MnO2</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-1271850">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1271850</data>
+  <data key="d6">data/raw/structures/mp-1271850.cif</data>
+  <data key="d7">P6_3/mmc</data>
+  <data key="d8">194</data>
+  <data key="d9">hexagonal</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-1271850:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1271850</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06878597638888806</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1271850:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1271850</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.7537419476436813</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1271850:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1271850</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-2647022">
+  <data key="d0">Material</data>
+  <data key="d1">mp-2647022</data>
+  <data key="d2">Pt</data>
+  <data key="d3">["Pt"]</data>
+</node>
+<node id="structure:mp-2647022">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-2647022</data>
+  <data key="d6">data/raw/structures/mp-2647022.cif</data>
+  <data key="d7">P6_3/mmc</data>
+  <data key="d8">194</data>
+  <data key="d9">hexagonal</data>
+  <data key="d10">2</data>
+</node>
+<node id="property:mp-2647022:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2647022</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.06909371500000105</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2647022:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2647022</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">0.06909371500000105</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-2647022:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2647022</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-33065">
+  <data key="d0">Material</data>
+  <data key="d1">mp-33065</data>
+  <data key="d2">W2C</data>
+  <data key="d3">["C", "W"]</data>
+</node>
+<node id="structure:mp-33065">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-33065</data>
+  <data key="d6">data/raw/structures/mp-33065.cif</data>
+  <data key="d7">Pnnm</data>
+  <data key="d8">58</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">6</data>
+</node>
+<node id="property:mp-33065:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-33065</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.07076890666666458</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-33065:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-33065</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.031591590000005</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-33065:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-33065</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1272141">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1272141</data>
+  <data key="d2">MnO2</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-1272141">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1272141</data>
+  <data key="d6">data/raw/structures/mp-1272141.cif</data>
+  <data key="d7">R-3m</data>
+  <data key="d8">166</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">3</data>
+</node>
+<node id="property:mp-1272141:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1272141</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.07234734555555633</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1272141:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1272141</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.750180578477013</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1272141:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1272141</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">1.9298000000000002</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1281832">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1281832</data>
+  <data key="d2">CoO2</data>
+  <data key="d3">["Co", "O"]</data>
+</node>
+<node id="structure:mp-1281832">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1281832</data>
+  <data key="d6">data/raw/structures/mp-1281832.cif</data>
+  <data key="d7">P-1</data>
+  <data key="d8">2</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">6</data>
+</node>
+<node id="property:mp-1281832:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1281832</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.07324839500000113</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1281832:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1281832</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.9991842650000002</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1281832:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1281832</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">1.0263999999999998</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1095353">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1095353</data>
+  <data key="d2">IrO2</data>
+  <data key="d3">["Ir", "O"]</data>
+</node>
+<node id="structure:mp-1095353">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1095353</data>
+  <data key="d6">data/raw/structures/mp-1095353.cif</data>
+  <data key="d7">Pa-3</data>
+  <data key="d8">205</data>
+  <data key="d9">cubic</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-1095353:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1095353</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.07562860166666496</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1095353:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1095353</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.1852642399999997</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1095353:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1095353</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-25275">
+  <data key="d0">Material</data>
+  <data key="d1">mp-25275</data>
+  <data key="d2">MnO2</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-25275">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-25275</data>
+  <data key="d6">data/raw/structures/mp-25275.cif</data>
+  <data key="d7">Fd-3m</data>
+  <data key="d8">227</data>
+  <data key="d9">cubic</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-25275:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25275</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.07605056388888798</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-25275:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25275</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.74647736014368</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-25275:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25275</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">1.4489999999999998</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1272388">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1272388</data>
+  <data key="d2">FeNiO3</data>
+  <data key="d3">["Fe", "Ni", "O"]</data>
+</node>
+<node id="structure:mp-1272388">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1272388</data>
+  <data key="d6">data/raw/structures/mp-1272388.cif</data>
+  <data key="d7">R3</data>
+  <data key="d8">146</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">10</data>
+</node>
+<node id="property:mp-1272388:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1272388</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.07753396433333215</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1272388:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1272388</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.280436607</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1272388:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1272388</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-18257">
+  <data key="d0">Material</data>
+  <data key="d1">mp-18257</data>
+  <data key="d2">Fe7C3</data>
+  <data key="d3">["C", "Fe"]</data>
+</node>
+<node id="structure:mp-18257">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-18257</data>
+  <data key="d6">data/raw/structures/mp-18257.cif</data>
+  <data key="d7">P6_3mc</data>
+  <data key="d8">186</data>
+  <data key="d9">hexagonal</data>
+  <data key="d10">20</data>
+</node>
+<node id="property:mp-18257:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-18257</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08109436999999886</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-18257:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-18257</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">0.08109436999999957</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-18257:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-18257</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-768499">
+  <data key="d0">Material</data>
+  <data key="d1">mp-768499</data>
+  <data key="d2">FeNiO3</data>
+  <data key="d3">["Fe", "Ni", "O"]</data>
+</node>
+<node id="structure:mp-768499">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-768499</data>
+  <data key="d6">data/raw/structures/mp-768499.cif</data>
+  <data key="d7">R-3</data>
+  <data key="d8">148</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">10</data>
+</node>
+<node id="property:mp-768499:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-768499</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08205045533333166</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-768499:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-768499</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.2759201160000004</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-768499:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-768499</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.5852999999999997</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-22684">
+  <data key="d0">Material</data>
+  <data key="d1">mp-22684</data>
+  <data key="d2">Fe2NiO4</data>
+  <data key="d3">["Fe", "Ni", "O"]</data>
+</node>
+<node id="structure:mp-22684">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-22684</data>
+  <data key="d6">data/raw/structures/mp-22684.cif</data>
+  <data key="d7">Fd-3m</data>
+  <data key="d8">227</data>
+  <data key="d9">cubic</data>
+  <data key="d10">14</data>
+</node>
+<node id="property:mp-22684:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-22684</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08234843142857073</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-22684:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-22684</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.5086928378571431</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-22684:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-22684</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-567397">
+  <data key="d0">Material</data>
+  <data key="d1">mp-567397</data>
+  <data key="d2">W2C</data>
+  <data key="d3">["C", "W"]</data>
+</node>
+<node id="structure:mp-567397">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-567397</data>
+  <data key="d6">data/raw/structures/mp-567397.cif</data>
+  <data key="d7">P-31m</data>
+  <data key="d8">162</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">9</data>
+</node>
+<node id="property:mp-567397:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-567397</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08328427666666727</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-567397:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-567397</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.01907622000000073</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-567397:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-567397</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-752536">
+  <data key="d0">Material</data>
+  <data key="d1">mp-752536</data>
+  <data key="d2">Mn5O8</data>
+  <data key="d3">["Mn", "O"]</data>
+</node>
+<node id="structure:mp-752536">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-752536</data>
+  <data key="d6">data/raw/structures/mp-752536.cif</data>
+  <data key="d7">R-3m</data>
+  <data key="d8">166</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">13</data>
+</node>
+<node id="property:mp-752536:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-752536</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08359430060897388</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-752536:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-752536</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.8861581768965523</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-752536:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-752536</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-7586">
+  <data key="d0">Material</data>
+  <data key="d1">mp-7586</data>
+  <data key="d2">Ni3C</data>
+  <data key="d3">["C", "Ni"]</data>
+</node>
+<node id="chemsys:C-Ni">
+  <data key="d0">Chemsys</data>
+  <data key="d5">["C", "Ni"]</data>
+</node>
+<node id="structure:mp-7586">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-7586</data>
+  <data key="d6">data/raw/structures/mp-7586.cif</data>
+  <data key="d7">R-3c</data>
+  <data key="d8">167</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">8</data>
+</node>
+<node id="property:mp-7586:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-7586</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08418333624999974</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-7586:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-7586</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">0.08418333624999974</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-7586:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-7586</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1147746">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1147746</data>
+  <data key="d2">CoS</data>
+  <data key="d3">["Co", "S"]</data>
+</node>
+<node id="structure:mp-1147746">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1147746</data>
+  <data key="d6">data/raw/structures/mp-1147746.cif</data>
+  <data key="d7">P4/nmm</data>
+  <data key="d8">129</data>
+  <data key="d9">tetragonal</data>
+  <data key="d10">4</data>
+</node>
+<node id="property:mp-1147746:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1147746</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08453702791666728</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1147746:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1147746</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.37589248890624916</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1147746:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1147746</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-770274">
+  <data key="d0">Material</data>
+  <data key="d1">mp-770274</data>
+  <data key="d2">NiP4</data>
+  <data key="d3">["Ni", "P"]</data>
+</node>
+<node id="structure:mp-770274">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-770274</data>
+  <data key="d6">data/raw/structures/mp-770274.cif</data>
+  <data key="d7">C2/c</data>
+  <data key="d8">15</data>
+  <data key="d9">monoclinic</data>
+  <data key="d10">20</data>
+</node>
+<node id="property:mp-770274:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-770274</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08669885783333342</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-770274:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-770274</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.16404994495237873</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-770274:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-770274</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-753682">
+  <data key="d0">Material</data>
+  <data key="d1">mp-753682</data>
+  <data key="d2">FeO</data>
+  <data key="d3">["Fe", "O"]</data>
+</node>
+<node id="structure:mp-753682">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-753682</data>
+  <data key="d6">data/raw/structures/mp-753682.cif</data>
+  <data key="d7">P4_2/mmc</data>
+  <data key="d8">131</data>
+  <data key="d9">tetragonal</data>
+  <data key="d10">8</data>
+</node>
+<node id="property:mp-753682:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-753682</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08710199499999938</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-753682:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-753682</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.3944173925000003</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-753682:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-753682</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1188678">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1188678</data>
+  <data key="d2">Fe4O5</data>
+  <data key="d3">["Fe", "O"]</data>
+</node>
+<node id="structure:mp-1188678">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1188678</data>
+  <data key="d6">data/raw/structures/mp-1188678.cif</data>
+  <data key="d7">Cmcm</data>
+  <data key="d8">63</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">18</data>
+</node>
+<node id="property:mp-1188678:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1188678</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08759998166666527</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1188678:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1188678</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.5192371644444447</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1188678:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1188678</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1225019">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1225019</data>
+  <data key="d2">Fe5NiO8</data>
+  <data key="d3">["Fe", "Ni", "O"]</data>
+</node>
+<node id="structure:mp-1225019">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1225019</data>
+  <data key="d6">data/raw/structures/mp-1225019.cif</data>
+  <data key="d7">R-3m</data>
+  <data key="d8">166</data>
+  <data key="d9">trigonal</data>
+  <data key="d10">14</data>
+</node>
+<node id="property:mp-1225019:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1225019</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08858638517857909</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1225019:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1225019</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.5285248985714293</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1225019:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1225019</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-25234">
+  <data key="d0">Material</data>
+  <data key="d1">mp-25234</data>
+  <data key="d2">CoO2</data>
+  <data key="d3">["Co", "O"]</data>
+</node>
+<node id="structure:mp-25234">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-25234</data>
+  <data key="d6">data/raw/structures/mp-25234.cif</data>
+  <data key="d7">C2/m</data>
+  <data key="d8">12</data>
+  <data key="d9">monoclinic</data>
+  <data key="d10">6</data>
+</node>
+<node id="property:mp-25234:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25234</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08874155166666586</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-25234:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25234</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.9836911083333355</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-25234:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-25234</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-767469">
+  <data key="d0">Material</data>
+  <data key="d1">mp-767469</data>
+  <data key="d2">Ni9S10</data>
+  <data key="d3">["Ni", "S"]</data>
+</node>
+<node id="structure:mp-767469">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-767469</data>
+  <data key="d6">data/raw/structures/mp-767469.cif</data>
+  <data key="d7">P-1</data>
+  <data key="d8">2</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">19</data>
+</node>
+<node id="property:mp-767469:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-767469</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08902302263157758</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-767469:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-767469</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.5482300460526315</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-767469:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-767469</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-856161">
+  <data key="d0">Material</data>
+  <data key="d1">mp-856161</data>
+  <data key="d2">CoO2</data>
+  <data key="d3">["Co", "O"]</data>
+</node>
+<node id="structure:mp-856161">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-856161</data>
+  <data key="d6">data/raw/structures/mp-856161.cif</data>
+  <data key="d7">P1</data>
+  <data key="d8">1</data>
+  <data key="d9">triclinic</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-856161:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-856161</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08908489499999916</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-856161:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-856161</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.9833477650000025</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-856161:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-856161</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1271940">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1271940</data>
+  <data key="d2">Co3O4</data>
+  <data key="d3">["Co", "O"]</data>
+</node>
+<node id="structure:mp-1271940">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1271940</data>
+  <data key="d6">data/raw/structures/mp-1271940.cif</data>
+  <data key="d7">Imma</data>
+  <data key="d8">74</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">14</data>
+</node>
+<node id="property:mp-1271940:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1271940</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.08989810071428561</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1271940:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1271940</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.2004401235714286</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1271940:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1271940</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1627">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1627</data>
+  <data key="d2">Mo2S3</data>
+  <data key="d3">["Mo", "S"]</data>
+</node>
+<node id="structure:mp-1627">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1627</data>
+  <data key="d6">data/raw/structures/mp-1627.cif</data>
+  <data key="d7">P2_1/m</data>
+  <data key="d8">11</data>
+  <data key="d9">monoclinic</data>
+  <data key="d10">10</data>
+</node>
+<node id="property:mp-1627:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1627</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.09554071300000189</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1627:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1627</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.773987577687501</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1627:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1627</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1275937">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1275937</data>
+  <data key="d2">CoO2</data>
+  <data key="d3">["Co", "O"]</data>
+</node>
+<node id="structure:mp-1275937">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1275937</data>
+  <data key="d6">data/raw/structures/mp-1275937.cif</data>
+  <data key="d7">Cm</data>
+  <data key="d8">8</data>
+  <data key="d9">monoclinic</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-1275937:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1275937</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.09650163333333239</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1275937:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1275937</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.9759310266666693</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1275937:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1275937</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-850068">
+  <data key="d0">Material</data>
+  <data key="d1">mp-850068</data>
+  <data key="d2">NiS2</data>
+  <data key="d3">["Ni", "S"]</data>
+</node>
+<node id="structure:mp-850068">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-850068</data>
+  <data key="d6">data/raw/structures/mp-850068.cif</data>
+  <data key="d7">Pbcn</data>
+  <data key="d8">60</data>
+  <data key="d9">orthorhombic</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-850068:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-850068</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.0968874108333333</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-850068:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-850068</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.4946391274999993</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-850068:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-850068</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-32939">
+  <data key="d0">Material</data>
+  <data key="d1">mp-32939</data>
+  <data key="d2">Fe7O8</data>
+  <data key="d3">["Fe", "O"]</data>
+</node>
+<node id="structure:mp-32939">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-32939</data>
+  <data key="d6">data/raw/structures/mp-32939.cif</data>
+  <data key="d7">Fm-3m</data>
+  <data key="d8">225</data>
+  <data key="d9">cubic</data>
+  <data key="d10">15</data>
+</node>
+<node id="property:mp-32939:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-32939</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.0979422586666665</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-32939:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-32939</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-1.4587677839999997</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-32939:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-32939</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="material:mp-1390701">
+  <data key="d0">Material</data>
+  <data key="d1">mp-1390701</data>
+  <data key="d2">CoS2</data>
+  <data key="d3">["Co", "S"]</data>
+</node>
+<node id="structure:mp-1390701">
+  <data key="d0">Structure</data>
+  <data key="d1">mp-1390701</data>
+  <data key="d6">data/raw/structures/mp-1390701.cif</data>
+  <data key="d7">Fd-3m</data>
+  <data key="d8">227</data>
+  <data key="d9">cubic</data>
+  <data key="d10">12</data>
+</node>
+<node id="property:mp-1390701:energy_above_hull">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1390701</data>
+  <data key="d11">energy_above_hull</data>
+  <data key="d12">0.09849998916666713</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1390701:formation_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1390701</data>
+  <data key="d11">formation_energy_per_atom</data>
+  <data key="d12">-0.3563134393750005</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MaterialsProject</data>
+</node>
+<node id="property:mp-1390701:band_gap">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1390701</data>
+  <data key="d11">band_gap</data>
+  <data key="d12">0.0</data>
+  <data key="d13">eV</data>
+  <data key="d14">MaterialsProject</data>
+</node>
 <node id="property:mp-22270:mace_energy_per_atom">
   <data key="d0">Property</data>
   <data key="d1">mp-22270</data>
@@ -5299,6 +7575,50 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-1944"/>
+<node id="property:mp-2301:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2301</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-5.775516667699876</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.4038</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-2301"/>
+<node id="property:mp-2296:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2296</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.121899855911552</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.1889</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-2296"/>
+<node id="property:mp-22619:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-22619</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-5.871767884469874</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.2041</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-22619"/>
+<node id="property:mp-1189340:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1189340</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-7.896868975349212</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.2988</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-1189340"/>
 <node id="property:mp-1005:mace_energy_per_atom">
   <data key="d0">Property</data>
   <data key="d1">mp-1005</data>
@@ -5321,72 +7641,6 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-20027"/>
-<node id="property:mp-18708:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-18708</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-8.041772551037468</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2893</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-18708"/>
-<node id="property:mp-1189340:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1189340</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.896868975349212</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2988</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1189340"/>
-<node id="property:mp-219:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-219</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-8.777006687280043</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-219"/>
-<node id="property:mp-10004:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-10004</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-9.827863749573504</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1255</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-10004"/>
-<node id="property:mp-1887:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1887</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.725705729216361</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1957</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1887"/>
-<node id="property:mp-11508:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-11508</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.7993027973883216</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1458</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-11508"/>
 <node id="property:mp-2662:mace_energy_per_atom">
   <data key="d0">Property</data>
   <data key="d1">mp-2662</data>
@@ -5398,72 +7652,39 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-2662"/>
-<node id="property:mp-2065:mace_energy_per_atom">
+<node id="property:mp-362:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-2065</data>
+  <data key="d1">mp-362</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.1223911075989035</data>
+  <data key="d12">-5.469295085025981</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0001</data>
+  <data key="d15">0.2878</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-2065"/>
-<node id="property:mp-2305:mace_energy_per_atom">
+<node id="mp-362"/>
+<node id="property:mp-1050:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-2305</data>
+  <data key="d1">mp-1050</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-10.041955010667412</data>
+  <data key="d12">-5.210617577419021</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0</data>
+  <data key="d15">0.0303</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-2305"/>
-<node id="property:mp-1552:mace_energy_per_atom">
+<node id="mp-1050"/>
+<node id="property:mp-505531:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1552</data>
+  <data key="d1">mp-505531</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-10.417793809623914</data>
+  <data key="d12">-6.809994455008358</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1169</data>
+  <data key="d15">0.1512</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1552"/>
-<node id="property:mp-19009:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-19009</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-4.835016929222722</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-19009"/>
-<node id="property:mp-1434:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1434</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.22982330268714</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2567</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1434"/>
-<node id="property:mp-224:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-224</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.89304358914584</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2537</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-224"/>
+<node id="mp-505531"/>
 <node id="property:mp-1522:mace_energy_per_atom">
   <data key="d0">Property</data>
   <data key="d1">mp-1522</data>
@@ -5475,105 +7696,39 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-1522"/>
-<node id="property:mp-2070:mace_energy_per_atom">
+<node id="property:mp-2065:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-2070</data>
+  <data key="d1">mp-2065</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.457734676401347</data>
+  <data key="d12">-7.1223911075989035</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.4768</data>
+  <data key="d15">0.0001</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-2070"/>
-<node id="property:mp-1180046:mace_energy_per_atom">
+<node id="mp-2065"/>
+<node id="property:mp-224:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1180046</data>
+  <data key="d1">mp-224</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-4.907673276490361</data>
+  <data key="d12">-7.89304358914584</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1383</data>
+  <data key="d15">0.2537</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1180046"/>
-<node id="property:mp-778:mace_energy_per_atom">
+<node id="mp-224"/>
+<node id="property:mp-1434:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-778</data>
+  <data key="d1">mp-1434</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.898578383670836</data>
+  <data key="d12">-7.22982330268714</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.3146</data>
+  <data key="d15">0.2567</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-778"/>
-<node id="property:mp-1849:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1849</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-8.40582295551922</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2889</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1849"/>
-<node id="property:mp-22204:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-22204</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.065857538644778</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.3765</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-22204"/>
-<node id="property:mp-22408:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-22408</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.991736133221997</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2455</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-22408"/>
-<node id="property:mp-1274279:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1274279</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.605962150699087</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.068</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1274279"/>
-<node id="property:mp-1232659:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1232659</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.768100616239815</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.3519</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1232659"/>
-<node id="property:mp-1422029:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1422029</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.349849923286946</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1187</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1422029"/>
+<node id="mp-1434"/>
 <node id="property:mp-943:mace_energy_per_atom">
   <data key="d0">Property</data>
   <data key="d1">mp-943</data>
@@ -5596,51 +7751,171 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-1513"/>
-<node id="property:mp-505531:mace_energy_per_atom">
+<node id="property:mp-18708:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-505531</data>
+  <data key="d1">mp-18708</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.809994455008358</data>
+  <data key="d12">-8.041772551037468</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1512</data>
+  <data key="d15">0.2893</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-505531"/>
-<node id="property:mp-1400906:mace_energy_per_atom">
+<node id="mp-18708"/>
+<node id="property:mp-22204:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1400906</data>
+  <data key="d1">mp-22204</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.643454857250398</data>
+  <data key="d12">-7.065857538644778</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.4531</data>
+  <data key="d15">0.3765</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1400906"/>
-<node id="property:mp-1279343:mace_energy_per_atom">
+<node id="mp-22204"/>
+<node id="property:mp-19009:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1279343</data>
+  <data key="d1">mp-19009</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.361019826565089</data>
+  <data key="d12">-4.835016929222722</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.3458</data>
+  <data key="d15">0.0</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1279343"/>
-<node id="property:mp-1102036:mace_energy_per_atom">
-  <data key="d17">property:mp-1102036:mace_energy_per_atom</data>
+<node id="mp-19009"/>
+<node id="property:mp-1274279:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1102036</data>
+  <data key="d1">mp-1274279</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.017690899718128</data>
+  <data key="d12">-6.605962150699087</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1734</data>
+  <data key="d15">0.068</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1102036"/>
+<node id="mp-1274279"/>
+<node id="property:mp-1887:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1887</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-7.725705729216361</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.1957</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-1887"/>
+<node id="property:mp-219:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-219</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-8.777006687280043</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.0</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-219"/>
+<node id="property:mp-11508:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-11508</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.7993027973883216</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.1458</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-11508"/>
+<node id="property:mp-2070:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2070</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-5.457734676401347</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.4768</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-2070"/>
+<node id="property:mp-1422029:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1422029</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.349849923286946</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.1187</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-1422029"/>
+<node id="property:mp-1232659:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1232659</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-7.768100616239815</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.3519</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-1232659"/>
+<node id="property:mp-644514:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-644514</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-7.084034050656176</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.7674</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-644514"/>
+<node id="property:mp-19770:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-19770</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.596832925637988</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.0681</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-19770"/>
+<node id="property:mp-1271793:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1271793</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.004256745964897</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.6328</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-1271793"/>
+<node id="property:mp-35596:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-35596</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.099951283287216</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.4067</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-35596"/>
+<node id="property:mp-754168:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-754168</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-5.188586172822121</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.1929</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-754168"/>
 <node id="property:mp-27844:mace_energy_per_atom">
   <data key="d17">property:mp-27844:mace_energy_per_atom</data>
   <data key="d0">Property</data>
@@ -5677,6 +7952,18 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-486"/>
+<node id="property:mp-770274:mace_energy_per_atom">
+  <data key="d17">property:mp-770274:mace_energy_per_atom</data>
+  <data key="d0">Property</data>
+  <data key="d1">mp-770274</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-5.641627960316238</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.5062</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-770274"/>
 <node id="property:mp-2790:mace_energy_per_atom">
   <data key="d17">property:mp-2790:mace_energy_per_atom</data>
   <data key="d0">Property</data>
@@ -5689,6 +7976,18 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-2790"/>
+<node id="property:mp-1102036:mace_energy_per_atom">
+  <data key="d17">property:mp-1102036:mace_energy_per_atom</data>
+  <data key="d0">Property</data>
+  <data key="d1">mp-1102036</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.017690899718128</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.1734</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-1102036"/>
 <edge source="material:mp-2790" target="element:Ni" id="HAS_ELEMENT:Ni">
   <data key="d18">HAS_ELEMENT</data>
   <data key="d19">12</data>
@@ -8723,13 +11022,1397 @@
 <edge source="material:mp-1213762" target="property:mp-1213762:band_gap" id="HAS_PROPERTY:band_gap">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-2296" target="property:mp-2296:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="material:mp-1306224" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1306224" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-1306224" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1306224" target="structure:mp-1306224" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1306224" target="property:mp-1306224:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-22619" target="property:mp-22619:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="material:mp-1306224" target="property:mp-1306224:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-2301" target="property:mp-2301:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="material:mp-1306224" target="property:mp-1306224:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-752759" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-752759" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-752759" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">12</data>
+</edge>
+<edge source="material:mp-752759" target="chemsys:Co-Ni-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-752759" target="structure:mp-752759" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-752759" target="property:mp-752759:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-752759" target="property:mp-752759:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-752759" target="property:mp-752759:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-753469" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-753469" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-753469" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">12</data>
+</edge>
+<edge source="material:mp-753469" target="chemsys:Co-Ni-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-753469" target="structure:mp-753469" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-753469" target="property:mp-753469:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-753469" target="property:mp-753469:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-753469" target="property:mp-753469:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-19006" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-19006" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-19006" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-19006" target="structure:mp-19006" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-19006" target="property:mp-19006:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-19006" target="property:mp-19006:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-19006" target="property:mp-19006:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2831286" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-2831286" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-2831286" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-2831286" target="structure:mp-2831286" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-2831286" target="property:mp-2831286:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2831286" target="property:mp-2831286:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2831286" target="property:mp-2831286:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-765860" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-765860" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-765860" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-765860" target="chemsys:Co-Fe-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-765860" target="structure:mp-765860" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-765860" target="property:mp-765860:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-765860" target="property:mp-765860:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-765860" target="property:mp-765860:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-754430" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">7</data>
+</edge>
+<edge source="material:mp-754430" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">12</data>
+</edge>
+<edge source="material:mp-754430" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-754430" target="structure:mp-754430" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-754430" target="property:mp-754430:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-754430" target="property:mp-754430:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-754430" target="property:mp-754430:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-13154" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-13154" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-13154" target="chemsys:C-Fe" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-13154" target="structure:mp-13154" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-13154" target="property:mp-13154:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-13154" target="property:mp-13154:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-13154" target="property:mp-13154:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-510623" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-510623" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">12</data>
+</edge>
+<edge source="material:mp-510623" target="chemsys:C-Fe" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-510623" target="structure:mp-510623" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-510623" target="property:mp-510623:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-510623" target="property:mp-510623:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-510623" target="property:mp-510623:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1278937" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1278937" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1278937" target="chemsys:Co-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1278937" target="structure:mp-1278937" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1278937" target="property:mp-1278937:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1278937" target="property:mp-1278937:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1278937" target="property:mp-1278937:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1275132" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1275132" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1275132" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1275132" target="chemsys:Co-Ni-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1275132" target="structure:mp-1275132" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1275132" target="property:mp-1275132:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1275132" target="property:mp-1275132:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1275132" target="property:mp-1275132:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1209828" target="element:P" id="HAS_ELEMENT:P">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1209828" target="element:W" id="HAS_ELEMENT:W">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">12</data>
+</edge>
+<edge source="material:mp-1209828" target="chemsys:P-W" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1209828" target="structure:mp-1209828" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1209828" target="property:mp-1209828:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1209828" target="property:mp-1209828:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1209828" target="property:mp-1209828:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-999539" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-999539" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-999539" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-999539" target="structure:mp-999539" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-999539" target="property:mp-999539:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-999539" target="property:mp-999539:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-999539" target="property:mp-999539:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1303934" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1303934" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-1303934" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1303934" target="structure:mp-1303934" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1303934" target="property:mp-1303934:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1303934" target="property:mp-1303934:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1303934" target="property:mp-1303934:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-755671" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-755671" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-755671" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-755671" target="structure:mp-755671" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-755671" target="property:mp-755671:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-755671" target="property:mp-755671:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-755671" target="property:mp-755671:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2794" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-2794" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">10</data>
+</edge>
+<edge source="material:mp-2794" target="chemsys:C-Fe" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-2794" target="structure:mp-2794" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-2794" target="property:mp-2794:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2794" target="property:mp-2794:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2794" target="property:mp-2794:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1871" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1871" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1871" target="chemsys:C-Fe" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1871" target="structure:mp-1871" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1871" target="property:mp-1871:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1871" target="property:mp-1871:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1871" target="property:mp-1871:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1103643" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1103643" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1103643" target="chemsys:Ni-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1103643" target="structure:mp-1103643" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1103643" target="property:mp-1103643:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1103643" target="property:mp-1103643:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1103643" target="property:mp-1103643:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25424" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">1</data>
+</edge>
+<edge source="material:mp-25424" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-25424" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-25424" target="structure:mp-25424" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-25424" target="property:mp-25424:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25424" target="property:mp-25424:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25424" target="property:mp-25424:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-763787" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-763787" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">9</data>
+</edge>
+<edge source="material:mp-763787" target="chemsys:Fe-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-763787" target="structure:mp-763787" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-763787" target="property:mp-763787:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-763787" target="property:mp-763787:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-763787" target="property:mp-763787:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-850249" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-850249" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">10</data>
+</edge>
+<edge source="material:mp-850249" target="chemsys:Fe-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-850249" target="structure:mp-850249" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-850249" target="property:mp-850249:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-850249" target="property:mp-850249:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-850249" target="property:mp-850249:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1106195" target="element:P" id="HAS_ELEMENT:P">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1106195" target="element:W" id="HAS_ELEMENT:W">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">12</data>
+</edge>
+<edge source="material:mp-1106195" target="chemsys:P-W" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1106195" target="structure:mp-1106195" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1106195" target="property:mp-1106195:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1106195" target="property:mp-1106195:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1106195" target="property:mp-1106195:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-850083" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-850083" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">10</data>
+</edge>
+<edge source="material:mp-850083" target="chemsys:Fe-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-850083" target="structure:mp-850083" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-850083" target="property:mp-850083:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-850083" target="property:mp-850083:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-850083" target="property:mp-850083:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1304693" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1304693" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1304693" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1304693" target="chemsys:Co-Ni-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1304693" target="structure:mp-1304693" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1304693" target="property:mp-1304693:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1304693" target="property:mp-1304693:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1304693" target="property:mp-1304693:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1221498" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">1</data>
+</edge>
+<edge source="material:mp-1221498" target="element:Mo" id="HAS_ELEMENT:Mo">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1221498" target="chemsys:C-Mo" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1221498" target="structure:mp-1221498" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1221498" target="property:mp-1221498:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1221498" target="property:mp-1221498:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1221498" target="property:mp-1221498:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25223" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">1</data>
+</edge>
+<edge source="material:mp-25223" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-25223" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-25223" target="structure:mp-25223" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-25223" target="property:mp-25223:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25223" target="property:mp-25223:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25223" target="property:mp-25223:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-870701" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-870701" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">10</data>
+</edge>
+<edge source="material:mp-870701" target="chemsys:Fe-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-870701" target="structure:mp-870701" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-870701" target="property:mp-870701:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-870701" target="property:mp-870701:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-870701" target="property:mp-870701:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-770543" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-770543" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-770543" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-770543" target="structure:mp-770543" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-770543" target="property:mp-770543:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-770543" target="property:mp-770543:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-770543" target="property:mp-770543:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2164" target="element:Mo" id="HAS_ELEMENT:Mo">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-2164" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-2164" target="chemsys:Mo-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-2164" target="structure:mp-2164" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-2164" target="property:mp-2164:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2164" target="property:mp-2164:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2164" target="property:mp-2164:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2034" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-2034" target="element:W" id="HAS_ELEMENT:W">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-2034" target="chemsys:C-W" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-2034" target="structure:mp-2034" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-2034" target="property:mp-2034:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2034" target="property:mp-2034:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2034" target="property:mp-2034:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-756471" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">5</data>
+</edge>
+<edge source="material:mp-756471" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">1</data>
+</edge>
+<edge source="material:mp-756471" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">12</data>
+</edge>
+<edge source="material:mp-756471" target="chemsys:Co-Fe-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-756471" target="structure:mp-756471" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-756471" target="property:mp-756471:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-756471" target="property:mp-756471:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-756471" target="property:mp-756471:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1271850" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1271850" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1271850" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1271850" target="structure:mp-1271850" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1271850" target="property:mp-1271850:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1271850" target="property:mp-1271850:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1271850" target="property:mp-1271850:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2647022" target="element:Pt" id="HAS_ELEMENT:Pt">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-2647022" target="chemsys:Pt" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-2647022" target="structure:mp-2647022" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-2647022" target="property:mp-2647022:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2647022" target="property:mp-2647022:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-2647022" target="property:mp-2647022:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-33065" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-33065" target="element:W" id="HAS_ELEMENT:W">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-33065" target="chemsys:C-W" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-33065" target="structure:mp-33065" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-33065" target="property:mp-33065:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-33065" target="property:mp-33065:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-33065" target="property:mp-33065:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1272141" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">1</data>
+</edge>
+<edge source="material:mp-1272141" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1272141" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1272141" target="structure:mp-1272141" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1272141" target="property:mp-1272141:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1272141" target="property:mp-1272141:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1272141" target="property:mp-1272141:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1281832" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1281832" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1281832" target="chemsys:Co-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1281832" target="structure:mp-1281832" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1281832" target="property:mp-1281832:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1281832" target="property:mp-1281832:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1281832" target="property:mp-1281832:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1095353" target="element:Ir" id="HAS_ELEMENT:Ir">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1095353" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1095353" target="chemsys:Ir-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1095353" target="structure:mp-1095353" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1095353" target="property:mp-1095353:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1095353" target="property:mp-1095353:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1095353" target="property:mp-1095353:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25275" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-25275" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-25275" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-25275" target="structure:mp-25275" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-25275" target="property:mp-25275:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25275" target="property:mp-25275:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25275" target="property:mp-25275:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1272388" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1272388" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1272388" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-1272388" target="chemsys:Fe-Ni-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1272388" target="structure:mp-1272388" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1272388" target="property:mp-1272388:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1272388" target="property:mp-1272388:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1272388" target="property:mp-1272388:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-18257" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-18257" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">14</data>
+</edge>
+<edge source="material:mp-18257" target="chemsys:C-Fe" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-18257" target="structure:mp-18257" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-18257" target="property:mp-18257:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-18257" target="property:mp-18257:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-18257" target="property:mp-18257:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-768499" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-768499" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-768499" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-768499" target="chemsys:Fe-Ni-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-768499" target="structure:mp-768499" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-768499" target="property:mp-768499:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-768499" target="property:mp-768499:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-768499" target="property:mp-768499:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-22684" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-22684" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-22684" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-22684" target="chemsys:Fe-Ni-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-22684" target="structure:mp-22684" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-22684" target="property:mp-22684:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-22684" target="property:mp-22684:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-22684" target="property:mp-22684:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-567397" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">3</data>
+</edge>
+<edge source="material:mp-567397" target="element:W" id="HAS_ELEMENT:W">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-567397" target="chemsys:C-W" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-567397" target="structure:mp-567397" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-567397" target="property:mp-567397:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-567397" target="property:mp-567397:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-567397" target="property:mp-567397:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-752536" target="element:Mn" id="HAS_ELEMENT:Mn">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">5</data>
+</edge>
+<edge source="material:mp-752536" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-752536" target="chemsys:Mn-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-752536" target="structure:mp-752536" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-752536" target="property:mp-752536:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-752536" target="property:mp-752536:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-752536" target="property:mp-752536:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-7586" target="element:C" id="HAS_ELEMENT:C">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-7586" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-7586" target="chemsys:C-Ni" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-7586" target="structure:mp-7586" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-7586" target="property:mp-7586:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-7586" target="property:mp-7586:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-7586" target="property:mp-7586:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1147746" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1147746" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-1147746" target="chemsys:Co-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1147746" target="structure:mp-1147746" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1147746" target="property:mp-1147746:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1147746" target="property:mp-1147746:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1147746" target="property:mp-1147746:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-770274" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-770274" target="element:P" id="HAS_ELEMENT:P">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">16</data>
+</edge>
+<edge source="material:mp-770274" target="chemsys:Ni-P" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-770274" target="structure:mp-770274" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-770274" target="property:mp-770274:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-770274" target="property:mp-770274:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-770274" target="property:mp-770274:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-753682" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-753682" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-753682" target="chemsys:Fe-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-753682" target="structure:mp-753682" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-753682" target="property:mp-753682:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-753682" target="property:mp-753682:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-753682" target="property:mp-753682:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1188678" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1188678" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">10</data>
+</edge>
+<edge source="material:mp-1188678" target="chemsys:Fe-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1188678" target="structure:mp-1188678" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1188678" target="property:mp-1188678:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1188678" target="property:mp-1188678:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1188678" target="property:mp-1188678:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1225019" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">5</data>
+</edge>
+<edge source="material:mp-1225019" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">1</data>
+</edge>
+<edge source="material:mp-1225019" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1225019" target="chemsys:Fe-Ni-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1225019" target="structure:mp-1225019" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1225019" target="property:mp-1225019:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1225019" target="property:mp-1225019:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1225019" target="property:mp-1225019:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25234" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">2</data>
+</edge>
+<edge source="material:mp-25234" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-25234" target="chemsys:Co-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-25234" target="structure:mp-25234" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-25234" target="property:mp-25234:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25234" target="property:mp-25234:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-25234" target="property:mp-25234:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-767469" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">9</data>
+</edge>
+<edge source="material:mp-767469" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">10</data>
+</edge>
+<edge source="material:mp-767469" target="chemsys:Ni-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-767469" target="structure:mp-767469" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-767469" target="property:mp-767469:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-767469" target="property:mp-767469:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-767469" target="property:mp-767469:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-856161" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-856161" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-856161" target="chemsys:Co-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-856161" target="structure:mp-856161" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-856161" target="property:mp-856161:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-856161" target="property:mp-856161:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-856161" target="property:mp-856161:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1271940" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-1271940" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1271940" target="chemsys:Co-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1271940" target="structure:mp-1271940" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1271940" target="property:mp-1271940:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1271940" target="property:mp-1271940:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1271940" target="property:mp-1271940:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1627" target="element:Mo" id="HAS_ELEMENT:Mo">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1627" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">6</data>
+</edge>
+<edge source="material:mp-1627" target="chemsys:Mo-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1627" target="structure:mp-1627" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1627" target="property:mp-1627:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1627" target="property:mp-1627:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1627" target="property:mp-1627:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1275937" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1275937" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1275937" target="chemsys:Co-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1275937" target="structure:mp-1275937" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1275937" target="property:mp-1275937:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1275937" target="property:mp-1275937:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1275937" target="property:mp-1275937:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-850068" target="element:Ni" id="HAS_ELEMENT:Ni">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-850068" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-850068" target="chemsys:Ni-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-850068" target="structure:mp-850068" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-850068" target="property:mp-850068:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-850068" target="property:mp-850068:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-850068" target="property:mp-850068:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-32939" target="element:Fe" id="HAS_ELEMENT:Fe">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">7</data>
+</edge>
+<edge source="material:mp-32939" target="element:O" id="HAS_ELEMENT:O">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-32939" target="chemsys:Fe-O" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-32939" target="structure:mp-32939" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-32939" target="property:mp-32939:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-32939" target="property:mp-32939:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-32939" target="property:mp-32939:band_gap" id="HAS_PROPERTY:band_gap">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1390701" target="element:Co" id="HAS_ELEMENT:Co">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">4</data>
+</edge>
+<edge source="material:mp-1390701" target="element:S" id="HAS_ELEMENT:S">
+  <data key="d18">HAS_ELEMENT</data>
+  <data key="d19">8</data>
+</edge>
+<edge source="material:mp-1390701" target="chemsys:Co-S" id="IN_CHEMSYS">
+  <data key="d18">IN_CHEMSYS</data>
+</edge>
+<edge source="material:mp-1390701" target="structure:mp-1390701" id="HAS_STRUCTURE">
+  <data key="d18">HAS_STRUCTURE</data>
+</edge>
+<edge source="material:mp-1390701" target="property:mp-1390701:energy_above_hull" id="HAS_PROPERTY:energy_above_hull">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1390701" target="property:mp-1390701:formation_energy_per_atom" id="HAS_PROPERTY:formation_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="material:mp-1390701" target="property:mp-1390701:band_gap" id="HAS_PROPERTY:band_gap">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 <edge source="mp-22270" target="property:mp-22270:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
@@ -8741,79 +12424,46 @@
 <edge source="mp-1944" target="property:mp-1944:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
+<edge source="mp-2301" target="property:mp-2301:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-2296" target="property:mp-2296:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-22619" target="property:mp-22619:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-1189340" target="property:mp-1189340:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
 <edge source="mp-1005" target="property:mp-1005:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 <edge source="mp-20027" target="property:mp-20027:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-18708" target="property:mp-18708:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1189340" target="property:mp-1189340:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-219" target="property:mp-219:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-10004" target="property:mp-10004:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1887" target="property:mp-1887:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-11508" target="property:mp-11508:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
 <edge source="mp-2662" target="property:mp-2662:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-2065" target="property:mp-2065:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-362" target="property:mp-362:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-2305" target="property:mp-2305:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-1050" target="property:mp-1050:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1552" target="property:mp-1552:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-19009" target="property:mp-19009:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1434" target="property:mp-1434:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-224" target="property:mp-224:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-505531" target="property:mp-505531:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 <edge source="mp-1522" target="property:mp-1522:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-2070" target="property:mp-2070:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-2065" target="property:mp-2065:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1180046" target="property:mp-1180046:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-224" target="property:mp-224:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-778" target="property:mp-778:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1849" target="property:mp-1849:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-22204" target="property:mp-22204:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-22408" target="property:mp-22408:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1274279" target="property:mp-1274279:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1232659" target="property:mp-1232659:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1422029" target="property:mp-1422029:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-1434" target="property:mp-1434:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 <edge source="mp-943" target="property:mp-943:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
@@ -8822,16 +12472,49 @@
 <edge source="mp-1513" target="property:mp-1513:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-505531" target="property:mp-505531:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-18708" target="property:mp-18708:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1400906" target="property:mp-1400906:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-22204" target="property:mp-22204:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1279343" target="property:mp-1279343:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-19009" target="property:mp-19009:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1102036" target="property:mp-1102036:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-1274279" target="property:mp-1274279:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-1887" target="property:mp-1887:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-219" target="property:mp-219:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-11508" target="property:mp-11508:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-2070" target="property:mp-2070:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-1422029" target="property:mp-1422029:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-1232659" target="property:mp-1232659:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-644514" target="property:mp-644514:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-19770" target="property:mp-19770:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-1271793" target="property:mp-1271793:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-35596" target="property:mp-35596:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-754168" target="property:mp-754168:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 <edge source="mp-27844" target="property:mp-27844:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
@@ -8843,7 +12526,13 @@
 <edge source="mp-486" target="property:mp-486:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
+<edge source="mp-770274" target="property:mp-770274:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
 <edge source="mp-2790" target="property:mp-2790:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-1102036" target="property:mp-1102036:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 </graph></graphml>
