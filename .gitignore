@@ -220,3 +220,5 @@ __marimo__/
 # MLFlow Temp files
 mlflow.db-shm
 mlflow.db-wal
+
+docs/PROJECT_STATE.md
