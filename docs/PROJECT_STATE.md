@@ -363,23 +363,35 @@ Full table in the README's *Design Decisions* section. Additions from the correc
 
 ## Next steps (prioritised)
 
-1. **Relax `E_ABOVE_HULL_RANGE`** in `data/download.py` beyond the current
-   `(0.0, 0.05)`. Effects: the Critic's stability threshold (0.1) would
-   finally reject something — at present nothing in the corpus can fail it;
-   more high-residual-force materials, so escalations become common rather
-   than occasional; and a larger, more chemically varied CGCNN training set,
-   which is currently the weakest part of the evaluation. Note this
-   regenerates every downstream artifact — KG, elemental references, CGCNN
-   training, force calibration, and all README numbers.
-2. **Re-run the surrogate comparison and CGCNN training** after (1), and
-   update the README Results tables.
-3. Consider whether `TOP_N_BY_STABILITY = 300` should rise; it is currently
-   unreached at 130 but becomes live once the stability filter is relaxed.
+Nothing is currently blocking. The pipeline runs end to end, every number in
+the README traces to a file in `models/` or `data/processed/`, and the known
+defects are documented rather than hidden.
 
-Completed since the last revision: `run_campaign.py` fixed; full campaign
-trace recorded; `requirements.txt` regenerated cross-platform with
-`torch_geometric`; `test_predictor.py` and `test_critic.py` updated for the
-removed `uncertainty` field.
+Optional, in rough order of value:
+
+1. **Clean up `ScribeAgent.get_materials_with_properties()`** — dead code with
+   three independent defects (see Technical debt). Either delegate to
+   `kg/queries.py`'s `find_materials_by_property_range`, which already does
+   this correctly, or delete it.
+2. **Regenerate `requirements.txt`** if the environment has drifted; it should
+   include `torch_geometric` and exclude Windows-only pins for anyone cloning
+   on Linux/macOS.
+3. **Consider a target-property model.** The single biggest scope limitation
+   is that nothing here predicts catalytic activity — the pipeline selects for
+   bulk stability and surrogate confidence. An adsorption-energy proxy would
+   change what the project is *for*, not just how well it does it.
+
+**Artifacts are corpus-versioned.** `force_distribution.json`,
+`cgcnn_*.json`, `cgcnn_catalyst.pt`, `mace_vs_cgcnn_comparison.json` and
+`mace_elemental_refs.json` are all tied to a specific corpus and MACE
+checkpoint. If `E_ABOVE_HULL_RANGE`, `CHEMSYS_GROUPS` or the checkpoint
+changes, regenerate **all** of them together, or the README will quote numbers
+from mixed corpora — an inconsistency that is very hard to spot later.
+
+Completed in this revision: corpus widened to 189 materials; stability moved to
+a retrieval constraint with a single shared threshold; `approved` dead-flag
+fixed; mismatched `.env` defaults corrected; Critic graph caching added; unused
+imports removed; full campaign trace re-recorded.
 
 Deliberately **not** doing: fitting elemental references by least squares
 against training-fold targets. It would shrink the oxide error and make the
@@ -397,7 +409,9 @@ contrast. Kept as a stretch goal with that rationale attached.
 - `rdflib` RDF/OWL layer aligned with CMSO/ASMO ontologies.
 - Novelty checking in the Scribe before treating candidates as new discoveries.
 - Literature-mined synthesis-route edges via `lematerial-llm-synthesis`.
-- Uncertainty-weighted averaging when the Scribe merges repeated predictions (currently a simple mean).
+- Residual-force-weighted averaging when the Scribe merges repeated predictions (currently a simple mean).
+- Persist per-campaign candidate ordering so a trace can be replayed deterministically despite the LLM Planner.
+- Fitted elemental references (see the non-goal note above, which explains why this is deliberately deferred).
 
 ---
 

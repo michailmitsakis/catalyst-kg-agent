@@ -420,9 +420,12 @@ Three energy scales appear in this project and are never mixed numerically:
 ```
 catalyst-kg-agent/
 ├── README.md
-├── PROJECT_STATE.md                # development log
 ├── requirements.txt
 ├── .env
+├── mlflow.db                       # MLflow tracking store (sqlite)
+│
+├── docs/
+│   └── PROJECT_STATE.md            # development log
 │
 ├── data/
 │   ├── download.py                 # Materials Project API pull
@@ -434,8 +437,9 @@ catalyst-kg-agent/
 │       ├── kg.graphml              # best-effort interop export
 │       ├── kg_build_report.json
 │       ├── cif_cache.pkl
+│       ├── cif_cache_meta.json
 │       ├── mace_elemental_refs.json
-│       └── force_distribution.json
+│       └── force_distribution.json   # written by scripts/calibrate_force_gate.py
 │
 ├── kg/
 │   ├── schema.py                   # pydantic node/edge models, enums, ID helpers
@@ -456,6 +460,7 @@ catalyst-kg-agent/
 │   └── mace_vs_cgcnn_comparison.json
 │
 ├── agent/
+│   ├── journal/                    # per-campaign JSON logs (demo-001.json, ...)
 │   ├── retriever.py
 │   ├── predictor.py
 │   ├── critic.py
@@ -463,22 +468,26 @@ catalyst-kg-agent/
 │   ├── scribe.py
 │   ├── campaign.py
 │   ├── cost_model.py
-│   ├── logging.py
-│   └── journal/                    # per-run JSON logs
+│   └── logging.py
 │
 ├── tracking/
 │   ├── mlflow_setup.py
 │   ├── mlflow_verify.py
-│   └── query_mlflow_best_candidate.py
+│   └── query_ml_flow_best_candidate.py
 │
 ├── scripts/
-│   ├── run_campaign.py
-│   └── calibrate_force_gate.py
+│   ├── run_campaign.py             # CLI entry point for a campaign
+│   ├── calibrate_force_gate.py     # measures the force distribution
+│   ├── check_llm_agents.py         # verifies Ollama reaches both LLM agents
+│   ├── check_retriever.py          # smoke-test for query -> intent -> results
+│   ├── corpus_check.py             # KG composition / stability summary
+│   ├── kg_check.py                 # counts MACE properties written back
+│   └── summarize_campaigns.py      # reads agent/journal/*.json
 │
 ├── notebooks/
-│   ├── MACE_CGCNN_surrogate_comparison.ipynb
 │   ├── UMA_relaxation_showcase.ipynb
 │   └── plots/
+│       └── mace_vs_cgcnn_comparison.png
 │
 └── tests/
     ├── test_queries.py
@@ -600,11 +609,13 @@ This project combines those three signals into one small, locally-runnable artif
 ## Stretch Goals
 
 - Add a target-property model (adsorption energy / overpotential proxy) so the pipeline selects for catalytic activity rather than stability alone.
-- Fit elemental reference energies by least squares against training-fold targets, which would absorb MP's correction scheme and make the MACE-vs-MP comparison fairer for oxides.
+- Fit elemental reference energies by least squares against training-fold targets. This would shrink the oxide error and make the comparison look tidier — but it would absorb the GGA+U discrepancy into fitted constants and hide the most interesting finding here, as well as breaking the clean "zero-shot vs corpus-trained" contrast. Recorded as a deliberate non-goal for now.
 - Replace NetworkX with Neo4j Community + Cypher once the KG schema stabilizes.
 - Add an `rdflib`-based RDF/OWL layer aligned with the CMSO/ASMO ontologies, following the ontology-mapping skill from [`materials-simulation-skills`](https://github.com/HeshamFS/materials-simulation-skills).
 - Extend the Scribe agent's novelty-checking logic against known structures before treating candidates as new discoveries, following the [AtomisticSkills materials-discovery workflow](https://github.com/learningmatter-mit/AtomisticSkills/blob/main/.agents/workflows/materials-discovery.md).
 - Enrich KG synthesis-route edges with literature-mined synthesis parameters, following [`lematerial-llm-synthesis`](https://github.com/LeMaterial/lematerial-llm-synthesis), adapted to local inference.
+- Weight the Scribe's averaging of repeated predictions by the residual-force signal rather than taking a simple mean.
+- Persist per-campaign candidate ordering so a campaign trace can be replayed deterministically despite the LLM Planner.
 
 ---
 
