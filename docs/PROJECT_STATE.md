@@ -86,7 +86,7 @@ The Critic escalates on **max residual force** (eV/Å) rather than a model-uncer
 
 `FORCE_GATE_EV_PER_ANG = 0.5` → 23/189 escalate (12.2%). Lower gates escalate the majority of the corpus (0.1 → 74.6%) and collapse the cost-tiering premise. The distribution is smooth with no natural boundary, so this is a judgement about escalation rate rather than a threshold the data selected.
 
-**Honest caveat.** A median of 0.212 eV/Å is higher than would be expected for exactly-reproduced DFT geometries. Contributors: the CIF round-trip idealises fractional coordinates (pymatgen warns on ~9 structures), and MP's GGA+U systems are not reproducible by the surrogate. The gate therefore separates *relative* disagreement, not absolute trustworthiness.
+**Caveat.** A median of 0.212 eV/Å is higher than would be expected for exactly-reproduced DFT geometries. Contributors: the CIF round-trip idealises fractional coordinates (pymatgen warns on ~9 structures), and MP's GGA+U systems are not reproducible by the surrogate. The gate therefore separates *relative* disagreement, not absolute trustworthiness.
 
 ---
 

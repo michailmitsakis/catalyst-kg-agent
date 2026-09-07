@@ -206,7 +206,7 @@ def run_mace(entries: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
 def load_cgcnn_oof(oof_path: Path = DEFAULT_OOF_PATH) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
     """Load out-of-fold CGCNN predictions, if a k-fold run produced them.
 
-    These are the honest CGCNN numbers: each material was predicted by the
+    These are the proper CGCNN numbers: each material was predicted by the
     fold model that never trained on it. Re-running the saved checkpoint
     over the whole corpus (see run_cgcnn) instead reports training-set
     performance, which is optimistic and not comparable to MACE's zero-shot
@@ -694,7 +694,7 @@ def main() -> int:
             "are optimistic.",
             "The corpus spans only ~75 distinct compositions across 130 materials, so "
             "a random CV split leaks polymorphs between folds. The composition-disjoint "
-            "split (baseline_cgcnn.py --group-by-composition) is the honest estimate.",
+            "split (baseline_cgcnn.py --group-by-composition) is the proper estimate.",
             "MACE is zero-shot on this corpus and was never fitted to these targets.",
             "The two trust signals are different physical quantities: MACE reports a "
             "max residual force (eV/Angstrom) measuring geometric disagreement with "

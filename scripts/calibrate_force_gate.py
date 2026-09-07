@@ -9,7 +9,7 @@ force MACE reports is therefore MACE-vs-DFT geometric disagreement. This
 script computes that value for every material and prints the distribution,
 so the Critic's escalation gate can be set where the tail actually is.
 
-Read the output honestly. If the distribution is tight and no material
+Reading the output correctly: If the distribution is tight and no material
 approaches any sensible threshold, the correct conclusion is "MACE agrees
 with DFT geometry across this corpus and escalation does not fire" -- NOT
 "lower the gate until something trips". A gate tuned downwards to

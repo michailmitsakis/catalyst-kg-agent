@@ -33,7 +33,7 @@ ARCHITECTURE
 - MC Dropout at inference for an uncertainty estimate, mirroring the
   MACE predictor's uncertainty treatment
 
-HONEST LIMITATIONS
+LIMITATIONS
 ------------------
 - The training set is ~130 materials. That is very small for a GNN trained
   from scratch; the published CGCNN was trained on ~10^4-10^5 structures.
@@ -55,7 +55,7 @@ Usage:
 Report BOTH cross-validation numbers. The random split inflates the score
 because ~62% of this corpus shares a composition with another entry (7 MoS2
 polymorphs, 7 MnO2, ...), so polymorphs leak between folds; the
-composition-disjoint split is the honest generalisation estimate. The gap
+composition-disjoint split is the generalisation estimate. The gap
 between them measures how much of the score was composition memorisation.
 """
 
@@ -594,7 +594,7 @@ def make_folds(
 
     A composition-grouped split sends every polymorph of a formula to the
     same fold, so the test fold contains only compositions the model has
-    never seen. That is the harder and more honest estimate of
+    never seen. That is the harder and more correct estimate of
     generalisation. Report both: the gap between them measures how much of
     the random-split score was composition memorisation.
 
@@ -647,7 +647,7 @@ def train_model(
         model_path: where to save the final checkpoint
         metrics_path: where to save metrics JSON
         group_by_composition: keep same-formula polymorphs in one fold (see
-            make_folds) -- the honest generalisation estimate on this corpus
+            make_folds) -- the generalisation estimate on this corpus
         oof_path: where to save out-of-fold predictions (k-fold runs only).
             Each material is predicted by the fold model that never saw it,
             so downstream comparisons can quote an unbiased CGCNN number.
@@ -692,7 +692,7 @@ def train_model(
                 f"  NOTE: {len(dataset)} materials span only {n_formulas} compositions.\n"
                 f"        A random split lets polymorphs of one formula appear in both\n"
                 f"        train and test folds, which inflates the score. Re-run with\n"
-                f"        --group-by-composition for the honest estimate."
+                f"        --group-by-composition for the proper estimate."
             )
     print()
 
@@ -961,7 +961,7 @@ def evaluate_saved_model(
 
     Note: this reports metrics on ALL materials, which for a
     single-split checkpoint includes its own training data. Use the
-    cross-validation numbers from --train --k-folds for an honest
+    cross-validation numbers from --train --k-folds for an proper
     generalisation estimate.
     """
     model, normalizer, config = load_trained_model(model_path)
@@ -1008,7 +1008,7 @@ def main() -> int:
                         help="Keep same-formula polymorphs in the same fold. On this "
                              "corpus (130 materials, ~75 compositions) a random split "
                              "leaks composition between folds and inflates the score; "
-                             "this flag gives the honest generalisation estimate.")
+                             "this flag gives the proper generalisation estimate.")
     parser.add_argument("--epochs", type=int, default=None)
     parser.add_argument("--batch-size", type=int, default=None)
     parser.add_argument("--hidden-channels", type=int, default=None)
