@@ -221,4 +221,5 @@ __marimo__/
 mlflow.db-shm
 mlflow.db-wal
 
-docs/PROJECT_STATE.md
+# Files
+docs
