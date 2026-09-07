@@ -237,9 +237,7 @@ class CampaignOrchestrator:
             self.state.log(f"step_{step}", {"remaining_budget": self.tracker.remaining_budget})
 
             # Stop before paying for a retrieval that cannot fund a single
-            # surrogate call. demo-001 spent a KG lookup on step 2 with 3.5
-            # units left -- enough for the lookup, never enough for the
-            # 5.0-unit prediction it was retrieving candidates for.
+            # surrogate call. 
             if self.tracker.remaining_budget < (KG_LOOKUP_COST + SURROGATE_COST):
                 self.state.status = "budget_exhausted"
                 self.state.log("budget_exhausted", {
@@ -266,9 +264,7 @@ class CampaignOrchestrator:
 
             # Retrieved set is deduplicated against everything already
             # scored, so `final_materials` counts unique materials rather
-            # than retrievals. (Previously this extended by all 130 every
-            # step, reporting 520 "materials evaluated" on a 130-material
-            # corpus.)
+            # than retrievals.
             materials = [
                 m for m in result.materials
                 if getattr(m, "mpid", None) not in scored_mpids
@@ -371,9 +367,7 @@ class CampaignOrchestrator:
 
             # `final_materials` counts materials actually SCORED, not merely
             # retrieved. The Retriever returns the whole candidate set each
-            # call; counting retrievals reported 520 "materials evaluated" on
-            # a 130-material corpus, and counting de-duplicated retrievals
-            # would still have reported 457.
+            # call.
             self.state.final_materials.extend(evaluated)
 
             # 3b. Consult Planner for the continue/escalate/stop decision.
@@ -434,19 +428,14 @@ class CampaignOrchestrator:
         # Sort by stability for final output (lowest e_above_hull first).
         #
         # Properties are separate NODES joined by HAS_PROPERTY edges, not a
-        # "properties" list attribute on the material node. The previous
-        # version read self.G.nodes[mat.id]["properties"], which never
-        # exists, so every material scored inf, the sort was a no-op, and
-        # "best candidate" was simply the first material in retrieval order.
+        # "properties" list attribute on the material node. 
         if self.state.final_materials:
             self.state.final_materials.sort(key=self._get_e_above_hull)
 
         if self.state.final_materials:
             self.state.best_candidate = self.state.final_materials[0]
 
-        # End timing. Preserve any terminal status the loop already set --
-        # an earlier version overwrote it unconditionally, so a campaign that
-        # ran out of budget still reported success.
+        # End timing. Preserve any terminal status the loop already set
         self.state.end_time = datetime.now()
         if self.state.status == "running":
             self.state.status = "completed"

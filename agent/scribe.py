@@ -34,11 +34,6 @@ from kg.graph_store import load_graph, save_graph, rehydrate_node
 from agent.predictor import PredictorResult  # Import actual predictor result type
 
 
-# Property name used for MACE surrogate output. Not a PropertyName enum
-# member (that enum's only members are energy_above_hull and band_gap);
-# PropertyName.coerce()/schema's open-vocabulary handling accepts this raw
-# string without a schema edit. Kept as a module constant so build_graph.py
-# / queries.py can reference the same literal if they need to filter on it.
 MACE_ENERGY_PROPERTY_NAME = "mace_energy_per_atom"
 
 
