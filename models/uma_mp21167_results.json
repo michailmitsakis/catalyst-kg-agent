@@ -1,0 +1,16 @@
+{
+  "material_id": "mp-21167",
+  "formula": "Ni2P",
+  "elements": [
+    "Ni",
+    "P"
+  ],
+  "mp_properties": {
+    "e_above_hull_eV_per_atom": 0.0022342603140081962,
+    "stability_status": "stable"
+  },
+  "uma_relaxation": {
+    "status": "skipped",
+    "error": "No module named 'fairchem'"
+  }
+}
