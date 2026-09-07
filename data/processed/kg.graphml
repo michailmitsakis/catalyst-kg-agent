@@ -7542,6 +7542,138 @@
   <data key="d13">eV</data>
   <data key="d14">MaterialsProject</data>
 </node>
+<node id="property:mp-1005:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1005</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-7.535582223164315</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.0532</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-1005"/>
+<node id="property:mp-1189340:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-1189340</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-7.896868975349212</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.2988</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-1189340"/>
+<node id="property:mp-18708:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-18708</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-8.041772551037468</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.2893</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-18708"/>
+<node id="property:mp-570553:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-570553</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.391777151294052</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.2643</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-570553"/>
+<node id="property:mp-20027:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-20027</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.961788358481502</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.2125</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-20027"/>
+<node id="property:mp-11328:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-11328</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-8.307535493366412</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.305</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-11328"/>
+<node id="property:mp-2420:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2420</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-9.549827278179357</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.3018</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-2420"/>
+<node id="property:mp-224:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-224</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-7.89304358914584</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.2537</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-224"/>
+<node id="property:mp-2296:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2296</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.121899855911552</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.1889</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-2296"/>
+<node id="property:mp-2301:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2301</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-5.775516667699876</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.4038</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-2301"/>
+<node id="property:mp-22619:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-22619</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-5.871767884469874</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.2041</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-22619"/>
+<node id="property:mp-2790:mace_energy_per_atom">
+  <data key="d0">Property</data>
+  <data key="d1">mp-2790</data>
+  <data key="d11">mace_energy_per_atom</data>
+  <data key="d12">-6.146230842869365</data>
+  <data key="d13">eV/atom</data>
+  <data key="d14">MACE-finetuned</data>
+  <data key="d15">0.105</data>
+  <data key="d16">1</data>
+</node>
+<node id="mp-2790"/>
 <node id="property:mp-22270:mace_energy_per_atom">
   <data key="d0">Property</data>
   <data key="d1">mp-22270</data>
@@ -7575,105 +7707,105 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-1944"/>
-<node id="property:mp-2301:mace_energy_per_atom">
+<node id="property:mp-22204:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-2301</data>
+  <data key="d1">mp-22204</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.775516667699876</data>
+  <data key="d12">-7.065857538644778</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.4038</data>
+  <data key="d15">0.3765</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-2301"/>
-<node id="property:mp-2296:mace_energy_per_atom">
+<node id="mp-22204"/>
+<node id="property:mp-10004:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-2296</data>
+  <data key="d1">mp-10004</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.121899855911552</data>
+  <data key="d12">-9.827863749573504</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1889</data>
+  <data key="d15">0.1255</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-2296"/>
-<node id="property:mp-22619:mace_energy_per_atom">
+<node id="mp-10004"/>
+<node id="property:mp-219:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-22619</data>
+  <data key="d1">mp-219</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.871767884469874</data>
+  <data key="d12">-8.777006687280043</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2041</data>
+  <data key="d15">0.0</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-22619"/>
-<node id="property:mp-1189340:mace_energy_per_atom">
+<node id="mp-219"/>
+<node id="property:mp-1887:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1189340</data>
+  <data key="d1">mp-1887</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.896868975349212</data>
+  <data key="d12">-7.725705729216361</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2988</data>
+  <data key="d15">0.1957</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1189340"/>
-<node id="property:mp-1005:mace_energy_per_atom">
+<node id="mp-1887"/>
+<node id="property:mp-1274279:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1005</data>
+  <data key="d1">mp-1274279</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.535582223164315</data>
+  <data key="d12">-6.605962150699087</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0532</data>
+  <data key="d15">0.068</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1005"/>
-<node id="property:mp-20027:mace_energy_per_atom">
+<node id="mp-1274279"/>
+<node id="property:mp-19770:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-20027</data>
+  <data key="d1">mp-19770</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.961788358481502</data>
+  <data key="d12">-6.596832925637988</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2125</data>
+  <data key="d15">0.0681</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-20027"/>
-<node id="property:mp-2662:mace_energy_per_atom">
+<node id="mp-19770"/>
+<node id="property:mp-1232659:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-2662</data>
+  <data key="d1">mp-1232659</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.8823267337858125</data>
+  <data key="d12">-7.768100616239815</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0788</data>
+  <data key="d15">0.3519</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-2662"/>
-<node id="property:mp-362:mace_energy_per_atom">
+<node id="mp-1232659"/>
+<node id="property:mp-1422029:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-362</data>
+  <data key="d1">mp-1422029</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.469295085025981</data>
+  <data key="d12">-6.349849923286946</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2878</data>
+  <data key="d15">0.1187</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-362"/>
-<node id="property:mp-1050:mace_energy_per_atom">
+<node id="mp-1422029"/>
+<node id="property:mp-2070:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1050</data>
+  <data key="d1">mp-2070</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.210617577419021</data>
+  <data key="d12">-5.457734676401347</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0303</data>
+  <data key="d15">0.4768</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1050"/>
+<node id="mp-2070"/>
 <node id="property:mp-505531:mace_energy_per_atom">
   <data key="d0">Property</data>
   <data key="d1">mp-505531</data>
@@ -7696,28 +7828,6 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-1522"/>
-<node id="property:mp-2065:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-2065</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.1223911075989035</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0001</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-2065"/>
-<node id="property:mp-224:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-224</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.89304358914584</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2537</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-224"/>
 <node id="property:mp-1434:mace_energy_per_atom">
   <data key="d0">Property</data>
   <data key="d1">mp-1434</data>
@@ -7729,17 +7839,17 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-1434"/>
-<node id="property:mp-943:mace_energy_per_atom">
+<node id="property:mp-2065:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-943</data>
+  <data key="d1">mp-2065</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.809610062044006</data>
+  <data key="d12">-7.1223911075989035</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.7952</data>
+  <data key="d15">0.0001</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-943"/>
+<node id="mp-2065"/>
 <node id="property:mp-1513:mace_energy_per_atom">
   <data key="d0">Property</data>
   <data key="d1">mp-1513</data>
@@ -7751,171 +7861,83 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-1513"/>
-<node id="property:mp-18708:mace_energy_per_atom">
+<node id="property:mp-943:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-18708</data>
+  <data key="d1">mp-943</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-8.041772551037468</data>
+  <data key="d12">-5.809610062044006</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.2893</data>
+  <data key="d15">0.7952</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-18708"/>
-<node id="property:mp-22204:mace_energy_per_atom">
+<node id="mp-943"/>
+<node id="property:mp-22408:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-22204</data>
+  <data key="d1">mp-22408</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.065857538644778</data>
+  <data key="d12">-5.991736133221997</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.3765</data>
+  <data key="d15">0.2455</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-22204"/>
-<node id="property:mp-19009:mace_energy_per_atom">
+<node id="mp-22408"/>
+<node id="property:mp-19128:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-19009</data>
+  <data key="d1">mp-19128</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-4.835016929222722</data>
+  <data key="d12">-6.0079950469133925</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0</data>
+  <data key="d15">0.1998</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-19009"/>
-<node id="property:mp-1274279:mace_energy_per_atom">
+<node id="mp-19128"/>
+<node id="property:mp-362:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1274279</data>
+  <data key="d1">mp-362</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.605962150699087</data>
+  <data key="d12">-5.469295085025981</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.068</data>
+  <data key="d15">0.2878</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1274279"/>
-<node id="property:mp-1887:mace_energy_per_atom">
+<node id="mp-362"/>
+<node id="property:mp-1180046:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-1887</data>
+  <data key="d1">mp-1180046</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.725705729216361</data>
+  <data key="d12">-4.907673276490361</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1957</data>
+  <data key="d15">0.1383</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-1887"/>
-<node id="property:mp-219:mace_energy_per_atom">
+<node id="mp-1180046"/>
+<node id="property:mp-1050:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-219</data>
+  <data key="d1">mp-1050</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-8.777006687280043</data>
+  <data key="d12">-5.210617577419021</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0</data>
+  <data key="d15">0.0303</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-219"/>
-<node id="property:mp-11508:mace_energy_per_atom">
+<node id="mp-1050"/>
+<node id="property:mp-2662:mace_energy_per_atom">
   <data key="d0">Property</data>
-  <data key="d1">mp-11508</data>
+  <data key="d1">mp-2662</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.7993027973883216</data>
+  <data key="d12">-7.8823267337858125</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1458</data>
+  <data key="d15">0.0788</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-11508"/>
-<node id="property:mp-2070:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-2070</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.457734676401347</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.4768</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-2070"/>
-<node id="property:mp-1422029:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1422029</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.349849923286946</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1187</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1422029"/>
-<node id="property:mp-1232659:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1232659</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.768100616239815</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.3519</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1232659"/>
-<node id="property:mp-644514:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-644514</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-7.084034050656176</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.7674</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-644514"/>
-<node id="property:mp-19770:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-19770</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.596832925637988</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.0681</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-19770"/>
-<node id="property:mp-1271793:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-1271793</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.004256745964897</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.6328</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-1271793"/>
-<node id="property:mp-35596:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-35596</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.099951283287216</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.4067</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-35596"/>
-<node id="property:mp-754168:mace_energy_per_atom">
-  <data key="d0">Property</data>
-  <data key="d1">mp-754168</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.188586172822121</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.1929</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-754168"/>
+<node id="mp-2662"/>
 <node id="property:mp-27844:mace_energy_per_atom">
   <data key="d17">property:mp-27844:mace_energy_per_atom</data>
   <data key="d0">Property</data>
@@ -7928,18 +7950,6 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-27844"/>
-<node id="property:mp-21167:mace_energy_per_atom">
-  <data key="d17">property:mp-21167:mace_energy_per_atom</data>
-  <data key="d0">Property</data>
-  <data key="d1">mp-21167</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.142046444164709</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.034</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-21167"/>
 <node id="property:mp-486:mace_energy_per_atom">
   <data key="d17">property:mp-486:mace_energy_per_atom</data>
   <data key="d0">Property</data>
@@ -7952,30 +7962,18 @@
   <data key="d16">1</data>
 </node>
 <node id="mp-486"/>
-<node id="property:mp-770274:mace_energy_per_atom">
-  <data key="d17">property:mp-770274:mace_energy_per_atom</data>
+<node id="property:mp-21167:mace_energy_per_atom">
+  <data key="d17">property:mp-21167:mace_energy_per_atom</data>
   <data key="d0">Property</data>
-  <data key="d1">mp-770274</data>
+  <data key="d1">mp-21167</data>
   <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-5.641627960316238</data>
+  <data key="d12">-6.142046444164709</data>
   <data key="d13">eV/atom</data>
   <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.5062</data>
+  <data key="d15">0.034</data>
   <data key="d16">1</data>
 </node>
-<node id="mp-770274"/>
-<node id="property:mp-2790:mace_energy_per_atom">
-  <data key="d17">property:mp-2790:mace_energy_per_atom</data>
-  <data key="d0">Property</data>
-  <data key="d1">mp-2790</data>
-  <data key="d11">mace_energy_per_atom</data>
-  <data key="d12">-6.146230842869365</data>
-  <data key="d13">eV/atom</data>
-  <data key="d14">MACE-finetuned</data>
-  <data key="d15">0.105</data>
-  <data key="d16">1</data>
-</node>
-<node id="mp-2790"/>
+<node id="mp-21167"/>
 <node id="property:mp-1102036:mace_energy_per_atom">
   <data key="d17">property:mp-1102036:mace_energy_per_atom</data>
   <data key="d0">Property</data>
@@ -12415,6 +12413,42 @@
 <edge source="material:mp-1390701" target="property:mp-1390701:band_gap" id="HAS_PROPERTY:band_gap">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
+<edge source="mp-1005" target="property:mp-1005:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-1189340" target="property:mp-1189340:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-18708" target="property:mp-18708:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-570553" target="property:mp-570553:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-20027" target="property:mp-20027:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-11328" target="property:mp-11328:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-2420" target="property:mp-2420:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-224" target="property:mp-224:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-2296" target="property:mp-2296:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-2301" target="property:mp-2301:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-22619" target="property:mp-22619:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
+<edge source="mp-2790" target="property:mp-2790:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+  <data key="d18">HAS_PROPERTY</data>
+</edge>
 <edge source="mp-22270" target="property:mp-22270:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
@@ -12424,31 +12458,31 @@
 <edge source="mp-1944" target="property:mp-1944:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-2301" target="property:mp-2301:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-22204" target="property:mp-22204:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-2296" target="property:mp-2296:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-10004" target="property:mp-10004:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-22619" target="property:mp-22619:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-219" target="property:mp-219:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1189340" target="property:mp-1189340:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-1887" target="property:mp-1887:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1005" target="property:mp-1005:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-1274279" target="property:mp-1274279:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-20027" target="property:mp-20027:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-19770" target="property:mp-19770:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-2662" target="property:mp-2662:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-1232659" target="property:mp-1232659:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-362" target="property:mp-362:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-1422029" target="property:mp-1422029:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1050" target="property:mp-1050:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-2070" target="property:mp-2070:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 <edge source="mp-505531" target="property:mp-505531:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
@@ -12457,79 +12491,43 @@
 <edge source="mp-1522" target="property:mp-1522:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-2065" target="property:mp-2065:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-224" target="property:mp-224:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
 <edge source="mp-1434" target="property:mp-1434:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-943" target="property:mp-943:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-2065" target="property:mp-2065:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 <edge source="mp-1513" target="property:mp-1513:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-18708" target="property:mp-18708:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-943" target="property:mp-943:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-22204" target="property:mp-22204:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-22408" target="property:mp-22408:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-19009" target="property:mp-19009:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-19128" target="property:mp-19128:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1274279" target="property:mp-1274279:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-362" target="property:mp-362:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-1887" target="property:mp-1887:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-1180046" target="property:mp-1180046:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-219" target="property:mp-219:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-1050" target="property:mp-1050:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-11508" target="property:mp-11508:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-2070" target="property:mp-2070:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1422029" target="property:mp-1422029:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1232659" target="property:mp-1232659:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-644514" target="property:mp-644514:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-19770" target="property:mp-19770:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-1271793" target="property:mp-1271793:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-35596" target="property:mp-35596:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-754168" target="property:mp-754168:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-2662" target="property:mp-2662:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 <edge source="mp-27844" target="property:mp-27844:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-21167" target="property:mp-21167:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
 <edge source="mp-486" target="property:mp-486:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
-<edge source="mp-770274" target="property:mp-770274:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
-  <data key="d18">HAS_PROPERTY</data>
-</edge>
-<edge source="mp-2790" target="property:mp-2790:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
+<edge source="mp-21167" target="property:mp-21167:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">
   <data key="d18">HAS_PROPERTY</data>
 </edge>
 <edge source="mp-1102036" target="property:mp-1102036:mace_energy_per_atom" id="HAS_PROPERTY:mace_energy_per_atom">

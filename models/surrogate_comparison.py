@@ -79,7 +79,7 @@ if str(_project_root) not in sys.path:
     sys.path.insert(0, str(_project_root))
 
 from kg.graph_store import load_graph, rehydrate_node, DEFAULT_KG_JSON
-from kg.schema import MaterialNode, NodeType, PropertyName
+from kg.schema import NodeType, PropertyName
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent

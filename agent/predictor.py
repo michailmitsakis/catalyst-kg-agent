@@ -62,9 +62,8 @@ printed. Run `python models/elemental_references.py` to populate it.
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
-from typing import Optional, List, Literal
+from typing import Optional, Literal
 
 import numpy as np
 from pydantic import BaseModel

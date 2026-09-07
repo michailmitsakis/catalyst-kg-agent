@@ -21,8 +21,6 @@ from datetime import datetime
 
 import mlflow
 
-from pydantic_ai import Agent
-
 from kg.graph_store import load_graph, DEFAULT_KG_JSON
 from kg.schema import MaterialNode, NodeType
 from agent.cost_model import (
@@ -38,7 +36,6 @@ from agent.scribe import ScribeAgent
 from tracking.mlflow_setup import (
     setup_mlflow,
     log_campaign_metrics,
-    end_campaign_tracking,
 )
 
 

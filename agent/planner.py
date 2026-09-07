@@ -37,7 +37,6 @@ budget-bounded variant of the same idea.
 
 from __future__ import annotations
 
-import json
 import os
 from pathlib import Path
 from typing import Any, List, Optional
@@ -46,12 +45,11 @@ from dataclasses import dataclass, field
 
 from pydantic import BaseModel, Field
 
-from kg.schema import MaterialNode, PropertyNode, NodeType
+from kg.schema import MaterialNode
 from kg.graph_store import load_graph
 from agent.cost_model import (
     INITIAL_BUDGET,
     MAX_ACTIONS_PER_CAMPAIGN,
-    KG_LOOKUP_COST,
     SURROGATE_COST,
     EXPERIMENT_COST,
 )

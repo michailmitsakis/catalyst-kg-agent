@@ -24,13 +24,11 @@ from pathlib import Path
 from typing import List, Optional, Dict, Any
 from datetime import datetime
 
-import networkx as nx
-
 from pydantic import BaseModel
 
 from kg.schema import (
     MaterialNode, PropertyNode, NodeType, property_id, PropertyName,
-      PropertySource, PropertyUnit, material_id, KGNode
+      PropertySource, PropertyUnit, material_id
 )
 from kg.graph_store import load_graph, save_graph, rehydrate_node
 from agent.predictor import PredictorResult  # Import actual predictor result type
@@ -274,7 +272,7 @@ def create_scribe(graph_path: Path = None) -> ScribeAgent:
     """Factory function to create a scribe agent.
 
     Args:
-        graph_path: Path to knowledge graph JSON    
+        graph_path: Path to knowledge graph JSON
 
     Returns:
         Configured ScribeAgent instance

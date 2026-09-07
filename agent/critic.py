@@ -33,11 +33,16 @@ from agent.cost_model import EXPERIMENT_COST
 # ---------------------------------------------------------------------------
 
 def get_stability_threshold() -> float:
-    """Get stability threshold from environment or default."""
+    """Stability ceiling in eV/atom, from STABILITY_THRESHOLD.
+
+    The default MUST match agent/retriever.py's reader of the same variable.
+    They previously defaulted to 0.1 and 0.05 respectively -- one concept with
+    two fallbacks, masked only because .env happened to set it explicitly.
+    """
     try:
-        return float(os.environ.get("STABILITY_THRESHOLD", "0.1"))
+        return float(os.environ.get("STABILITY_THRESHOLD", "0.05"))
     except ValueError:
-        return 0.1
+        return 0.05
 
 
 def get_force_gate() -> float:
@@ -50,9 +55,13 @@ def get_force_gate() -> float:
     e_above_hull earlier in this project. Set FORCE_GATE_EV_PER_ANG in .env.
     """
     try:
-        return float(os.environ.get("FORCE_GATE_EV_PER_ANG", "0.1"))
+        # Default is the calibrated value for this corpus (see
+        # scripts/calibrate_force_gate.py): 0.5 eV/A escalates ~12% of
+        # materials. The previous default of 0.1 would have escalated ~75%,
+        # collapsing the cost tiering for anyone running without a .env.
+        return float(os.environ.get("FORCE_GATE_EV_PER_ANG", "0.5"))
     except ValueError:
-        return 0.1
+        return 0.5
 
 
 # ---------------------------------------------------------------------------
@@ -97,8 +106,12 @@ class CriticAgent:
         self.stability_threshold = get_stability_threshold()
         self.force_gate = get_force_gate()
         
-        # Load graph for KG traversal
+        # Load graph for KG traversal. Cached on first use: the previous
+        # version re-read the whole kg.json from disk on EVERY stability
+        # lookup, so a 19-material campaign step parsed a 983-node graph 19
+        # times.
         self.graph_path = graph_path or Path("data/processed/kg.json")
+        self._graph = None
     def validate_materials(
         self,
         materials: List[MaterialNode],
@@ -261,6 +274,68 @@ class CriticAgent:
 
         return {"passed": True, "error": None}
 
+    def _get_graph(self):
+        """Load the KG once and reuse it for every lookup."""
+        if self._graph is None:
+            try:
+                from kg.graph_store import load_graph
+                self._graph = load_graph(self.graph_path)
+            except Exception as e:
+                print(f"Critic: Failed to load KG: {e}")
+                return None
+        return self._graph
+
+    def screen_candidates(
+        self,
+        materials: List[MaterialNode],
+    ) -> tuple[List[MaterialNode], List[Dict[str, Any]]]:
+        """Filter candidates on stability BEFORE any surrogate call is paid for.
+
+        e_above_hull is MP-derived and already sits in the knowledge graph, so
+        it costs nothing to check. Screening on it first means a material that
+        cannot pass the stability gate never consumes surrogate budget.
+
+        This was previously done the other way round: every candidate was
+        predicted and charged, and only then did the Critic evaluate
+        stability -- and the resulting `approved` flag was never read by the
+        campaign loop at all, so a rejected material was charged for, written
+        to the KG, and still eligible to be the best candidate. Free
+        information should gate spending, not follow it.
+
+        Note this is a screen, not a full validation: the residual-force
+        check still runs after prediction, because that signal does not exist
+        until MACE has been called.
+
+        Args:
+            materials: Candidate materials from the Retriever
+
+        Returns:
+            (passed, rejected) where `rejected` holds one dict per screened-out
+            material with its mpid, e_above_hull and the reason
+        """
+        passed: List[MaterialNode] = []
+        rejected: List[Dict[str, Any]] = []
+
+        for mat in materials:
+            check = self._check_stability(mat)
+            if check["passed"]:
+                passed.append(mat)
+                continue
+
+            value = check.get("value")
+            rejected.append({
+                "mpid": getattr(mat, "mpid", None),
+                "formula": getattr(mat, "formula_pretty", None),
+                "e_above_hull": value,
+                "reason": (
+                    f"e_above_hull={value:.4f} > {self.stability_threshold}"
+                    if value is not None
+                    else check.get("error", "no e_above_hull in KG")
+                ),
+            })
+
+        return passed, rejected
+
     def _get_e_above_hull_from_kg(self, material_id: str) -> Optional[float]:
         """Get e_above_hull value for a material from the KG.
 
@@ -271,9 +346,9 @@ class CriticAgent:
             e_above_hull value or None if not found
         """
         try:
-            from kg.graph_store import load_graph
-            
-            G = load_graph(self.graph_path)
+            G = self._get_graph()
+            if G is None:
+                return None
 
             # Normalize material_id to a bare mpid up front so the
             # comparison below is a plain equality check, not a

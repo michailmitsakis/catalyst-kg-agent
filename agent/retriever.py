@@ -38,6 +38,22 @@ from agent.cost_model import KG_LOOKUP_COST
 from dotenv import load_dotenv
 load_dotenv()
 
+def get_stability_threshold() -> float:
+    """Corpus-wide stability ceiling, in eV/atom, from STABILITY_THRESHOLD.
+
+    Mirrors agent/critic.py's reader so both agents enforce the SAME number.
+    They previously did not: the Critic used STABILITY_THRESHOLD (0.05) while
+    retrieval filtered at a hardcoded 0.1, so one concept was enforced at two
+    values by two agents. Nothing failed either check until the corpus was
+    widened past 0.05, which is why the split went unnoticed.
+    """
+    try:
+        return float(os.environ.get("STABILITY_THRESHOLD", "0.05"))
+    except ValueError:
+        return 0.05
+
+
+
 # ---------------------------------------------------------------------------
 # Pydantic-ai Agent: KG Retriever
 # ---------------------------------------------------------------------------
@@ -71,7 +87,7 @@ class QueryIntent(BaseModel):
     tool: Literal["element", "chemsys", "stability", "broad"]
     elements: List[str] = []          # for tool == "element"
     chemsys: List[str] = []           # for tool == "chemsys", e.g. ["Ni-P"]
-    threshold: float = 0.1            # for tool == "stability"
+    threshold: float = 0.05           # for tool == "stability"; capped by STABILITY_THRESHOLD
 
 
 class KGRetrieverAgent:
@@ -137,7 +153,7 @@ You only output a QueryIntent object classifying the user's request:
 - elements: list of element symbols (e.g. ["Ni", "Fe"]) - used when tool == "element".
   Map common names/synonyms to symbols (e.g. "Nickel" -> "Ni", "Iron" -> "Fe").
 - chemsys: list of chemical systems as "El-El" strings (e.g. ["Ni-P"]) - used when tool == "chemsys".
-- threshold: e_above_hull cutoff in eV/atom (default 0.1) - used when tool == "stability".
+- threshold: e_above_hull cutoff in eV/atom (default 0.05) - used when tool == "stability".
   Terms like "stable", "OER", "HER catalyst stability" imply tool == "stability".
 
 RULES:
@@ -263,12 +279,21 @@ Output ONLY the QueryIntent fields. Do not invent material IDs or KG data."""
 
             # Stability applies when the LLM asked for it explicitly or gave
             # a threshold. Note this is a weak filter on this corpus.
-            if intent.tool == "stability" or intent.threshold is not None:
-                threshold = intent.threshold if intent.threshold is not None else 0.1
-                stable_mpids = {m.mpid for m in find_stable_materials(self.G, threshold)}
-                candidate_sets.append(stable_mpids)
-                provenance["threshold"] = threshold
-                provenance["constraints_used"].append("stability")
+            # Stability is a RETRIEVAL constraint, not a post-hoc validation:
+            # e_above_hull is MP-derived and already in the graph, so filtering
+            # on it costs nothing and keeps unsuitable candidates out of the
+            # pool before any budget is spent. Applied on every query, not only
+            # when the LLM asks for it -- the configured ceiling defines which
+            # materials are eligible at all.
+            #
+            # A query may ask for something STRICTER than the ceiling
+            # ("under 0.02 eV/atom"); it may not ask for something looser.
+            ceiling = get_stability_threshold()
+            threshold = min(intent.threshold, ceiling) if intent.threshold is not None else ceiling
+            stable_mpids = {m.mpid for m in find_stable_materials(self.G, threshold)}
+            candidate_sets.append(stable_mpids)
+            provenance["threshold"] = threshold
+            provenance["constraints_used"].append("stability")
 
             if candidate_sets:
                 keep = set.intersection(*candidate_sets)
@@ -506,7 +531,7 @@ Output ONLY the QueryIntent fields. Do not invent material IDs or KG data."""
         # Case 3: Stability-focused query
         elif "stability_mode" in filters or "property_range" in filters:
             if "stability_mode" in filters:
-                max_eah = 0.1  # Default stability threshold
+                max_eah = get_stability_threshold()  # same ceiling as the LLM path
                 materials = find_stable_materials(self.G, max_eah)
                 provenance["threshold"] = max_eah
 

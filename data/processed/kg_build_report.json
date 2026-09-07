@@ -18,8 +18,8 @@
     "n_structures_parsed": 189,
     "n_structures_failed": 0,
     "cache": {
-      "hits": 0,
-      "misses": 189,
+      "hits": 189,
+      "misses": 0,
       "failures": 0,
       "cached_count": 189
     }
@@ -39,7 +39,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2296",
@@ -55,7 +55,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-22619",
@@ -71,7 +71,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2301",
@@ -87,7 +87,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-22204",
@@ -103,7 +103,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-22270",
@@ -119,7 +119,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-14285",
@@ -135,7 +135,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1944",
@@ -151,7 +151,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1189340",
@@ -167,7 +167,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-18708",
@@ -183,7 +183,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1005",
@@ -199,7 +199,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-20027",
@@ -215,7 +215,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-570553",
@@ -231,7 +231,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-10004",
@@ -247,7 +247,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-219",
@@ -263,7 +263,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1887",
@@ -279,7 +279,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-11508",
@@ -295,7 +295,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-11328",
@@ -311,7 +311,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2420",
@@ -327,7 +327,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1849",
@@ -343,7 +343,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2019629",
@@ -359,7 +359,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2662",
@@ -375,7 +375,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-362",
@@ -391,7 +391,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1050",
@@ -407,7 +407,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1180046",
@@ -423,7 +423,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-943",
@@ -439,7 +439,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1513",
@@ -455,7 +455,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2070",
@@ -471,7 +471,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-505531",
@@ -487,7 +487,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1522",
@@ -503,7 +503,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1434",
@@ -519,7 +519,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-224",
@@ -535,7 +535,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2065",
@@ -551,7 +551,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1422029",
@@ -567,7 +567,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1552",
@@ -583,7 +583,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2305",
@@ -599,7 +599,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1894",
@@ -615,7 +615,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-656887",
@@ -631,7 +631,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-19009",
@@ -647,7 +647,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1271793",
@@ -663,7 +663,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-22408",
@@ -679,7 +679,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1400906",
@@ -695,7 +695,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-19770",
@@ -711,7 +711,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1274279",
@@ -727,7 +727,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-18759",
@@ -743,7 +743,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1232659",
@@ -759,7 +759,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-644514",
@@ -775,7 +775,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-35596",
@@ -792,7 +792,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-754168",
@@ -809,7 +809,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1178424",
@@ -826,7 +826,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-126",
@@ -841,7 +841,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2723",
@@ -857,7 +857,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1279343",
@@ -874,7 +874,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-19128",
@@ -890,7 +890,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-778",
@@ -906,7 +906,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-487",
@@ -922,7 +922,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-9813",
@@ -938,7 +938,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1189099",
@@ -954,7 +954,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1105127",
@@ -970,7 +970,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1386044",
@@ -986,7 +986,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2815",
@@ -1002,7 +1002,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-850049",
@@ -1018,7 +1018,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-21167",
@@ -1034,7 +1034,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1018809",
@@ -1050,7 +1050,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1027525",
@@ -1066,7 +1066,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1028441",
@@ -1082,7 +1082,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1025874",
@@ -1098,7 +1098,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1025571",
@@ -1114,7 +1114,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-754748",
@@ -1130,7 +1130,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-486",
@@ -1146,7 +1146,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-550206",
@@ -1162,7 +1162,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1023939",
@@ -1178,7 +1178,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1023925",
@@ -1194,7 +1194,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-715262",
@@ -1210,7 +1210,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-226",
@@ -1226,7 +1226,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-753222",
@@ -1243,7 +1243,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-640147",
@@ -1260,7 +1260,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-18748",
@@ -1276,7 +1276,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1783",
@@ -1292,7 +1292,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1178232",
@@ -1308,7 +1308,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1278455",
@@ -1324,7 +1324,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-19306",
@@ -1340,7 +1340,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-18922",
@@ -1356,7 +1356,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1283030",
@@ -1372,7 +1372,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1023937",
@@ -1388,7 +1388,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1272680",
@@ -1404,7 +1404,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1547",
@@ -1420,7 +1420,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1023924",
@@ -1436,7 +1436,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2562",
@@ -1452,7 +1452,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-31770",
@@ -1468,7 +1468,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1183728",
@@ -1484,7 +1484,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2282",
@@ -1500,7 +1500,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-19326",
@@ -1516,7 +1516,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-27844",
@@ -1532,7 +1532,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1188188",
@@ -1548,7 +1548,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-19395",
@@ -1564,7 +1564,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-753348",
@@ -1581,7 +1581,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-22749",
@@ -1597,7 +1597,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-13446",
@@ -1613,7 +1613,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-849059",
@@ -1629,7 +1629,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-850131",
@@ -1645,7 +1645,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-11329",
@@ -1661,7 +1661,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1272234",
@@ -1678,7 +1678,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-761471",
@@ -1694,7 +1694,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1282693",
@@ -1711,7 +1711,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-19884",
@@ -1727,7 +1727,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-568328",
@@ -1743,7 +1743,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1271784",
@@ -1759,7 +1759,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1279232",
@@ -1776,7 +1776,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-27413",
@@ -1792,7 +1792,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-974355",
@@ -1808,7 +1808,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1018804",
@@ -1824,7 +1824,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-773511",
@@ -1841,7 +1841,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1411545",
@@ -1857,7 +1857,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-796340",
@@ -1873,7 +1873,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-796336",
@@ -1889,7 +1889,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-19079",
@@ -1905,7 +1905,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-759037",
@@ -1921,7 +1921,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-756594",
@@ -1938,7 +1938,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-755453",
@@ -1954,7 +1954,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-754806",
@@ -1970,7 +1970,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-754800",
@@ -1986,7 +1986,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-754064",
@@ -2002,7 +2002,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1444811",
@@ -2018,7 +2018,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1022963",
@@ -2034,7 +2034,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1102036",
@@ -2050,7 +2050,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-510408",
@@ -2066,7 +2066,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-33009",
@@ -2082,7 +2082,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-656884",
@@ -2098,7 +2098,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1213762",
@@ -2114,7 +2114,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1306224",
@@ -2130,7 +2130,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-752759",
@@ -2147,7 +2147,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-753469",
@@ -2164,7 +2164,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-19006",
@@ -2180,7 +2180,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2831286",
@@ -2196,7 +2196,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-765860",
@@ -2213,7 +2213,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-754430",
@@ -2229,7 +2229,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-13154",
@@ -2245,7 +2245,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-510623",
@@ -2261,7 +2261,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1278937",
@@ -2277,7 +2277,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1275132",
@@ -2294,7 +2294,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1209828",
@@ -2310,7 +2310,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-999539",
@@ -2326,7 +2326,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1303934",
@@ -2342,7 +2342,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-755671",
@@ -2358,7 +2358,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2794",
@@ -2374,7 +2374,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1871",
@@ -2390,7 +2390,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1103643",
@@ -2406,7 +2406,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-25424",
@@ -2422,7 +2422,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-763787",
@@ -2438,7 +2438,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-850249",
@@ -2454,7 +2454,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1106195",
@@ -2470,7 +2470,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-850083",
@@ -2486,7 +2486,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1304693",
@@ -2503,7 +2503,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1221498",
@@ -2519,7 +2519,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-25223",
@@ -2535,7 +2535,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-870701",
@@ -2551,7 +2551,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-770543",
@@ -2567,7 +2567,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2164",
@@ -2583,7 +2583,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2034",
@@ -2599,7 +2599,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-756471",
@@ -2616,7 +2616,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1271850",
@@ -2632,7 +2632,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-2647022",
@@ -2647,7 +2647,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-33065",
@@ -2663,7 +2663,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1272141",
@@ -2679,7 +2679,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1281832",
@@ -2695,7 +2695,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1095353",
@@ -2711,7 +2711,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-25275",
@@ -2727,7 +2727,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1272388",
@@ -2744,7 +2744,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-18257",
@@ -2760,7 +2760,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-768499",
@@ -2777,7 +2777,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-22684",
@@ -2794,7 +2794,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-567397",
@@ -2810,7 +2810,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-752536",
@@ -2826,7 +2826,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-7586",
@@ -2842,7 +2842,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1147746",
@@ -2858,7 +2858,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-770274",
@@ -2874,7 +2874,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-753682",
@@ -2890,7 +2890,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1188678",
@@ -2906,7 +2906,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1225019",
@@ -2923,7 +2923,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-25234",
@@ -2939,7 +2939,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-767469",
@@ -2955,7 +2955,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-856161",
@@ -2971,7 +2971,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1271940",
@@ -2987,7 +2987,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1627",
@@ -3003,7 +3003,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1275937",
@@ -3019,7 +3019,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-850068",
@@ -3035,7 +3035,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-32939",
@@ -3051,7 +3051,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     },
     {
       "mpid": "mp-1390701",
@@ -3067,7 +3067,7 @@
         "formation_energy_per_atom",
         "band_gap"
       ],
-      "cache_used": false
+      "cache_used": true
     }
   ]
 }

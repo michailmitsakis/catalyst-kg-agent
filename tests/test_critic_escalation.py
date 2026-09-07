@@ -37,7 +37,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from kg.graph_store import load_graph, rehydrate_node
-from kg.schema import MaterialNode, NodeType
+from kg.schema import NodeType
 from agent.critic import CriticAgent, get_force_gate, get_stability_threshold
 from agent.predictor import PredictorResult
 
