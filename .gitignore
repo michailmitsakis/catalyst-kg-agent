@@ -217,14 +217,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# FILES
-
-# Track /docs (structured project memory)
-/docs/alpha_Claude_chat-history.md
-/docs/PORTFOLIO.md
-
 # MLFlow Temp files
 mlflow.db-shm
 mlflow.db-wal
-
-README.md

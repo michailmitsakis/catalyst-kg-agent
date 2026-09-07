@@ -2,7 +2,7 @@
 
 Development log for **catalyst-kg-agent**. The README is the public-facing document; this file is the working record of what was built, what broke, and what was decided.
 
-**Last updated:** 2026-09-03
+**Last updated:** 2026-09-07
 
 ---
 
@@ -12,7 +12,7 @@ The pipeline runs end to end and the surrogate evaluation has been completed wit
 
 **Working:**
 
-- MP data pull → KG build → 686 nodes, 921 edges, 130 materials, 390 properties, 0 CIF failures
+- MP data pull → KG build → 983 nodes, 1343 edges, 189 materials, 567 properties, 0 CIF failures
 - MACE surrogate with formation energies via self-consistent elemental references (validated to 12 meV/atom against MP on mp-2790)
 - Residual-force escalation gate, calibrated against the corpus distribution and **firing on real candidates** (mp-943, Co₃S₄, 0.795 eV/Å)
 - CGCNN baseline trained and cross-validated, with composition-disjoint splits and out-of-fold predictions
@@ -79,14 +79,14 @@ The Critic escalates on **max residual force** (eV/Å) rather than a model-uncer
 
 | Statistic | eV/Å |
 |---|---|
-| median | 0.2229 |
-| mean ± std | 0.2578 ± 0.1879 |
-| p90 / p95 | 0.5197 / 0.6343 |
-| max | 0.9181 |
+| median | 0.2123 |
+| mean ± std | 0.2534 ± 0.1979 |
+| p90 / p95 | 0.5272 / 0.6528 |
+| max | 0.9847 |
 
-`FORCE_GATE_EV_PER_ANG = 0.5` → 14/130 escalate (10.8%). Lower gates escalate the majority of the corpus (0.1 → 78.5%) and collapse the cost-tiering premise. The distribution is smooth with no natural boundary, so this is a judgement about escalation rate rather than a threshold the data selected.
+`FORCE_GATE_EV_PER_ANG = 0.5` → 23/189 escalate (12.2%). Lower gates escalate the majority of the corpus (0.1 → 74.6%) and collapse the cost-tiering premise. The distribution is smooth with no natural boundary, so this is a judgement about escalation rate rather than a threshold the data selected.
 
-**Honest caveat.** A median of 0.223 eV/Å is higher than would be expected for exactly-reproduced DFT geometries. Contributors: the CIF round-trip idealises fractional coordinates (pymatgen warns on ~9 structures), and MP's GGA+U systems are not reproducible by the surrogate. The gate therefore separates *relative* disagreement, not absolute trustworthiness.
+**Honest caveat.** A median of 0.212 eV/Å is higher than would be expected for exactly-reproduced DFT geometries. Contributors: the CIF round-trip idealises fractional coordinates (pymatgen warns on ~9 structures), and MP's GGA+U systems are not reproducible by the surrogate. The gate therefore separates *relative* disagreement, not absolute trustworthiness.
 
 ---
 
@@ -97,12 +97,13 @@ Full tables in the README. Headline figures:
 | Measurement | Value |
 |---|---|
 | MACE formation energy, mp-2790 vs MP | 0.0123 eV/atom error |
-| MACE MAE, non-oxides (fair figure) | 0.121 eV/atom |
-| MACE MAE, oxides | 1.100 eV/atom |
-| CGCNN 5-fold CV, random split | 0.0838 ± 0.0191 eV/atom |
-| CGCNN 5-fold CV, composition-disjoint | 0.1065 ± 0.0335 eV/atom |
-| Mean-predictor baseline | 0.412 eV/atom |
-| MACE inference | 0.191 s/material (CPU, mean) |
+| MACE MAE, non-oxides (fair figure) | 0.114 eV/atom |
+| MACE MAE, oxides | 1.049 eV/atom |
+| CGCNN 5-fold CV, random split | 0.0863 ± 0.0086 eV/atom |
+| CGCNN 5-fold CV, composition-disjoint | 0.1110 ± 0.0198 eV/atom |
+| Mean-predictor baseline | 0.475 eV/atom |
+| MACE inference | 0.121 s/material (CPU, mean) |
+| Force vs stability correlation | r = +0.011 (n = 189) |
 
 ### Finding: transition-metal oxide discrepancy
 
@@ -129,29 +130,91 @@ Composition-disjoint CV degrades MAE by ~27% (0.0838 → 0.1065) — modest, ind
 
 ---
 
-## Campaign trace (2026-09-03)
+## Campaign trace (2026-09-07)
 
-Three campaigns from a freshly built KG, verified end to end. Full table and
-commentary in the README's *Worked example*.
+Three campaigns from a freshly built KG on the widened 189-material corpus.
+Full table and commentary in the README's *Worked example*.
 
 | | demo-001 | demo-002 | demo-003 |
 |---|---|---|---|
 | Query | broad | broad | "Find stable Ni-P HER catalysts" |
 | Skipped (already in KG) | 0 | 19 | 36 |
-| Evaluated | 19 | 17 | 5 |
+| Evaluated | 19 | 17 | 4 |
 | Escalations | 0 | 1 (paid) | 0 |
-| Spent / remaining | 96.5 / 3.5 | 96.5 / 3.5 | 27.5 / 72.5 |
+| Spent / remaining | 96.5 / 3.5 | 96.5 / 3.5 | 22.5 / 77.5 |
 | Termination | `budget_exhausted` | `budget_exhausted` | `completed` |
+| Best candidate | mp-1005 | mp-1274279 | mp-21167 (Ni₂P) |
 
-Cross-checks that passed: 19+17+5 = 41 distinct `mace_energy_per_atom`
-properties in the KG (no material scored twice); demo-002's arithmetic
-reconciles exactly (1.0 + 17×5.0 + 10.0 + 0.5 overhead = 96.5); escalation
-counts agree between the summary log and the budget tracker.
+Cross-checks that passed: 19+17+4 = 40 distinct `mace_energy_per_atom`
+properties (no material scored twice); demo-002's arithmetic reconciles exactly
+(1.0 + 17×5.0 + 10.0 + 0.5 overhead = 96.5); escalation counts agree between
+the summary log and the budget tracker in all three.
 
-**Nondeterminism.** The Planner is an LLM, so candidate ordering varies
-between runs. mp-943 was in demo-001's candidate pool but ordered outside the
-affordable window, and surfaced in demo-002 instead. Aggregate behaviour is
+demo-003's top pick, Ni₂P, is the canonical benchmark HER catalyst — a
+reasonable answer to the question asked, arrived at through LLM query parsing,
+KG retrieval, and surrogate ranking.
+
+**Nondeterminism.** The Planner is an LLM, so candidate ordering varies between
+runs, and which material gets escalated varies with it. Aggregate behaviour is
 stable; the specific escalation is not. Any published trace is *a* run.
+
+### Corpus widening (2026-09-07)
+
+`E_ABOVE_HULL_RANGE` went from `(0.0, 0.05)` to `(0.0, 0.1)`,
+`TOP_N_BY_STABILITY` from 300 to 500, and `STABILITY_THRESHOLD` from 0.1 to
+0.05. Effects measured:
+
+| | 130-corpus | 189-corpus |
+|---|---|---|
+| Materials | 130 | 189 |
+| Distinct compositions | ~75 (58% dup) | 98 (69% dup) |
+| Oxides / non-oxides | 49 / 81 | 84 / 105 |
+| CGCNN random CV MAE | 0.0838 ± 0.0191 | 0.0863 ± 0.0086 |
+| CGCNN comp-disjoint MAE | 0.1065 ± 0.0335 | 0.1110 ± 0.0198 |
+| Leakage gap | +27% | +29% |
+| MACE non-oxide MAE | 0.121 | 0.114 |
+| Force median | 0.223 | 0.212 |
+
+The leakage finding survived and tightened — the fold-to-fold spread on the
+disjoint split roughly halved (±0.0335 → ±0.0198), so it is now much better
+evidenced. The GGA+U pattern held with 84 oxides instead of 49.
+
+**Prediction that was wrong.** Adding 59 less-stable materials was expected to
+shift the residual-force distribution upward. It did not (median 0.223 →
+0.212). Residual force turns out to be essentially uncorrelated with
+`e_above_hull` (Pearson r = **+0.011**, n = 189), which is the measured
+justification for keeping both Critic-relevant checks: they answer different
+questions and neither substitutes for the other.
+
+### Stability: a retrieval constraint, not a validation gate
+
+Widening the corpus exposed that `CriticDecision.approved` was **never read by
+the campaign loop** — only `requires_escalation` was. A material failing the
+stability check was still predicted, charged, written to the KG, and eligible
+to be the best candidate. It had gone unnoticed because nothing in a
+0.05-capped corpus could fail a 0.05 threshold.
+
+The first fix attempt added `Critic.screen_candidates()` and ran it before the
+Planner. That worked, but put the Trust Layer ahead of the coordinator and
+muddied the architecture the README describes.
+
+The better fix needed no ordering change. The Retriever was **already**
+filtering on stability via `find_stable_materials` — it was just using a
+hardcoded `0.1` instead of the configured `STABILITY_THRESHOLD` (0.05). One
+concept, two values, enforced by two agents. Now the Retriever reads the same
+variable the Critic does, a query may ask for something stricter than the
+ceiling but never looser, and unsuitable candidates never enter the pool. Agent
+ordering stays Retriever → Planner → Predictor → Critic.
+
+Also caught in the same pass: `critic.py` and `retriever.py` had *different
+default values* for `STABILITY_THRESHOLD` (0.1 vs 0.05), and `critic.py`
+defaulted `FORCE_GATE_EV_PER_ANG` to 0.1 when the calibrated value is 0.5 — a
+fresh clone without a `.env` would have escalated ~75% of the corpus. Both
+defaults now match the configuration and the calibration.
+
+Performance: `Critic._get_e_above_hull_from_kg` re-read the entire `kg.json`
+from disk on every lookup — a 19-material campaign step parsed a 983-node graph
+19 times. Now cached on first use.
 
 ### Campaign-loop bugs found and fixed during this trace
 
