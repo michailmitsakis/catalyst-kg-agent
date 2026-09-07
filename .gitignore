@@ -216,10 +216,3 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-
-# MLFlow Temp files
-mlflow.db-shm
-mlflow.db-wal
-
-# Files
-docs
