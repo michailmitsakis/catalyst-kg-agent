@@ -1,8 +1,8 @@
 # Knowledge-Graph-Grounded, Cost-Aware Decision Agent for Materials Discovery
 
-**catalyst-kg-agent** is a multi-agent system that helps a materials-discovery campaign choose the *cheapest sufficient* next action — a knowledge-graph lookup, an MLIP surrogate query, or an expensive simulated experiment — the same decision real self-driving-lab (SDL) orchestration has to make under a budget.
+**catalyst-kg-agent** is a multi-agent system that helps a materials-discovery campaign choose the *cheapest sufficient* next action — a knowledge-graph lookup, a lower-fiedlity MLIP surrogate query, or an expensive higher-fidelity simulated experiment — the same decision real self-driving-lab (SDL) orchestration has to make under a budget.
 
-**Status:** working demonstration. The knowledge graph builds, the agent loop runs end to end under a budget, and the surrogate evaluation has been run with results reported below. The "expensive experiment" step is simulated, not a real synthesis or DFT job — see [Limitations](#limitations).
+**Status:** working demo. The knowledge graph builds, the agent loop runs end to end under a budget, and the surrogate evaluation has been run with results reported below. The "expensive experiment" step is simulated, not a real synthesis or DFT job — see [Limitations](#limitations).
 
 ---
 
@@ -32,7 +32,6 @@
   - [Data](#data)
   - [Limitations](#limitations)
   - [Design Decisions \& Alternatives Considered](#design-decisions--alternatives-considered)
-  - [Background \& Motivation](#background--motivation)
   - [Stretch Goals](#stretch-goals)
   - [Citations \& Further Reading](#citations--further-reading)
   - [Acknowledgments](#acknowledgments)
@@ -77,7 +76,7 @@ The **Scribe** writes surrogate predictions back into the knowledge graph as new
 
 All inter-agent messages use strict Pydantic schemas — agents chain by matching typed contracts, not free-form text.
 
-This decomposition mirrors the "AI-native Scientific Discovery Platform" reference architecture (Reasoning Core / Memory / Trust Layer / Knowledge Substrate / Domain Foundation Models / 1st-principles models) presented in Ian Foster's *AI Agents for Science* course (University of Chicago, CMSC 35370): the Planner plays the Reasoning Core role, the knowledge graph is the Knowledge Substrate, the Critic is the Trust Layer, MACE/CGCNN are the Domain Foundation Model, and the optional UMA relaxation check stands in for a 1st-principles verification step.
+This decomposition obeys the following concept: the Planner plays the Reasoning Core role, the knowledge graph is the Knowledge Substrate, the Critic is the Trust Layer, MACE/CGCNN are the Domain Foundation Model, and the optional UMA relaxation check stands in for a 1st-principles verification step.
 
 **Scope relative to similar work:** [`AdsMind`](https://github.com/NagatoBigSeven/AdsMind) — a physics-grounded multi-agent system that self-corrects a *single* adsorption configuration using MLIP-relaxation feedback — solves an adjacent but distinct problem: per-candidate structural correction, rather than this project's focus on cross-candidate, budget-constrained decisions about which action to spend resources on next.
 
@@ -215,8 +214,8 @@ was parsed by the Retriever into `chemsys=[Ni-P] + stability ≤ 0.05`, resolvin
 to the 8 nickel phosphides that pass the stability ceiling. Four had already
 been scored in demo-001, so it evaluated the remaining four and stopped with
 77.5 units unspent, terminating `completed` (candidates exhausted) rather than
-`budget_exhausted`. Its top pick was **Ni₂P (mp-21167)** — the canonical
-benchmark HER catalyst — which is a reasonable answer to the question asked.
+`budget_exhausted`. Its top pick was **Ni₂P (mp-21167)** — a high-efficiency, 
+non-noble metal HER catalyst — which is a reasonable answer to the question asked.
 
 **On reproducibility:** the Planner is an LLM, so candidate ordering varies
 between runs, and which material gets escalated varies with it. This is *a*
@@ -254,7 +253,7 @@ to 0.1 barely moved the force distribution at all (median 0.223 → 0.212).
 That is the justification for having both checks rather than one. Stability is
 a property of the **material** — "is this worth pursuing?", known for free from
 MP, enforced as a retrieval constraint. Residual force is a property of the
-**model's competence on that material** — "can I trust the number my surrogate
+**model's competence on that material** — i.e., "can I trust the number my surrogate
 just produced?", knowable only after MACE has run. A candidate can pass one and
 fail the other: mp-644514 (MnO₂) is comfortably stable yet carries a residual
 force of 0.767 eV/Å, so its cheap estimate warrants verification before being
@@ -590,25 +589,13 @@ corpus. A query may ask for something stricter than the ceiling, never looser.
 
 - MACE formation energies disagree strongly with MP values for transition-metal oxides (~2.4–3.2 eV per metal atom, vs ~0.0–0.5 for the same metals in non-oxides), consistent with MP's GGA+U treatment of those systems. Comparisons are reported split oxide/non-oxide for this reason.
 - Residual forces on the corpus have a median of 0.223 eV/Å, higher than would be expected for exactly-reproduced DFT-relaxed geometries. Two likely contributors: the CIF round-trip idealises fractional coordinates (pymatgen emits rounding warnings on ~9 structures), and MP's GGA+U systems are not reproducible by the surrogate. The gate therefore separates *relative* disagreement across the corpus, not absolute trustworthiness.
-- The CGCNN baseline is trained on 130 materials — very small for a GNN trained from scratch. The published CGCNN used 10⁴–10⁵ structures. Reported metrics come with fold-to-fold spread for this reason.
+- The CGCNN baseline is trained on a few hundred materials — very small for a GNN trained from scratch. The published CGCNN used 10⁴–10⁵ structures. Reported metrics come with fold-to-fold spread for this reason.
 - Every structure is an MP-relaxed geometry evaluated as-is. No relaxation is performed by the surrogate, so these are single-point energies at DFT-optimal geometries, not MACE-optimal ones.
 
 **Implementation**
 
 - UMA/OMat24-derived energies are not numerically compatible with MP-derived energies; they are kept in a strictly separate, labelled tier and used only in the optional showcase notebook. The UMA notebook requires FAIRChem, which is not a listed dependency; without it the notebook runs and reports the relaxation section as skipped rather than producing a result.
 - Multi-agent design adds real coordination overhead and additional failure surface versus a single-agent pipeline. Chosen because independent role separation — particularly the Critic's gate before escalation — mattered more than raw simplicity for this problem, not because more agents are inherently better.
-- `ScribeAgent.get_materials_with_properties()` is dead code and does not work.
-  It is never called by the agent loop, and would return an empty list if it
-  were: it compares `data.get("name")` against `str(property_name)`, which for
-  a `PropertyName` enum member evaluates to `"PropertyName.ENERGY_ABOVE_HULL"`
-  rather than `"energy_above_hull"`; it then calls `G.edges(prop_nid, edges[0])`,
-  whose second positional parameter is `data`, not a target node, so the
-  traversal yields nothing; and it indexes `edges[0]` without checking that the
-  property node has any predecessors. Retained rather than deleted because a
-  KG-side "find materials whose stored property falls in range" helper is
-  wanted for cross-campaign querying — but it needs rewriting against
-  `kg/queries.py`'s `find_materials_by_property_range`, which already does this
-  correctly and is tested.
 - `requirements.txt` was generated on Windows and pins Windows-only packages (`pywin32`, `triton-windows`); it needs regenerating for cross-platform installation.
 
 ---
@@ -635,22 +622,6 @@ corpus. A query may ask for something stricter than the ceiling, never looser.
 | **MD/batching infrastructure** | Not used | NVIDIA ALCHEMI Toolkit (`nvalchemi`) | Solves large-scale MD-throughput efficiency; this project does single-point inference, not large-scale MD sampling. |
 | **Stability screening rule** | `e_above_hull` threshold as the Critic's first concrete gate | Vague, unspecified "plausibility check" | Mirrors the stability-screening step used in production materials-discovery agent workflows; a well-defined, MP-derivable threshold. |
 | **Distributed/federated agent execution** | Not used — all agents run locally, in-process | Academy (Globus Compute + Parsl agentic middleware for federated, actor-model agent deployment across HPC/experimental facilities) | This project targets single-machine, local execution; Academy-style federated middleware is the natural path if the same agent roles were later deployed across real HPC and instrument resources rather than simulated ones. |
-
----
-
-## Background & Motivation
-
-*Full reasoning trail for readers curious how this project's scope was chosen.*
-
-This project started from three separate observations that turned out to point at the same gap.
-
-**1. Conference signal.** At the AI4X 2026 conference, the field's center of gravity was visibly the same triangle everywhere: ML surrogates (MLIPs, GNNs), automated/robotic experimentation, and orchestration logic tying the two together into a closed loop. Talks from Ulrich Schubert (self-driving labs), Curtis Berlinguette (Ada-Carbon), Tejs Vegge (MaterialsCommons, FAIR workflows and knowledge-graph-backed federated infrastructure), and Mohamad Moosavi (literature-informed autonomous discovery) all described variations of the same architecture, at very different scales.
-
-**2. Job-market signal.** Mining current job descriptions from materials-informatics startups and labs (CuspAI, Atomscale, Siemens Energy, Mistral AI, Dunia Innovations, alqem.ai, NVIDIA, Meta FAIR Chemistry, BAM) surfaced recurring problems, almost verbatim, across otherwise unrelated companies: evaluation as its own discipline, Bayesian optimization breaking down in "green-field" search spaces, negative results as a neglected data source, closed-loop orchestration, agentic workflows and where they're dangerous (physical actions costing far more than a token call), preventing physically invalid model outputs, FAIR/traceable data as a bottleneck, and — repeatedly — knowledge graphs and ontologies for materials research, including in a BAM permanent research position posted during this project's development.
-
-**3. Literature signal.** Once knowledge graphs were flagged as recurring, a direct academic lineage confirmed it wasn't just hiring-post language: Bai et al., *"A dynamic knowledge graph approach to distributed self-driving laboratories"* (*Nature Communications*, 2024) and Bai et al., *"From Platform to Knowledge Graph: Evolution of Laboratory Automation"* (*JACS Au*, 2022) frame knowledge graphs explicitly as the next stage of laboratory automation.
-
-This project combines those three signals into one small, locally-runnable artifact.
 
 ---
 
@@ -690,4 +661,4 @@ This project combines those three signals into one small, locally-runnable artif
 
 ## Acknowledgments
 
-Parts of this codebase were developed with assistance from an AI coding assistant using Agent Skills from [`materials-simulation-skills`](https://github.com/HeshamFS/materials-simulation-skills) and [`AtomisticSkills`](https://github.com/learningmatter-mit/AtomisticSkills).
+Parts of this codebase were developed with assistance from Qwen 3.5 9B running locally for the project layout and scaffolding, and Claude Opus 5 for extensive coding secions and intense debugging.
