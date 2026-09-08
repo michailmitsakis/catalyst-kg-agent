@@ -298,7 +298,8 @@ FORCE_GATE_EV_PER_ANG=0.5        # Critic escalation gate
 MACE_CHECKPOINT=mace-mpa-0-medium
 ```
 
-The MACE checkpoint (`models/mace-mpa-0-medium.model`) is not committed; download it from the [MACE releases](https://github.com/ACEsuit/mace) before running.
+The MACE checkpoint (`models/mace-mpa-0-medium.model`) is committed but you can also download it from the [MACE releases](https://github.com/ACEsuit/mace).
+The MACE checkpoint (`models/mace-omat-0-medium.model`) is also provided for testing purposes, but was not used in this project.
 
 ---
 
@@ -496,8 +497,8 @@ catalyst-kg-agent/
 │   └── reset.py
 │
 ├── models/
-│   ├── mace-mpa-0-medium.model     # not committed
-│   ├── mace-omat-0-medium.model    # not committed
+│   ├── mace-mpa-0-medium.model    
+│   ├── mace-omat-0-medium.model   
 │   ├── elemental_references.py     # MACE reference energies for formation energy
 │   ├── baseline_cgcnn.py           # from-scratch CGCNN baseline
 │   ├── surrogate_comparison.py     # MACE vs CGCNN
