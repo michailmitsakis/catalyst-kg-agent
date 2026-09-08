@@ -356,8 +356,10 @@ Full table in the README's *Design Decisions* section. Additions from the correc
 | Computing true `e_above_hull` in the Predictor | Requires the convex hull of all competing phases per chemical system — an MP phase-diagram call plus MACE evaluation of every competing phase, turning an O(1) surrogate into O(phases) and defeating the cost-tiering premise. Stability is read from MP instead. |
 | MC-Dropout uncertainty on MACE | Deterministic inference, no active dropout: always exactly 0.0. |
 | Two-checkpoint MACE ensemble for uncertainty | Different energy references between checkpoints; spread would be a constant offset, not model disagreement. |
-| Excluding oxides from the comparison | Would remove 49/130 materials and the entire OER half of the corpus. Kept with molecular-O₂ reference and oxide/non-oxide split reporting instead. |
-| Fine-tuning MACE on this corpus | Would make the MACE-vs-CGCNN comparison harder to interpret (both trained on the same 130 materials). Zero-shot keeps the contrast clean. |
+| Excluding oxides from the comparison | Would remove 84/189 materials and the entire OER half of the corpus. Kept with molecular-O₂ reference and oxide/non-oxide split reporting instead. |
+| Fine-tuning MACE on this corpus | Would make the MACE-vs-CGCNN comparison harder to interpret (both trained on the same materials). Zero-shot keeps the contrast clean. |
+| Ingesting MP `surface_properties` (weighted surface energy, work function) | Measured coverage: **1 of 189** materials — only mp-126 (Pt). MP's surface dataset is concentrated on elemental metals, not the transition-metal phosphides, sulfides and oxides in this corpus. Would add a KG field that is null 99.5% of the time. |
+| A newer MACE checkpoint to reduce the oxide error | MACE-POLAR-1 is a **molecular** chemistry model (trained on OMol25), and MACE-Field predicts dielectric response, not formation energy; neither targets bulk crystal energetics. More fundamentally the oxide error is a benchmark artifact — MP's GGA+U targets are not on one level of theory — so no checkpoint fixes it. |
 
 ---
 
@@ -380,6 +382,13 @@ Optional, in rough order of value:
    is that nothing here predicts catalytic activity — the pipeline selects for
    bulk stability and surrogate confidence. An adsorption-energy proxy would
    change what the project is *for*, not just how well it does it.
+
+   Note this cannot be closed with Materials Project data: `surface_properties`
+   covers 1 of 189 materials here (see *Considered and rejected*). Closing it
+   means either computing slab descriptors directly — facet enumeration plus
+   relaxation per surface, a project in itself — or moving to an
+   adsorption-energy dataset such as OC20/OC22. The gap is a data-availability
+   constraint, not an oversight.
 
 **Artifacts are corpus-versioned.** `force_distribution.json`,
 `cgcnn_*.json`, `cgcnn_catalyst.pt`, `mace_vs_cgcnn_comparison.json` and
@@ -412,3 +421,13 @@ contrast. Kept as a stretch goal with that rationale attached.
 - Residual-force-weighted averaging when the Scribe merges repeated predictions (currently a simple mean).
 - Persist per-campaign candidate ordering so a trace can be replayed deterministically despite the LLM Planner.
 - Fitted elemental references (see the non-goal note above, which explains why this is deliberately deferred).
+
+---
+
+## Source rationale (job-sourcing)
+
+Themes mined from job descriptions and community posts: evaluation as its own discipline (Dunia, NVIDIA), Bayesian optimisation breaking down in green-field spaces (Dunia), negative results as a neglected data source (RadicalAI, Dunia), closed-loop orchestration (Siemens Energy, alqem.ai, CuspAI), cost-aware agents (Dunia), physical plausibility and uncertainty (Dunia, alqem.ai, CuspAI), FAIR/traceable data (Siemens, alqem.ai), production DFT pipelines (alqem.ai), cross-campaign learning (Dunia).
+
+Academic lineage: Bai et al. *Nat. Commun.* 2024 and *JACS Au* 2022 (KG-SDL, Cambridge/World Avatar group); Tejs Vegge's MaterialsCommons talk (FAIR + KG, AI4X 2026); Ian Foster, CMSC 35370 *AI Agents for Science* (University of Chicago, 2026) — reference architecture for Reasoning Core / Memory / Trust Layer.
+
+Related projects: [ai-mandel](https://github.com/artificial-scientist-lab/ai-mandel) (agent loop pattern), [atomic-agents](https://github.com/Eigenwise/atomic-agents) (schema discipline), [AdsMind](https://arxiv.org/abs/2606.19152) (physics-grounded multi-agent, similar architecture but single-candidate focus).
