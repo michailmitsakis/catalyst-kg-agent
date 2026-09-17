@@ -15,7 +15,7 @@
   - [Results](#results)
     - [Knowledge graph](#knowledge-graph)
     - [MACE surrogate validation](#mace-surrogate-validation)
-    - [Surrogate comparison — MACE vs CGCNN](#surrogate-comparison--mace-vs-cgcnn)
+    - [MLIP surrogate comparison — MACE vs CGCNN](#mlip-surrogate-comparison--mace-vs-cgcnn)
     - [Finding: MACE's error is concentrated in transition-metal oxides](#finding-maces-error-is-concentrated-in-transition-metal-oxides)
     - [CGCNN baseline: leakage-controlled cross-validation](#cgcnn-baseline-leakage-controlled-cross-validation)
     - [Worked example: three campaigns](#worked-example-three-campaigns)
@@ -42,7 +42,7 @@
 
 Materials-discovery teams building self-driving labs face a recurring decision: given a target property and a limited budget, what should be tried next — a cheap database lookup, a fast ML surrogate estimate, or an expensive real (or simulated) experiment? Get this wrong and either the budget is wasted on redundant expensive steps, or an unreliable surrogate result gets trusted without a check.
 
-This project builds a small, locally-runnable version of that decision system: a knowledge graph as the memory/grounding layer, an MLIP as the property surrogate, and a role-specialized multi-agent system that picks actions under an explicit cost budget — with a dedicated safety check before anything expensive is allowed to run.
+This project builds a small, locally-runnable version of that decision system: a knowledge graph as the memory/grounding layer, a MLIP as the property surrogate, and a role-specialized multi-agent system that picks actions under an explicit cost budget — with a dedicated safety check before anything expensive is allowed to run.
 
 ---
 
@@ -67,7 +67,7 @@ Materials Project  →  kg/build_graph.py  →  NetworkX knowledge graph
    Planner [LLM] orders candidates; per candidate: predict -> validate -> escalate
 ```
 
-At each step the campaign orchestrator retrieves candidates (cheap KG lookup), scores them with the MACE surrogate (moderate cost), and passes the results to the **Critic**, which must approve before any escalation. The Critic applies two independent checks:
+At each step the campaign orchestrator retrieves candidates (cheap KG lookup), scores them with the MACE MLIP surrogate (moderate cost), and passes the results to the **Critic**, which must approve before any escalation. The Critic applies two independent checks:
 
 1. **Stability** — `e_above_hull` below threshold, read from the KG's Materials-Project-derived value (not from the surrogate).
 2. **Surrogate trustworthiness** — the maximum residual force MACE predicts on the structure. Every structure in the corpus is a DFT-relaxed MP geometry, so DFT's own forces on it are approximately zero by construction. A large MACE residual force means MACE and DFT disagree about where the atoms belong, i.e. the surrogate is outside the region where it can be trusted for this material. That is what warrants an expensive check.
@@ -114,7 +114,9 @@ Spot-check against Materials Project for Ni₁₂P₅ (mp-2790):
 
 12 meV/atom agreement on a zero-shot foundation model evaluated on an unrelaxed MP geometry.
 
-### Surrogate comparison — MACE vs CGCNN
+### MLIP surrogate comparison — MACE vs CGCNN
+
+CGCNN (Crystal Graph Convolutional Neural Network) encodes a structure as a crystal graph, representing atoms as nodes, with edges connecting neighbours within a cutoff radius, and iteratively updates atomic representations by aggregating information from neighbouring atoms. It is invariant to translation, rotation and permutation of the atoms. MACE is an equivariant message-passing network that uses higher body-order messages, letting it reach comparable accuracy in just two message-passing layers rather than the many required by two-body MPNNs. Here CGCNN is trained from scratch on this corpus; MACE is used zero-shot from a foundation checkpoint.
 
 Both models predict `formation_energy_per_atom` and are scored against the same MP target. MACE is zero-shot; CGCNN is trained on this corpus and evaluated **out-of-fold** (each material scored by the fold model that never saw it).
 
@@ -677,6 +679,8 @@ corpus. A query may ask for something stricter than the ceiling, never looser.
 - Bai, J. et al. *From Platform to Knowledge Graph: Evolution of Laboratory Automation.* JACS Au (2022).
 - Jain, A. et al. *Formation enthalpies by mixing GGA and GGA+U calculations.* Phys. Rev. B 84, 045115 (2011) — the MP correction scheme behind the transition-metal-oxide discrepancy reported above.
 - Wang, A. et al. *A framework for quantifying uncertainty in DFT energy corrections.* Sci Rep 11, 15496 (2021).
+- Batatia, I., Kovács, D. P., Simm, G. N. C., Ortner, C. & Csányi, G. *MACE: Higher Order Equivariant Message Passing Neural Networks for Fast and Accurate Force Fields.* Advances in Neural Information Processing Systems 35 (NeurIPS 2022) — the architecture behind the `mace-mpa-0-medium` MLIP surrogate used here.
+- Batatia, I., Batzner, S., Kovács, D. P., Musaelian, A., Simm, G. N. C., Drautz, R., Ortner, C., Kozinsky, B. & Csányi, G. *The Design Space of E(3)-Equivariant Atom-Centered Interatomic Potentials.* arXiv:2205.06643 (2022). - the architecture behind the `mace-mpa-0-medium` MLIP surrogate used here.
 - Xie, T. & Grossman, J. C. *Crystal Graph Convolutional Neural Networks for an Accurate and Interpretable Prediction of Material Properties.* Phys. Rev. Lett. 120, 145301 (2018) — the CGCNN architecture reimplemented here.
 - [Acceleration Consortium — Awesome Self-Driving Labs](https://github.com/AccelerationConsortium/awesome-self-driving-labs)
 - [`ai-mandel`](https://github.com/artificial-scientist-lab/ai-mandel) — iterative Researcher/Novelty-Supervisor/Judge agent loop pattern.
