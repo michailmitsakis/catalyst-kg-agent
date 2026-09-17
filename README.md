@@ -1,6 +1,6 @@
 # Knowledge-Graph-Grounded, Cost-Aware Decision Agent for Materials Discovery
 
-**catalyst-kg-agent** is a multi-agent system that helps a materials-discovery campaign choose the *cheapest sufficient* next action — a knowledge-graph lookup, a lower-fiedlity MLIP surrogate query, or an expensive higher-fidelity simulated experiment — the same decision real self-driving-lab (SDL) orchestration has to make under a budget.
+**catalyst-kg-agent** is a multi-agent system that helps a materials-discovery campaign choose the *cheapest sufficient* next action: a knowledge-graph lookup, a lower-fidelity MLIP surrogate query, or an expensive higher-fidelity simulated experiment, which is the same decision real self-driving-lab (SDL) orchestration has to make under a budget.
 
 **Status:** working demo. The knowledge graph builds, the agent loop runs end to end under a budget, and the surrogate evaluation has been run with results reported below. The "expensive experiment" step is simulated, not a real synthesis or DFT job — see [Limitations](#limitations).
 
@@ -15,7 +15,7 @@
   - [Results](#results)
     - [Knowledge graph](#knowledge-graph)
     - [MACE surrogate validation](#mace-surrogate-validation)
-    - [MLIP surrogate comparison — MACE vs CGCNN](#mlip-surrogate-comparison--mace-vs-cgcnn)
+    - [Surrogate comparison — MACE vs CGCNN](#surrogate-comparison--mace-vs-cgcnn)
     - [Finding: MACE's error is concentrated in transition-metal oxides](#finding-maces-error-is-concentrated-in-transition-metal-oxides)
     - [CGCNN baseline: leakage-controlled cross-validation](#cgcnn-baseline-leakage-controlled-cross-validation)
     - [Worked example: three campaigns](#worked-example-three-campaigns)
@@ -40,7 +40,7 @@
 
 ## The Problem
 
-Materials-discovery teams building self-driving labs face a recurring decision: given a target property and a limited budget, what should be tried next — a cheap database lookup, a fast ML surrogate estimate, or an expensive real (or simulated) experiment? Get this wrong and either the budget is wasted on redundant expensive steps, or an unreliable surrogate result gets trusted without a check.
+Materials-discovery teams building self-driving labs face a recurring decision: given a target property and a limited budget, what should be tried next — a cheap database lookup, a fast MLIP surrogate estimate, or an expensive real (or simulated) experiment? Get this wrong and either the budget is wasted on redundant expensive steps, or an unreliable surrogate result gets trusted without a check.
 
 This project builds a small, locally-runnable version of that decision system: a knowledge graph as the memory/grounding layer, a MLIP as the property surrogate, and a role-specialized multi-agent system that picks actions under an explicit cost budget — with a dedicated safety check before anything expensive is allowed to run.
 
@@ -114,9 +114,12 @@ Spot-check against Materials Project for Ni₁₂P₅ (mp-2790):
 
 12 meV/atom agreement on a zero-shot foundation model evaluated on an unrelaxed MP geometry.
 
-### MLIP surrogate comparison — MACE vs CGCNN
+### Surrogate comparison — MACE vs CGCNN
 
-CGCNN (Crystal Graph Convolutional Neural Network) encodes a structure as a crystal graph, representing atoms as nodes, with edges connecting neighbours within a cutoff radius, and iteratively updates atomic representations by aggregating information from neighbouring atoms. It is invariant to translation, rotation and permutation of the atoms. MACE is an equivariant message-passing network that uses higher body-order messages, letting it reach comparable accuracy in just two message-passing layers rather than the many required by two-body MPNNs. Here CGCNN is trained from scratch on this corpus; MACE is used zero-shot from a foundation checkpoint.
+Foundational machine-learning interatomic potentials (MLIPs) are transforming atomistic simulations by achieving near-ab initio accuracy across large chemical spaces at a fraction of the computational cost. MACE is an equivariant message-passing network that uses higher body-order messages, letting it reach comparable accuracy in just two message-passing layers rather than the many required by two-body MPNNs. Thus, MACE is a MLIP: it models an energy surface, and derives atomic forces through its analytic gradient. 
+
+CGCNN (Crystal Graph Convolutional Neural Network) encodes a structure as a crystal graph, representing atoms as nodes, with edges connecting neighbours within a cutoff radius, and iteratively updates atomic representations by aggregating information from neighbouring atoms. It is invariant to translation, rotation and permutation of the atoms. 
+CGCNN here is a property regressor, trained from scratch on this corpus; as such it maps a structure to a scalar with no energy surface behind it, and therefore no forces. That asymmetry is why only MACE can supply the Critic's residual-force signal, and it is used zero-shot from a foundation checkpoint. 
 
 Both models predict `formation_energy_per_atom` and are scored against the same MP target. MACE is zero-shot; CGCNN is trained on this corpus and evaluated **out-of-fold** (each material scored by the fold model that never saw it).
 
